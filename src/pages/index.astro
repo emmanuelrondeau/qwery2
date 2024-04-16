@@ -1,175 +1,87 @@
 ---
-import ArticleLayout from "../layouts/ArticleLayout.astro";
-import MailingListForm from "../components/MailingListForm.astro";
+import { Image } from "astro:assets";
+import { type CollectionEntry, getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/articles/ArticleCard.astro";
+import { TagEnum } from "../content/config";
+import Background from "../assets/josh-lavallee-sM0q8DxTkWQ-unsplash.jpg";
+
+const posts = await getCollection("posts");
+
+type Props = {
+	entry: CollectionEntry<"posts">;
+};
+
+const mostRecent = posts.sort(
+	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
+)[0];
 ---
 
-<ArticleLayout seo={{ title: "Home" }} topSpacing={true}>
-	<h1 class="text-6xl">Transfem Circle</h1>
-	<strong>
-		The Transfem Circle is a friendly Winnipeg meetup for transfemmes to
-		socialize!
-	</strong>
-	<p>
-		Our goal is to help attendees create a deeper and more positive connection
-		with their femininity.
-	</p>
-	<p>
-		There is no need to reserve a spot, be in a certain place in your
-		transition, nor do you need to present femme (although encouraged!). Feel
-		free to just show up!
-	</p>
-	<h2>When do you meet up?</h2>
-	<p>
-		We meet on the 1st Monday and 3rd Friday of every month, from <time
-			datetime="19:00">7:00 p.m.</time
-		> to <time datetime="21:00">9:00 p.m.</time>
-	</p>
-	<h2>What does the group do?</h2>
-	<p>
-		On the Monday meetups, we usually have discussion topics such as: <ul>
-			<li>
-				What our experiences were like coming out to friends, family, and
-				strangers
-			</li>
-			<li>Where to buy clothes, shoes, make-up, etc.</li>
-			<li>How to plan hair removal and surgeries</li>
-		</ul>
-		We also do group activities such as movie nights!
-	</p>
-	<p>
-		On the Friday meetups, we usually play games such as Cards Against Humanity,
-		although some people go off to their own corner to talk freely. You choose!
-	</p>
-	<h2>Mailing List</h2>
-	<p>
-		Subscribe to the official mailing list for annoucements and reminders on
-		upcoming events. You should receive an email to confirm your subscription.
-	</p>
-	<MailingListForm />
-	<h2>Community Resources</h2>
-	<ul>
-		<li>
-			<a
-				href="https://klinic.mb.ca/health-care/transhealthklinic/community-members/"
-				target="_blank"
-				referrerpolicy="no-referrer">Trans Health Klinic</a
-			> — Klinic Community Health is an organization that provides many health services,
-			including helping you medically transition. To register, you have two options:
-			<ol>
-				<li>
-					Fill out the PDF linked on the page, print it, then either:
-					<ul>
-						<li>Hand it in via physical mail</li>
-						<li>Drop it off at the front desk</li>
-					</ul>
-				</li>
-				<li>
-					Go to Klinic, then ask the front desk for the trans health intake form
-					to fill out.
-				</li>
-			</ol>Their address is located at the bottom of the page, under "Contact
-			Us". As of 2024, the wait list roughly a year and a half, so you may wish
-			to try to get hormones through your primary care practitioner in the
-			meantime.
-		</li>
-		<li>
-			<a href="https://rayinc.ca/" target="_blank" referrerpolicy="no-referrer">
-				RaY Inc.</a
-			> — RaY provides free resources and programs for anyone 29 and under who needs
-			assistance. This includes housing, employment, basic needs, and mental health.
-		</li>
-		<li>
-			<a href="https://huddlemanitoba.ca/find-a-location/">Huddle</a> — Huddle is
-			a safe space for youth ages 12–29, offering free, trauma-informed and culturally
-			safe health services in a youth-friendly atmosphere.
-		</li>
-		<li>
-			<a
-				href="https://docs.google.com/document/d/e/2PACX-1vTCwvVMhuhINItACGRGe7kqUeui8-caX0xol2fsqeahcm_-BvrcjAqrsgFmtKcaIWFXoVejlzv2SxTZ/pub"
-				target="_blank"
-				referrerpolicy="no-referrer">Amend the Change of Name Act: A Guide</a
-			> — A guide on how to contact government officials on changing the law, involving
-			publication of trans people's old and new names. There also includes how to
-			avoid publication of your name under the current system.
-		</li>
-		<li>
-			<a
-				href="https://www.salix.blog/voice"
-				target="_blank"
-				referrerpolicy="no-referrer"
+<BaseLayout seo={{ title: "Home" }}>
+	<div class="relative h-96 overflow-hidden">
+		<div class="bg-violet-100 dark:bg-violet-950 dark:bg-opacity-25 h-96 -z-30">
+			<Image
+				alt=""
+				src={Background}
+				class="absolute inset-0 object-cover h-96 mix-blend-color-dodge brightness-[0.25] dark:brightness-100 dark:opacity-20"
+			/>
+		</div>
+		<!-- Mask -->
+		<div
+			class="absolute top-full w-full h-full bg-white dark:bg-slate-900 transform -skew-y-1 origin-top-left"
+		>
+		</div>
+	</div>
+
+	<main
+		class="mx-auto w-full max-w-screen-xl px-4 pt-16 format dark:format-invert lg:format-lg"
+	>
+		<div class="max-w-prose">
+			<h1>Queer Winnipeg</h1>
+			<p>
+				We're an online webpage of various written resources, primarily for
+				queer people living in Winnipeg. Our goal is to help you navigate
+				through life, through articles!
+			</p>
+		</div>
+		<div class="flex flex-col md:flex-row gap-8">
+			<!-- <div
+				class="w-full md:flex-shrink-0 md:w-[40%] p-8 rounded-md border-gray-300 border"
 			>
-				Voice Resources - Salix's Blog</a
-			> — Willow, a local community member, talks about voice feminization in a way
-			that's easy to understand, and fun to practice.
-		</li>
-		<li>
-			<a
-				href="https://transformingstyles.ca"
-				target="_blank"
-				referrerpolicy="no-referrer"
-			>
-				Transforming Styles</a
-			> — Transforming Style provides cost-free support, beauty & styling services
-			and wardrobe to 2SLGBTQIA+ community members in Canada who face barriers to
-			access.
-		</li>
-	</ul>
-	<h2>Crisis Resources</h2>
-	<ul>
-		<li>
-			<a
-				href="https://klinic.mb.ca/crisis-support/"
-				target="_blank"
-				referrerpolicy="no-referrer">Klinic Crisis Line</a
-			> (24/7)
-			<ul>
-				<li>
-					Phone: <a href="tel:204-786-8686">204-786-8686</a>
-				</li>
-				<li>
-					Toll-free: <a href="tel:1-888-322-3019">1-888-322-3019</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a
-				href="https://sharedhealthmb.ca/services/mental-health/mha-services/crisis-response-centre/"
-				target="_blank"
-				referrerpolicy="no-referrer">CRC Crisis Response Centre</a
-			> (24/7)
-			<ul>
-				<li>
-					Google Maps: <a
-						href="https://www.google.com/maps/place/Crisis+Response+Centre/@49.905475,-97.162945,16z/data=!4m5!3m4!1s0x0:0x7a6b2fb4d9d1c2f!8m2!3d49.9054746!4d-97.162945?hl=en"
-						target="_blank"
-						referrerpolicy="no-referrer">817 Bannatyne Ave</a
-					>
-				</li>
-				<li>
-					Mobile Crisis Service: <a href="tel:1-204-940-1781">1-204-940-1781</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a href="https://988.ca/" target="_blank" referrerpolicy="no-referrer"
-				>9-8-8</a
-			> (24/7)
-			<ul>
-				<li>Call or text toll-free: <a href="tel:988">9-8-8</a></li>
-			</ul>
-		</li>
-		<li>
-			<a
-				href="https://www.reasontolive.ca/"
-				target="_blank"
-				referrerpolicy="no-referrer"
-				>Manitoba Suicide Prevention & Support Line</a
-			> (24/7)
-			<ul>
-				<li>
-					Toll-free: <a href="tel:1-877-435-7170">1-877-435-7170</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</ArticleLayout>
+				<Image
+					src={mostRecent.data.cover}
+					alt={mostRecent.data.coverAlt ?? ""}
+					class="!m-0 flex aspect-video h-full object-cover rounded-md items-center justify-center shadow"
+				/>
+				<h2 class="!text-xl">
+					Want to get notified when new articles come out?
+				</h2>
+				<p>We have an RSS feed!</p>
+			</div> -->
+			<div class="flex flex-col gap-y-8">
+				{
+					TagEnum.options.map((value) => {
+						if (
+							!posts.some((post) => post.data.tag === value && !post.data.draft)
+						)
+							return;
+						return (
+							<div>
+								<h2 class="!text-2xl">{value}</h2>
+								<ul class="list-none !p-0 !m-0 flex flex-col gap-6 lg:align-middle">
+									{posts
+										.filter(
+											(post) => post.data.tag == value && !post.data.draft
+										)
+										.map((post) => (
+											<ArticleCard postId={post.id} />
+										))}
+								</ul>
+							</div>
+						);
+					})
+				}
+			</div>
+		</div>
+	</main>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+interface Props {
+	href: string;
+	target?: "_self" | "_blank";
+	referrerpolicy?: "strict-origin-when-cross-origin" | "no-referrer";
+	class?: string;
+	"aria-hidden"?: boolean;
+	tabindex?: number;
+	style?: string | astroHTML.JSX.CSSProperties | null | undefined;
+}
+
+const {
+	href,
+	target,
+	referrerpolicy,
+	class: className,
+	"aria-hidden": ariaHidden,
+	tabindex,
+	style,
+} = Astro.props;
+---
+
+<a
+	href={href}
+	class={`ring-violet-600 dark:ring-violet-600 rounded outline-none focus-visible:ring-2${className ? ` ${className}` : ""}`}
+	target={target}
+	referrerpolicy={referrerpolicy}
+	aria-hidden={ariaHidden}
+	tabindex={tabindex}
+	style={style}><slot /></a
+>

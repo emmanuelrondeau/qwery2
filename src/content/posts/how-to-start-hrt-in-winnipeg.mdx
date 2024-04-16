@@ -1,10 +1,9 @@
 ---
-draft: true
 title: How to Start HRT in Winnipeg
 description: "Looking to start medical transition in Winnipeg? This guide will give you info on how to get you on hormone replacement therapy (HRT) as fast as possible.
 
 
-This will cover both going through either your primary care practitioner and Klinic."
+This will cover both going through your primary care practitioner and Klinic."
 authors:
   - vanessa-wires
   - fio-cobbs
@@ -13,7 +12,8 @@ cover: "./how-to-start-hrt-in-winnipeg/thumb.webp"
 tag: Medical
 ---
 
-import Link from "/src/components/Link.astro";
+import Alert from "/src/components/primitives/Alert.astro";
+import Link from "/src/components/primitives/Link.astro";
 import { Image } from "astro:assets";
 
 import ManitobaDoctorFinder from "./how-to-start-hrt-in-winnipeg/manitoba-doctor-finder.webp";
@@ -22,7 +22,7 @@ import ConsentForm from "./how-to-start-hrt-in-winnipeg/consent-form.webp";
 
 **Looking to start medical transition in Winnipeg?** This guide will give you info on how to get you on <dfn id="hrt">hormone replacement therapy</dfn> (<abbr>HRT</abbr>) as fast as possible.
 
-This will cover both going through either your primary care practitioner and Klinic.
+This will cover both going through your primary care practitioner and Klinic.
 
 ## Finding a Family Doctor (Optional)
 
@@ -37,7 +37,6 @@ If its unsafe to ask, or your current doctor themselves may be unsafe, or for an
 		alt="Family Doctor Finder website"
 		class="flex items-center justify-center rounded-md object-cover shadow"
 		src={ManitobaDoctorFinder}
-		format="avif"
 	/>
 	<figcaption class="mx-auto max-w-lg text-center italic">
 		The Family Doctor Finder website
@@ -79,7 +78,6 @@ To register, you have two options:
     alt="Klinic intake form PDF"
     class="flex items-center justify-center rounded-md object-cover shadow"
     src={KlinicIntakeForm}
-    format="avif"
   />
   <figcaption class="text-center italic max-w-lg mx-auto">
     {/* prettier-ignore-start */}
@@ -101,11 +99,26 @@ Depending on how you wish to be communicated with, you will receive a phone call
 
 ## Approaching your Family Doctor about Starting Hormones (Optional)
 
-This only applies if you've found a family doctor.
+**This only applies if you've found a family doctor.** If Klinic gets to you first, you can safely ignore this section.
 
 ### Filling Out the Informed Consent Form
 
-Once you've read over it, print out the <Link href="https://klinic.mb.ca/wp-content/uploads/2023/01/2022-Consent-Estrogen-and-Androgen-blockers.docx">informed consent sheet</Link>, and fill it out.
+There are two separate forms for getting estrogen and testosterone. If you're a transfemme, you likely want estrogen. For transmascs, you likely want testosterone.
+
+{/* prettier-ignore-start */}
+
+- <Link href="https://klinic.mb.ca/wp-content/uploads/2023/01/2022-Consent-Estrogen-and-Androgen-blockers.docx" target="_blank">Consent Form for Estrogen and/or Testosterone Blocking Therapy</Link>
+- <Link href="https://klinic.mb.ca/wp-content/uploads/2023/01/2022-Consent-Testosterone.docx" target="_blank">Consent Form for Testosterone Therapy</Link>
+
+Once you've read over it, print it and fill it out!
+
+<Alert type="Info" removeTypeText="true">
+	**Tip for transfemmes:**
+	
+	You can get <Link href="https://klinic.mb.ca/wp-content/uploads/2023/01/2022-Consent-for-Progestin-Therapy.docx" target="_blank" class="underline hover:no-underline">progestin prescribed with a separate form</Link>. It's best practice to wait for roughly a year or so, before adding progestin to your regimen.
+</Alert>
+
+{/* prettier-ignore-end */}
 
 If you know your doctor's going to be good about prescribing you <abbr>HRT</abbr>, you may not need to give them the informed consent sheet.
 
@@ -114,18 +127,21 @@ If you know your doctor's going to be good about prescribing you <abbr>HRT</abbr
 		alt="Klinic consent form for transfemmes"
 		class="flex items-center justify-center rounded-md object-cover shadow"
 		src={ConsentForm}
-		format="avif"
 	/>
 	<figcaption class="mx-auto max-w-lg text-center italic">
-		Note that the intake form and the consent form are different!
+		Note that the intake form and the consent form **are different!**
 	</figcaption>
 </figure>
 
-Note that the above form is for transfemmes. Transmascs should use the <Link href="https://klinic.mb.ca/wp-content/uploads/2023/01/2022-Consent-Testosterone.docx">Testosterone consent form</Link> instead.
-
 If the link 404s, you may be able to get the document in the <Link href="https://klinic.mb.ca/health-care/transhealthklinic/health-care-providers/"> "Health care providers"</Link> section of the Trans Health Klinic. This is under "Medical Forms".
 
-Public libraries have on-demand print services for a fee, if you need access to a printer. For black and white printing, it is 10 cents by cash. If you don't have change, you can talk to staff and they'll help you out. Otherwise, if you can meet a peer support worker at Klinic, you can ask them to print it for you.
+<Alert type="Info">
+	Public libraries have on-demand print services for a fee, if you need access
+	to a printer. For black and white printing, it is 10 cents by cash. If you
+	don't have change, you can talk to staff and they'll help you out. Otherwise,
+	if you can meet a peer support worker at Klinic, you can ask them to print it
+	for you.
+</Alert>
 
 ### Handing the Informed Consent Form
 
@@ -134,6 +150,11 @@ If you have found a family doctor, you can then schedule an appointment to them!
 Some medical clinics may use Medeo, where you can schedule an appointment online. Otherwise, phone calls will likely be an option.
 
 Hand in that sheet at your doctor's appointment, and say "Klinic wants a doctor to start treatment before they take care of me. The guidelines are on their website and I want to start now if possible."
+
+<Alert type="Info">
+	If Klinic gets to you first, they will give you an informed consent form to
+	read over and sign.
+</Alert>
 
 ### What do you do if your doctor refuses?
 
@@ -163,7 +184,7 @@ Navigate to the article above, for a guide on whether you are eligible for Pharm
 
 ## Purchasing Prescription Medications
 
-In order to obtain prescription medication, you'll need to go to a pharmacy.
+**In order to obtain prescription medication, you'll need to go to a pharmacy.**
 
 Costco Pharmacy is known for having the cheapest prices. You do not need a Costco membership to use the pharmacy; when an employee in the front asks for membership, say you're going to the pharmacy, and they'll let you go.
 
@@ -171,13 +192,22 @@ Otherwise, go with a pharmacy that's most accessible. The price difference is no
 
 Expect your first prescription to generally be under $90, unless you're on 4 mg oral tabs of estradiol. Otherwise, you will definitely approach the $100+ mark, assuming no insurance nor Pharmacare.
 
-**If you're insured by your parents, and you're not out to them, be warned; by using your parents' insurance, your insurance will notify them that it's been used for your medications!**
+<Alert type="Caution">
+	If you're insured by your parents, and you're not out to them, be warned; by
+	using your parents' insurance, **your insurance will notify them that it's
+	been used for your medications!**
+</Alert>
 
-These will come in a paper bag, with a stapled receipt. If your living situation is unsafe, make sure to have a stealthy place to store it!
+These will come in a paper bag, with a stapled receipt. If your living situation is unsafe, make sure to **have a stealthy place to store it!**
 
 ## Taking <abbr>HRT</abbr> for the First Time
 
-If your pharmacist hasn't discussed how to take your medications for the first time, read the prescription bottle. It will contain a short snippet, likely saying to take it daily if you're on oral estradiol. Your routine may involve taking estradiol at night, and spironolactone in the day to avoid needing to urinate at night.
+If your pharmacist hasn't discussed how to take your medications for the first time, read the prescription bottle. It will contain a short snippet, likely saying to take it daily if you're on oral estradiol.
+
+<Alert type="Info">
+	For transfemmes, your routine may involve taking estradiol at night, and
+	spironolactone in the day to avoid needing to urinate at night.
+</Alert>
 
 Although horribly dense and with lots of irrelevant info, your first-time prescription will contain an informational paper about your medications. Along with really scary potential (but very unlikely) symptoms to watch out, it'll have info on what to do, if you forget to take your medications at specific times.
 
@@ -185,6 +215,8 @@ To help you remember, you can set up recurring tasks in your calendar to make su
 
 Once you've taken the medication for the first time, congrats! Mark the date, as it will become an important one on your transition journey.
 
-## Referrals for Surgeries
+## What next?
 
-Even if you're on <abbr>HRT</abbr>, you may still wish to talk with Klinic. This is because if you want to be referred for surgeries, such as facial feminization surgery, vaginoplasty, or breast augmentation, you'll need to do it through them. Otherwise, you'll need a private psychologist, which can cost upwards of $2,000+.
+Even if you're on <abbr>HRT</abbr>, you may still wish to talk with Klinic.
+
+This is because if you want to be referred for surgeries, such as facial feminization surgery, vaginoplasty, or breast augmentation, you'll need to do it through them. Otherwise, you'll need a private psychologist, which can cost upwards of $2,000+. You can also get free laser hair removal, if you can have them refer you.

@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, getEntry } from "astro:content";
+import PublishedOrUpdated from "./PublishedOrUpdated.astro";
+
+interface Props {
+	postId: string;
+}
+const { postId }: Props = Astro.props;
+const posts = await getCollection("posts");
+const post = posts.find((post) => post.id === postId);
+
+if (!post) return;
+
+const authorsPromise = post.data.authors.map(
+	async (author) => (await getEntry("authors", author.id)).data
+);
+const authors = await Promise.all(authorsPromise);
+const { remarkPluginFrontmatter } = await post.render();
+---
+
+<li
+	class="!p-0 !m-0 flex flex-col xs:flex-row xs:items-center gap-4 rounded-md"
+>
+	<a
+		href={`/posts/${post.slug}`}
+		aria-hidden={true}
+		tabindex={-1}
+		class="flex-shrink-0"
+	>
+		<Image
+			src={post.data.cover}
+			alt={""}
+			class="hover:scale-105 transition-transform !m-0 flex aspect-video w-full xs:w-48 xs:h-36 sm:h-auto object-cover rounded-md items-center justify-center shadow"
+		/>
+	</a>
+	<div class="my-auto !m-0 flex-col xs:flex-col-reverse flex">
+		<div>
+			<a
+				href={`/posts/${post.slug}`}
+				class="group no-underline outline-none"
+			>
+				{/* Workaround for broken styles if applied to a tag */}
+				<h3
+					class="group-hover:underline !text-xl !mb-1 ring-violet-500 group-focus-visible:ring-2 rounded-md"
+				>
+					{post.data.title}
+				</h3>
+			</a>
+			<div class="format">
+				<PublishedOrUpdated {...post.data} /> •{" "}
+				{remarkPluginFrontmatter.minutesRead}
+			</div>
+		</div>
+		<div class="flex gap-2 text-sm items-end mt-1 mb-2">
+			<div class="flex -space-x-2 rtl:space-x-reverse items-end flex-shrink-0">
+				{
+					authors.map((author) =>
+						author.profile ? (
+							<Image
+								alt=""
+								class="w-6 h-6 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
+								src={author.profile}
+								loading="eager"
+							/>
+						) : (
+							<div
+								class="relative inline-flex items-baseline justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-800"
+								aria-hidden={true}
+							>
+								<span class="text-[0.5rem] contents font-medium text-gray-600 dark:text-gray-300 select-none">
+									{author.name
+										.split(" ")
+										.map((name) => name[0])
+										.join("")
+										.toUpperCase()}
+								</span>
+							</div>
+						)
+					)
+				}
+			</div>
+			<p class="!m-0">
+				{authors.map((author) => author.name).join(", ")}
+			</p>
+		</div>
+	</div>
+</li>

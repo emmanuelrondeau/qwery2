@@ -1,5 +1,6 @@
 ---
-import Footer from "../components/Footer.astro";
+import Navbar from "../components/primitives/Navbar.astro";
+import Footer from "../components/primitives/Footer.astro";
 import Head from "./Head.astro";
 import { type Props as SEOProps } from "astro-seo";
 
@@ -16,6 +17,7 @@ const { seo } = Astro.props;
 	<body
 		class="font-josefin-sans dark:bg-gray-900 flex flex-col min-h-[calc(100vh-10rem)]"
 	>
+		<Navbar />
 		<div class="flex flex-col min-h-[calc(100vh-10rem)]">
 			<slot />
 		</div>
