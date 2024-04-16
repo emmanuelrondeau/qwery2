@@ -1,0 +1,19 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { type Props as SEOProps } from "astro-seo";
+
+interface Props {
+	seo: SEOProps;
+	topSpacing?: boolean;
+}
+
+const { topSpacing } = Astro.props;
+---
+
+<BaseLayout {...Astro.props}>
+	<main
+		class=`mx-auto w-[90%] max-w-prose format dark:format-invert lg:format-lg ${topSpacing ? 'py-32' : 'pt-8 pb-32'}`
+	>
+		<slot />
+	</main>
+</BaseLayout>

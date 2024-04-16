@@ -1,0 +1,128 @@
+---
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Link from "../../components/Link.astro";
+import PublishedOrUpdated from "../../components/PublishedOrUpdated.astro";
+
+const posts = await getCollection("posts");
+
+type Props = {
+	entry: CollectionEntry<"posts">;
+};
+
+const mostRecent = posts.sort(
+	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
+)[0];
+---
+
+<BaseLayout
+	seo={{
+		title: "Articles",
+		description:
+			"Queer Winnipeg is a community-owned and operated website for articles. These posts have useful info such as transition guides, and can help you navigate life as someone who's queer in Winnipeg.",
+	}}
+>
+	<main
+		class="mx-auto w-full max-w-screen-xl px-4 pt-6 format dark:format-invert lg:format-lg"
+	>
+		<h1>Queer Winnipeg</h1>
+		<p>
+			Queer Winnipeg is a community-owned and operated website for articles.
+			These posts have useful info such as transition guides, and can help you
+			navigate life as someone who's queer in Winnipeg.
+		</p>
+		<div class="flex flex-col md:flex-row gap-8">
+			<div
+				class="w-full md:flex-shrink-0 md:w-[40%] p-8 rounded-md border-gray-300 border"
+			>
+				<!-- <Image
+					src={mostRecent.data.cover}
+					alt={mostRecent.data.coverAlt ?? ""}
+					class="!m-0 flex aspect-video h-full object-cover rounded-md items-center justify-center shadow"
+				/> -->
+				<h2 class="!text-xl">
+					Want to get notifed when new articles come out?
+				</h2>
+				<p>We have an RSS feed!</p>
+			</div>
+			<div>
+				<h2 class="!text-2xl">Medical</h2>
+				<ul class="list-none !p-0 !m-0 flex flex-col gap-6 lg:align-middle">
+					{
+						posts.map(async (post) => {
+							// if (post.data.draft) return;
+							if (post.data.tag != "Medical") return;
+
+							const authorsPromise = post.data.authors.map(
+								async (author) => (await getEntry("authors", author.id)).data
+							);
+							const authors = await Promise.all(authorsPromise);
+							const { remarkPluginFrontmatter } = await post.render();
+							return (
+								<li class="!p-0 !m-0 flex flex-col xs:flex-row xs:items-center gap-4">
+									{post.data.cover && (
+										<Image
+											src={post.data.cover}
+											alt={post.data.coverAlt ?? ""}
+											class="!m-0 flex aspect-video w-full xs:w-48 xs:h-36 sm:h-auto object-cover rounded-md items-center justify-center shadow"
+										/>
+									)}
+									<div class="my-auto !m-0 flex-col-reverse xs:flex-col flex">
+										<div class="flex gap-2 text-sm items-end mt-1 mb-2">
+											<div class="flex -space-x-2 rtl:space-x-reverse items-end flex-shrink-0">
+												{authors.map((author) =>
+													author.profile ? (
+														<Image
+															alt=""
+															class="w-6 h-6 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
+															src={author.profile}
+															loading="eager"
+														/>
+													) : (
+														<div
+															class="relative inline-flex items-baseline justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-800"
+															aria-hidden={true}
+														>
+															<span class="text-[0.5rem] contents font-medium text-gray-600 dark:text-gray-300 select-none">
+																{author.name
+																	.split(" ")
+																	.map((name) => name[0])
+																	.join("")
+																	.toUpperCase()}
+															</span>
+														</div>
+													)
+												)}
+											</div>
+											<p class="!m-0">
+												{authors.map((author) => author.name).join(", ")}
+											</p>
+										</div>
+										<div>
+											<a
+												href={`/posts/${post.slug}`}
+												target="_self"
+												referrerpolicy="strict-origin-when-cross-origin"
+												class="group no-underline hover:underline outline-none"
+											>
+												{/* Workaround for broken styles if applied to a tag */}
+												<h3 class="!text-xl !mb-1 ring-rose-500 group-focus-visible:ring-2 rounded-md">
+													{post.data.title}
+												</h3>
+											</a>
+											<div class="format">
+												<PublishedOrUpdated {...post.data} /> •{" "}
+												{remarkPluginFrontmatter.minutesRead}
+											</div>
+										</div>
+									</div>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</div>
+		</div>
+	</main>
+</BaseLayout>

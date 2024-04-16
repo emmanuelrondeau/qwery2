@@ -1,0 +1,51 @@
+---
+import { GoogleFontsOptimizer } from "@herob191/astro-google-fonts-optimizer";
+import twemoji from "@twemoji/api";
+import GlobalStyles from "../components/GlobalStyles.astro";
+import { SEO, type Props as SEOProps } from "astro-seo";
+
+interface Props {
+	seo: SEOProps;
+	themeColor?: string;
+}
+
+const { seo, themeColor } = Astro.props;
+const title = `${seo.title} | Transfem Circle`;
+
+const newSeoProp: SEOProps = {
+	...seo,
+	description:
+		seo.description ??
+		"The Transfem Circle is a friendly Winnipeg meetup for transfemmes to socialize!",
+	extend: {
+		link: [{ rel: "icon", href: "/trans-flag.jpg" }],
+		meta: [{ name: "theme-color", content: themeColor ?? "#fda4af" }],
+	},
+};
+
+if (newSeoProp.openGraph?.basic.title) {
+	newSeoProp.openGraph.basic.title = `${newSeoProp.openGraph.basic.title} | Transfem Circle`;
+}
+---
+
+<head>
+	<meta charset="UTF-8" />
+	<GoogleFontsOptimizer
+		url="https://fonts.bunny.net/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+		preconnectUrl="https://fonts.bunny.net"
+	/>
+	<SEO {...newSeoProp} />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<GlobalStyles />
+	<script
+		is:inline
+		src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js"
+		crossorigin="anonymous"></script>
+	<script is:inline>
+		window.onload = function () {
+			twemoji.parse(document.body, { folder: "svg", ext: ".svg" });
+		};
+	</script>
+</head>

@@ -1,0 +1,108 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import Link from "../components/Link.astro";
+
+const date = new Date();
+---
+
+<ArticleLayout seo={{ title: "Privacy" }} topSpacing={true}>
+	<h1>Privacy Policy</h1>
+	<p>
+		Last updated: {
+			date.toLocaleString(undefined, {
+				dateStyle: "long",
+			})
+		}
+	</p>
+	<h2>What we collect</h2>
+	<strong>We believe privacy is a fundemental human right.</strong>
+	<p>We collect information about you through the following sources:</p>
+	<ul>
+		<li>
+			<Link
+				href="https://developers.cloudflare.com/analytics/faq/about-analytics/"
+				target="_blank">Cloudflare Analytics</Link
+			> — A privacy-respecting analytics platform, that collects aggregate deanonymized
+			data. This includes:
+			<ul>
+				<li>Visits by:</li>
+				<ul>
+					<li>Referer (eg. the website that linked you here)</li>
+					<li>Country (based on your IP)</li>
+					<li>Browser (derived from your browser's user agent)</li>
+					<li>What specific pages users visit</li>
+				</ul>
+				<li>Page load times</li>
+			</ul>
+		</li>
+		<li>
+			<a
+				href="https://mailchimp.com"
+				target="_blank"
+				referrerpolicy="no-referrer">Mailchimp</a
+			> — a third-party mail service, and <i>only</i> if you choose to subscribe
+			to our mailing list. This includes:
+			<ul>
+				<li>Your email</li>
+				<li>Your chosen name (optional)</li>
+			</ul>
+		</li>
+	</ul>
+	<h2>What others collect</h2>
+	<p>
+		The Transfem Circle's mailing list is connected with <Link
+			href="https://rainbowresourcecentre.org/privacy"
+			>Rainbow Resource Centre</Link
+		>. By subscribing to our mailing list, you agree to Rainbow Resource
+		Centre's privacy policy, along with Mailchimp's <Link
+			href="https://mailchimp.com/legal/terms/">Terms of Service</Link
+		> and <Link href="https://www.intuit.com/privacy/statement/"
+			>Privacy Policy</Link
+		>.
+	</p>
+	<p>
+		We also have links to third parties, which have their own privacy policies.
+	</p>
+	<h2>Opt out of data collection</h2>
+	<p>
+		To opt out of Cloudflare Analytics, you'll need to either:
+		<ul>
+			<li>
+				Install <Link
+					href="https://github.com/gorhill/uBlock/blob/master/README.md"
+					>uBlock Origin</Link
+				>, a content blocker. Along with major desktop browsers, you can install
+				this on mobile if you use <a
+					href="https://play.google.com/store/apps/details?id=org.mozilla.firefox"
+					target="_blank"
+					referrerpolicy="no-referrer">Firefox on Android</a
+				>. Browser extensions on iOS aren't supported.
+			</li>
+			<li>
+				Try <Link href="https://brave.com/">Brave Browser</Link> for built-in adblocking,
+				which works on any device including iOS.
+				<ul>
+					<li>
+						Note that Brave's <Link
+							href="https://web.archive.org/web/20210326003438/https://www.leafandcore.com/2016/09/03/brave-is-a-browser-that-could-save-the-web-but-its-from-an-awful-person/"
+							>CEO is homophobic</Link
+						> and has a cryptocurrency token they distribute for when you view their
+						ads.
+					</li>
+				</ul>
+			</li>
+			<li>
+				Use an adblocking DNS such as <Link
+					href="https://adguard-dns.io/en/public-dns.html">AdGuard DNS</Link
+				>.
+				<strong
+					>We recommend you choose Method #2 instead of downloading an app!</strong
+				>
+			</li>
+		</ul>
+	</p>
+	<p>
+		To opt out and remove your email from our mailing list, simply click the
+		"unsubscribe from this list" link at the bottom of an email we send you.
+	</p>
+</ArticleLayout>

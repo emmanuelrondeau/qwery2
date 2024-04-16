@@ -1,0 +1,110 @@
+---
+import { getCollection, type CollectionEntry, getEntry } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { Image } from "astro:assets";
+import PublishedOrUpdated from "../../components/PublishedOrUpdated.astro";
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection("posts");
+	return blogEntries.map((entry: any) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await entry.render();
+
+type Props = {
+	entry: CollectionEntry<"posts">;
+};
+
+const authorsPromise = entry.data.authors.map(
+	async (author) => (await getEntry("authors", author.id)).data
+);
+const authors = await Promise.all(authorsPromise);
+---
+
+<ArticleLayout
+	seo={{
+		title: entry.data.title,
+		description: entry.data.description,
+		openGraph: {
+			basic: {
+				image: entry.data.cover?.src ?? "",
+				title: entry.data.title,
+				type: "article",
+			},
+			article: {
+				publishedTime: entry.data.created.toISOString(),
+				modifiedTime: entry.data.lastEdited?.toISOString(),
+				authors: authors.map((author) => author.name),
+			},
+		},
+	}}
+>
+	{
+		entry.data.cover && (
+			<Image
+				alt={entry.data.coverAlt ?? ""}
+				class="flex aspect-video w-full object-cover rounded-md items-center justify-center shadow"
+				src={entry.data.cover}
+				format="avif"
+				loading="eager"
+			/>
+		)
+	}
+	{
+		entry.data.tag && entry.data.tag.length > 0 && (
+			<span class="block font-semibold mb-3 uppercase">{entry.data.tag}</span>
+		)
+	}
+	<h1 class="!mb-4">{entry.data.title}</h1>
+	<div class="flex flex-col xs:flex-row gap-4 align-middle !mb-4 lg:!mb-8">
+		<div
+			class="flex -space-x-4 rtl:space-x-reverse items-center flex-shrink-0"
+		>
+			{
+				authors.map((author) =>
+					author.profile ? (
+						<Image
+							alt=""
+							class="w-12 h-12 lg:w-14 lg:h-14 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
+							src={author.profile}
+							loading="eager"
+						/>
+					) : (
+						<div class="relative inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-800">
+							<span class="font-medium text-gray-600 dark:text-gray-300 select-none">
+								{author.name
+									.split(" ")
+									.map((name) => name[0])
+									.join("")
+									.toUpperCase()}
+							</span>
+						</div>
+					)
+				)
+			}
+		</div>
+		<div class="block">
+			<span class="text-center"
+				>Written by {authors.map((author) => author.name).join(", ")}</span
+			><br />
+			<span class="text-center">
+				<PublishedOrUpdated
+					lastEdited={entry.data.lastEdited}
+					{...entry.data}
+				/> • {remarkPluginFrontmatter.minutesRead}
+			</span>
+		</div>
+	</div>
+	{
+		entry.data.draft && (
+			<p class="rounded-lg not-format px-4 py-3 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-950 dark:text-yellow-400 dark:selection:text-yellow-300 dark:selection:bg-yellow-800 outline-none">
+				<strong>This is a draft post!</strong> It has yet to be finalized.
+			</p>
+		)
+	}
+	<Content />
+</ArticleLayout>

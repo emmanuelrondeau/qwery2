@@ -1,0 +1,37 @@
+{
+  "name": "transfemcircle",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "@astrojs/mdx": "^2.2.3",
+    "@astrojs/react": "^3.1.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@twemoji/api": "15.1.0",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "astro": "^4.5.12",
+    "astro-seo": "^0.8.3",
+    "leaflet": "^1.9.4",
+    "mdast-util-to-string": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reading-time": "^1.5.0",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@herob191/astro-google-fonts-optimizer": "^0.3.3",
+    "@types/leaflet": "^1.9.9",
+    "flowbite-typography": "^1.0.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.13"
+  }
+}
