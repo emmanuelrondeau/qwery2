@@ -6,6 +6,7 @@ interface Props {
 	class?: string;
 	"aria-hidden"?: boolean;
 	tabindex?: number;
+	style?: string | astroHTML.JSX.CSSProperties | null | undefined;
 }
 
 const {
@@ -15,14 +16,16 @@ const {
 	class: className,
 	"aria-hidden": ariaHidden,
 	tabindex,
+	style,
 } = Astro.props;
 ---
 
 <a
 	href={href}
-	class={`ring-rose-600 dark:ring-blue-600 rounded outline-none focus-visible:ring-2${className ? ` ${className}` : ""}`}
-	target={target ?? "_blank"}
-	referrerpolicy={referrerpolicy ?? "no-referrer"}
+	class={`ring-violet-600 dark:ring-violet-600 rounded outline-none focus-visible:ring-2${className ? ` ${className}` : ""}`}
+	target={target}
+	referrerpolicy={referrerpolicy}
 	aria-hidden={ariaHidden}
-	tabindex={tabindex}><slot /></a
+	tabindex={tabindex}
+	style={style}><slot /></a
 >

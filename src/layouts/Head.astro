@@ -10,22 +10,39 @@ interface Props {
 }
 
 const { seo, themeColor } = Astro.props;
-const title = `${seo.title} | Transfem Circle`;
+const title = `${seo.title} | Queer Winnipeg`;
+const description =
+	seo.description ??
+	"We're an online webpage of various written resources, primarily for queer people living in Winnipeg. Our goal is to help you navigate through life, through articles!";
 
 const newSeoProp: SEOProps = {
 	...seo,
-	description:
-		seo.description ??
-		"The Transfem Circle is a friendly Winnipeg meetup for transfemmes to socialize!",
+	title: title,
+	description: description,
+	openGraph: {
+		...seo.openGraph,
+		basic: {
+			...seo.openGraph?.basic,
+			image: seo.openGraph?.basic.image ?? "/trans-flag.jpg",
+			title: seo.openGraph?.basic.title
+				? `${seo.openGraph.basic.title} | Queer Winnipeg`
+				: title,
+			type: seo.openGraph?.basic.type ?? "jpg",
+		},
+		image: {
+			...seo.openGraph?.image,
+			url: seo.openGraph?.image?.url ?? "/trans-flag.jpg",
+		},
+		optional: {
+			siteName: "Queer Winnipeg",
+			description: description,
+		},
+	},
 	extend: {
 		link: [{ rel: "icon", href: "/trans-flag.jpg" }],
-		meta: [{ name: "theme-color", content: themeColor ?? "#fda4af" }],
+		meta: [{ name: "theme-color", content: themeColor ?? "#C4B5FD" }],
 	},
 };
-
-if (newSeoProp.openGraph?.basic.title) {
-	newSeoProp.openGraph.basic.title = `${newSeoProp.openGraph.basic.title} | Transfem Circle`;
-}
 ---
 
 <head>

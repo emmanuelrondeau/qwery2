@@ -1,0 +1,54 @@
+---
+import Link from "./Link.astro";
+---
+
+<nav
+	id="main-nav"
+	class="fixed z-10 self-center w-full py-4 px-7 transition-colors"
+>
+	<div class="max-w-screen-xl mx-auto">
+		<Link
+			href="/"
+			class="text-3xl font-bold dark:text-gray-50 select-none hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
+			><span role="img">QW</span></Link
+		>
+	</div>
+</nav>
+<script>
+	let ticking = false;
+	console.log("a");
+	const nav = document.getElementById("main-nav") as HTMLDivElement | null;
+	nav?.addEventListener("click", handleClick);
+
+	function handleClick() {
+		console.log("button clicked!");
+	}
+	window.onscroll = function (event) {
+		if (ticking) return;
+
+		window.requestAnimationFrame(() => {
+			nav && handleNavBarBlur(nav);
+			ticking = false;
+		});
+
+		ticking = true;
+	};
+
+	function handleNavBarBlur(nav: HTMLElement) {
+		if (window.scrollY >= 20 && !nav.classList.contains("backdrop-blur-3xl")) {
+			nav.classList.add(
+				"bg-white",
+				"backdrop-blur-xl",
+				"bg-opacity-25",
+			);
+		} else {
+			nav.classList.remove(
+				"bg-white",
+				"backdrop-blur-xl",
+				"bg-opacity-25",
+			);
+		}
+	}
+
+	nav && handleNavBarBlur(nav);
+</script>

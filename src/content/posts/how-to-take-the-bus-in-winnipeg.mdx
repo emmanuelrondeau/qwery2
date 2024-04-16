@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: How to Take the Bus in Winnipeg
 description: "Going into it without much prior experience is terrifying.
 
@@ -15,23 +15,79 @@ cover: "./how-to-take-the-bus-in-winnipeg/thumb.avif"
 tag: Transportation
 ---
 
-import Link from "/src/components/Link.astro";
-import Map from "/src/components/Map.astro";
+import Alert from "/src/components/primitives/Alert.astro";
+import Map from "/src/components/articles/Map.astro";
+import Link from "/src/components/primitives/Link.astro";
 import { Image } from "astro:assets";
 
 import GoogleMaps1 from "./how-to-take-the-bus-in-winnipeg/googlemaps1.webp";
 import GoogleMaps2 from "./how-to-take-the-bus-in-winnipeg/googlemaps2.webp";
-import GoogleMapsYellow from "./how-to-take-the-bus-in-winnipeg/googlemapsyellow.webp";
 import StNorbertBus from "./how-to-take-the-bus-in-winnipeg/st-norbert-bus.webp";
-import TraferAndTicket from "./how-to-take-the-bus-in-winnipeg/transfer-and-tickets.webp";
+import BusTickets from "./how-to-take-the-bus-in-winnipeg/bus-tickets.avif";
+import SplitLineBus from "./how-to-take-the-bus-in-winnipeg/split-line-bus.avif";
+import BlueBusIcon from "./how-to-take-the-bus-in-winnipeg/blue-bus-icon.avif";
+import YellowBusIcon from "./how-to-take-the-bus-in-winnipeg/yellow-bus-icon.avif";
+import BlackBusIcon from "./how-to-take-the-bus-in-winnipeg/black-bus-icon.avif";
+import BranchBusIcon from "./how-to-take-the-bus-in-winnipeg/branch-bus-icon.avif";
+import YellowCord from "./how-to-take-the-bus-in-winnipeg/yellow-cord.avif";
+import StopButton from "./how-to-take-the-bus-in-winnipeg/stop-button.avif";
+import BackSideDoor from "./how-to-take-the-bus-in-winnipeg/back-side-door.avif";
+import OldBusStopSign from "./how-to-take-the-bus-in-winnipeg/old-bus-stop-sign.avif";
+import NewBusStopSign from "./how-to-take-the-bus-in-winnipeg/new-bus-stop-sign.avif";
+import FareBox from "./how-to-take-the-bus-in-winnipeg/fare-box.avif";
 
 **Riding the bus for the first time is daunting.**
 
 Going into it without much prior experience is terrifying. I struggled to find resources on how to use this, so I hope this guide serves as a quick run-down on understanding this system!
 
+## Fares
+
+Taking the bus (unfortunately) costs money. In our buses, the fare box takes either cash, bus tickets, or Peggo card. **Credit and debit cards aren't accepted here!**
+
+To get bus tickets, check out <Link href="https://info.winnipegtransit.com/en/fares/where-to-buy/">Where to Buy - Winnipeg Transit</Link>, and find the closest place near you.
+
+{/* prettier-ignore-start */}
+
+<Alert type="Info">
+	To pay for fares with a debit or credit card, you'll need to do that ahead of time with a Peggo card.
+	<br />
+	First, you need to buy a Peggo card, to be able to preload it with e-Cash. You can buy one online for $5.00 on the <Link href="https://efare.winnipegtransit.com/e-Fare/welcome.html" target="_blank" class="underline hover-no-underline">Winnipeg Transit e-Fare</Link> site, with free shipping. Alternatively, there are physical locations to be able to purchase one.
+</Alert>
+
+{/* prettier-ignore-end */}
+
+<figure>
+	<Map />
+	<figcaption class="mx-auto max-w-lg text-center italic">
+		Map from the Winnipeg Transit site for your convenience. **Visit the Where
+		to Buy link for the most up-to-date locations and info!**
+	</figcaption>
+</figure>
+
+To pay, walk to the front door of your bus. Upon entering, you'll see a fare box.
+
+<figure>
+	<Image
+		alt="Fare box"
+		class="!mx-auto flex max-w-96 items-center justify-center rounded-md object-cover shadow"
+		src={FareBox}
+	/>
+</figure>
+
+- **Cash:** There will be a little slot on the bottom right to insert coins. Pay in exact change, as the bus driver does not carry change. Otherwise, you'll overpay.
+  - **Paying cash costs more than bus tickets or a Peggo card!** If possible, use bus tickets or a Peggo card if you want to save some money.
+- **Bus tickets:** There will be another slot on thet top right, used to accept bus tickets.
+- **Peggo card:** The fare box will have a rectangular scanner. Simply tap the scanner to pay, and you'll hear a beep confirming your payment.
+
+Once paid either by bus ticket or cash, you should receive a **paper transfer**, which will print on the left side of the fare box. This is important, but we'll get to that soon though!
+
+If you're strapped on money, there's programs for reduced fares. If you're a student, you can take advantage of the Youth Fare pricing. If you're eligible and paying with cash, you should carry your photo ID. You may also want to check out <Link href="https://info.winnipegtransit.com/en/fares/winnpass">WINNpass</Link>, especially if you're on <dfn id="eia">Employment and Income Assistance</dfn> (<abbr>EIA</abbr>).
+
+For more info and current pricing, check out <Link href="https://info.winnipegtransit.com/en/fares/transit-fares/">Transit Fares</Link>.
+
 ## Routing a Trip
 
-Use <Link href="https://www.google.com/maps/">Google Maps</Link> for the best experience of bus routing. I was not able to find a better app for bus routing. Sorry, privacy advocates.
+Use <Link href="https://www.google.com/maps/">Google Maps</Link> for the best experience of bus routing, that doesn't rely on Google. I was not able to find a better app for bus routing. Sorry, privacy advocates.
 
 Simply put your destination, press "Directions", enter your starting point, then select the transit icon on top.
 
@@ -39,27 +95,94 @@ Simply put your destination, press "Directions", enter your starting point, then
 	<div class="flex justify-center gap-x-4">
 		<Image
 			alt="Google Maps website, with Klinic Community Health searched up"
-			class="flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
 			src={GoogleMaps1}
-			format="avif"
 		/>
 		<Image
 			alt="Google Maps website, with Assiniboine Park Zoo as the starting point, Klinic as the destination, and the transit icon selected"
-			class="flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
 			src={GoogleMaps2}
-			format="avif"
 		/>
 	</div>
-	<figcaption class="text-center italic">Screenshots of Google Maps</figcaption>
+	<figcaption class="text-center italic">
+		Routing a trip with Google Maps
+	</figcaption>
 </figure>
 
 The Winnipeg Transit app is not great. It may be worth downloading it anyway to refer to schedule times for bus stops. You can also use the <Link href="https://app.winnipegtransit.com/">web app</Link>.
+
+If you have an Apple device, it may be worth trying Apple Maps. From my limited experience, I've found it to be a worse experience.
+
+### Getting On and Off the Bus
+
+Once you pay your fare (more on that later!), you can now sit down on the bus. Generally, you want to go to the back of the bus. However, depending on how crowded it is, this may not be necessary. If you're on a wheelchair, the bus driver will lower a platform for you to be able to get on.
+
+You can check Google Maps to see where you are in your trip.
+
+Once you're about to reach your stop, wait to make sure you've passed the stop before yours. Once passed, you can now pull down the yellow cord on the sides of the bus.
+
+Alternatively, you can press a red stop button found on certain poles. For wheelchair users, a stop button can be found on the sides of folded-up seats, at the front of the bus. If the seats are folded down, folding them up should reveal the button.
+
+<figure>
+	<div class="flex justify-center gap-x-4">
+		<Image
+			alt="The yellow cord to pull on the bus"
+			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			src={YellowCord}
+		/>
+		<Image
+			alt="A red stop button on a yellow pole"
+			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			src={StopButton}
+		/>
+	</div>
+	<figcaption class="mx-auto max-w-lg text-center italic">
+		The yellow cord, and a red stop button.
+	</figcaption>
+</figure>
+
+Once you pull down hard enough on the yellow cord, or press the red stop button, there should be a "ding" sound that plays. There will also be a stop icon on the bus's inside display at the front.
+
+For most people, you should exit via the back side door of the bus. To exit, press or hold the handles. Some buses have an LED to indicate that it will open. If it doesn't open immediately, rush to the front to get off.
+
+<figure>
+	<Image
+		alt="The back side door of the bus, with yellow handles"
+		class="mx-auto flex max-w-lg items-center justify-center rounded-md object-cover shadow"
+		src={BackSideDoor}
+	/>
+	<figcaption class="mx-auto max-w-lg text-center italic">
+		The back side door to exit the bus.
+	</figcaption>
+</figure>
+
+For wheelchair users, you may need to annouce "wheelchair" to indicate that you need to get off. You will always get off at the front, as there is no ramp at the back doors.
 
 ### The bus isn't here, what happened?
 
 Sometimes, the bus was early and passed by you. There are also times where buses may get cancelled. This can be incredibly annoying.
 
 Winnipeg Transit and Google Maps can tell you when the next bus will come. You can also call the <Link href="tel:2042877433">TeleBUS number</Link> that's put on every bus stop sign, to figure out when your bus will arrive too.
+
+<figure>
+	<div class="flex justify-center gap-x-4">
+		<Image
+			alt="Old bus stop sign"
+			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			src={OldBusStopSign}
+		/>
+		<Image
+			alt="New bus stop sign"
+			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			src={NewBusStopSign}
+		/>
+	</div>
+	<figcaption class="mx-auto max-w-lg text-center italic">
+		The old and new bus stop signs. Each have the TeleBUS number.
+	</figcaption>
+</figure>
+
+Some major bus stops (such as stations and certain urban areas) will have screens or displays for your convenience.
 
 ### What happens if I get lost?
 
@@ -71,61 +194,17 @@ You may also wish to ask strangers for help. Admittedly, it's a bit scary, but i
 
 A strategy for if you get lost is to stay on said bus, until you wrap around to your previous location. Otherwise, getting off may be an option if you know you can walk to the next stop or your destination.
 
-## Fares
-
-Taking the bus (unfortunately) costs money.
-
-Winnipeg Transit takes either of the following methods of payment:
-
-- Cash (no change is given!)
-- Bus tickets
-- Peggo card
-
-To get bus tickets or a Peggo card, check out <Link href="https://info.winnipegtransit.com/en/fares/where-to-buy/">Where to Buy</Link>, and find the closest place near you.
-
-<figure>
-	<Map />
-	<figcaption class="mx-auto max-w-lg text-center italic">
-		Map from the Winnipeg Transit site for your convenience. **Visit the Where
-		to Buy link for the most up-to-date locations and info!**
-	</figcaption>
-</figure>
-
-To pay, walk to the front door of your bus, and then you'll see a fare box.
-
-- **Cash:** There will be a little slot on the right to insert coins. Pay in exact change, as the bus driver does not carry change. Otherwise, you'll overpay (more than you already are by paying with cash; it's more expensive than tickets!).
-- **Bus tickets:** The same little slot on the right is used to accept bus tickets.
-- **Peggo card:** The farebox will have a rectangular red scanner. Simply tap the red scanner to pay, and you'll hear a beep confirming your payment.
-
-Once paid either by bus ticket or cash, you should receive a **paper transfer**. This is important, but we'll get to that soon though!
-
-<figure>
-	<Image
-		alt="A paper transfer next to full-fare bus tickets"
-		class="flex items-center justify-center rounded-md object-cover"
-		src={TraferAndTicket}
-		format="avif"
-	/>
-	<figcaption class="text-center italic" aria-hidden={true}>
-		A paper transfer, next to full-fare bus tickets.
-	</figcaption>
-</figure>
-
-If you're strapped on money, there's programs for reduced fares. If you're a student, you can take advantage of the Youth Fare pricing. If you're eligible and paying with cash, you should carry your photo ID. You may also want to check out <Link href="https://info.winnipegtransit.com/en/fares/winnpass">WINNpass</Link>, especially if you're on <dfn id="eia">Employment and Income Assistance</dfn> (<abbr>EIA</abbr>).
-
-For more info and current pricing, check out <Link href="https://info.winnipegtransit.com/en/fares/transit-fares/">Transit Fares</Link>.
-
 ## Transfers
 
 ### Paper Transfers
 
-If you're using bus tickets, once you insert your ticket in the slot, the bus driver should give you a paper transfer. Same goes with cash.
+Once you pay your fare, the bus driver should give you a paper transfer.
 
 **Make sure to take your paper transfer!**
 
 The reason you want to have this transfer, is then you'll be able to take another bus without having to spend another ticket for a period of time.
 
-To reach your destination, you may need to take multiple buses to get there. You can avoid spending another ticket, by putting the transfer's QR code face-first on the red scanner.
+To reach your destination, you may need to take multiple buses to get there. You can avoid spending another ticket, by putting the transfer's QR code face-first on the scanner.
 
 You'll notice that your transfer has a date and time issued, and how much time until it expires. Once it expires, you'll need to use another ticket, as the machine won't accept it any longer.
 
@@ -135,22 +214,39 @@ If for some reason the driver hasn't given you a transfer, simply ask.
 
 ### Peggo Cards
 
-If you're using a Peggo card, you won't receive a paper transfer. Instead, your card will now act as a transfer.
+If you're using a Peggo card, you won't receive a paper transfer. **Instead, your card will now act as a transfer.**
 
 It won't charge you again when changing buses, for a period of time. You can verify this by changing buses and scanning your Peggo card as normal. The blue display will tell you when your transfer will expire.
 
-## What are BLUE buses?
+## Types of Buses
 
-BLUE buses are part of a rapid transit line, which come by fairly frequently.
+### Branch buses
 
-These buses will have names in amber text, such as "St. Norbert" and "University of Manitoba".
+Branch buses are the main type of bus you see. In transit apps, these have white backgrounds with their number. They're called branch buses, as they're meant to connect to the main BLUE line.
+
+<Image
+	alt="A route on Google Maps with branch buses"
+	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+	src={BranchBusIcon}
+/>
+
+### BLUE buses
+
+BLUE buses are part of a rapid transit line, which come by fairly frequently. In transit apps these have blue backgrounds with the text "BLUE".
+
+<Image
+	alt="A route on Google Maps with a BLUE bus"
+	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+	src={BlueBusIcon}
+/>
+
+The buses are longer than normal, and are called a "bendy". These buses will their names in amber (or sometimes white) text, such as "St. Norbert" and "University of Manitoba".
 
 <figure>
 	<Image
 		alt="The St. Norbert Bus"
-		class="flex items-center justify-center rounded-md object-cover"
+		class="flex items-center justify-center rounded-md object-cover shadow"
 		src={StNorbertBus}
-		format="avif"
 	/>
 	<figcaption class="text-center italic">
 		{/* prettier-ignore-start */}
@@ -162,8 +258,45 @@ These buses will have names in amber text, such as "St. Norbert" and "University
 
 </figure>
 
-Make sure your bus in your route matches the one you see on the road! Pick the wrong one, and you'll go potentially into the complete wrong direction, or suddenly the wrong direction.
+**Make sure your bus on your route matches the name you see on the road!** Pick the wrong one, and you'll go potentially into the complete wrong direction, or suddenly the wrong direction.
 
-## What do the yellow and black ones mean?
+### Industrial and Express Routes
 
-Yellow means industrial. Black means it's temporary
+In transit apps, you'll notice that there are yellow and black background transit buses.
+
+- Yellow means this is an express route, available at peak hours
+  <Image
+  	alt="A route on Google Maps with an Industrial bus"
+  	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+  	src={YellowBusIcon}
+  />
+- Black means this is an industrial route, which doesn't run on weekends
+  <Image
+  	alt="A route on Google Maps with an Express bus"
+  	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+  	src={BlackBusIcon}
+  />
+
+Functionally, as long as you're using a service such as Google Maps, these buses are effectively the same as the normal branch/white buses. The only difference is their schedules.
+
+### Split Lines
+
+You'll see some buses, but with a vertical line split down multiple of them. This means that you could take any one of these buses, to complete your route. These can be any color or type, but usually are branch buses.
+
+<figure>
+	<Image
+		alt="A route on Google Maps with branch buses 10, 38, and 43"
+		class="flex items-center justify-center rounded-md border-2 border-[#dadce0] object-cover"
+		src={SplitLineBus}
+	/>
+	<figcaption class="text-center italic">
+		Taking any one of the split lines (47, 66, or BLUE) will lead to your
+		destination.
+	</figcaption>
+</figure>
+
+## Conclusion
+
+Hopefully this guide serves as a useful stepping stone into using our public transit!
+
+Sadly, driving a car is generally a significantly superior option here, rather than relying solely on public transit. This especially sucks if you're low income, where car ownership is cost-prohibitive. If and/or when you can, advocate for better public infrastructure!

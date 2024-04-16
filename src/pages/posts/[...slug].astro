@@ -2,7 +2,10 @@
 import { getCollection, type CollectionEntry, getEntry } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import { Image } from "astro:assets";
-import PublishedOrUpdated from "../../components/PublishedOrUpdated.astro";
+import PublishedOrUpdated from "../../components/articles/PublishedOrUpdated.astro";
+import Alert from "../../components/primitives/Alert.astro";
+import Category from "../../components/categories/Category.astro";
+import Link from "../../components/primitives/Link.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -39,6 +42,7 @@ const authors = await Promise.all(authorsPromise);
 				publishedTime: entry.data.created.toISOString(),
 				modifiedTime: entry.data.lastEdited?.toISOString(),
 				authors: authors.map((author) => author.name),
+				section: entry.data.tag,
 			},
 		},
 	}}
@@ -49,21 +53,20 @@ const authors = await Promise.all(authorsPromise);
 				alt={entry.data.coverAlt ?? ""}
 				class="flex aspect-video w-full object-cover rounded-md items-center justify-center shadow"
 				src={entry.data.cover}
-				format="avif"
 				loading="eager"
 			/>
 		)
 	}
 	{
 		entry.data.tag && entry.data.tag.length > 0 && (
-			<span class="block font-semibold mb-3 uppercase">{entry.data.tag}</span>
+			<Link href="/" class="block font-semibold mb-3 uppercase no-underline">
+				{entry.data.tag}
+			</Link>
 		)
 	}
 	<h1 class="!mb-4">{entry.data.title}</h1>
 	<div class="flex flex-col xs:flex-row gap-4 align-middle !mb-4 lg:!mb-8">
-		<div
-			class="flex -space-x-4 rtl:space-x-reverse items-center flex-shrink-0"
-		>
+		<div class="flex -space-x-4 rtl:space-x-reverse items-center flex-shrink-0">
 			{
 				authors.map((author) =>
 					author.profile ? (
@@ -101,9 +104,9 @@ const authors = await Promise.all(authorsPromise);
 	</div>
 	{
 		entry.data.draft && (
-			<p class="rounded-lg not-format px-4 py-3 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-950 dark:text-yellow-400 dark:selection:text-yellow-300 dark:selection:bg-yellow-800 outline-none">
+			<Alert type="Warning" removeTypeText={true}>
 				<strong>This is a draft post!</strong> It has yet to be finalized.
-			</p>
+			</Alert>
 		)
 	}
 	<Content />

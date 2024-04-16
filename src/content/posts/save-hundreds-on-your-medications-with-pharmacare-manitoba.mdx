@@ -1,9 +1,10 @@
 ---
+draft: true
 title: Save Hundreds on Your Medications with Pharmacare (Manitoba)
 description: "If you're not on insurance, once you start increasing your dosage, medications will get expensive.
 
 
-On 6 mg of oral estradiol (roughly the highest oral dosage you'll get), this will cost roughly $150 Canadian dollars as of writing. This will get you 270 tablets, which lasts for 90 days. This also ignores the cost of an anti-androgen/T-blocker, like Cyproterone or Spironolactone. For me, Cyproterone for 90 days costs roughly $20.
+On 6 mg of oral estradiol (the highest oral dosage you'll get), this will cost roughly $150 Canadian dollars as of writing. This will get you 270 tablets, which lasts for 90 days. This also ignores the cost of an anti-androgen/testosterone blocker, like Cyproterone or Spironolactone. For me, Cyproterone for 90 days costs roughly $20.
 
 
 Over a year, this would cost you roughly $690! That's a lot of money.
@@ -16,17 +17,20 @@ created: 2024-04-05
 cover: "./save-hundreds-on-your-medications-with-pharmacare-manitoba/thumb.webp"
 tag: Medical
 otherTags:
-  - Financial
+  - Finances
 ---
 
-import Link from "/src/components/Link.astro";
+import Alert from "/src/components/primitives/Alert.astro";
+import Link from "/src/components/primitives/Link.astro";
 import { Image } from "astro:assets";
 
 import PharmacareApplication from "./save-hundreds-on-your-medications-with-pharmacare-manitoba/pharmacare-application.webp";
 
-**If you're not on insurance, once you start increasing your dosage, medications will get _expensive_.**
+**If you're not on insurance, medications can get _expensive_.**
 
-On 6 mg of oral estradiol (roughly the highest oral dosage you'll get), this will cost roughly $150 Canadian dollars as of writing. This will get you 270 tablets, which lasts for 90 days. This also ignores the cost of an anti-androgen/T-blocker, like Cyproterone or Spironolactone. For me, Cyproterone for 90 days costs roughly $20.
+This is especially true on <dfn>hormone replacement therapy</dfn> (<abbr>HRT</abbr>).
+
+On 6 mg of oral estradiol (roughly the highest oral dosage you'll get), this will cost roughly $150 Canadian dollars as of writing. This will get you 270 tablets, which lasts for 90 days. This also ignores the cost of an anti-androgen/testosterone blocker, like Cyproterone or Spironolactone. For me, Cyproterone for 90 days costs roughly $20.
 
 Over a year, **this would cost you roughly $690!** That's a lot of money.
 
@@ -47,24 +51,74 @@ According to the <Link href="https://www.gov.mb.ca/health/pharmacare/index.html"
 
 ## How to Apply
 
-You'll need to print out the <Link href="https://www.gov.mb.ca/health/pharmacare/docs/application.pdf">Pharmacare Application and Consent Authorization Form</Link>. You can print this out at a public library for some cost. Alternatively, you have a meeting with a peer supporter at <Link href="https://klinic.mb.ca/">Klinic</Link>, and have them help you fill and mail this form.
+You'll need to print out the <Link href="https://www.gov.mb.ca/health/pharmacare/docs/application.pdf">Pharmacare Application and Consent Authorization Form</Link>. You can print this out at a public library for some cost. Alternatively, you have a meeting with a peer supporter at <Link href="https://klinic.mb.ca/">Klinic</Link>, and have them help you fill and mail this form the whole way through.
 
 <figure>
 	<Image
-		alt="Pharmacare consent form"
+		alt="Pharmacare application form"
 		class="flex items-center justify-center rounded-md object-cover shadow"
 		src={PharmacareApplication}
-		format="avif"
 	/>
 	<figcaption class="mx-auto max-w-lg text-center italic">
-		The Pharmacare consent form
+		The Pharmacare application form
 	</figcaption>
 </figure>
 
-In the form, unless you know what you're doing, check Option B. By choosing Option B, you can simply set it and forget it.
+**In the form, check Option A; the One Time Program Enrolment.**
 
-Once you've applied, you'll receive a letter confirming your enrolled, along with your deductible. If you need an excuse of receiving a letter to parents, you can say that you heard about it from friends, and that it saves a lot of money. If you're a young adult but not currently on perscription meds that your parents are aware of, you can say that you're doing things adults do. If you're a minor, this excuse might not pass as well.
+By choosing the one time program enrolment, you can simply set it and forget it. There's no reason to choose the other, unless you know what you're doing presumably.
+
+Once you've applied, you'll receive a letter confirming your enrolled, along with your deductible.
+
+<Alert type="Info">
+	If you need an excuse of receiving a letter to parents, you can say that you
+	heard about it from friends, and that it saves a lot of money. If you're a
+	young adult but not currently on prescription meds that your parents are aware
+	of, you can say that you're doing things adults do. If you're a minor, this
+	excuse might not pass as well.
+</Alert>
+
+## How do I apply if...
+
+### I'm a newcomer to Manitoba
+
+Along with your Pharmacare application form, you'll need to fill out and print the [Declaration of Family Global Income](https://www.gov.mb.ca/health/pharmacare/docs/global-income-declaration-template.pdf) form.
+
+### I've not filed my first tax return
+
+Along with your Pharmacare application form, you'll need to fill out and print the [Declaration of Age](https://www.gov.mb.ca/health/pharmacar/docs/age-income-declaration-template.pdf) form.
+
+<Alert type="Info">
+	The Pharmacare Declaration of Age form leaves ambiguity on what to do if
+	you're over 18 and have not filed income taxes.
+	<br />
+	In the interest of not submitting a false statement, you may wish to cross out
+	"under the age of 18," and write on top of the crossed-out text, "over the age
+	of 18" instead.
+</Alert>
+
+## How do I mail it myself?
+
+Assuming you have no mailing supplies, **your one-stop shop is a Canada Post office.** They will have standard envelopes for you to use. Although they likely have pens, you may wish to bring one yourself. Otherwise, a dollar store will definitely have envelopes and pens if need be.
+
+See [How to address mail accurately - Canada Post](https://www.canadapost-postescanada.ca/cpc/en/support/kb/business/address-accuracy/addressing-mail-accurately) for details.
+
+You'll need to put your own info on the top-left. In the middle/the addressing zone, put the following information;
+
+**Manitoba Health<br />Non-Insured Benefits<br />300 Carlton Street<br />Winnipeg, Manitoba R3B 3M9**
+
+Canada Post is fairly lenient on formatting. Although technically you're supposed to capitalize everything, I definitely did not when I sent my letter. But, it went perfectly fine.
+
+It costs $1.13 including tax to mail a standard lettermail.
+
+## Could I simply just email it?
+
+uhhhhhh
 
 ## When do you get your benefits?
 
-Once you submit your application, it will apply on the next <time dateTime="04-01">April 1st</time> from time of submission. Ideally, you'll submit your Pharmacare application before then, so you can take advantage of Pharmacare sooner.
+Once you submit your application via mail, it will apply on the next <time dateTime="04-01">April 1st</time> from time of submission. Ideally, you'll submit your Pharmacare application before then, so you can take advantage of Pharmacare sooner.
+
+## Conclusion
+
+Congrats, you've now learned how to apply for Pharmacare, and to be able to save lots of money!

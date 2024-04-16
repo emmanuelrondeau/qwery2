@@ -10,3 +10,12 @@ created: 2024-04-03
 - Titles and subtitles: use Wikipedia with https://titlecaseconverter.com/
 - Use sentence case if the title is a sentence
 - Otherwise, refer to https://www.noslangues-ourlanguages.gc.ca/en/writing-tips-plus/index-eng
+
+## Images
+
+- If images are licensed, please put the license terms in a figcaption
+- For screenshots, you usually want to zoom in to help with mobile screens or high DPI ones
+- If you don't know what this all means, ignore it. These are marginal improvements to image quality
+  - Try and make sure fonts are antialiased as grayscale, and not subpixeled 
+    - Download https://github.com/bp2008/BetterClearTypeTuner/releases, and use that to set to grayscale
+    - Alternately if you don't wanna mess with a 3rd party program, you could technically go into dev tools, find a parent element, and set its opacity to 0.98. See https://web.dev/articles/antialiasing-101 for more info.

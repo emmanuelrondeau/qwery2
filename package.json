@@ -1,5 +1,5 @@
 {
-  "name": "transfemcircle",
+  "name": "queerwinnipeg.ca",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,27 +11,31 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/mdx": "^2.2.3",
-    "@astrojs/react": "^3.1.0",
+    "@astrojs/markdoc": "^0.10.0",
+    "@astrojs/mdx": "^2.3.0",
+    "@astrojs/react": "^3.3.0",
     "@astrojs/tailwind": "^5.1.0",
     "@twemoji/api": "15.1.0",
-    "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.23",
-    "astro": "^4.5.12",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "astro": "^4.6.1",
     "astro-seo": "^0.8.3",
+    "embla-carousel": "^8.0.2",
     "leaflet": "^1.9.4",
+    "leaflet-gesture-handling": "^1.2.2",
     "mdast-util-to-string": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reading-time": "^1.5.0",
+    "sharp": "^0.33.3",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@herob191/astro-google-fonts-optimizer": "^0.3.3",
-    "@types/leaflet": "^1.9.9",
+    "@types/leaflet": "^1.9.11",
     "flowbite-typography": "^1.0.3",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.13"
+    "prettier-plugin-tailwindcss": "^0.5.14"
   }
 }

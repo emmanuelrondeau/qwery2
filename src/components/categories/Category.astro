@@ -1,0 +1,32 @@
+---
+interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
+	value: string;
+}
+const { value } = Astro.props;
+---
+
+<category-button>
+	<button
+		{...Astro.props}
+		class="outline-none flex flex-shrink-0 transition-all hover:-translate-y-1 rounded-full px-4 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-700 active:bg-gray-300 text-base select-none focus-visible:ring-2 ring-violet-900 no-underline focus-visible:aria-selected:ring-2 aria-selected:ring-1 aria-selected:bg-violet-200 aria-selected:text-violet-600"
+		style={{
+			transitionProperty: "color, background-color, transform",
+		}}
+		aria-selected="false"
+	>
+		<span class="self-baseline whitespace-nowrap">{value}</span>
+	</button>
+</category-button>
+
+<script>
+	class CategoryButton extends HTMLElement {
+		constructor() {
+			super();
+			const button = this.querySelector("button");
+			button?.addEventListener("click", () => {
+				button.ariaSelected = button.ariaSelected === "true" ? "false" : "true";
+			});
+		}
+	}
+	customElements.define("category-button", CategoryButton);
+</script>
