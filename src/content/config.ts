@@ -28,6 +28,7 @@ const posts = defineCollection({
 });
 
 export const TagEnum = z.enum([
+	"Fashion",
 	"Finances",
 	"Medical",
 	"Mental Health",
