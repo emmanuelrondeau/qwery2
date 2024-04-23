@@ -4,9 +4,9 @@ import Link from "./Link.astro";
 
 <nav
 	id="main-nav"
-	class="fixed z-10 self-center w-full py-4 px-7 transition-colors"
+	class="fixed z-40 self-center w-full py-4 transition-colors border-b"
 >
-	<div class="max-w-screen-xl mx-auto">
+	<div class="max-w-screen-xl px-4 mx-auto">
 		<Link
 			href="/"
 			class="text-3xl font-bold dark:text-gray-50 select-none hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
@@ -16,14 +16,9 @@ import Link from "./Link.astro";
 </nav>
 <script>
 	let ticking = false;
-	console.log("a");
 	const nav = document.getElementById("main-nav") as HTMLDivElement | null;
-	nav?.addEventListener("click", handleClick);
 
-	function handleClick() {
-		console.log("button clicked!");
-	}
-	window.onscroll = function (event) {
+	window.onscroll = function () {
 		if (ticking) return;
 
 		window.requestAnimationFrame(() => {
@@ -35,18 +30,17 @@ import Link from "./Link.astro";
 	};
 
 	function handleNavBarBlur(nav: HTMLElement) {
-		if (window.scrollY >= 20 && !nav.classList.contains("backdrop-blur-3xl")) {
-			nav.classList.add(
-				"bg-white",
-				"backdrop-blur-xl",
-				"bg-opacity-25",
-			);
-		} else {
+		const borderTransparent = nav.classList.contains("border-transparent");
+		if (window.scrollY >= 20 && borderTransparent) {
+			nav.classList.add("bg-white", "dark:bg-gray-900", "border-b-gray-200", "dark:border-b-gray-700");
+			nav.classList.remove("border-transparent");
+		} else if (window.scrollY < 20 && !borderTransparent) {
 			nav.classList.remove(
 				"bg-white",
-				"backdrop-blur-xl",
-				"bg-opacity-25",
+				"dark:bg-gray-900",
+				"border-b-gray-200", "dark:border-b-gray-700"
 			);
+			nav.classList.add("border-transparent");
 		}
 	}
 

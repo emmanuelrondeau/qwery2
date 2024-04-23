@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getCollection, getEntry } from "astro:content";
 import PublishedOrUpdated from "./PublishedOrUpdated.astro";
+import MinutesRead from "./MinutesRead.astro";
 
 interface Props {
 	postId: string;
@@ -16,7 +17,6 @@ const authorsPromise = post.data.authors.map(
 	async (author) => (await getEntry("authors", author.id)).data
 );
 const authors = await Promise.all(authorsPromise);
-const { remarkPluginFrontmatter } = await post.render();
 ---
 
 <li
@@ -31,14 +31,14 @@ const { remarkPluginFrontmatter } = await post.render();
 		<Image
 			src={post.data.cover}
 			alt={""}
-			class="hover:scale-105 transition-transform !m-0 flex aspect-video w-full xs:w-48 xs:h-36 sm:h-auto object-cover rounded-md items-center justify-center shadow"
+			class="not-format hover:scale-105 transition-transform !m-0 flex aspect-video w-full xs:w-48 xs:h-36 sm:h-auto object-cover rounded-md items-center justify-center shadow"
 		/>
 	</a>
 	<div class="my-auto !m-0 flex-col xs:flex-col-reverse flex">
 		<div>
 			<a
 				href={`/posts/${post.slug}`}
-				class="group no-underline outline-none"
+				class="group !no-underline outline-none !ring-0"
 			>
 				{/* Workaround for broken styles if applied to a tag */}
 				<h3
@@ -49,7 +49,7 @@ const { remarkPluginFrontmatter } = await post.render();
 			</a>
 			<div class="format">
 				<PublishedOrUpdated {...post.data} /> •{" "}
-				{remarkPluginFrontmatter.minutesRead}
+				<MinutesRead postId={post.id} />
 			</div>
 		</div>
 		<div class="flex gap-2 text-sm items-end mt-1 mb-2">
@@ -59,13 +59,13 @@ const { remarkPluginFrontmatter } = await post.render();
 						author.profile ? (
 							<Image
 								alt=""
-								class="w-6 h-6 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
+								class="not-format w-6 h-6 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900"
 								src={author.profile}
 								loading="eager"
 							/>
 						) : (
 							<div
-								class="relative inline-flex items-baseline justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-800"
+								class="relative inline-flex items-baseline justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900"
 								aria-hidden={true}
 							>
 								<span class="text-[0.5rem] contents font-medium text-gray-600 dark:text-gray-300 select-none">

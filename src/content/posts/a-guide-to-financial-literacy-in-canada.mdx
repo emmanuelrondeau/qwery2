@@ -8,8 +8,7 @@ cover: ./a-guide-to-financial-literacy-in-canada/micheile-henderson-ZVprbBmT8QA-
 tag: Finances
 ---
 
-import Alert from "/src/components/primitives/Alert.astro";
-import Link from "/src/components/primitives/Link.astro";
+import Callout from "/src/components/primitives/Callout.astro";
 import { Image } from "astro:assets";
 
 import Cash from "./a-guide-to-financial-literacy-in-canada/piggybank-lq-PS3Yyzg8-unsplash.jpg";
@@ -18,16 +17,16 @@ import Wealthsimple from "./a-guide-to-financial-literacy-in-canada/wealthsimple
 import CreditCards from "./a-guide-to-financial-literacy-in-canada/piggybank-oqkmdriPiHM-unsplash.jpg";
 import EQBankCDICInsurance from "./a-guide-to-financial-literacy-in-canada/eq-bank-cdic-insurance.avif";
 
-<Alert type="Warning">
+<Callout type="Warning">
 	I am *not* a financial advisor! This is my attempt at condensing my financial
 	literacy that I've picked up from YouTube and Reddit. I still believe I have
 	written about best practices, and believe this is still helpful.
-</Alert>
+</Callout>
 
-<Alert type="Info">
+<Callout type="Info">
 	In this article, there's affiliate links. I earn a commission if you follow
 	through on certain promotions.
-</Alert>
+</Callout>
 
 **Finances is a concept that you're taught in schools on how to manage.**
 
@@ -57,9 +56,9 @@ Interest is measured in a percentage over time. Many credit cards charge an inte
 
 {/* prettier-ignore-start */}
 
-<Alert type="Info">
-	You can calculate this yourself using online tools, such as this <Link href="https://www.thecalculatorsite.com/finance/calculators/compoundinterestcalculator.php" class="underline hover:no-underline">Compound Interest Calculator</Link> tool.
-</Alert>
+<Callout type="Info">
+	You can calculate this yourself using online tools, such as this [Compound Interest Calculator](https://www.thecalculatorsite.com/finance/calculators/compoundinterestcalculator.php) tool.
+</Callout>
 
 {/* prettier-ignore-end */}
 
@@ -101,7 +100,13 @@ Fair warning though, **credit card debt compounds also.** Watch what happens if 
 
 ## Financial Institutions
 
-### Pre-requisites to Signing Up to Financial Instituations
+<Image
+	src={Wealthsimple}
+	alt="A hand holding a phone, with the Wealthsimple app open"
+	class="flex items-center justify-center rounded-md object-cover"
+/>
+
+### Pre-requisites
 
 To access many of these services, you will need a <dfn>social insurance number</dfn> (<abbr>SIN</abbr>). If you don't have one, [you can apply for an <abbr>SIN</abbr> here!](https://www.canada.ca/en/employment-social-development/services/sin/apply.html)
 
@@ -111,21 +116,17 @@ Unfortunately, phone numbers are a requirement for signing up to many services. 
 
 If you don't already have a bank account, you will want one eventually. This helps you get interest on your money, and pay for services.
 
-<Image
-	src={Wealthsimple}
-	alt="A hand holding a phone, with the Wealthsimple app open"
-	class="flex items-center justify-center rounded-md object-cover"
-/>
+### Recommended Financial Institutions
 
 Here's some online financial institutions you could sign up to:
 
 {/* prettier-ignore-start */}
 
-- <Link href="https://eqbank.ca" target="_blank">**EQ Bank**</Link>: A banking service promoted on as many services being free. This includes free ATM withdrawals, no <dfn>non-sufficient funds</dfn> (<abbr>NSF</abbr>) fees, and no money transfer fees (ex. Interac, electronic funds transfers). There's no fees on mobile cheque deposits, which is a feature Wealthsimple doesn't have!
+- **[EQ Bank](https://eqbank.ca)**: A banking service promoted on as many services being free. This includes free ATM withdrawals, no <dfn>non-sufficient funds</dfn> (<abbr>NSF</abbr>) fees, and no money transfer fees (ex. Interac, electronic funds transfers). There's no fees on mobile cheque deposits, which is a feature Wealthsimple doesn't have!
 	- They also have a free prepaid Mastercard, that gives 0.5% cashback.
 	- EQ Bank also allows you to invest in <abbr>GIC</abbr>s, although EQ Bank
   tends to not have the [best rates](https://wowa.ca/gic-rates). However, GIC rates change over time, and this may have changed depending on when you read this!
-- <Link href="https://wealthsimple.com" target="_blank">**Wealthsimple**</Link>: Although not a bank, Wealthsimple is a financial institution that has many functions like one. You may even find that it can replace your current bank, along with being free. They currently have one of the best interest rates for their Cash account.
+- **[Wealthsimple](https://wealthsimple.com)**: Although not a bank, Wealthsimple is a financial institution that has many functions like one. You may even find that it can replace your current bank, along with being free. They currently have one of the best interest rates for their Cash account.
 	- They also have a free prepaid Mastercard, that gives 1% cashback!
   	- Wealthsimple is also a major investment platform, where you can buy stocks and <abbr>ETF</abbr>s.
 
@@ -152,9 +153,9 @@ You _may_ want a branch if you:
 
 {/* prettier-ignore-start */}
 
-<Alert type="Info">
-	If you're considering a branch, consider a local credit union, as they're there to serve the community, rather than profit. See <Link href="https://www.savvynewcanadians.com/credit-unions-canada-guide/" target="_blank" class="underline hover:no-underline">The Ultimate Guide To Credit Unions in Canada - Savvy New Canadians</Link> for more info!
-</Alert>
+<Callout type="Info">
+	If you're considering a branch, consider a local credit union, as they're there to serve the community, rather than profit. See [The Ultimate Guide To Credit Unions in Canada - Savvy New Canadians](https://www.savvynewcanadians.com/credit-unions-canada-guide/) for more info!
+</Callout>
 
 {/* prettier-ignore-end */}
 
@@ -192,7 +193,7 @@ Things you get with a high credit score includes:
 - Giving you better rates on mortgages and insurance premiums
 - Lower interest rates on loans
 
-Be warned; credit card debt is vicious, as demonstrated in <Link href="#compounding-interest">Compounding Interest</Link>. Make sure to either pay on time, or set up automatic payments!
+Be warned; credit card debt is vicious, as demonstrated in [Compounding Interest](#compounding-interest). Make sure to either pay on time, or set up automatic payments!
 
 ### Should I use a secured credit card?
 
@@ -208,7 +209,7 @@ No, you don't need to give your <abbr>SIN</abbr>! See the [Key duties of <abbr>S
 
 This can be a tricky hunt. I recommend you do your own research, especially as this article ages over time. Better credit cards may release, or cards may change their cashback rates or rewards!
 
-<Alert type="Info">
+<Callout type="Info">
 	I personally lean towards cashback, as it's simple enough to figure out how
 	much I'm getting back. Calculating your savings is also easier. Unlike reward
 	cards, these can't vary and change over time without you knowing.
@@ -216,17 +217,17 @@ This can be a tricky hunt. I recommend you do your own research, especially as t
 	If you do lots of travel, or willing to figure out reward cards, I
 	*especially* recommend you do your own research! Try searching for "best
 	Canadian credit cards" and see what you find.
-</Alert>
+</Callout>
 
 Cards to look into:
 
 {/* prettier-ignore-start */}
 
-- <Link href="https://www.cibc.com/en/personal-banking/credit-cards/all-credit-cards/dividend-visa-for-students.html" target="_blank" referrerpolicy="no-referrer">CIBC Dividend® Visa\* Card for Students</Link>
+- [CIBC Dividend® Visa\* Card for Students](https://www.cibc.com/en/personal-banking/credit-cards/all-credit-cards/dividend-visa-for-students.html)
 	- No annual fee
 	- No need to prove you're a student
 	- 2% on groceries, 1% on gas, transportation, dining, and recurring payments, and 0.5% on everything else
-- <Link href="https://www.bmo.com/main/personal/credit-cards/bmo-cashback-mastercard/">BMO CashBack® Mastercard®\*</Link>
+- [BMO CashBack® Mastercard®\*](https://www.bmo.com/main/personal/credit-cards/bmo-cashback-mastercard/)
 	- No annual fee
 	- 3% on groceries, 1% on recurring payments, and 0.5% on everything else
 
@@ -239,7 +240,7 @@ Once you've built a credit score, you should look at applying for the following 
 
 {/* prettier-ignore-start */}
 
-- <Link href="https://www.americanexpress.com/en-ca/credit-cards/simply-cash/" target="_blank">SimplyCash® Card from American Express</Link>
+- [SimplyCash® Card from American Express](https://www.americanexpress.com/en-ca/credit-cards/simply-cash/)
 	- No annual fee
 	- 2% cashback on gas, groceries
 	- 1.25% on everything else (the highest base rate on a no annual fee credit card!)
@@ -264,9 +265,10 @@ Cobalt® Card](https://www.americanexpress.com/en-ca/credit-cards/cobalt-card/)
 	- 2% cashback on two categories of your choice
 		- You can choose up to three categories, if you deposit your rewards into a Tangerine Savings Account
 	- 0.5% on everything else
-<Alert type="Info">
+
+<Callout type="Info">
 	Due to the nature of credit card refer-a-friend systems, we don't have a way for you to contact us privately, to get the referral benefits. Instead, you may wish to ask friends if they could refer you to a credit card, if you're looking for one!
-</Alert>
+</Callout>
 
 {/* prettier-ignore-end */}
 
@@ -281,15 +283,15 @@ Alternatively, you can check out the multitudes of websites listing credit cards
 
 Credit cards companies categorize merchants with a <dfn>merchant category code</dfn> (<abbr>MCC</abbr>). Depending on what category code the merchants and the card company agree on (as there's transaction fees associated depending on the category), the amount of cashback or reward points you get will vary.
 
-Although last edited 2019, you may find the <Link href="https://forums.redflagdeals.com/ultimate-tangerine-mc-category-reference-guide-2278771/" target="_blank">The Ultimate Tangerine MC Category Reference Guide</Link> useful.
+Although last edited 2019, you may find the [The Ultimate Tangerine MC Category Reference Guide](https://forums.redflagdeals.com/ultimate-tangerine-mc-category-reference-guide-2278771/) useful.
 
 There are many gotcha's to what counts! For example, (regular) Walmarts, Costco, and Bulk Barn _don't_ count as groceries. [Walmart _Supercentres_, however, count as groceries](https://libreddit.bus-hit.me/r/PersonalFinanceCanada/comments/b9ysj0/does_walmart_count_as_groceries_on_your_credit/ek85sx6/?context=3). The only way to make sure what stores have a certain MCC code, is by unfortunately calling the credit card company, and waiting on hold.
 
 {/* prettier-ignore-start */}
 
-<Alert type="Info">
+<Callout type="Info">
 	If you buy an Amazon (or any other) gift card from Sobeys, that counts for the groceries cashback (a good way to save money!).
-</Alert>
+</Callout>
 
 {/* prettier-ignore-end */}
 
@@ -313,13 +315,13 @@ Interac e-Transfer is also another way to pay. This isn't physical cash, but wit
 
 You will want to have liquid savings, in case of emergencies, or a "rainy day". Unexpected expenses can rear their head, and preparing for it.
 
-With <Link href="https://www.cdic.ca/" target="_blank"><abbr>CDIC</abbr></Link>—a crown corporation that'll cover your deposits if a member institution fails—you can guarantee you'll get back your money, usually up to $100,000. A financial institution will advertise CDIC insurance, with this on their promo material and/or webpages.
+With [<abbr>CDIC</abbr>](https://www.cdic.ca/)—a crown corporation that'll cover your deposits if a member institution fails—you can guarantee you'll get back your money, usually up to $100,000. A financial institution will advertise CDIC insurance, with this on their promo material and/or webpages.
 
 {/* prettier-ignore-start */}
 
-<Alert type="Info">
-	Some financial institutions may have many institutions under them, such as Oaken Financial and Wealthsimple. Oaken has Home Bank and Home Trust Company, for $200,000 in coverage. Wealthsimple has five unnamed institutions that they won't disclose due to <Link href="https://help.wealthsimple.com/hc/en-ca/articles/14905388487579-Understand-how-CDIC-coverage-works-in-your-Cash-account" target="_blank" class="underline hover:no-underline">contractual reasons</Link>, for $500,000 in coverage.
-</Alert>
+<Callout type="Info">
+	Some financial institutions may have many institutions under them, such as Oaken Financial and Wealthsimple. Oaken has Home Bank and Home Trust Company, for $200,000 in coverage. Wealthsimple has five unnamed institutions that they won't disclose due to [contractual reasons](https://help.wealthsimple.com/hc/en-ca/articles/14905388487579-Understand-how-CDIC-coverage-works-in-your-Cash-account), for $500,000 in coverage.
+</Callout>
 
 {/* prettier-ignore-end */}
 
@@ -374,7 +376,7 @@ Managed Investing has significantly better rates than trust funds, which take 1.
 
 The benefits of managed investing is that they'll help you assess and re-assess what your risk tolerance is, and balance your portfolio accordingly.
 
-The most well-known platforms for managed investing is <Link href="https://www.wealthsimple.com/" target="_blank">Wealthsimple</Link> with a 0.50% fee, and <Link href="https://questrade.com/" target="blank">Questrade</Link> with a 0.25% fee on your earnings.
+The most well-known platforms for managed investing is [Wealthsimple](https://www.wealthsimple.com/) with a 0.50% fee, and [Questrade](https://questrade.com/) with a 0.25% fee on your earnings.
 
 If you don't want to deal with picking out an ETF, this may be your best choice.
 
@@ -382,11 +384,11 @@ If you don't want to deal with picking out an ETF, this may be your best choice.
 
 These are some of the registered accounts you can have in Canada, as long as you have a valid <abbr>SIN</abbr>.
 
-<Alert type="Warning">
+<Callout type="Warning">
 	These accounts have *lots* of caveats to look out for! If misued, you can
 	**lose a lot of money and permanently lose contribution room**. I highly
 	recommend reading the article linked (or doing your own research!).
-</Alert>
+</Callout>
 
 These registered accounts are misleadingly labeled savings account. Think of it as investment accounts, where you invest in safe <abbr>ETF</abbr>s that will grow over the long term. By just putting cash in, you lose the opportunity to invest, and therefore gain more money over time!
 

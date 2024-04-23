@@ -20,15 +20,9 @@ otherTags:
   - Finances
 ---
 
-import Alert from "/src/components/primitives/Alert.astro";
-import Link from "/src/components/primitives/Link.astro";
-import { Image } from "astro:assets";
-
-import PharmacareApplication from "./save-hundreds-on-your-medications-with-pharmacare-manitoba/pharmacare-application.webp";
-
 **If you're not on insurance, medications can get _expensive_.**
 
-This is especially true on <dfn>hormone replacement therapy</dfn> (<abbr>HRT</abbr>).
+This is especially true on {% dfn %}hormone replacement therapy{% /dfn %} ({% abbr %}HRT{% /abbr %}).
 
 On 6 mg of oral estradiol (roughly the highest oral dosage you'll get), this will cost roughly $150 Canadian dollars as of writing. This will get you 270 tablets, which lasts for 90 days. This also ignores the cost of an anti-androgen/testosterone blocker, like Cyproterone or Spironolactone. For me, Cyproterone for 90 days costs roughly $20.
 
@@ -44,39 +38,39 @@ If you're low income, you'll likely get a $100 deductible. This means that if yo
 
 ## Who qualifies?
 
-According to the <Link href="https://www.gov.mb.ca/health/pharmacare/index.html">Manitoba Government website</Link>, you qualify for the Manitoba Pharmacare program if you meet all of the following criteria:
+According to the [Manitoba Government website](https://www.gov.mb.ca/health/pharmacare/index.html), you qualify for the Manitoba Pharmacare program if you meet all of the following criteria:
 
 - You are eligible for Manitoba Health coverage
 - Your prescriptions are not covered by other provincial or federal programs
 
 ## How to Apply
 
-You'll need to print out the <Link href="https://www.gov.mb.ca/health/pharmacare/docs/application.pdf">Pharmacare Application and Consent Authorization Form</Link>. You can print this out at a public library for some cost. Alternatively, you have a meeting with a peer supporter at <Link href="https://klinic.mb.ca/">Klinic</Link>, and have them help you fill and mail this form the whole way through.
+You'll need to print out the [Pharmacare Application and Consent Authorization Form](https://www.gov.mb.ca/health/pharmacare/docs/application.pdf). You can print this out at a public library for some cost. Alternatively, you have a meeting with a peer supporter at [Klinic](https://klinic.mb.ca/), and have them help you fill and mail this form the whole way through.
 
-<figure>
-	<Image
-		alt="Pharmacare application form"
-		class="flex items-center justify-center rounded-md object-cover shadow"
-		src={PharmacareApplication}
-	/>
-	<figcaption class="mx-auto max-w-lg text-center italic">
+{% figure %}
+	{% image src="./save-hundreds-on-your-medications-with-pharmacare-manitoba/pharmacare-application.webp" alt="Pharmacare application form" /%}
+	
+	{% caption %}
+		
 		The Pharmacare application form
-	</figcaption>
-</figure>
+	
+	{% /caption %}
+
+{% /figure %}
 
 **In the form, check Option A; the One Time Program Enrolment.**
 
 By choosing the one time program enrolment, you can simply set it and forget it. There's no reason to choose the other, unless you know what you're doing presumably.
 
-Once you've applied, you'll receive a letter confirming your enrolled, along with your deductible.
+Once you've applied and your application has been processed, you'll receive a letter confirming your enrolled, along with your deductible.
 
-<Alert type="Info">
+{% callout type="Info" %}
 	If you need an excuse of receiving a letter to parents, you can say that you
 	heard about it from friends, and that it saves a lot of money. If you're a
 	young adult but not currently on prescription meds that your parents are aware
 	of, you can say that you're doing things adults do. If you're a minor, this
 	excuse might not pass as well.
-</Alert>
+{% /callout %}
 
 ## How do I apply if...
 
@@ -88,14 +82,11 @@ Along with your Pharmacare application form, you'll need to fill out and print t
 
 Along with your Pharmacare application form, you'll need to fill out and print the [Declaration of Age](https://www.gov.mb.ca/health/pharmacare/docs/age-income-declaration-template.pdf) form.
 
-<Alert type="Info">
-	The Pharmacare Declaration of Age form leaves ambiguity on what to do if
-	you're over 18 and have not filed income taxes.
-	<br />
-	In the interest of not submitting a false statement, you may wish to cross out
-	"under the age of 18," and write on top of the crossed-out text, "over the age
-	of 18" instead.
-</Alert>
+{% callout type="Info" %}
+	The Pharmacare Declaration of Age form leaves ambiguity on what to do if you're over 18 and have not filed income taxes.
+
+	In the interest of not submitting a false statement, you may wish to cross out "under the age of 18," and write on top of the crossed-out text, "over the age of 18" instead.
+{% /callout %}
 
 ## How do I mail it myself?
 
@@ -105,19 +96,27 @@ See [How to address mail accurately - Canada Post](https://www.canadapost-postes
 
 You'll need to put your own info on the top-left. In the middle/the addressing zone, put the following information;
 
-**Manitoba Health<br />Non-Insured Benefits<br />300 Carlton Street<br />Winnipeg, Manitoba R3B 3M9**
+{% div class="flex flex-col mx-auto w-max" %}
+	**Manitoba Health** {% class="!mb-0" %}
+
+	**Non-Insured Benefits** {% class="!my-0" %}
+
+	**300 Carlton Street** {% class="!my-0" %}
+
+	**Winnipeg, Manitoba R3B 3M9** {% class="!mt-0" %}
+{% /div %}
 
 Canada Post is fairly lenient on formatting. Although technically you're supposed to capitalize everything, I definitely did not when I sent my letter. But, it went perfectly fine.
 
 It costs $1.13 including tax to mail a standard lettermail.
 
-## Could I simply just email it?
+## Could I just email it?
 
-uhhhhhh
+Don't email your application form! Your {% dfn %}Public Health Insurance Number{% /dfn %} ({% abbr %}PHIN{% /abbr %}) will be there, and Manitoba Health does not want you sending that number through email. 
 
 ## When do you get your benefits?
 
-Once you submit your application via mail, it will apply on the next <time dateTime="04-01">April 1st</time> from time of submission. Ideally, you'll submit your Pharmacare application before then, so you can take advantage of Pharmacare sooner.
+Once you submit your application via mail, it will apply on the next {% time datetime="04-01" %}>April 1st{% /time %} from time of submission. Ideally, you'll submit your Pharmacare application before then, so you can take advantage of Pharmacare sooner.
 
 ## Conclusion
 

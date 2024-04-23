@@ -1,28 +1,29 @@
 ---
+import getReadingTime from "reading-time";
 import { getCollection, type CollectionEntry, getEntry } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import { Image } from "astro:assets";
 import PublishedOrUpdated from "../../components/articles/PublishedOrUpdated.astro";
-import Alert from "../../components/primitives/Alert.astro";
-import Category from "../../components/categories/Category.astro";
+import Callout from "../../components/primitives/Callout.astro";
 import Link from "../../components/primitives/Link.astro";
+import MinutesRead from "../../components/articles/MinutesRead.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
-	return blogEntries.map((entry: any) => ({
+	return blogEntries.map((entry) => ({
 		params: { slug: entry.slug },
 		props: { entry },
 	}));
 }
 
-const { entry } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await entry.render();
+const { entry: post } = Astro.props;
+const { Content } = await post.render();
 
 type Props = {
 	entry: CollectionEntry<"posts">;
 };
 
-const authorsPromise = entry.data.authors.map(
+const authorsPromise = post.data.authors.map(
 	async (author) => (await getEntry("authors", author.id)).data
 );
 const authors = await Promise.all(authorsPromise);
@@ -30,41 +31,44 @@ const authors = await Promise.all(authorsPromise);
 
 <ArticleLayout
 	seo={{
-		title: entry.data.title,
-		description: entry.data.description,
+		title: post.data.title,
+		description: post.data.description,
 		openGraph: {
 			basic: {
-				image: entry.data.cover?.src ?? "",
-				title: entry.data.title,
+				image: post.data.cover?.src ?? "",
+				title: post.data.title,
 				type: "article",
 			},
 			article: {
-				publishedTime: entry.data.created.toISOString(),
-				modifiedTime: entry.data.lastEdited?.toISOString(),
+				publishedTime: post.data.created.toISOString(),
+				modifiedTime: post.data.lastEdited?.toISOString(),
 				authors: authors.map((author) => author.name),
-				section: entry.data.tag,
+				section: post.data.tag,
 			},
 		},
 	}}
 >
 	{
-		entry.data.cover && (
+		post.data.cover && (
 			<Image
-				alt={entry.data.coverAlt ?? ""}
+				alt={post.data.coverAlt ?? ""}
 				class="flex aspect-video w-full object-cover rounded-md items-center justify-center shadow"
-				src={entry.data.cover}
+				src={post.data.cover}
 				loading="eager"
 			/>
 		)
 	}
 	{
-		entry.data.tag && entry.data.tag.length > 0 && (
-			<Link href="/" class="block font-semibold mb-3 uppercase no-underline">
-				{entry.data.tag}
+		post.data.tag && post.data.tag.length > 0 && (
+			<Link
+				href="/"
+				class="not-format block font-semibold mb-3 uppercase no-underline"
+			>
+				{post.data.tag}
 			</Link>
 		)
 	}
-	<h1 class="!mb-4">{entry.data.title}</h1>
+	<h1 class="!mb-4">{post.data.title}</h1>
 	<div class="flex flex-col xs:flex-row gap-4 align-middle !mb-4 lg:!mb-8">
 		<div class="flex -space-x-4 rtl:space-x-reverse items-center flex-shrink-0">
 			{
@@ -72,7 +76,7 @@ const authors = await Promise.all(authorsPromise);
 					author.profile ? (
 						<Image
 							alt=""
-							class="w-12 h-12 lg:w-14 lg:h-14 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
+							class="not-format w-12 h-12 lg:w-14 lg:h-14 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
 							src={author.profile}
 							loading="eager"
 						/>
@@ -95,18 +99,16 @@ const authors = await Promise.all(authorsPromise);
 				>Written by {authors.map((author) => author.name).join(", ")}</span
 			><br />
 			<span class="text-center">
-				<PublishedOrUpdated
-					lastEdited={entry.data.lastEdited}
-					{...entry.data}
-				/> • {remarkPluginFrontmatter.minutesRead}
+				<PublishedOrUpdated lastEdited={post.data.lastEdited} {...post.data} /> •
+				<MinutesRead postId={post.id} />
 			</span>
 		</div>
 	</div>
 	{
-		entry.data.draft && (
-			<Alert type="Warning" removeTypeText={true}>
+		post.data.draft && (
+			<Callout type="Warning" removeTypeText={true}>
 				<strong>This is a draft post!</strong> It has yet to be finalized.
-			</Alert>
+			</Callout>
 		)
 	}
 	<Content />

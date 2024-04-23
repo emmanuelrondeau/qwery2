@@ -1,6 +1,6 @@
 ---
 interface Props {
-	type: "Info" | "Note" | "Tip" | "Important" | "Warning" | "Caution";
+	type: "Info" | "Warning" | "Caution";
 	removeTypeText?: boolean;
 }
 
@@ -9,35 +9,30 @@ const { type, removeTypeText } = Astro.props;
 
 <div
 	class:list={[
-		"rounded not-format py-3 outline-none",
+		"callout rounded py-3 outline-none",
 		"my-[1.25em] lg:my-[1.3333333em]", // Replicate `format lg:format-lg`
 		{
 			"px-5 border-l-4 border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:text-violet-400 dark:selection:text-violet-300 dark:selection:bg-violet-800":
 				type === "Info",
 		},
 		{
-			"px-4 bg-blue-100 text-blue-700 selection:bg-blue-300 selection:text-blue-950 dark:bg-blue-950 dark:text-blue-400 dark:selection:text-blue-300 dark:selection:bg-blue-800":
-				type === "Note",
-		},
-		{
-			"px-4 bg-green-100 text-green-700 selection:bg-green-300 selection:text-green-950 dark:bg-green-950 dark:text-green-400 dark:selection:text-green-300 dark:selection:bg-green-800":
-				type === "Tip",
-		},
-		{
-			"px-4 bg-violet-50 text-violet-700 selection:bg-violet-200 selection:text-violet-900 dark:bg-violet-950 dark:text-violet-400 dark:selection:text-violet-300 dark:selection:bg-violet-800":
-				type === "Important",
-		},
-		{
 			"px-5 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-950 dark:text-yellow-400 dark:selection:text-yellow-300 dark:selection:bg-yellow-800":
 				type === "Warning",
 		},
 		{
-			// "px-4 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-950 dark:text-red-400 dark:selection:text-red-300 dark:selection:bg-red-800":
 			"px-5 border-l-4 border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-950 dark:text-red-400 dark:selection:text-red-300  dark:selection:bg-red-800":
 				type === "Caution",
 		},
 	]}
 >
 	{!removeTypeText && <b>{type}: </b>}
-	<slot />
+	{
+		removeTypeText ? (
+			<slot />
+		) : (
+			<div class="-my-[1.25em] lg:-my-[1.3333333em]">
+				<slot />
+			</div>
+		)
+	}
 </div>
