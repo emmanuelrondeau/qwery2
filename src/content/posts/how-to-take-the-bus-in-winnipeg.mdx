@@ -15,7 +15,7 @@ cover: "./how-to-take-the-bus-in-winnipeg/thumb.avif"
 tag: Transportation
 ---
 
-import Alert from "/src/components/primitives/Alert.astro";
+import Callout from "/src/components/primitives/Callout.astro";
 import Map from "/src/components/articles/Map.astro";
 import Link from "/src/components/primitives/Link.astro";
 import { Image } from "astro:assets";
@@ -28,13 +28,14 @@ import SplitLineBus from "./how-to-take-the-bus-in-winnipeg/split-line-bus.avif"
 import BlueBusIcon from "./how-to-take-the-bus-in-winnipeg/blue-bus-icon.avif";
 import YellowBusIcon from "./how-to-take-the-bus-in-winnipeg/yellow-bus-icon.avif";
 import BlackBusIcon from "./how-to-take-the-bus-in-winnipeg/black-bus-icon.avif";
-import BranchBusIcon from "./how-to-take-the-bus-in-winnipeg/branch-bus-icon.avif";
+import RegularBusIcon from "./how-to-take-the-bus-in-winnipeg/regular-bus-icon.avif";
 import YellowCord from "./how-to-take-the-bus-in-winnipeg/yellow-cord.avif";
 import StopButton from "./how-to-take-the-bus-in-winnipeg/stop-button.avif";
 import BackSideDoor from "./how-to-take-the-bus-in-winnipeg/back-side-door.avif";
 import OldBusStopSign from "./how-to-take-the-bus-in-winnipeg/old-bus-stop-sign.avif";
 import NewBusStopSign from "./how-to-take-the-bus-in-winnipeg/new-bus-stop-sign.avif";
 import FareBox from "./how-to-take-the-bus-in-winnipeg/fare-box.avif";
+import PaperTransfer from "./how-to-take-the-bus-in-winnipeg/paper-transfer.avif";
 
 **Riding the bus for the first time is daunting.**
 
@@ -48,11 +49,11 @@ To get bus tickets, check out <Link href="https://info.winnipegtransit.com/en/fa
 
 {/* prettier-ignore-start */}
 
-<Alert type="Info">
+<Callout type="Info">
 	To pay for fares with a debit or credit card, you'll need to do that ahead of time with a Peggo card.
 	<br />
 	First, you need to buy a Peggo card, to be able to preload it with e-Cash. You can buy one online for $5.00 on the <Link href="https://efare.winnipegtransit.com/e-Fare/welcome.html" target="_blank" class="underline hover-no-underline">Winnipeg Transit e-Fare</Link> site, with free shipping. Alternatively, there are physical locations to be able to purchase one.
-</Alert>
+</Callout>
 
 {/* prettier-ignore-end */}
 
@@ -200,6 +201,17 @@ A strategy for if you get lost is to stay on said bus, until you wrap around to 
 
 Once you pay your fare, the bus driver should give you a paper transfer.
 
+<figure>
+	<Image
+		alt="Paper transfer"
+		class="mx-auto flex max-w-sm items-center justify-center rounded-md object-cover shadow"
+		src={PaperTransfer}
+	/>
+	<figcaption class="mx-auto max-w-lg text-center italic">
+		A paper transfer.
+	</figcaption>
+</figure>
+
 **Make sure to take your paper transfer!**
 
 The reason you want to have this transfer, is then you'll be able to take another bus without having to spend another ticket for a period of time.
@@ -220,23 +232,25 @@ It won't charge you again when changing buses, for a period of time. You can ver
 
 ## Types of Buses
 
-### Branch buses
+### Regular buses
 
-Branch buses are the main type of bus you see. In transit apps, these have white backgrounds with their number. They're called branch buses, as they're meant to connect to the main BLUE line.
+Regular buses are the main type of bus you see. In transit apps, these have white backgrounds with their number.
 
 <Image
-	alt="A route on Google Maps with branch buses"
-	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
-	src={BranchBusIcon}
+	alt="Route on Google Maps with regular buses"
+	class="mx-auto flex max-w-xl items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+	src={RegularBusIcon}
 />
+
+Although technically there's such things such as feeder routes, we'll ignore these for simplicity. Transit apps label these as the same as regulars, and have no functional difference.
 
 ### BLUE buses
 
 BLUE buses are part of a rapid transit line, which come by fairly frequently. In transit apps these have blue backgrounds with the text "BLUE".
 
 <Image
-	alt="A route on Google Maps with a BLUE bus"
-	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+	alt="Route on Google Maps with a BLUE bus"
+	class="mx-auto flex max-w-xl items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
 	src={BlueBusIcon}
 />
 
@@ -264,20 +278,28 @@ The buses are longer than normal, and are called a "bendy". These buses will the
 
 In transit apps, you'll notice that there are yellow and black background transit buses.
 
-- Yellow means this is an express route
-  <Image
-  	alt="A route on Google Maps with an Industrial bus"
-  	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
-  	src={YellowBusIcon}
-  />
-- Black means this bus only is scheduled for high peak hours only
-  <Image
-  	alt="A route on Google Maps with an Express bus"
-  	class="flex items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
-  	src={BlackBusIcon}
-  />
+<figure>
+	<Image
+		alt="Express route bus"
+		class="mx-auto flex max-w-xl items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+		src={YellowBusIcon}
+	/>
+	<figcaption class="text-center italic">
+		Yellow means this is an express route.
+	</figcaption>
+</figure>
+<figure>
+	<Image
+		alt="Peak-hours bus"
+		class="mx-auto flex max-w-xl items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
+		src={BlackBusIcon}
+	/>
+	<figcaption class="text-center italic">
+		Black means this bus is scheduled for peak hours only.
+	</figcaption>
+</figure>
 
-Functionally, as long as you're using a service such as Google Maps, these buses are effectively the same as the normal branch/white buses. The only difference is their schedules.
+Functionally, as long as you're using a service such as Google Maps, these buses are effectively the same as the regular buses. The only difference is their schedules.
 
 ### Split Lines
 
@@ -285,8 +307,8 @@ You'll see some buses, but with a vertical line split down multiple of them. Thi
 
 <figure>
 	<Image
-		alt="A route on Google Maps with branch buses 10, 38, and 43"
-		class="flex items-center justify-center rounded-md border-2 border-[#dadce0] object-cover"
+		alt="Route on Google Maps with a split line"
+		class="mx-auto flex max-w-xl items-center justify-center rounded-md border-2 border-[#dadce0] object-cover"
 		src={SplitLineBus}
 	/>
 	<figcaption class="text-center italic">
@@ -300,3 +322,5 @@ You'll see some buses, but with a vertical line split down multiple of them. Thi
 Hopefully this guide serves as a useful stepping stone into using our public transit!
 
 Sadly, driving a car is generally a significantly superior option here, rather than relying solely on public transit. This especially sucks if you're low income, where car ownership is cost-prohibitive. If and/or when you can, advocate for better public infrastructure!
+
+If you wish to save money over time, get to your destination faster and more predictably, consider riding a bike.

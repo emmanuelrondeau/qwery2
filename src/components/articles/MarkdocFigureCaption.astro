@@ -1,0 +1,12 @@
+---
+interface Props {
+	class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<figcaption
+	class={`mx-auto text-center italic ${className ? ` ${className}` : ""}`}
+>
+	<slot />
+</figcaption>

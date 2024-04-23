@@ -17,4 +17,35 @@
 	::selection {
 		@apply bg-violet-100 text-violet-950 dark:bg-violet-300;
 	}
+
+	/* Article Formatting */
+	main.format a:not(.not-format) {
+		@apply rounded underline outline-none ring-violet-600 hover:no-underline focus-visible:ring-2 dark:ring-violet-600;
+	}
+
+	main.format img:not(.emoji):not(.not-format) {
+		@apply flex items-center justify-center rounded-md object-cover shadow;
+	}
+
+	.format .callout :where(strong):not(:where([class~="not-format"] *)) {
+		color: revert;
+	}
+
+	/* Leaflet Map */
+	.leaflet-pane {
+		z-index: 10 !important;
+	}
+
+	.leaflet-top,
+	.leaflet-bottom {
+		z-index: 30 !important;
+	}
+
+	.leaflet-control {
+		z-index: 20 !important;
+	}
+
+	.leaflet-container {
+		z-index: 30 !important;
+	}
 </style>
