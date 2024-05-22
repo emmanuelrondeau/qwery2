@@ -27,8 +27,8 @@ const mostRecent = posts.sort(
 				formats={["avif", "webp"]}
 				loading="eager"
 				decoding="async"
-				widths={[240, 540, 720, Background.width]}
-				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Background.width}px`}
+				widths={[540, 720, 1080, Background.width]}
+				sizes={`(max-width: 720px) 540px, (max-width: 1600px) 720px, (max-width: 2560px) 1080px, ${Background.width}px`}
 				quality="high"
 			/>
 		</div>
