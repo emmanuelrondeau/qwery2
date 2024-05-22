@@ -37,6 +37,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@fec/remark-a11y-emoji": "^4.0.2",
     "@herob191/astro-google-fonts-optimizer": "^0.3.3",
     "@types/leaflet": "^1.9.11",
     "flowbite-typography": "^1.0.3",

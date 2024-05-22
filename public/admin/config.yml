@@ -45,6 +45,12 @@ collections:
           hint: "Put your article title here!",
         }
       - {
+          label: "Description (SEO)",
+          name: "description",
+          widget: "text",
+          hint: "This will be shown on search results and social media embeds. For optimizing specifically for Google, try and lean 155 (ish) characters or less.",
+        }
+      - {
           label: "Authors",
           name: "authors",
           widget: "relation",
@@ -89,6 +95,7 @@ collections:
           name: "cover",
           widget: "image",
           hint: "This will be the thumbnail shown when browsing articles, and will be the first thing a user will see when they click on the article.",
+          default_value: "/src/assets/images/default-thumb.jpg",
         }
       - { label: "Body", name: "body", widget: "markdown" }
 
