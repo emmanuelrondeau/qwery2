@@ -23,7 +23,7 @@ const newSeoProp: SEOProps = {
 		...seo.openGraph,
 		basic: {
 			...seo.openGraph?.basic,
-			image: seo.openGraph?.basic.image ?? "/trans-flag.jpg",
+			image: seo.openGraph?.basic.image ?? "/favicon.svg",
 			title: seo.openGraph?.basic.title
 				? `${seo.openGraph.basic.title} | Queer Winnipeg`
 				: title,
@@ -31,7 +31,7 @@ const newSeoProp: SEOProps = {
 		},
 		image: {
 			...seo.openGraph?.image,
-			url: seo.openGraph?.image?.url ?? "/trans-flag.jpg",
+			url: seo.openGraph?.image?.url ?? "/favicon.svg",
 		},
 		optional: {
 			siteName: "Queer Winnipeg",
@@ -39,7 +39,7 @@ const newSeoProp: SEOProps = {
 		},
 	},
 	extend: {
-		link: [{ rel: "icon", href: "/trans-flag.jpg" }],
+		link: [{ rel: "icon", type: "image/svg", href: "/favicon.svg" }],
 		meta: [{ name: "theme-color", content: themeColor ?? "#C4B5FD" }],
 	},
 };
