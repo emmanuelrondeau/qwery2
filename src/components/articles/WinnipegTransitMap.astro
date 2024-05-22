@@ -29,6 +29,7 @@ import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 		center: [49.8951, -97.1384],
 		zoom: 11,
 		layers: [tiles],
+		// @ts-expect-error - Not sure why it isn't part of types
 		gestureHandling: true,
 	});
 
