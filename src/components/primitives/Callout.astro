@@ -26,13 +26,7 @@ const { type, removeTypeText } = Astro.props;
 	]}
 >
 	{!removeTypeText && <b>{type}: </b>}
-	{
-		removeTypeText ? (
-			<slot />
-		) : (
-			<div class="-my-[1.25em] lg:-my-[1.3333333em]">
-				<slot />
-			</div>
-		)
-	}
+	<div class="-my-[1.25em] lg:-my-[1.3333333em]">
+		<slot />
+	</div>
 </div>

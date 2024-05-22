@@ -1,8 +1,7 @@
 import { z, defineCollection, reference } from "astro:content";
-import DefaultImageCover from "./posts/how-to-start-hrt-in-winnipeg/consent-form.webp";
 
 const authors = defineCollection({
-	type: "data",
+	type: "content",
 	schema: ({ image }) =>
 		z.object({
 			name: z.string(),
@@ -19,8 +18,7 @@ const posts = defineCollection({
 			description: z.string().optional(),
 			tag: TagEnum.default("Other"),
 			otherTags: z.array(TagEnum).optional(),
-			cover: image().default(DefaultImageCover),
-			coverAlt: z.string().optional(),
+			cover: image(),
 			authors: z.array(reference("authors")),
 			created: z.date(),
 			lastEdited: z.date().optional(),

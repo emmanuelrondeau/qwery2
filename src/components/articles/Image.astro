@@ -1,0 +1,16 @@
+---
+import { Image as AstroImage } from "astro:assets";
+
+interface Props {
+	alt: string;
+	class?: string | null;
+	src: ImageMetadata | string;
+}
+const { src, alt, class: className } = Astro.props;
+---
+
+<AstroImage
+	alt={alt}
+	class={`flex items-center justify-center rounded-md object-cover shadow mx-auto !h-full ${className ?? ""}`}
+	src={src}
+/>

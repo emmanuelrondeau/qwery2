@@ -7,7 +7,7 @@ interface Props {
 const { lastEdited, created } = Astro.props;
 
 const displayDate = lastEdited ?? created;
-const updatedOrPublished = lastEdited ? "Updated" : "Published";
+const updatedOrPublished = lastEdited && lastEdited.getDate() != created.getDate() ? "Updated" : "Published";
 ---
 
 {updatedOrPublished}{" "}

@@ -1,41 +1,31 @@
 ---
-draft: false
 title: How to Take the Bus in Winnipeg
-description: "Going into it without much prior experience is terrifying.
-
-
-You probably shouldn't go about as blind and alone as I did when I first tried to use our local public transit. Oddly enough, there wasn't much info online about how this stuff works either.
-
-
-I hope this guide serves as a quick run-down on understanding this system. This will be targeted towards young people with low income."
 authors:
   - fio-cobbs
-created: 2024-04-05
-cover: "./how-to-take-the-bus-in-winnipeg/thumb.avif"
 tag: Transportation
+created: 2024-05-21
+lastEdited: 2024-05-21
+cover: /src/assets/images/how-to-take-the-bus-in-winnipeg/thumb.avif
 ---
 
-import Callout from "/src/components/primitives/Callout.astro";
-import Map from "/src/components/articles/Map.astro";
-import Link from "/src/components/primitives/Link.astro";
-import { Image } from "astro:assets";
+import WinnipegTransitMap from "/src/components/articles/WinnipegTransitMap.astro";
 
-import GoogleMaps1 from "./how-to-take-the-bus-in-winnipeg/googlemaps1.webp";
-import GoogleMaps2 from "./how-to-take-the-bus-in-winnipeg/googlemaps2.webp";
-import StNorbertBus from "./how-to-take-the-bus-in-winnipeg/st-norbert-bus.webp";
-import BusTickets from "./how-to-take-the-bus-in-winnipeg/bus-tickets.avif";
-import SplitLineBus from "./how-to-take-the-bus-in-winnipeg/split-line-bus.avif";
-import BlueBusIcon from "./how-to-take-the-bus-in-winnipeg/blue-bus-icon.avif";
-import YellowBusIcon from "./how-to-take-the-bus-in-winnipeg/yellow-bus-icon.avif";
-import BlackBusIcon from "./how-to-take-the-bus-in-winnipeg/black-bus-icon.avif";
-import RegularBusIcon from "./how-to-take-the-bus-in-winnipeg/regular-bus-icon.avif";
-import YellowCord from "./how-to-take-the-bus-in-winnipeg/yellow-cord.avif";
-import StopButton from "./how-to-take-the-bus-in-winnipeg/stop-button.avif";
-import BackSideDoor from "./how-to-take-the-bus-in-winnipeg/back-side-door.avif";
-import OldBusStopSign from "./how-to-take-the-bus-in-winnipeg/old-bus-stop-sign.avif";
-import NewBusStopSign from "./how-to-take-the-bus-in-winnipeg/new-bus-stop-sign.avif";
-import FareBox from "./how-to-take-the-bus-in-winnipeg/fare-box.avif";
-import PaperTransfer from "./how-to-take-the-bus-in-winnipeg/paper-transfer.avif";
+import GoogleMaps1 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps1.webp";
+import GoogleMaps2 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps2.webp";
+import StNorbertBus from "/src/assets/images/how-to-take-the-bus-in-winnipeg/st-norbert-bus.webp";
+import BusTickets from "/src/assets/images/how-to-take-the-bus-in-winnipeg/bus-tickets.avif";
+import SplitLineBus from "/src/assets/images/how-to-take-the-bus-in-winnipeg/split-line-bus.avif";
+import BlueBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/blue-bus-icon.avif";
+import YellowBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/yellow-bus-icon.avif";
+import BlackBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/black-bus-icon.avif";
+import RegularBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/regular-bus-icon.avif";
+import YellowCord from "/src/assets/images/how-to-take-the-bus-in-winnipeg/yellow-cord.avif";
+import StopButton from "/src/assets/images/how-to-take-the-bus-in-winnipeg/stop-button.avif";
+import BackSideDoor from "/src/assets/images/how-to-take-the-bus-in-winnipeg/back-side-door.avif";
+import OldBusStopSign from "/src/assets/images/how-to-take-the-bus-in-winnipeg/old-bus-stop-sign.avif";
+import NewBusStopSign from "/src/assets/images/how-to-take-the-bus-in-winnipeg/new-bus-stop-sign.avif";
+import FareBox from "/src/assets/images/how-to-take-the-bus-in-winnipeg/fare-box.avif";
+import PaperTransfer from "/src/assets/images/how-to-take-the-bus-in-winnipeg/paper-transfer.avif";
 
 **Riding the bus for the first time is daunting.**
 
@@ -45,24 +35,22 @@ Going into it without much prior experience is terrifying. I struggled to find r
 
 Taking the bus (unfortunately) costs money. In our buses, the fare box takes either cash, bus tickets, or Peggo card. **Credit and debit cards aren't accepted here!**
 
-To get bus tickets, check out <Link href="https://info.winnipegtransit.com/en/fares/where-to-buy/">Where to Buy - Winnipeg Transit</Link>, and find the closest place near you.
-
-{/* prettier-ignore-start */}
+To get bus tickets, check out [Where to Buy - Winnipeg Transit](https://info.winnipegtransit.com/en/fares/where-to-buy/), and find the closest place near you.
 
 <Callout type="Info">
-	To pay for fares with a debit or credit card, you'll need to do that ahead of time with a Peggo card.
-	<br />
-	First, you need to buy a Peggo card, to be able to preload it with e-Cash. You can buy one online for $5.00 on the <Link href="https://efare.winnipegtransit.com/e-Fare/welcome.html" target="_blank" class="underline hover-no-underline">Winnipeg Transit e-Fare</Link> site, with free shipping. Alternatively, there are physical locations to be able to purchase one.
+	To pay for fares with a debit or credit card, you'll need to do that ahead of
+	time with a Peggo card.
+
+	First, you need to buy a Peggo card, to be able to preload it with e-Cash. You can buy one online for $5.00 on the	[Winnipeg Transit e-Fare](https://efare.winnipegtransit.com/e-Fare/welcome.html) site, with free shipping. Alternatively, there are physical locations to be
+	able to purchase one.
 </Callout>
 
-{/* prettier-ignore-end */}
-
 <figure>
-	<Map />
-	<figcaption class="mx-auto max-w-lg text-center italic">
+	<WinnipegTransitMap />
+	<FigureCaption class="max-w-lg">
 		Map from the Winnipeg Transit site for your convenience. **Visit the Where
 		to Buy link for the most up-to-date locations and info!**
-	</figcaption>
+	</FigureCaption>
 </figure>
 
 To pay, walk to the front door of your bus. Upon entering, you'll see a fare box.
@@ -82,13 +70,13 @@ To pay, walk to the front door of your bus. Upon entering, you'll see a fare box
 
 Once paid either by bus ticket or cash, you should receive a **paper transfer**, which will print on the left side of the fare box. This is important, but we'll get to that soon though!
 
-If you're strapped on money, there's programs for reduced fares. If you're a student, you can take advantage of the Youth Fare pricing. If you're eligible and paying with cash, you should carry your photo ID. You may also want to check out <Link href="https://info.winnipegtransit.com/en/fares/winnpass">WINNpass</Link>, especially if you're on <dfn id="eia">Employment and Income Assistance</dfn> (<abbr>EIA</abbr>).
+If you're strapped on money, there's programs for reduced fares. If you're a student, you can take advantage of the Youth Fare pricing. If you're eligible and paying with cash, you should carry your photo ID. You may also want to check out [WINNpass](https://info.winnipegtransit.com/en/fares/winnpass), especially if you're on <dfn id="eia">Employment and Income Assistance</dfn> (<abbr>EIA</abbr>).
 
-For more info and current pricing, check out <Link href="https://info.winnipegtransit.com/en/fares/transit-fares/">Transit Fares</Link>.
+For more info and current pricing, check out [Transit Fares](https://info.winnipegtransit.com/en/fares/transit-fares/).
 
 ## Routing a Trip
 
-Use <Link href="https://www.google.com/maps/">Google Maps</Link> for the best experience of bus routing, that doesn't rely on Google. I was not able to find a better app for bus routing. Sorry, privacy advocates.
+Use [Google Maps](https://www.google.com/maps/) for the best experience of bus routing, that doesn't rely on Google. I was not able to find a better app for bus routing. Sorry, privacy advocates.
 
 Simply put your destination, press "Directions", enter your starting point, then select the transit icon on top.
 
@@ -96,21 +84,21 @@ Simply put your destination, press "Directions", enter your starting point, then
 	<div class="flex justify-center gap-x-4">
 		<Image
 			alt="Google Maps website, with Klinic Community Health searched up"
-			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			class="!my-0 h-full w-[50%]"
 			src={GoogleMaps1}
 		/>
 		<Image
 			alt="Google Maps website, with Assiniboine Park Zoo as the starting point, Klinic as the destination, and the transit icon selected"
-			class="!my-0 flex h-full w-[50%] items-center justify-center rounded-md object-cover shadow"
+			class="!my-0 h-full w-[50%]"
 			src={GoogleMaps2}
 		/>
 	</div>
-	<figcaption class="text-center italic">
+	<FigureCaption>
 		Routing a trip with Google Maps
-	</figcaption>
+	</FigureCaption>
 </figure>
 
-The Winnipeg Transit app is not great. It may be worth downloading it anyway to refer to schedule times for bus stops. You can also use the <Link href="https://app.winnipegtransit.com/">web app</Link>.
+The Winnipeg Transit app is not great. It may be worth downloading it anyway to refer to schedule times for bus stops. You can also use the [web app](https://app.winnipegtransit.com/).
 
 If you have an Apple device, it may be worth trying Apple Maps. From my limited experience, I've found it to be a worse experience.
 
@@ -137,9 +125,9 @@ Alternatively, you can press a red stop button found on certain poles. For wheel
 			src={StopButton}
 		/>
 	</div>
-	<figcaption class="mx-auto max-w-lg text-center italic">
+	<FigureCaption class="max-w-lg">
 		The yellow cord, and a red stop button.
-	</figcaption>
+	</FigureCaption>
 </figure>
 
 Once you pull down hard enough on the yellow cord, or press the red stop button, there should be a "ding" sound that plays. There will also be a stop icon on the bus's inside display at the front.
@@ -152,9 +140,9 @@ For most people, you should exit via the back side door of the bus. To exit, pre
 		class="mx-auto flex max-w-lg items-center justify-center rounded-md object-cover shadow"
 		src={BackSideDoor}
 	/>
-	<figcaption class="mx-auto max-w-lg text-center italic">
+	<FigureCaption>
 		The back side door to exit the bus.
-	</figcaption>
+	</FigureCaption>
 </figure>
 
 For wheelchair users, you may need to annouce "wheelchair" to indicate that you need to get off. You will always get off at the front, as there is no ramp at the back doors.
@@ -163,7 +151,7 @@ For wheelchair users, you may need to annouce "wheelchair" to indicate that you 
 
 Sometimes, the bus was early and passed by you. There are also times where buses may get cancelled. This can be incredibly annoying.
 
-Winnipeg Transit and Google Maps can tell you when the next bus will come. You can also call the <Link href="tel:2042877433">TeleBUS number</Link> that's put on every bus stop sign, to figure out when your bus will arrive too.
+Winnipeg Transit and Google Maps can tell you when the next bus will come. You can also call the [TeleBUS number](tel:2042877433) that's put on every bus stop sign, to figure out when your bus will arrive too.
 
 <figure>
 	<div class="flex justify-center gap-x-4">
@@ -178,9 +166,9 @@ Winnipeg Transit and Google Maps can tell you when the next bus will come. You c
 			src={NewBusStopSign}
 		/>
 	</div>
-	<figcaption class="mx-auto max-w-lg text-center italic">
+	<FigureCaption class="max-w-lg">
 		The old and new bus stop signs. Each have the TeleBUS number.
-	</figcaption>
+	</FigureCaption>
 </figure>
 
 Some major bus stops (such as stations and certain urban areas) will have screens or displays for your convenience.
@@ -207,9 +195,9 @@ Once you pay your fare, the bus driver should give you a paper transfer.
 		class="mx-auto flex max-w-sm items-center justify-center rounded-md object-cover shadow"
 		src={PaperTransfer}
 	/>
-	<figcaption class="mx-auto max-w-lg text-center italic">
+	<FigureCaption class="max-w-lg">
 		A paper transfer.
-	</figcaption>
+	</FigureCaption>
 </figure>
 
 **Make sure to take your paper transfer!**
@@ -262,13 +250,13 @@ The buses are longer than normal, and are called a "bendy". These buses will the
 		class="flex items-center justify-center rounded-md object-cover shadow"
 		src={StNorbertBus}
 	/>
-	<figcaption class="text-center italic">
+	<FigureCaption>
 		{/* prettier-ignore-start */}
 
-    	Picture by <Link href="https://www.flickr.com/photos/bpomanitoba/">Justin Rombough</Link> on <Link href="https://www.flickr.com/photos/bpomanitoba/50368893052/in/photostream/">Flicker</Link>, licensed under <Link href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC BY-NC-SA 2.0</Link>.
+    	Picture by [Justin Rombough](https://www.flickr.com/photos/bpomanitoba) on [Flicker](https://www.flickr.com/photos/bpomanitoba/50368893052/in/photostream/), licensed under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/).
 
     	{/* prettier-ignore-end */}
-    </figcaption>
+    </FigureCaption>
 
 </figure>
 
@@ -284,9 +272,9 @@ In transit apps, you'll notice that there are yellow and black background transi
 		class="mx-auto flex max-w-xl items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
 		src={YellowBusIcon}
 	/>
-	<figcaption class="text-center italic">
+	<FigureCaption>
 		Yellow means this is an express route.
-	</figcaption>
+	</FigureCaption>
 </figure>
 <figure>
 	<Image
@@ -294,9 +282,9 @@ In transit apps, you'll notice that there are yellow and black background transi
 		class="mx-auto flex max-w-xl items-center justify-center rounded-2xl border-2 border-[#dadce0] object-cover"
 		src={BlackBusIcon}
 	/>
-	<figcaption class="text-center italic">
+	<FigureCaption>
 		Black means this bus is scheduled for peak hours only.
-	</figcaption>
+	</FigureCaption>
 </figure>
 
 Functionally, as long as you're using a service such as Google Maps, these buses are effectively the same as the regular buses. The only difference is their schedules.
@@ -311,10 +299,9 @@ You'll see some buses, but with a vertical line split down multiple of them. Thi
 		class="mx-auto flex max-w-xl items-center justify-center rounded-md border-2 border-[#dadce0] object-cover"
 		src={SplitLineBus}
 	/>
-	<figcaption class="text-center italic">
-		Taking any one of the split lines (47, 66, or BLUE) will lead to your
-		destination.
-	</figcaption>
+	<FigureCaption>
+		Taking any one of the split lines (47, 66, or BLUE) will lead to your destination.
+	</FigureCaption>
 </figure>
 
 ## Conclusion

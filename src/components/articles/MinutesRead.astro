@@ -12,27 +12,7 @@ const post = posts.find((post) => post.id === postId);
 if (!post) throw new Error(`Post ${postId} not found`);
 
 const renderedPost = await post.render();
-let minutesRead = "";
-let contentToString = "";
-
-if (
-	// @ts-expect-error - Markdoc typing shenanigans breaks this type
-	!renderedPost.remarkPluginFrontmatter?.minutesRead
-) {
-	// Assume we're receiving Markdoc
-	const ast = Markdoc.parse(post.body);
-	const splitLines = post.body.split("\n");
-	for (const child of ast.children) {
-		if (child.type == "tag") continue;
-		const splitContent = splitLines.slice(child.lines[0], child.lines[1]);
-		contentToString += `${splitContent}\n`;
-	}
-
-	minutesRead = getReadingTime(contentToString).text;
-} else {
-	// @ts-expect-error - Markdoc typing shenanigans breaks this type
-	minutesRead = renderedPost.remarkPluginFrontmatter.minutesRead;
-}
+const minutesRead = renderedPost.remarkPluginFrontmatter.minutesRead;
 ---
 
 {minutesRead}
