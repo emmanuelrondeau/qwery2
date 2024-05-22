@@ -4,7 +4,7 @@ import { Image as AstroImage } from "astro:assets";
 interface Props {
 	alt: string;
 	class?: string | null;
-	src: ImageMetadata | string;
+	src: string;
 }
 const { src, alt, class: className } = Astro.props;
 ---
@@ -13,4 +13,5 @@ const { src, alt, class: className } = Astro.props;
 	alt={alt}
 	class={`flex items-center justify-center rounded-md object-cover shadow mx-auto !h-full ${className ?? ""}`}
 	src={src}
+	inferSize
 />
