@@ -1,17 +1,22 @@
 ---
-import { Image as AstroImage } from "astro:assets";
+import { Picture } from "astro:assets";
 
 interface Props {
 	alt: string;
 	class?: string | null;
 	src: string;
+	quality?: "low" | "mid" | "high" | "max";
 }
-const { src, alt, class: className } = Astro.props;
+const { src, alt, class: className, quality } = Astro.props;
 ---
 
-<AstroImage
+<Picture
 	alt={alt}
 	class={`flex items-center justify-center rounded-md object-cover shadow mx-auto !h-full ${className ?? ""}`}
 	src={src}
+	loading="lazy"
+	decoding="async"
+	formats={["avif", "webp"]}
+	quality={quality}
 	inferSize
 />

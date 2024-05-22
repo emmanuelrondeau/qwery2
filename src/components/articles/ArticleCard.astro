@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import { getCollection, getEntry } from "astro:content";
 import PublishedOrUpdated from "./PublishedOrUpdated.astro";
 import MinutesRead from "./MinutesRead.astro";
@@ -28,10 +28,16 @@ const authors = await Promise.all(authorsPromise);
 		tabindex={-1}
 		class="flex-shrink-0"
 	>
-		<Image
+		<Picture
 			src={post.data.cover}
-			alt={""}
+			alt=""
 			class="not-format hover:scale-105 transition-transform !m-0 flex aspect-video w-full xs:w-48 xs:h-36 sm:h-auto object-cover rounded-md items-center justify-center shadow"
+			widths={[240, 540, 720, post.data.cover.width]}
+			sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${post.data.cover.width}px`}
+			loading="lazy"
+			decoding="async"
+			formats={["avif", "webp"]}
+			quality="mid"
 		/>
 	</a>
 	<div class="my-auto !m-0 flex-col xs:flex-col-reverse flex">
@@ -57,11 +63,13 @@ const authors = await Promise.all(authorsPromise);
 				{
 					authors.map((author) =>
 						author.profile ? (
-							<Image
+							<Picture
 								alt=""
 								class="not-format w-6 h-6 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900"
 								src={author.profile}
 								loading="eager"
+								formats={["avif", "webp"]}
+								quality="high"
 							/>
 						) : (
 							<div
