@@ -53,7 +53,7 @@ const authors = await Promise.all(authorsPromise);
 	{
 		post.data.cover && (
 			<Image
-				alt={post.data.coverAlt ?? ""}
+				alt=""
 				class="flex aspect-video w-full object-cover rounded-md items-center justify-center shadow"
 				src={post.data.cover}
 				loading="eager"
