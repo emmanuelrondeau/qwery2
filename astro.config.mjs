@@ -28,4 +28,14 @@ export default defineConfig({
 	],
 	output: "hybrid",
 	adapter: netlify(),
+	// https://stackoverflow.com/questions/76705197/static-astro-site-cors-error-after-deploying-to-netlify
+	vite: {
+		build: {
+			rollupOptions: {
+				output: {
+					entryFileNames: "[name]-[hash].js",
+				},
+			},
+		},
+	},
 });
