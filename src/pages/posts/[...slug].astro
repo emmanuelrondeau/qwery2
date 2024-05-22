@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry, getEntry } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import PublishedOrUpdated from "../../components/articles/PublishedOrUpdated.astro";
 import Callout from "../../components/primitives/Callout.astro";
 import Link from "../../components/primitives/Link.astro";
@@ -26,8 +26,6 @@ const authorsPromise = post.data.authors.map(
 	async (author) => (await getEntry("authors", author.id)).data
 );
 const authors = await Promise.all(authorsPromise);
-
-
 ---
 
 <ArticleLayout
@@ -51,11 +49,14 @@ const authors = await Promise.all(authorsPromise);
 >
 	{
 		post.data.cover && (
-			<Image
+			<Picture
 				alt=""
 				class="flex aspect-video w-full object-cover rounded-md items-center justify-center shadow"
 				src={post.data.cover}
 				loading="eager"
+				decoding="async"
+				formats={["avif", "webp"]}
+				quality="high"
 			/>
 		)
 	}
@@ -75,14 +76,20 @@ const authors = await Promise.all(authorsPromise);
 			{
 				authors.map((author) =>
 					author.profile ? (
-						<Image
+						<Picture
 							alt=""
 							class="not-format w-12 h-12 lg:w-14 lg:h-14 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-800"
 							src={author.profile}
 							loading="eager"
+							decoding="async"
+							formats={["avif", "webp"]}
+							quality="mid"
 						/>
 					) : (
-						<div class="relative inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-800" role="img">
+						<div
+							class="relative inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-800"
+							role="img"
+						>
 							<span class="font-medium text-gray-600 dark:text-gray-300 select-none">
 								{author.name
 									.split(" ")
