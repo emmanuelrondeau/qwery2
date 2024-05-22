@@ -57,6 +57,8 @@ const authors = await Promise.all(authorsPromise);
 				decoding="async"
 				formats={["avif", "webp"]}
 				quality="high"
+				widths={[540, 720, 1080, post.data.cover.width]}
+				sizes={`(max-width: 720px) 540px, (max-width: 1600px) 720px, (max-width: 2560px) 1080px, ${post.data.cover.width}px`}
 			/>
 		)
 	}
