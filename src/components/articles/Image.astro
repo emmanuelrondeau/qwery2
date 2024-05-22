@@ -12,11 +12,13 @@ const { src, alt, class: className, quality } = Astro.props;
 
 <Picture
 	alt={alt}
-	class={`flex items-center justify-center rounded-md object-cover shadow mx-auto !h-full !my-0 ${className ?? ""}`}
+	class={`flex items-center justify-center rounded-md object-cover shadow mx-auto h-full w-fit ${className ?? ""}`}
 	src={src}
 	loading="lazy"
 	decoding="async"
 	formats={["avif", "webp"]}
 	quality={quality}
+	widths={[240, 540, 720, 1080]}
+	sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1080px`}
 	inferSize
 />
