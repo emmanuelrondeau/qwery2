@@ -1,11 +1,29 @@
 ---
 import Link from "./Link.astro";
+
+const classList = [
+	"bg-white",
+	"backdrop-blur-none",
+	"dark:bg-gray-900",
+	"border-b-gray-200",
+	"dark:border-b-gray-700",
+];
 ---
 
 <nav
 	id="main-nav"
-	class="fixed z-40 self-center w-full py-4 transition-colors border-b"
+	class=`fixed z-40 self-center w-full py-4 transition-colors border-b ${classList.join(" ")}`
+	transition:animate="none"
+	transition:persist
 >
+	<!-- <div
+		class="nav-background absolute overflow-hidden w-full h-full top-0 left-0 -z-10 bg-white dark:bg-gray-900"
+	>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div> -->
+
 	<div class="max-w-screen-xl px-4 mx-auto">
 		<Link
 			href="/"
@@ -32,13 +50,21 @@ import Link from "./Link.astro";
 	function handleNavBarBlur(nav: HTMLElement) {
 		const borderTransparent = nav.classList.contains("border-transparent");
 		if (window.scrollY >= 20 && borderTransparent) {
-			nav.classList.add("bg-white", "dark:bg-gray-900", "border-b-gray-200", "dark:border-b-gray-700");
+			nav.classList.add(
+				"bg-white",
+				"backdrop-blur-none",
+				"dark:bg-gray-900",
+				"border-b-gray-200",
+				"dark:border-b-gray-700"
+			);
 			nav.classList.remove("border-transparent");
 		} else if (window.scrollY < 20 && !borderTransparent) {
 			nav.classList.remove(
 				"bg-white",
+				"backdrop-blur-none",
 				"dark:bg-gray-900",
-				"border-b-gray-200", "dark:border-b-gray-700"
+				"border-b-gray-200",
+				"dark:border-b-gray-700"
 			);
 			nav.classList.add("border-transparent");
 		}
