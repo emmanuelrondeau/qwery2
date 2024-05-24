@@ -31,6 +31,7 @@ const authors = await Promise.all(authorsPromise);
 		<Picture
 			src={post.data.cover}
 			alt=""
+			aria-hidden={true}
 			class="not-format hover:scale-105 transition-transform !m-0 flex aspect-video w-full xs:w-48 xs:h-36 sm:h-auto object-cover rounded-md items-center justify-center shadow"
 			widths={[432]}
 			sizes={`432px`}
@@ -53,7 +54,7 @@ const authors = await Promise.all(authorsPromise);
 					{post.data.title}
 				</h3>
 			</a>
-			<div class="format">
+			<div class="format dark:format-invert">
 				<PublishedOrUpdated {...post.data} /> •{" "}
 				<MinutesRead postId={post.id} />
 			</div>
