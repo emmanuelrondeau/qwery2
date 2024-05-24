@@ -60,6 +60,10 @@ This is important if you wish to create new content on the website. To make this
 
 Go create a [Merge Request](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/merge_requests) here.
 
+## Attribution
+
+We use [jdecked's fork of Twemoji](https://github.com/jdecked/twemoji) on our site!
+
 ## Contributing
 
 We're open to contributions!
