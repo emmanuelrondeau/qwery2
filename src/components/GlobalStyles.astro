@@ -7,23 +7,103 @@
 		height: 1em !important;
 		width: 1em !important;
 		margin: 0 0.07em !important;
-		/* vertical-align: -0.1em !important; */
-		vertical-align: -0.275em !important;
+		vertical-align: -0.1em !important;
 		background: none !important;
 		padding: 0 !important;
 		pointer-events: none;
+	}
+
+	footer img.emoji {
+		vertical-align: -0.275em !important;
 	}
 
 	::selection {
 		@apply bg-violet-100 text-violet-950 dark:bg-violet-300;
 	}
 
+	/* Generated-ish via https://wweb.dev/resources/blur-background-css-generator */
+	.nav-background div {
+		@apply absolute h-0 rounded-full opacity-40;
+		filter: blur(240vw);
+	}
+
+	.nav-background div:nth-child(1) {
+		background: linear-gradient(
+			132deg,
+			theme("colors.violet.100") 0%,
+			theme("colors.violet.100") 100%
+		);
+		width: 25%;
+		padding-top: 25%;
+		left: 20%;
+		top: 20%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.nav-background div:nth-child(2) {
+		background: linear-gradient(
+			132deg,
+			theme("colors.violet.100") 0%,
+			theme("colors.violet.100") 100%
+		);
+		width: 40%;
+		padding-top: 40%;
+		left: 50%;
+		top: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.nav-background div:nth-child(3) {
+		background: linear-gradient(
+			132deg,
+			theme("colors.violet.100") 0%,
+			theme("colors.violet.100") 100%
+		);
+		width: 30%;
+		padding-top: 30%;
+		left: 80%;
+		top: 80%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	/**
+	 * Manually added from Tailwind, to handle rehypeAutolink properly.
+	 * Hopefully can be removed at some point, when the string "sr-only"
+	 * shows up in our Astro code, presumably.
+	 * https://tailwindcss.com/docs/screen-readers
+	 */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	/* SkipLinks */
+	body .skip-links a {
+		@apply rounded bg-violet-200 text-violet-900 outline-none ring-violet-900 focus-visible:ring-2;
+	}
+
+	body .skip-links a:focus-visible {
+		@apply left-1 top-1;
+		outline-offset: 2px;
+	}
+
+	body main#main-content {
+		@apply outline-none;
+	}
+
 	/* Article Formatting */
-	main.format a:not(.not-format) {
+	.format a:not(.not-format) {
 		@apply rounded underline outline-none ring-violet-600 hover:no-underline focus-visible:ring-2 dark:ring-violet-600;
 	}
 
-	main.format img:not(.emoji):not(.not-format) {
+	.format img:not(.emoji):not(.not-format) {
 		@apply flex items-center justify-center rounded-md object-cover shadow;
 	}
 
@@ -33,6 +113,89 @@
 
 	.format .callout :where(a):not(:where([class~="not-format"] *)) {
 		color: revert;
+	}
+
+	.format :where(table):not(:where([class~="not-format"])) {
+		@apply tabular-nums;
+	}
+
+	.money-table table tbody {
+		@apply font-mono;
+	}
+
+	.format :where(table thead):not(:where([class~="not-format"])) {
+		@apply bg-violet-50 bg-opacity-50;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.format :where(table thead):not(:where([class~="not-format"])) {
+			background-color: var(--tw-format-th-bg);
+		}
+	}
+
+	.callout.callout-info :where(a):not(:where([class~="not-format"] *)),
+	.callout.callout-info :where(strong):not(:where([class~="not-format"] *)) {
+		@apply text-violet-800 dark:text-violet-400;
+	}
+
+	/* Rehype Autolink */
+	.format .heading-wrapper {
+		@apply relative mb-[1em] flex scroll-mt-20 items-center gap-2;
+	}
+
+	.format
+		.heading-wrapper
+		:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
+		@apply mb-0;
+	}
+
+	.format .heading-wrapper a {
+		@apply absolute left-0 -translate-x-full text-violet-300 no-underline opacity-0 dark:text-violet-600;
+		transition-property: filter, opacity, color, background-color, border-color,
+			text-decoration-color, fill, stroke;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 150ms;
+	}
+
+	.format .heading-wrapper:hover a {
+		@apply opacity-100;
+	}
+	.format .heading-wrapper:hover a:hover {
+		@apply text-violet-500 saturate-[0.75];
+	}
+	.format .heading-wrapper.level-h2 a {
+		font-size: 1.5em;
+	}
+	.format .heading-wrapper.level-h3 a {
+		font-size: 1.25em;
+	}
+	.format .heading-wrapper a {
+		margin-bottom: 0.125em;
+		width: 1em;
+	}
+
+	@media (min-width: 1024px) {
+		.lg\:format-lg
+			.heading-wrapper
+			:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
+			@apply mb-0;
+		}
+		.lg\:format-lg .heading-wrapper a {
+			width: 1em;
+		}
+		.lg\:format-lg .heading-wrapper.level-h2 a {
+			font-size: 2em;
+			/* margin-bottom: 0.5em; */
+		}
+		.lg\:format-lg .heading-wrapper.level-h3 a {
+			font-size: 1.3333333em;
+			/* margin-bottom: 0.25em; */
+		}
+
+		.lg\:format-lg .heading-wrapper.level-h4 a {
+			font-size: 1em;
+			/* margin-bottom: 0.125em; */
+		}
 	}
 
 	/* Leaflet Map */

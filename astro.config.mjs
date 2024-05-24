@@ -3,15 +3,19 @@ import AutoImport from "astro-auto-import";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
-import a11yEmoji from "@fec/remark-a11y-emoji";
-import { remarkReadingTime } from "./remark-reading-time.mjs";
-
 import netlify from "@astrojs/netlify";
+import { remarkReadingTime } from "./remark-reading-time.mjs";
+import rehypeSlug from "rehype-slug";
+import { rehypeAutolink } from "./plugins/rehype-autolink";
 
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
-		remarkPlugins: [remarkReadingTime, a11yEmoji],
+		remarkPlugins: [remarkReadingTime],
+		rehypePlugins: [
+			rehypeSlug,
+			...rehypeAutolink(),
+		],
 	},
 	integrations: [
 		AutoImport({

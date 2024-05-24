@@ -3,6 +3,8 @@ import Navbar from "../components/primitives/Navbar.astro";
 import Footer from "../components/primitives/Footer.astro";
 import Head from "./Head.astro";
 import { type Props as SEOProps } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
+import { SkipLinks } from "accessible-astro-components";
 
 interface Props {
 	seo: SEOProps;
@@ -12,31 +14,13 @@ const { seo } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-p-24">
 	<Head seo={seo} />
-	<!-- Cloudflare Web Analytics -->
-	<script
-		is:inline
-		defer
-		src="https://static.cloudflareinsights.com/beacon.min.js"
-		data-cf-beacon='{"token": "e4fc7846a14e4404bdcc41673fe7c16c"}'
-	></script><!-- End Cloudflare Web Analytics -->
-	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-	></script>
-	<script is:inline>
-		if (window.netlifyIdentity) {
-			window.netlifyIdentity.on("init", (user) => {
-				if (!user) {
-					window.netlifyIdentity.on("login", () => {
-						document.location.href = "/admin/";
-					});
-				}
-			});
-		}
-	</script>
+	<ViewTransitions />
 	<body
 		class="font-josefin-sans dark:bg-gray-900 flex flex-col min-h-[calc(100vh-10rem)]"
 	>
+		<SkipLinks />
 		<Navbar />
 		<div class="flex flex-col min-h-[calc(100vh-10rem)]">
 			<slot />

@@ -1,10 +1,10 @@
 ---
 interface Props {
 	type: "Info" | "Warning" | "Caution";
-	removeTypeText?: boolean;
+	typeText?: string;
 }
 
-const { type, removeTypeText } = Astro.props;
+const { type, typeText } = Astro.props;
 ---
 
 <div
@@ -12,20 +12,24 @@ const { type, removeTypeText } = Astro.props;
 		"callout rounded py-3 outline-none",
 		"my-[1.25em] lg:my-[1.3333333em]", // Replicate `format lg:format-lg`
 		{
-			"px-5 border-l-4 border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:text-violet-400 dark:selection:text-violet-300 dark:selection:bg-violet-800":
+			"callout-info px-5 border-l-4 border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:text-violet-400 dark:selection:bg-violet-800 dark:selection:text-violet-300":
 				type === "Info",
 		},
 		{
-			"px-5 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-950 dark:text-yellow-400 dark:selection:text-yellow-300 dark:selection:bg-yellow-800":
+			"callout-warning px-5 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-950 dark:text-yellow-400 dark:selection:text-yellow-300 dark:selection:bg-yellow-800":
 				type === "Warning",
 		},
 		{
-			"px-5 border-l-4 border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-950 dark:text-red-400 dark:selection:text-red-300  dark:selection:bg-red-800":
+			"callout-caution px-5 border-l-4 border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-950 dark:text-red-400 dark:selection:text-red-300  dark:selection:bg-red-800":
 				type === "Caution",
 		},
 	]}
 >
-	{!removeTypeText && <b>{type}: </b>}
+	{
+		typeText !== "" && (
+			<strong>{typeText !== undefined ? typeText : type}: </strong>
+		)
+	}
 	<div class="-my-[1.25em] lg:-my-[1.3333333em]">
 		<slot />
 	</div>
