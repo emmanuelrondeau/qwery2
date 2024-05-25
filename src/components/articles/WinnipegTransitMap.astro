@@ -8,688 +8,699 @@ import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 	import L from "leaflet";
 	import { GestureHandling } from "leaflet-gesture-handling";
 
-	// set up the tilelayer
-	const tiles = L.tileLayer(
-		"https://trn-maps.winnipeg.ca/day{r}/{z}/{x}/{y}.png",
-		{
-			maxZoom: 20,
-			minZoom: 10,
-			attribution:
-				'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			id: "base-day",
-			detectRetina: true,
-		}
-	);
+	document.addEventListener("astro:page-load", initMap);
+	document.addEventListener("astro:before-preparation", clearFunctions);
 
-	// https://github.com/elmarquis/Leaflet.GestureHandling
-	L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
+	function clearFunctions() {
+		document.removeEventListener("astro:page-load", initMap);
+	}
+	function initMap() {
+		// Set up the tilelayer
+		const tiles = L.tileLayer(
+			"https://trn-maps.winnipeg.ca/day{r}/{z}/{x}/{y}.png",
+			{
+				maxZoom: 20,
+				minZoom: 10,
+				attribution:
+					'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+				id: "base-day",
+				detectRetina: true,
+			}
+		);
 
-	// initialize the map - centred on the middle of Winnipeg
-	const map = L.map("map", {
-		center: [49.8951, -97.1384],
-		zoom: 11,
-		layers: [tiles],
-		// @ts-expect-error - Not sure why it isn't part of types
-		gestureHandling: true,
-	});
+		// https://github.com/elmarquis/Leaflet.GestureHandling
+		L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
 
-	var bothIcon = L.icon(
-		Object.assign({}, L.Icon.Default.prototype.options, {
-			iconUrl:
-				"https://info.winnipegtransit.com/assets/2778/marker-icon-both.png",
-			iconRetinaUrl:
-				"https://info.winnipegtransit.com/assets/2775/marker-icon-2x-both.png",
-			shadowUrl: null,
-			shadowRetinaUrl: null,
-		})
-	);
+		// initialize the map - centred on the middle of Winnipeg
+		const map = L.map("map", {
+			center: [49.8951, -97.1384],
+			zoom: 11,
+			layers: [tiles],
+			// @ts-expect-error - Not sure why it isn't part of types
+			gestureHandling: true,
+		});
 
-	var peggoIcon = L.icon(
-		Object.assign({}, L.Icon.Default.prototype.options, {
-			iconUrl:
-				"https://info.winnipegtransit.com/assets/2780/marker-icon-peggo.png",
-			iconRetinaUrl:
-				"https://info.winnipegtransit.com/assets/2777/marker-icon-2x-peggo.png",
-			shadowUrl: null,
-			shadowRetinaUrl: null,
-		})
-	);
+		let bothIcon = L.icon(
+			Object.assign({}, L.Icon.Default.prototype.options, {
+				iconUrl:
+					"https://info.winnipegtransit.com/assets/2778/marker-icon-both.png",
+				iconRetinaUrl:
+					"https://info.winnipegtransit.com/assets/2775/marker-icon-2x-both.png",
+				shadowUrl: null,
+				shadowRetinaUrl: null,
+			})
+		);
 
-	var paperIcon = L.icon(
-		Object.assign({}, L.Icon.Default.prototype.options, {
-			iconUrl:
-				"https://info.winnipegtransit.com/assets/2779/marker-icon-paper.png",
-			iconRetinaUrl:
-				"https://info.winnipegtransit.com/assets/2776/marker-icon-2x-paper.png",
-			shadowUrl: null,
-			shadowRetinaUrl: null,
-		})
-	);
+		let peggoIcon = L.icon(
+			Object.assign({}, L.Icon.Default.prototype.options, {
+				iconUrl:
+					"https://info.winnipegtransit.com/assets/2780/marker-icon-peggo.png",
+				iconRetinaUrl:
+					"https://info.winnipegtransit.com/assets/2777/marker-icon-2x-peggo.png",
+				shadowUrl: null,
+				shadowRetinaUrl: null,
+			})
+		);
 
-	// add markers and popups for all locations
-	// prettier-ignore-start
-	L.marker([49.900035, -97.138904], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Customer Service desk</strong><br>City Hall<br>Both peggo and paper products"
-		);
-	L.marker([49.891824, -97.141876], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Millennium Library Service Centre</strong><br>251 Donald St.<br>Both peggo and paper products"
-		);
-	L.marker([49.887567, -97.160057], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>676 Portage Ave.<br>Paper products sold"
-		);
-	L.marker([49.890625, -97.143025], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>333 St. Mary Ave.<br>Paper products sold"
-		);
-	L.marker([49.879856, -97.147362], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>43 Osborne St.<br>Both peggo and paper products"
-		);
-	L.marker([49.892396, -97.147958], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>393 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.8932926, -97.13852991], { icon: peggoIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>360 Main St.<br>peggo products sold"
-		);
-	L.marker([49.8953670460666, -97.1385549465127], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Transit Service Centre</strong><br>SW Concourse, Portage & Main<br>Both peggo and paper products"
-		);
-	L.marker([49.890892, -97.153395], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>University of Winnipeg - Student Association Info Booth </html></strong><br>515 Portage Ave - Centennial Hall<br>Both peggo and paper products"
-		);
-	L.marker([49.8907, -97.152272], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>Winnipeg Parking Authority</html></strong><br>495 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.900035, -97.138904], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>WINNpass Program office</strong><br>510 Main, Main Floor<br>Both peggo and paper products"
-		);
-	L.marker([49.944178, -97.086612], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1393 Henderson Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.919929, -97.096192], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>630 Watt St.<br>Both peggo and paper products"
-		);
-	L.marker([49.905475, -97.068753], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>554 Keenlyside St.<br>Both peggo and paper products"
-		);
-	L.marker([49.906388, -97.104432], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>457 Talbot Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.917231, -97.112805], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>355 Henderson Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.954136, -97.074916], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1863 Henderson Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.937651, -97.079249], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>404 Edison Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.937239, -97.092826], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1091 Henderson Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.894835, -97.00195], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>104 Regent Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.896229, -97.026594], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>801 Regent Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.920547, -97.056175], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Copp's Garden Centre</strong><br>1320 Molson St.<br>Paper products sold"
-		);
-	L.marker([49.923595, -97.091462], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Ebbeling Pharmacy</strong><br>722 Watt St.<br>Paper products sold"
-		);
-	L.marker([49.911405, -97.080344], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Munroe Pharmacy</strong><br>525 London St.<br>Paper products sold"
-		);
-	L.marker([49.933715, -97.095961], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>963 Henderson Hwy.<br>Paper products sold"
-		);
-	L.marker([49.95284, -97.075682], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>1795 Henderson Hwy.<br>Paper products sold"
-		);
-	L.marker([49.900143, -97.02769], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>1500 Plessis Rd.<br>Paper products sold"
-		);
-	L.marker([49.946193, -97.082663], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>1441 Henderson Hwy.<br>Paper products sold"
-		);
-	L.marker([49.900134, -96.985596], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>654 Kildare Ave.<br>Paper products sold"
-		);
-	L.marker([49.918047, -97.129253], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1155 Main St.<br>Both peggo and paper products"
-		);
-	L.marker([49.939018, -97.093267], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1128 Henderson Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.912055, -97.061529], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1155 Concordia Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.910544, -97.025784], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1750 Plessis Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.898396, -97.060562], { icon: peggoIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1555 Regent Ave.<br>peggo products sold"
-		);
-	L.marker([49.926267, -97.151495], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>772 Mountain Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.893469, -97.169139], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>815 Ellice Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.881864, -97.298376], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>3380 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.924837, -97.126237], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1370 Main St.<br>Both peggo and paper products"
-		);
-	L.marker([49.884272, -97.216416], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1860 Ness Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.879184, -97.212463], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1795 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.939471, -97.114796], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1871 Main St.<br>Both peggo and paper products"
-		);
-	L.marker([49.950202, -97.169402], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1200 Jefferson Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.904271, -97.167378], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>891 Arlington St.<br>Both peggo and paper products"
-		);
-	L.marker([49.93113, -97.166503], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1007 McPhillips St.<br>Both peggo and paper products"
-		);
-	L.marker([49.888115, -97.277315], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>3021 Ness Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.922256, -97.195606], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>120 Keewatin St.<br>Both peggo and paper products"
-		);
-	L.marker([49.901866, -97.21907], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1895 Wellington St.<br>Both peggo and paper products"
-		);
-	L.marker([49.913363, -97.141734], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>119 Salter St.<br>Both peggo and paper products"
-		);
-	L.marker([49.923702, -97.169621], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>656 McPhillips St.<br>Both peggo and paper products"
-		);
-	L.marker([49.944819, -97.176056], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1485 Inkster Blvd.<br>Both peggo and paper products"
-		);
-	L.marker([49.915983, -97.146786], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Brother's Pharmacy</strong><br>542 Selkirk Ave.<br>Paper products only"
-		);
-	L.marker([49.879465, -97.219246], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Family Foods</strong><br>1881 Portage Ave.<br>Paper products sold"
-		);
-	L.marker([49.950939, -97.145171], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>Garden City Shopping Centre</html></strong><br>Mall Customer Service Counter<br>Paper products sold"
-		);
-	L.marker([49.93358, -97.12217], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>IGA Main Street</strong><br>1650 Main St.<br>Paper products sold"
-		);
-	L.marker([49.925929, -97.123536], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Red River Co-op</strong><br>1441 Main St.<br>Paper products sold"
-		);
-	L.marker([49.883253, -97.20534], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>1630 Ness Ave.<br>Paper products sold"
-		);
-	L.marker([49.884045, -97.298323], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>3393 Portage Ave<br>Paper products sold"
-		);
-	L.marker([49.93771, -97.196826], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>850 Keewatin St.<br>Paper products sold"
-		);
-	L.marker([49.924164, -97.144706], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>594 Mountain Ave.<br>Paper products sold"
-		);
-	L.marker([49.95374, -97.151006], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1050 Leila Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.883209, -97.314297], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>3665 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.883907, -97.198025], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1485 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.885698, -97.171697], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>917 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.875544, -97.259919], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>2533 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.958073, -97.094461], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>2512 Main St.<br>Both peggo and paper products"
-		);
-	L.marker([49.937398, -97.194255], { icon: peggoIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>795 Keewatin St.<br>peggo products sold"
-		);
-	L.marker([49.901693, -97.15804], { icon: peggoIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>790 Sherbrook St.<br>peggo products sold"
-		);
-	L.marker([49.901409, -97.156683], { icon: peggoIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>777 Sherbrook St.<br>peggo products sold"
-		);
-	L.marker([49.932195, -97.165521], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1017 McPhillips St.<br>Both peggo and paper products"
-		);
-	L.marker([49.899757, -97.198845], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>Superstore  - Lottery Kiosk</html></strong><br>1385 Sargent Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.949255, -97.155849], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>Superstore  - Lottery Kiosk</html></strong><br>2132 McPhillips St.<br>Both peggo and paper products"
-		);
-	L.marker([49.8456099819979, -97.0976475072514], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>438 St. Anne's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.8333690907835, -97.1147177489111], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1124 St. Mary's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.864751, -97.133443], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>568 Osborne St.<br>Both peggo and paper products"
-		);
-	L.marker([49.87483384, -97.11818673], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>234 St. Mary's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.854879019681, -97.1125817994398], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>734 St. Mary's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.790023, -97.156497], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>7 Killarney<br>Both peggo and paper products"
-		);
-	L.marker([49.881845, -97.120109], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>183 Marion<br>Both peggo and paper products"
-		);
-	L.marker([49.870734, -97.092431], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>920 Archibald<br>Both peggo and paper products"
-		);
-	L.marker([49.8204680825892, -97.1140066021379], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1622 St. Mary's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.8303619579558, -97.0881152666892], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>628 St. Anne's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.882216, -97.121126], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>Bilingual Service Centre - <i>Reopening Monday, Nov. 15</i></html></strong><br>170 Goulet<br>Both peggo and paper products"
-		);
-	L.marker([49.83645932046, -97.1113744975535], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Dakota Pharmacy</strong><br>1087 St. Mary's Rd.<br>Paper products only"
-		);
-	L.marker([49.828193, -97.106421], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Red River Co-op</strong><br>850 Dakota St.<br>Paper products sold"
-		);
-	L.marker([49.854461, -97.073409], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Red River Co-op</strong><br>77 Vermillion<br>Paper products sold"
-		);
-	L.marker([49.854404, -97.076689], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>35 Lakewood Blvd.<br>Paper products sold"
-		);
-	L.marker([49.8191824119868, -97.1125041133399], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>1631 St. Mary's Rd.<br>Paper products sold"
-		);
-	L.marker([49.808951, -97.15519], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>2271 Pembina Hwy.<br>Paper products sold"
-		);
-	L.marker([49.882, -97.114696], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup("<strong>Safeway</strong><br>285 Marion<br>Paper products sold");
-	L.marker([49.831846, -97.106812], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>785 Dakota<br>Both peggo and paper products"
-		);
-	L.marker([49.882065, -97.126917], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>43 Marion<br>Both peggo and paper products"
-		);
-	L.marker([49.855177, -97.066591], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>235 Vermillion<br>Both peggo and paper products"
-		);
-	L.marker([49.8242222786467, -97.0840263067609], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>710 St. Anne's Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.833494, -97.046489], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>Sage Creek<br>Both peggo and paper products"
-		);
-	L.marker([49.869567, -97.13717], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Transit Administration Office</strong><br>B-414 Osborne St.<br>Both peggo and paper products"
-		);
-	L.marker([49.816001, -97.148195], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong><html>University of Manitoba - Answers Info Booth </html></strong><br>101 University Centre<br>Both peggo and paper products"
-		);
-	L.marker([49.862041149308, -97.3148402696946], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>530 Dale<br>Both peggo and paper products"
-		);
-	L.marker([49.8706787817759, -97.1549297428722], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>781 Corydon<br>Both peggo and paper products"
-		);
-	L.marker([49.835401, -97.149812], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1490 Pembina Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.8634729691837, -97.1573622201566], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>909 Lorette<br>Both peggo and paper products"
-		);
-	L.marker([49.874222, -97.18546], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>427 Academy Rd.<br>Both peggo and paper products"
-		);
-	L.marker([49.868016304951, -97.2593886486604], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>3510 Roblin Blvd.<br>Both peggo and paper products"
-		);
-	L.marker([49.863713, -97.18558], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1445 Corydon Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.848596, -97.15327], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1103 Pembina Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.883203, -97.182956], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>7-Eleven</strong><br>1184 Portage Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.868101, -97.162208], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>971 Corydon Ave.<br>Paper products sold"
-		);
-	L.marker([49.880644, -97.295283], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Rexall</strong><br>3310 Portage Ave.<br>Paper products sold"
-		);
-	L.marker([49.857734, -97.16457], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Red River Co-op</strong><br>1120 Grant Ave.<br>Paper products sold"
-		);
-	L.marker([49.857958, -97.26278], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>3900 Grant Ave.<br>Paper products sold"
-		);
-	L.marker([49.867087, -97.21194], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>2025 Corydon Ave.<br>Paper products sold"
-		);
-	L.marker([49.879453, -97.148545], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>499 River Ave.<br>Paper products sold"
-		);
-	L.marker([49.862816, -97.133665], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>655 Osborne St.<br>Paper products sold"
-		);
-	L.marker([49.811951, -97.154836], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>2155 Pembina Hwy.<br>Paper products sold"
-		);
-	L.marker([49.825849, -97.201538], { icon: paperIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Safeway</strong><br>1625 Kenaston Blvd.<br>Paper products sold"
-		);
-	L.marker([49.796004, -97.156494], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>2656 Pembina Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.810446, -97.154018], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>2211 Pembina Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.867087, -97.21194], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>2025 Corydon Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.857734, -97.16457], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1120 Grant Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.857958, -97.26278], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>3900 Grant Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.863307, -97.316707], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>6670 Roblin Blvd.<br>Both peggo and paper products"
-		);
-	L.marker([49.847719, -97.152298], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>1122 Pembina Hwy.<br>Both peggo and paper products"
-		);
-	L.marker([49.79752, -97.196035], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>350 N. Town Road<br>Both peggo and paper products"
-		);
-	L.marker([49.8198, -97.202505], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Shoppers Drug Mart</strong><br>2160 Mcgillivray<br>Both peggo and paper products"
-		);
-	L.marker([49.9194531, -97.158324], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Empire Drugs</strong><br>801 Selkirk Ave.<br>Both peggo and paper products"
-		);
-	L.marker([49.9026103, -97.1364143], { icon: bothIcon })
-		.addTo(map)
-		.bindPopup(
-			"<strong>Phar Syde Uptown</strong><br>618 Main Street<br>Both peggo and paper products"
-		);
-	// prettier-ignore-finish
+		let paperIcon = L.icon(
+			Object.assign({}, L.Icon.Default.prototype.options, {
+				iconUrl:
+					"https://info.winnipegtransit.com/assets/2779/marker-icon-paper.png",
+				iconRetinaUrl:
+					"https://info.winnipegtransit.com/assets/2776/marker-icon-2x-paper.png",
+				shadowUrl: null,
+				shadowRetinaUrl: null,
+			})
+		);
+
+		// #region Add markers and popups for all locations
+		// prettier-ignore-start
+		L.marker([49.900035, -97.138904], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Customer Service desk</strong><br>City Hall<br>Both peggo and paper products"
+			);
+		L.marker([49.891824, -97.141876], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Millennium Library Service Centre</strong><br>251 Donald St.<br>Both peggo and paper products"
+			);
+		L.marker([49.887567, -97.160057], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>676 Portage Ave.<br>Paper products sold"
+			);
+		L.marker([49.890625, -97.143025], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>333 St. Mary Ave.<br>Paper products sold"
+			);
+		L.marker([49.879856, -97.147362], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>43 Osborne St.<br>Both peggo and paper products"
+			);
+		L.marker([49.892396, -97.147958], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>393 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.8932926, -97.13852991], { icon: peggoIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>360 Main St.<br>peggo products sold"
+			);
+		L.marker([49.8953670460666, -97.1385549465127], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Transit Service Centre</strong><br>SW Concourse, Portage & Main<br>Both peggo and paper products"
+			);
+		L.marker([49.890892, -97.153395], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>University of Winnipeg - Student Association Info Booth </html></strong><br>515 Portage Ave - Centennial Hall<br>Both peggo and paper products"
+			);
+		L.marker([49.8907, -97.152272], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>Winnipeg Parking Authority</html></strong><br>495 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.900035, -97.138904], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>WINNpass Program office</strong><br>510 Main, Main Floor<br>Both peggo and paper products"
+			);
+		L.marker([49.944178, -97.086612], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1393 Henderson Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.919929, -97.096192], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>630 Watt St.<br>Both peggo and paper products"
+			);
+		L.marker([49.905475, -97.068753], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>554 Keenlyside St.<br>Both peggo and paper products"
+			);
+		L.marker([49.906388, -97.104432], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>457 Talbot Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.917231, -97.112805], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>355 Henderson Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.954136, -97.074916], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1863 Henderson Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.937651, -97.079249], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>404 Edison Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.937239, -97.092826], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1091 Henderson Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.894835, -97.00195], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>104 Regent Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.896229, -97.026594], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>801 Regent Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.920547, -97.056175], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Copp's Garden Centre</strong><br>1320 Molson St.<br>Paper products sold"
+			);
+		L.marker([49.923595, -97.091462], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Ebbeling Pharmacy</strong><br>722 Watt St.<br>Paper products sold"
+			);
+		L.marker([49.911405, -97.080344], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Munroe Pharmacy</strong><br>525 London St.<br>Paper products sold"
+			);
+		L.marker([49.933715, -97.095961], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>963 Henderson Hwy.<br>Paper products sold"
+			);
+		L.marker([49.95284, -97.075682], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>1795 Henderson Hwy.<br>Paper products sold"
+			);
+		L.marker([49.900143, -97.02769], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>1500 Plessis Rd.<br>Paper products sold"
+			);
+		L.marker([49.946193, -97.082663], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>1441 Henderson Hwy.<br>Paper products sold"
+			);
+		L.marker([49.900134, -96.985596], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>654 Kildare Ave.<br>Paper products sold"
+			);
+		L.marker([49.918047, -97.129253], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1155 Main St.<br>Both peggo and paper products"
+			);
+		L.marker([49.939018, -97.093267], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1128 Henderson Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.912055, -97.061529], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1155 Concordia Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.910544, -97.025784], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1750 Plessis Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.898396, -97.060562], { icon: peggoIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1555 Regent Ave.<br>peggo products sold"
+			);
+		L.marker([49.926267, -97.151495], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>772 Mountain Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.893469, -97.169139], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>815 Ellice Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.881864, -97.298376], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>3380 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.924837, -97.126237], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1370 Main St.<br>Both peggo and paper products"
+			);
+		L.marker([49.884272, -97.216416], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1860 Ness Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.879184, -97.212463], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1795 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.939471, -97.114796], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1871 Main St.<br>Both peggo and paper products"
+			);
+		L.marker([49.950202, -97.169402], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1200 Jefferson Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.904271, -97.167378], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>891 Arlington St.<br>Both peggo and paper products"
+			);
+		L.marker([49.93113, -97.166503], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1007 McPhillips St.<br>Both peggo and paper products"
+			);
+		L.marker([49.888115, -97.277315], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>3021 Ness Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.922256, -97.195606], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>120 Keewatin St.<br>Both peggo and paper products"
+			);
+		L.marker([49.901866, -97.21907], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1895 Wellington St.<br>Both peggo and paper products"
+			);
+		L.marker([49.913363, -97.141734], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>119 Salter St.<br>Both peggo and paper products"
+			);
+		L.marker([49.923702, -97.169621], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>656 McPhillips St.<br>Both peggo and paper products"
+			);
+		L.marker([49.944819, -97.176056], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1485 Inkster Blvd.<br>Both peggo and paper products"
+			);
+		L.marker([49.915983, -97.146786], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Brother's Pharmacy</strong><br>542 Selkirk Ave.<br>Paper products only"
+			);
+		L.marker([49.879465, -97.219246], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Family Foods</strong><br>1881 Portage Ave.<br>Paper products sold"
+			);
+		L.marker([49.950939, -97.145171], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>Garden City Shopping Centre</html></strong><br>Mall Customer Service Counter<br>Paper products sold"
+			);
+		L.marker([49.93358, -97.12217], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>IGA Main Street</strong><br>1650 Main St.<br>Paper products sold"
+			);
+		L.marker([49.925929, -97.123536], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Red River Co-op</strong><br>1441 Main St.<br>Paper products sold"
+			);
+		L.marker([49.883253, -97.20534], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>1630 Ness Ave.<br>Paper products sold"
+			);
+		L.marker([49.884045, -97.298323], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>3393 Portage Ave<br>Paper products sold"
+			);
+		L.marker([49.93771, -97.196826], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>850 Keewatin St.<br>Paper products sold"
+			);
+		L.marker([49.924164, -97.144706], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>594 Mountain Ave.<br>Paper products sold"
+			);
+		L.marker([49.95374, -97.151006], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1050 Leila Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.883209, -97.314297], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>3665 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.883907, -97.198025], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1485 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.885698, -97.171697], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>917 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.875544, -97.259919], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>2533 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.958073, -97.094461], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>2512 Main St.<br>Both peggo and paper products"
+			);
+		L.marker([49.937398, -97.194255], { icon: peggoIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>795 Keewatin St.<br>peggo products sold"
+			);
+		L.marker([49.901693, -97.15804], { icon: peggoIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>790 Sherbrook St.<br>peggo products sold"
+			);
+		L.marker([49.901409, -97.156683], { icon: peggoIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>777 Sherbrook St.<br>peggo products sold"
+			);
+		L.marker([49.932195, -97.165521], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1017 McPhillips St.<br>Both peggo and paper products"
+			);
+		L.marker([49.899757, -97.198845], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>Superstore  - Lottery Kiosk</html></strong><br>1385 Sargent Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.949255, -97.155849], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>Superstore  - Lottery Kiosk</html></strong><br>2132 McPhillips St.<br>Both peggo and paper products"
+			);
+		L.marker([49.8456099819979, -97.0976475072514], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>438 St. Anne's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.8333690907835, -97.1147177489111], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1124 St. Mary's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.864751, -97.133443], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>568 Osborne St.<br>Both peggo and paper products"
+			);
+		L.marker([49.87483384, -97.11818673], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>234 St. Mary's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.854879019681, -97.1125817994398], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>734 St. Mary's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.790023, -97.156497], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>7 Killarney<br>Both peggo and paper products"
+			);
+		L.marker([49.881845, -97.120109], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>183 Marion<br>Both peggo and paper products"
+			);
+		L.marker([49.870734, -97.092431], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>920 Archibald<br>Both peggo and paper products"
+			);
+		L.marker([49.8204680825892, -97.1140066021379], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1622 St. Mary's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.8303619579558, -97.0881152666892], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>628 St. Anne's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.882216, -97.121126], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>Bilingual Service Centre - <i>Reopening Monday, Nov. 15</i></html></strong><br>170 Goulet<br>Both peggo and paper products"
+			);
+		L.marker([49.83645932046, -97.1113744975535], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Dakota Pharmacy</strong><br>1087 St. Mary's Rd.<br>Paper products only"
+			);
+		L.marker([49.828193, -97.106421], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Red River Co-op</strong><br>850 Dakota St.<br>Paper products sold"
+			);
+		L.marker([49.854461, -97.073409], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Red River Co-op</strong><br>77 Vermillion<br>Paper products sold"
+			);
+		L.marker([49.854404, -97.076689], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>35 Lakewood Blvd.<br>Paper products sold"
+			);
+		L.marker([49.8191824119868, -97.1125041133399], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>1631 St. Mary's Rd.<br>Paper products sold"
+			);
+		L.marker([49.808951, -97.15519], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>2271 Pembina Hwy.<br>Paper products sold"
+			);
+		L.marker([49.882, -97.114696], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>285 Marion<br>Paper products sold"
+			);
+		L.marker([49.831846, -97.106812], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>785 Dakota<br>Both peggo and paper products"
+			);
+		L.marker([49.882065, -97.126917], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>43 Marion<br>Both peggo and paper products"
+			);
+		L.marker([49.855177, -97.066591], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>235 Vermillion<br>Both peggo and paper products"
+			);
+		L.marker([49.8242222786467, -97.0840263067609], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>710 St. Anne's Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.833494, -97.046489], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>Sage Creek<br>Both peggo and paper products"
+			);
+		L.marker([49.869567, -97.13717], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Transit Administration Office</strong><br>B-414 Osborne St.<br>Both peggo and paper products"
+			);
+		L.marker([49.816001, -97.148195], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong><html>University of Manitoba - Answers Info Booth </html></strong><br>101 University Centre<br>Both peggo and paper products"
+			);
+		L.marker([49.862041149308, -97.3148402696946], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>530 Dale<br>Both peggo and paper products"
+			);
+		L.marker([49.8706787817759, -97.1549297428722], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>781 Corydon<br>Both peggo and paper products"
+			);
+		L.marker([49.835401, -97.149812], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1490 Pembina Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.8634729691837, -97.1573622201566], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>909 Lorette<br>Both peggo and paper products"
+			);
+		L.marker([49.874222, -97.18546], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>427 Academy Rd.<br>Both peggo and paper products"
+			);
+		L.marker([49.868016304951, -97.2593886486604], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>3510 Roblin Blvd.<br>Both peggo and paper products"
+			);
+		L.marker([49.863713, -97.18558], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1445 Corydon Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.848596, -97.15327], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1103 Pembina Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.883203, -97.182956], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>7-Eleven</strong><br>1184 Portage Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.868101, -97.162208], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>971 Corydon Ave.<br>Paper products sold"
+			);
+		L.marker([49.880644, -97.295283], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Rexall</strong><br>3310 Portage Ave.<br>Paper products sold"
+			);
+		L.marker([49.857734, -97.16457], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Red River Co-op</strong><br>1120 Grant Ave.<br>Paper products sold"
+			);
+		L.marker([49.857958, -97.26278], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>3900 Grant Ave.<br>Paper products sold"
+			);
+		L.marker([49.867087, -97.21194], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>2025 Corydon Ave.<br>Paper products sold"
+			);
+		L.marker([49.879453, -97.148545], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>499 River Ave.<br>Paper products sold"
+			);
+		L.marker([49.862816, -97.133665], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>655 Osborne St.<br>Paper products sold"
+			);
+		L.marker([49.811951, -97.154836], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>2155 Pembina Hwy.<br>Paper products sold"
+			);
+		L.marker([49.825849, -97.201538], { icon: paperIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Safeway</strong><br>1625 Kenaston Blvd.<br>Paper products sold"
+			);
+		L.marker([49.796004, -97.156494], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>2656 Pembina Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.810446, -97.154018], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>2211 Pembina Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.867087, -97.21194], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>2025 Corydon Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.857734, -97.16457], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1120 Grant Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.857958, -97.26278], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>3900 Grant Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.863307, -97.316707], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>6670 Roblin Blvd.<br>Both peggo and paper products"
+			);
+		L.marker([49.847719, -97.152298], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>1122 Pembina Hwy.<br>Both peggo and paper products"
+			);
+		L.marker([49.79752, -97.196035], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>350 N. Town Road<br>Both peggo and paper products"
+			);
+		L.marker([49.8198, -97.202505], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Shoppers Drug Mart</strong><br>2160 Mcgillivray<br>Both peggo and paper products"
+			);
+		L.marker([49.9194531, -97.158324], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Empire Drugs</strong><br>801 Selkirk Ave.<br>Both peggo and paper products"
+			);
+		L.marker([49.9026103, -97.1364143], { icon: bothIcon })
+			.addTo(map)
+			.bindPopup(
+				"<strong>Phar Syde Uptown</strong><br>618 Main Street<br>Both peggo and paper products"
+			);
+		// prettier-ignore-finish
+		// #endregion
+	}
 </script>
