@@ -3,7 +3,6 @@ import Navbar from "../components/primitives/Navbar.astro";
 import Footer from "../components/primitives/Footer.astro";
 import Head from "./Head.astro";
 import { type Props as SEOProps } from "astro-seo";
-import { ViewTransitions } from "astro:transitions";
 import { SkipLinks } from "accessible-astro-components";
 
 interface Props {
@@ -16,7 +15,6 @@ const { seo } = Astro.props;
 <!doctype html>
 <html lang="en" class="scroll-p-24">
 	<Head seo={seo} />
-	<ViewTransitions />
 	<body
 		class="font-josefin-sans dark:bg-gray-900 flex flex-col min-h-[calc(100vh-10rem)]"
 	>

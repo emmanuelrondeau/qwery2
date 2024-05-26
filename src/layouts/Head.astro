@@ -64,6 +64,9 @@ const newSeoProp: SEOProps = {
 		document.addEventListener("astro:page-load", () => {
 			twemoji.parse(document.body, { folder: "svg", ext: ".svg" });
 		});
+		window.onload = function () {
+			twemoji.parse(document.body, { folder: "svg", ext: ".svg" });
+		};
 	</script>
 	<script
 		is:inline
