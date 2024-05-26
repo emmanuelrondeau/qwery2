@@ -18,7 +18,7 @@
 	}
 
 	::selection {
-		@apply bg-violet-100 text-violet-950 dark:bg-violet-300;
+		@apply bg-violet-100 text-violet-950 dark:bg-gray-700 dark:bg-opacity-50 dark:text-violet-100;
 	}
 
 	/* Generated-ish via https://wweb.dev/resources/blur-background-css-generator */
@@ -124,18 +124,12 @@
 	}
 
 	.format :where(table thead):not(:where([class~="not-format"])) {
-		@apply bg-violet-50 bg-opacity-50;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.format :where(table thead):not(:where([class~="not-format"])) {
-			background-color: var(--tw-format-th-bg);
-		}
+		@apply bg-violet-50 bg-opacity-50 dark:bg-gray-800;
 	}
 
 	.callout.callout-info :where(a):not(:where([class~="not-format"] *)),
 	.callout.callout-info :where(strong):not(:where([class~="not-format"] *)) {
-		@apply text-violet-800 dark:text-violet-400;
+		@apply text-violet-800 dark:text-violet-300;
 	}
 
 	/* Rehype Autolink */
