@@ -1,17 +1,23 @@
 import { defineConfig } from "astro/config";
 import AutoImport from "astro-auto-import";
 
-import cloudflare from "@astrojs/cloudflare";
 import netlify from "@astrojs/netlify";
 import mdx from "@astrojs/mdx";
-import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
 import { rehypeAutolink } from "./plugins/rehype-autolink";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 import rehypeSlug from "rehype-slug";
-import withToc from "@stefanprobst/rehype-extract-toc"
-import withTocExport from "@stefanprobst/rehype-extract-toc/mdx"
+import withToc from "@stefanprobst/rehype-extract-toc";
+import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
+
+export const output = "hybrid";
+export const adapter =
+	process.env.NETLIFY === "true"
+		? "netlify"
+		: process.env.CF_PAGES === "1"
+			? "cloudflare"
+			: "netlify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,14 +35,9 @@ export default defineConfig({
 			],
 		}),
 		mdx(),
-		svelte(),
+		// svelte(),
 		tailwind(),
 	],
-	output: "hybrid",
-	adapter:
-		process.env.NETLIFY === "true"
-			? netlify()
-			: process.env.CF_PAGES === "1"
-				? cloudflare()
-				: undefined,
+	output: output,
+	adapter: netlify(),
 });

@@ -36,8 +36,11 @@ if (import.meta.env.MODE === "development") {
 	sourceLocation = srcMeta.src.replace("/@fs/", "").split("?")[0];
 } else {
 	const cwd = process.cwd();
-	// We need to resolve /_astro to <process.cwd>/dist/_astro
-	const location = path.join(cwd, "dist", srcMeta.src);
+	let location = "";
+	// Just assumes Netlify for now
+	location = path.join(cwd, ".netlify/functions-internal/ssr", srcMeta.src);
+	// // We need to resolve /_astro to <process.cwd>/dist/_astro
+	// location = path.join(cwd, "dist", srcMeta.src);
 	sourceLocation = location;
 }
 
