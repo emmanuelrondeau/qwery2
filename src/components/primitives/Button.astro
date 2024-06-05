@@ -1,0 +1,23 @@
+---
+interface Props {
+	href?: string;
+	target?: "_blank" | "_self" | "_parent" | "_top";
+}
+const { href, target } = Astro.props;
+---
+
+{
+	href ? (
+		<a
+			href={href}
+			target={target}
+			class="flex items-center justify-center h-12 bg-violet-100 hover:bg-violet-200 active:bg-violet-300 active:text-violet-950 text-violet-800 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 transition-colors"
+		>
+			<slot />
+		</a>
+	) : (
+		<button class="flex items-center justify-center h-12 bg-violet-100 hover:bg-violet-200 active:bg-violet-300 active:text-violet-950 text-violet-800 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 transition-colors">
+			<slot />
+		</button>
+	)
+}

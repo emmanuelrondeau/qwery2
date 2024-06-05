@@ -1,24 +1,32 @@
 ---
-import { Picture } from "astro:assets";
+import ImagePrimative from "../primitives/Image.astro";
 
 interface Props {
 	alt: string;
 	class?: string | null;
-	src: string;
+	src: ImageMetadata;
 	quality?: "low" | "mid" | "high" | "max";
+	decoding?: "async" | "auto" | "sync";
+	loading?: "lazy" | "eager";
+	placeholder?: "blur" | "empty";
 }
-const { src, alt, class: className, quality } = Astro.props;
+const {
+	src,
+	alt,
+	class: className,
+	quality,
+	decoding,
+	loading,
+	placeholder,
+} = Astro.props;
 ---
 
-<Picture
+<ImagePrimative
 	alt={alt}
 	class={`flex items-center justify-center rounded-md object-cover shadow mx-auto h-auto w-auto ${className ?? ""}`}
 	src={src}
-	loading="lazy"
-	decoding="async"
-	formats={["avif", "webp"]}
+	loading={loading}
+	decoding={decoding}
 	quality={quality}
-	widths={[240, 540, 720, 1080]}
-	sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1080px`}
-	inferSize
+	placeholder={placeholder}
 />

@@ -1,0 +1,41 @@
+---
+import { PAGE_TITLE_ID } from "../../constants";
+import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+
+// Copied from https://kld.dev/building-table-of-contents/
+const { headings } = Astro.props;
+const toc = buildToc(headings);
+
+function buildToc(headings) {
+	const toc = [];
+	const parentHeadings = new Map();
+	headings.forEach((h) => {
+		const heading = { ...h, subheadings: [] };
+		parentHeadings.set(heading.depth, heading);
+		// Change 2 to 1 if your markdown includes your <h1>
+		if (heading.depth === 2) {
+			toc.push(heading);
+		} else {
+			parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+		}
+	});
+	return toc;
+}
+---
+
+<starlight-toc>
+	<nav class="toc pb-2 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
+		<h2 class="!font-semibold !text-lg">Table of Contents</h2>
+		<div class="not-format relative">
+			<ul class="text-base">
+				<TableOfContentsHeading
+					aria-current={true}
+					heading={{ slug: PAGE_TITLE_ID, text: "Overview" }}
+				/>
+				{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+			</ul>
+		</div>
+	</nav>
+</starlight-toc>
+
+<script src="./starlight-toc"></script>
