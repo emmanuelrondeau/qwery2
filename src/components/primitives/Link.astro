@@ -1,5 +1,6 @@
 ---
 interface Props {
+	id?: string,
 	href: string;
 	target?: "_self" | "_blank";
 	referrerpolicy?: "strict-origin-when-cross-origin" | "no-referrer";
@@ -7,9 +8,12 @@ interface Props {
 	"aria-hidden"?: boolean;
 	tabindex?: number;
 	style?: string | astroHTML.JSX.CSSProperties | null | undefined;
+	"data-astro-reload"?: boolean;
+	"aria-current"?: boolean
 }
 
 const {
+	id,
 	href,
 	target,
 	referrerpolicy,
@@ -21,6 +25,7 @@ const {
 ---
 
 <a
+	id={id}
 	href={href}
 	class={`ring-violet-600 dark:ring-violet-600 rounded outline-none focus-visible:ring-2${className ? ` ${className}` : ""}`}
 	target={target}

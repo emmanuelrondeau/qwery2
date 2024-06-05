@@ -1,0 +1,65 @@
+---
+// import { Picture } from "astro:assets";
+import Image from "../primitives/Image.astro";
+import { getCollection, getEntry } from "astro:content";
+
+interface Props {
+	postId: string;
+	size?: "small" | "medium" | "large";
+}
+const { postId }: Props = Astro.props;
+const posts = await getCollection("posts");
+const post = posts.find((post) => post.id === postId);
+
+if (!post) return;
+
+const authorsPromise = post.data.authors.map(
+	async (author) => (await getEntry("authors", author.id)).data
+);
+const authors = await Promise.all(authorsPromise);
+
+const { size } = Astro.props;
+---
+
+<div
+	class=`flex gap-2 ${size === "large" ? "xs:self-center  items-end" : size === "medium" ? "format" : "text-sm items-end"}`
+>
+	<div
+		class=`flex ${size === "large" ? "-space-x-4" : "-space-x-2"} rtl:space-x-reverse flex-shrink-0 ${size !== "medium" ? "items-end" : ""}`
+	>
+		{
+			authors.map((author) =>
+				author.profile ? (
+					<Image
+						alt=""
+						class={`not-format !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900 ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-6 h-6"}`}
+						src={author.profile}
+						formats={["avif", "webp", "png"]}
+						quality="high"
+						placeholder="blur"
+					/>
+				) : (
+					<div
+						class={`relative inline-flex items-center justify-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900 z-[1] ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-6 h-6"}`}
+						aria-hidden={true}
+					>
+						<span
+							class={`${size !== "large" ? "text-[0.5rem]" : ""} mt-[0.25em] font-medium text-gray-600 dark:text-gray-300 select-none`}
+						>
+							{author.name
+								.split(" ")
+								.map((name) => name[0])
+								.join("")
+								.toUpperCase()}
+						</span>
+					</div>
+				)
+			)
+		}
+	</div>
+	{
+		size !== "large" && (
+			<p class="!m-0">{authors.map((author) => author.name).join(", ")}</p>
+		)
+	}
+</div>

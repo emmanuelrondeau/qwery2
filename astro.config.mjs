@@ -1,21 +1,23 @@
 import { defineConfig } from "astro/config";
 import AutoImport from "astro-auto-import";
-import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
-import mdx from "@astrojs/mdx";
+
+import cloudflare from "@astrojs/cloudflare";
 import netlify from "@astrojs/netlify";
+import mdx from "@astrojs/mdx";
+import svelte from "@astrojs/svelte";
+import tailwind from "@astrojs/tailwind";
+
+import { rehypeAutolink } from "./plugins/rehype-autolink";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 import rehypeSlug from "rehype-slug";
-import { rehypeAutolink } from "./plugins/rehype-autolink";
+import withToc from "@stefanprobst/rehype-extract-toc"
+import withTocExport from "@stefanprobst/rehype-extract-toc/mdx"
 
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
-		rehypePlugins: [
-			rehypeSlug,
-			...rehypeAutolink(),
-		],
+		rehypePlugins: [rehypeSlug, ...rehypeAutolink(), withToc, withTocExport],
 	},
 	integrations: [
 		AutoImport({
@@ -26,10 +28,15 @@ export default defineConfig({
 				"/src/components/articles/FigureCaption.astro",
 			],
 		}),
-		react(),
-		tailwind(),
 		mdx(),
+		svelte(),
+		tailwind(),
 	],
 	output: "hybrid",
-	adapter: netlify(),
+	adapter:
+		process.env.NETLIFY === "true"
+			? netlify()
+			: process.env.CF_PAGES === "1"
+				? cloudflare()
+				: undefined,
 });

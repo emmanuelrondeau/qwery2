@@ -1,74 +1,49 @@
 ---
 import Link from "./Link.astro";
-
-const classList = [
-	"bg-white",
-	"backdrop-blur-none",
-	"dark:bg-gray-900",
-	"border-b-gray-200",
-	"dark:border-b-gray-700",
-];
+// import DarkMode from "./DarkMode.svelte";
+import Background from "../../assets/josh-lavallee-sM0q8DxTkWQ-unsplash-crop.webp";
+import Image from "./Image.astro";
+import Button from "./Button.astro";
 ---
 
+<div class="absolute h-[450px] -z-10">
+	<div
+		class="absolute left-0 right-0 bg-gradient-to-b from-white via-white via-30% h-24"
+	>
+	</div>
+	<Image
+		alt=""
+		src={Background}
+		formats={["avif", "webp", "jpg"]}
+		class="object-cover h-full"
+		loading="eager"
+		quality="high"
+	/>
+	<div
+		class="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-white via-white via-30% h-48"
+	>
+	</div>
+</div>
 <nav
 	id="main-nav"
-	class=`fixed z-40 self-center w-full py-4 transition-colors border-b ${classList.join(" ")}`
+	class="flex w-full py-6"
 	transition:animate="none"
 	transition:persist
 >
-	<!-- <div
-		class="nav-background absolute overflow-hidden w-full h-full top-0 left-0 -z-10 bg-white dark:bg-gray-900"
+	<div
+		class="flex max-w-screen-xl w-full px-4 mx-auto items-center justify-between dark:text-gray-50 text-violet-900 fill-violet-800 dark:fill-gray-50"
 	>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div> -->
-
-	<div class="max-w-screen-xl px-4 mx-auto">
 		<Link
 			href="/"
-			class="text-3xl font-bold dark:text-gray-50 select-none hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
+			class="text-3xl font-bold select-none text-gray-900 hover:text-violet-700 dark:hover:text-violet-300 hover:transition-colors"
 			><span role="img" aria-label="Logo">QW</span></Link
 		>
+		<div class="flex items-center gap-x-6">
+			<!-- <DarkMode client:load transition:persist /> -->
+			<Button
+				href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#getting-started-for-writers"
+				target="_blank">Write for us!</Button
+			>
+		</div>
 	</div>
 </nav>
-<script>
-	let ticking = false;
-	const nav = document.getElementById("main-nav") as HTMLDivElement | null;
-
-	window.onscroll = function () {
-		if (ticking) return;
-
-		window.requestAnimationFrame(() => {
-			nav && handleNavBarBlur(nav);
-			ticking = false;
-		});
-
-		ticking = true;
-	};
-
-	function handleNavBarBlur(nav: HTMLElement) {
-		const borderTransparent = nav.classList.contains("border-transparent");
-		if (window.scrollY >= 20 && borderTransparent) {
-			nav.classList.add(
-				"bg-white",
-				"backdrop-blur-none",
-				"dark:bg-gray-900",
-				"border-b-gray-200",
-				"dark:border-b-gray-700"
-			);
-			nav.classList.remove("border-transparent");
-		} else if (window.scrollY < 20 && !borderTransparent) {
-			nav.classList.remove(
-				"bg-white",
-				"backdrop-blur-none",
-				"dark:bg-gray-900",
-				"border-b-gray-200",
-				"dark:border-b-gray-700"
-			);
-			nav.classList.add("border-transparent");
-		}
-	}
-
-	nav && handleNavBarBlur(nav);
-</script>

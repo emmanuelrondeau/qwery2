@@ -21,51 +21,6 @@
 		@apply bg-violet-100 text-violet-950 dark:bg-gray-700 dark:bg-opacity-50 dark:text-violet-100;
 	}
 
-	/* Generated-ish via https://wweb.dev/resources/blur-background-css-generator */
-	.nav-background div {
-		@apply absolute h-0 rounded-full opacity-40;
-		filter: blur(240vw);
-	}
-
-	.nav-background div:nth-child(1) {
-		background: linear-gradient(
-			132deg,
-			theme("colors.violet.100") 0%,
-			theme("colors.violet.100") 100%
-		);
-		width: 25%;
-		padding-top: 25%;
-		left: 20%;
-		top: 20%;
-		transform: translateX(-50%) translateY(-50%);
-	}
-
-	.nav-background div:nth-child(2) {
-		background: linear-gradient(
-			132deg,
-			theme("colors.violet.100") 0%,
-			theme("colors.violet.100") 100%
-		);
-		width: 40%;
-		padding-top: 40%;
-		left: 50%;
-		top: 50%;
-		transform: translateX(-50%) translateY(-50%);
-	}
-
-	.nav-background div:nth-child(3) {
-		background: linear-gradient(
-			132deg,
-			theme("colors.violet.100") 0%,
-			theme("colors.violet.100") 100%
-		);
-		width: 30%;
-		padding-top: 30%;
-		left: 80%;
-		top: 80%;
-		transform: translateX(-50%) translateY(-50%);
-	}
-
 	/**
 	 * Manually added from Tailwind, to handle rehypeAutolink properly.
 	 * Hopefully can be removed at some point, when the string "sr-only"
@@ -132,9 +87,20 @@
 		@apply text-violet-800 dark:text-violet-300;
 	}
 
+	.callout.callout-warning :where(a):not(:where([class~="not-format"] *)) {
+		@apply text-yellow-800 dark:text-yellow-300;
+	}
+	.callout.callout-caution :where(a):not(:where([class~="not-format"] *)) {
+		@apply text-red-800 dark:text-yellow-300;
+	}
+
+	.format > :first-child:is(.callout) {
+		@apply !m-0;
+	}
+
 	/* Rehype Autolink */
 	.format .heading-wrapper {
-		@apply relative mb-[1em] flex scroll-mt-20 items-center gap-2;
+		@apply relative mb-[1em] flex items-center gap-2;
 	}
 
 	.format

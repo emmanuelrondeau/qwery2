@@ -1,0 +1,40 @@
+---
+interface Props {
+	heading: any;
+	depth?: number;
+	"aria-current"?: boolean;
+}
+
+// Copied mostly from https://kld.dev/building-table-of-contents/
+const { heading, depth, "aria-current": ariaCurrent } = Astro.props;
+---
+
+<li class="list-none relative w-full h-full">
+	<a
+		href={"#" + heading.slug}
+		class="peer !no-underline hover:!underline block py-[.375rem] aria-current:font-semibold aria-current:text-gray-900 hover:text-violet-700"
+		aria-current={ariaCurrent}
+	>
+		{heading.text}
+	</a>
+	<div
+		class="absolute top-0 bottom-0 w-[2px] bg-gray-200 peer-aria-current:bg-violet-600"
+	>
+	</div>
+	{
+		heading.subheadings && heading.subheadings.length > 0 && (
+			<ul>
+				{heading.subheadings.map((subheading) => (
+					<Astro.self heading={subheading} depth={(depth ?? 1) + 1} />
+				))}
+			</ul>
+		)
+	}
+</li>
+
+<style define:vars={{ depth: depth ?? 1 }}>
+	a {
+		margin-left: 1.75rem;
+		padding-left: calc(1.75rem * calc(var(--depth) - 1)); /* 28px */
+	}
+</style>

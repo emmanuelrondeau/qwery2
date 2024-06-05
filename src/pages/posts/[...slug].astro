@@ -1,11 +1,14 @@
 ---
+import { PAGE_TITLE_ID } from '../../constants';
 import { getCollection, type CollectionEntry, getEntry } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
-import { Picture } from "astro:assets";
 import PublishedOrUpdated from "../../components/articles/PublishedOrUpdated.astro";
 import Callout from "../../components/primitives/Callout.astro";
 import Link from "../../components/primitives/Link.astro";
 import MinutesRead from "../../components/articles/MinutesRead.astro";
+import ArticleAuthors from "../../components/articles/ArticleAuthors.astro";
+import Image from "../../components/primitives/Image.astro";
+import TableOfContents from "../../components/articles/TableOfContents.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -16,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { entry: post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 
 type Props = {
 	entry: CollectionEntry<"posts">;
@@ -46,80 +49,84 @@ const authors = await Promise.all(authorsPromise);
 			},
 		},
 	}}
+	disableFormat
+	hasImage
 >
-	{
-		post.data.cover && (
-			<Picture
+	<div class="relative flex flex-col gap-y-2 max-w-prose lg:max-w-screen-xl mx-auto px-4">
+		<div
+			class="relative lg:h-96 flex aspect-video w-full object-cover items-center justify-center bg-black rounded mb-4 overflow-clip max-w-full mx-auto"
+		>
+			<Image
 				alt=""
-				class="flex aspect-video w-full object-cover rounded-md items-center justify-center shadow"
+				class="h-full w-full object-cover aspect-video lg:rounded-none rounded"
 				src={post.data.cover}
 				loading="eager"
 				decoding="async"
-				formats={["avif", "webp"]}
+				formats={["avif", "webp", "png"]}
 				quality="high"
-				widths={[540, 720, 1080, post.data.cover.width]}
-				sizes={`(max-width: 720px) 540px, (max-width: 1600px) 720px, (max-width: 2560px) 1080px, ${post.data.cover.width}px`}
+				widths={[1280, 1080, post.data.cover.width]}
+				sizes=`(max-width: 1600px) 1280px ${post.data.cover.width}px`
+				transition:name=`cover-${post.slug}`
+				placeholder="blur"
+				emptySpaceFillBlur
 			/>
-		)
-	}
-	{
-		post.data.tag && post.data.tag.length > 0 && (
-			<Link
-				href="/"
-				class="not-format block font-semibold mb-3 uppercase no-underline"
-			>
-				{post.data.tag}
-			</Link>
-		)
-	}
-	<h1 class="!mb-4">{post.data.title}</h1>
-	<div class="flex flex-col xs:flex-row gap-4 align-middle !mb-4 lg:!mb-8">
-		<div class="flex -space-x-4 rtl:space-x-reverse items-center flex-shrink-0">
+			<!-- <div>
+				<Image
+					alt=""
+					class="absolute top-0 bottom-0"
+					src={post.data.cover}
+					loading="eager"
+					decoding="async"
+					formats={["avif", "webp", "png"]}
+					quality="high"
+					widths={[432, 720, 1080, post.data.cover.width]}
+					sizes=`(max-width: 720px) 432px, (max-width: 1600px) 720px, (max-width: 2560px) 1080px, ${post.data.cover.width}px`
+					transition:name=`cover-${post.slug}`
+				/>
+			</div> -->
+		</div>
+		<div class="format dark:format-invert lg:format-lg !max-w-full">
 			{
-				authors.map((author) =>
-					author.profile ? (
-						<Picture
-							alt=""
-							class="not-format w-12 h-12 lg:w-14 lg:h-14 !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900"
-							src={author.profile}
-							loading="eager"
-							decoding="async"
-							formats={["avif", "webp"]}
-							quality="mid"
-						/>
-					) : (
-						<div
-							class="relative inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900"
-							role="img"
-						>
-							<span class="font-medium text-gray-600 dark:text-gray-300 select-none mt-1">
-								{author.name
-									.split(" ")
-									.map((name) => name[0])
-									.join("")
-									.toUpperCase()}
-							</span>
-						</div>
-					)
+				post.data.tag && post.data.tag.length > 0 && (
+					<Link
+						href="/"
+						class="not-format block font-semibold mb-3 uppercase no-underline"
+					>
+						{post.data.tag}
+					</Link>
 				)
 			}
+			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
+			<div class="flex flex-col xs:flex-row gap-4 !mb-4 lg:!mb-0">
+				<ArticleAuthors postId={post.id} size="large" />
+				<div class="block">
+					<span class="text-center"
+						>Written by {authors.map((author) => author.name).join(", ")}</span
+					><br />
+					<span class="text-center">
+						<PublishedOrUpdated
+							lastEdited={post.data.lastEdited}
+							{...post.data}
+						/> •
+						<MinutesRead postId={post.id} />
+					</span>
+				</div>
+			</div>
 		</div>
-		<div class="block">
-			<span class="text-center"
-				>Written by {authors.map((author) => author.name).join(", ")}</span
-			><br />
-			<span class="text-center">
-				<PublishedOrUpdated lastEdited={post.data.lastEdited} {...post.data} /> •
-				<MinutesRead postId={post.id} />
-			</span>
+		<div class="flex flex-col justify-between lg:flex-row-reverse w-full">
+			<div class="format dark:format-invert lg:sticky top-0 right-0 w-[28rem] h-fit lg:pt-8 lg:pl-8">
+				<TableOfContents headings={headings} />
+			</div>
+			<div class="block format dark:format-invert lg:format-lg mt-8">
+				{
+					post.data.draft && (
+						<Callout type="Warning" typeText="">
+							<strong>This is a draft post!</strong> It has yet to be finalized.
+						</Callout>
+					)
+				}
+				<Content />
+			</div>
 		</div>
 	</div>
-	{
-		post.data.draft && (
-			<Callout type="Warning" typeText="">
-				<strong>This is a draft post!</strong> It has yet to be finalized.
-			</Callout>
-		)
-	}
-	<Content />
 </ArticleLayout>

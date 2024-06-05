@@ -4,17 +4,20 @@ import { type Props as SEOProps } from "astro-seo";
 
 interface Props {
 	seo: SEOProps;
-	topSpacing?: boolean;
+	hasImage?: boolean;
+	disableFormat?: boolean;
 }
 
-const { topSpacing } = Astro.props;
+const { hasImage, disableFormat } = Astro.props;
 ---
 
 <BaseLayout {...Astro.props}>
-	<main
-		id="main-content"
-		class=`mx-auto w-[90%] max-w-prose format dark:format-invert lg:format-lg ${topSpacing ? 'py-32' : 'pt-16 pb-32'}`
-	>
-		<slot />
-	</main>
+	<article>
+		<main
+			id="main-content"
+			class=`mx-auto ${!disableFormat ? " format dark:format-invert lg:format-lg" : ""} ${!hasImage ? 'py-32' : 'pt-4 lg:pt-10 pb-32'}`
+		>
+			<slot />
+		</main>
+	</article>
 </BaseLayout>
