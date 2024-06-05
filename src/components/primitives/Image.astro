@@ -1,8 +1,8 @@
 ---
 // https://gist.github.com/sannajammeh/d1dfddc8c2538062de53714b07953cdf
 import type { ImageMetadata, ImageTransform } from "astro";
-import { getImage } from "astro:assets";
-import LoadableImage from "./image-scripts/LoadableImage.astro";
+// import { getImage } from "astro:assets";
+// import LoadableImage from "./image-scripts/LoadableImage.astro";
 
 type Props = {
 	src: ImageMetadata;
@@ -37,109 +37,56 @@ const {
 	...rest
 } = Astro.props;
 
-if (!src) {
-	throw new Error("src is required");
-}
-
-const originalWidth = src.width;
-const originalHeight = src.height;
-const aspectRatio = originalHeight / originalWidth;
-
-// If propsWidth is provided, use it as the maximum size
-const maxWidth =
-	propsWidth && propsWidth <= originalWidth ? propsWidth : originalWidth;
-
-// Filter out sizes that are larger than the max width
-const validSizes = deviceSizes.filter((size) => size <= maxWidth);
-
-const generateSrcSet = async (size: number, format: string) => {
-	const resizedImg = await getImage({
-		src,
-		format,
-		width: size,
-		height: Math.round(size * aspectRatio),
-		quality,
-	} as ImageTransform);
-
-	return `${resizedImg.src} ${size}w`;
-};
-
-let contentFormat = formats;
-if (!contentFormat) {
-	contentFormat = [format ?? "webp"];
-}
-
-const srcsetPromises = contentFormat.map((format) =>
-	validSizes.map((size) => generateSrcSet(size, format))
-);
-const flattenedSrcsetResults = await Promise.all(
-	srcsetPromises.flatMap((srcset) => srcset)
-);
-let srcsetResults: string[][] = [];
-let joinedSrcsetResult: string[] = [];
-
-{
-	let srcsetChain = [];
-	for (let index = 0; index < flattenedSrcsetResults.length; index++) {
-		const srcResult = flattenedSrcsetResults[index];
-		srcsetChain.push(srcResult);
-		if ((index + 1) % validSizes.length === 0) {
-			srcsetResults.push(srcsetChain);
-			srcsetChain = [];
-		}
-	}
-	joinedSrcsetResult = srcsetResults.map((srcset) => srcset.join(", "));
-}
-// const srcset = srcsetResults.join(", ");
-
-const sizesAttrMapped = validSizes
-	.map((size) => `(max-width: ${size}px) ${size}px`)
-	.join(", ");
-
-const sizesAttr = `${sizesAttrMapped}, ${maxWidth}px`;
-
-const original = await getImage({
-	src,
-	format: format ?? "webp",
-	width: maxWidth,
-	height: Math.round(maxWidth * aspectRatio),
-	quality,
-} as ImageTransform);
-
 import lqip from "lqip-modern";
 import path from "path";
 import { getImageBlurSvg } from "./image-scripts/image-blur-svg";
+import Picture from "astro/components/Picture.astro";
+import { output } from "../../../astro.config.mjs";
 
 let svgUrl = "";
-if (emptySpaceFillBlur) {
-	let sourceLocation: string;
-	if (import.meta.env.MODE === "development") {
-		// If for some reason you see missing image errors on a POSIX system,
-		// remove the trailing slash from /@fs/. I had to modify the script to make
-		// it work on Windows.
-		sourceLocation = src.src.replace("/@fs/", "").split("?")[0];
-	} else {
-		const cwd = process.cwd();
-		// We need to resolve /_astro to <process.cwd>/dist/_astro
-		const location = path.join(cwd, "dist", src.src);
-		sourceLocation = location;
-	}
+// if (emptySpaceFillBlur) {
+// 	let sourceLocation: string;
+// 	if (import.meta.env.MODE === "development") {
+// 		// If for some reason you see missing image errors on a POSIX system,
+// 		// remove the trailing slash from /@fs/. I had to modify the script to make
+// 		// it work on Windows.
+// 		sourceLocation = src.src.replace("/@fs/", "").split("?")[0];
+// 	} else {
+// 		const cwd = process.cwd();
+// 		let location = "";
+// 		// Just assumes Netlify for now
+// 		location = path.join(cwd, ".netlify/functions-internal/ssr", src.src);
+// 		// // We need to resolve /_astro to <process.cwd>/dist/_astro
+// 		// location = path.join(cwd, "dist", src.src);
+// 		sourceLocation = location;
+// 	}
 
-	const blurData = await lqip(sourceLocation).then((r) => r.metadata);
+// 	const blurData = await lqip(sourceLocation).then((r) => r.metadata);
 
-	// Generate placeholder
-	svgUrl = `url("data:image/svg+xml;charset=utf-8,${getImageBlurSvg({
-		widthInt: src.width,
-		heightInt: src.height,
-		blurWidth: blurData.width,
-		blurHeight: blurData.height,
-		blurDataURL: blurData.dataURIBase64,
-		objectFit: "cover",
-	})}")`;
-}
+// 	// Generate placeholder
+// 	svgUrl = `url("data:image/svg+xml;charset=utf-8,${getImageBlurSvg({
+// 		widthInt: src.width,
+// 		heightInt: src.height,
+// 		blurWidth: blurData.width,
+// 		blurHeight: blurData.height,
+// 		blurDataURL: blurData.dataURIBase64,
+// 		objectFit: "cover",
+// 	})}")`;
+// }
 ---
 
-{
+<Picture
+	src={src}
+	alt={alt}
+	sizes={sizes}
+	formats={formats}
+	quality={quality}
+	loading={loading}
+	decoding={decoding}
+	{...rest}
+/>
+
+<!-- {
 	placeholderType === "blur" ? (
 		<picture class={`${emptySpaceFillBlur ? "empty-space-blur" : ""}`}>
 			{joinedSrcsetResult.map((srcset, index) => (
@@ -193,7 +140,7 @@ if (emptySpaceFillBlur) {
 			/>
 		</picture>
 	)
-}
+} -->
 <style define:vars={{ placeholder: svgUrl }}>
 	picture.empty-space-blur::before {
 		@apply absolute left-0 top-0 inline-block h-full w-full bg-cover bg-center bg-no-repeat opacity-40;
