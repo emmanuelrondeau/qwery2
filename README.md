@@ -8,6 +8,8 @@ If you're here, welcome to the repo! Contributions are greatly appreciated. If y
 
 If you wish to write for the website, currently you'll have to go through the steps of a developer. Writing for the website currently is also somewhat technical, requiring knowledge of Markdown and MDX.
 
+Other than searching up tutorials on the basics of Markdown, the existing articles are a great reference point for how to format articles you make within Decap CMS.
+
 ## Getting Started for Developers
 
 If you're looking to do code improvements for the website, here's what you need to know:
@@ -45,7 +47,7 @@ If you're looking to do code improvements for the website, here's what you need 
 
 You may want to have the Decap server running on your local instance. Once you've done the above steps, this will let you access a local admin panel.
 
-This is important if you wish to create new content on the website. To make this work:
+**This is important if you wish to create new content on the website!** Creating `.mdx` files manually may cause the articles to not appear in the CMS, despite it displaying on the website. To make this work:
 
 1. Run the following in a terminal
 
@@ -54,6 +56,8 @@ This is important if you wish to create new content on the website. To make this
    ```
 
 2. Go to http://localhost:4321/admin, and you should be good to go.
+
+
 
 ## License
 
