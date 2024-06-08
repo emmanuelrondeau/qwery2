@@ -54,6 +54,12 @@ const newSeoProp: SEOProps = {
 	<SEO {...newSeoProp} />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title="Queer Winnipeg"
+		href={`${Astro.site}rss.xml`}
+	/>
 	<title>{title}</title>
 	<GlobalStyles />
 	<script
