@@ -1,8 +1,5 @@
 ---
-// https://gist.github.com/sannajammeh/d1dfddc8c2538062de53714b07953cdf
 import type { ImageMetadata, ImageTransform } from "astro";
-// import { getImage } from "astro:assets";
-// import LoadableImage from "./image-scripts/LoadableImage.astro";
 
 type Props = {
 	src: ImageMetadata;
@@ -37,42 +34,7 @@ const {
 	...rest
 } = Astro.props;
 
-import lqip from "lqip-modern";
-import path from "path";
-import { getImageBlurSvg } from "./image-scripts/image-blur-svg";
 import Picture from "astro/components/Picture.astro";
-import { output } from "../../../astro.config.mjs";
-
-let svgUrl = "";
-// if (emptySpaceFillBlur) {
-// 	let sourceLocation: string;
-// 	if (import.meta.env.MODE === "development") {
-// 		// If for some reason you see missing image errors on a POSIX system,
-// 		// remove the trailing slash from /@fs/. I had to modify the script to make
-// 		// it work on Windows.
-// 		sourceLocation = src.src.replace("/@fs/", "").split("?")[0];
-// 	} else {
-// 		const cwd = process.cwd();
-// 		let location = "";
-// 		// Just assumes Netlify for now
-// 		location = path.join(cwd, ".netlify/functions-internal/ssr", src.src);
-// 		// // We need to resolve /_astro to <process.cwd>/dist/_astro
-// 		// location = path.join(cwd, "dist", src.src);
-// 		sourceLocation = location;
-// 	}
-
-// 	const blurData = await lqip(sourceLocation).then((r) => r.metadata);
-
-// 	// Generate placeholder
-// 	svgUrl = `url("data:image/svg+xml;charset=utf-8,${getImageBlurSvg({
-// 		widthInt: src.width,
-// 		heightInt: src.height,
-// 		blurWidth: blurData.width,
-// 		blurHeight: blurData.height,
-// 		blurDataURL: blurData.dataURIBase64,
-// 		objectFit: "cover",
-// 	})}")`;
-// }
 ---
 
 <Picture
@@ -85,69 +47,3 @@ let svgUrl = "";
 	decoding={decoding}
 	{...rest}
 />
-
-<!-- {
-	placeholderType === "blur" ? (
-		<picture class={`${emptySpaceFillBlur ? "empty-space-blur" : ""}`}>
-			{joinedSrcsetResult.map((srcset, index) => (
-				<source
-					srcset={srcset}
-					type={contentFormat[index]}
-					sizes={sizes || sizesAttr}
-				/>
-			))}
-			<LoadableImage
-				src={original.src}
-				srcset={
-					joinedSrcsetResult[
-						contentFormat.findIndex(
-							(value) => value == (format ?? contentFormat[0])
-						)
-					]
-				}
-				sizes={sizes || sizesAttr}
-				alt={alt}
-				loading={loading}
-				decoding={decoding}
-				srcMeta={src}
-				generated={original}
-				{...(rest as any)}
-			/>
-		</picture>
-	) : (
-		<picture class={`${emptySpaceFillBlur ? "empty-space-blur" : ""}`}>
-			{joinedSrcsetResult.map((srcset, index) => (
-				<source
-					srcset={srcset}
-					type={contentFormat[index]}
-					sizes={sizes || sizesAttr}
-				/>
-			))}
-			<img
-				src={original.src}
-				srcset={
-					joinedSrcsetResult[
-						contentFormat.findIndex(
-							(value) => value == (format ?? contentFormat[0])
-						)
-					]
-				}
-				sizes={sizes || sizesAttr}
-				alt={alt}
-				loading={loading}
-				decoding={decoding}
-				{...rest}
-			/>
-		</picture>
-	)
-} -->
-<style define:vars={{ placeholder: svgUrl }}>
-	picture.empty-space-blur::before {
-		@apply absolute left-0 top-0 inline-block h-full w-full bg-cover bg-center bg-no-repeat opacity-40;
-		background-image: var(--placeholder);
-		content: "";
-	}
-	picture.empty-space-blur {
-		height: inherit;
-	}
-</style>
