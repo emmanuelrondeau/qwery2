@@ -24,11 +24,11 @@ function buildToc(headings) {
 ---
 
 <starlight-toc>
-	<nav class="toc pb-2 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
+	<nav class="toc pb-2 lg:max-h-[calc(100dvh-4rem)] outline-none focus-visible:ring-2 ring-violet-600 rounded lg:overflow-y-auto lg:scrollbar scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-thumb-rounded-full scrollbar-w-[2px] pr-4">
 		<h2 class="!font-semibold !text-lg">Table of Contents</h2>
 		<div class="not-format relative">
 			<ul class="text-base">
-				<TableOfContentsHeading
+				<TableOfContentsHeading	
 					aria-current={true}
 					heading={{ slug: PAGE_TITLE_ID, text: "Overview" }}
 				/>

@@ -3,7 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,mdoc,svelte,ts,tsx,vue}"],
-	darkMode: 'selector',
+	darkMode: "selector",
 	theme: {
 		fontFamily: {
 			"josefin-sans": [
@@ -29,7 +29,7 @@ export default {
 		},
 		extend: {
 			aria: {
-				current: 'current="true"'
+				current: 'current="true"',
 			},
 		},
 		screens: {
@@ -37,5 +37,8 @@ export default {
 			...defaultTheme.screens,
 		},
 	},
-	plugins: [require("flowbite-typography")],
+	plugins: [
+		require("flowbite-typography"),
+		require("tailwind-scrollbar")({ nocompatible: true }),
+	],
 };
