@@ -1,7 +1,5 @@
 # Welcome to the Queer Winnipeg website repository!
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7de7ab58-f3e9-46cf-a445-0fa7f2b264a2/deploy-status)](https://app.netlify.com/sites/queerwinnipeg/deploys)
-
 If you're here, welcome to the repo! Contributions are greatly appreciated. If you've found an issue with the site, create a [new issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues) and we'll do our best to address it.
 
 ## Getting Started for Writers

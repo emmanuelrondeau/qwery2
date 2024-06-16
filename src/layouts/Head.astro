@@ -77,21 +77,6 @@ const newSeoProp: SEOProps = {
 	<script
 		is:inline
 		defer
-		src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-	<script
-		is:inline
-		defer
 		src="https://static.cloudflareinsights.com/beacon.min.js"
 		data-cf-beacon='{"token": "e4fc7846a14e4404bdcc41673fe7c16c"}'></script>
-	<script is:inline>
-		if (window.netlifyIdentity) {
-			window.netlifyIdentity.on("init", (user) => {
-				if (!user) {
-					window.netlifyIdentity.on("login", () => {
-						document.location.href = "/admin/";
-					});
-				}
-			});
-		}
-	</script>
 </head>
