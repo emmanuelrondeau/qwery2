@@ -5,7 +5,7 @@ import { getCollection, getEntry } from "astro:content";
 
 interface Props {
 	postId: string;
-	size?: "small" | "medium" | "large";
+	size: "small" | "medium" | "large";
 }
 const { postId }: Props = Astro.props;
 const posts = await getCollection("posts");
@@ -22,7 +22,7 @@ const { size } = Astro.props;
 ---
 
 <div
-	class=`flex gap-2 ${size === "large" ? "xs:self-center  items-end" : size === "medium" ? "format" : "text-sm items-end"}`
+	class=`flex gap-2 ${size === "large" ? "xs:self-center items-end" : size === "medium" ? "format dark:format-invert" : "text-sm items-end"}`
 >
 	<div
 		class=`flex ${size === "large" ? "-space-x-4" : "-space-x-2"} rtl:space-x-reverse flex-shrink-0 ${size !== "medium" ? "items-end" : ""}`
@@ -32,7 +32,7 @@ const { size } = Astro.props;
 				author.profile ? (
 					<Image
 						alt=""
-						class={`not-format !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900 ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-6 h-6"}`}
+						class={`not-format !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900 ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-7 h-7 xs:w-6 xs:h-6"}`}
 						src={author.profile}
 						formats={["avif", "webp", "png"]}
 						quality="high"
@@ -40,7 +40,7 @@ const { size } = Astro.props;
 					/>
 				) : (
 					<div
-						class={`relative inline-flex items-center justify-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900 z-[1] ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-6 h-6"}`}
+						class={`relative inline-flex items-center justify-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900 z-[1] ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-7 h-7 xs:w-6 xs:h-6"}`}
 						aria-hidden={true}
 					>
 						<span
@@ -59,7 +59,11 @@ const { size } = Astro.props;
 	</div>
 	{
 		size !== "large" && (
-			<p class="!m-0">{authors.map((author) => author.name).join(", ")}</p>
+			<p
+				class={`format dark:format-invert !m-0${size === "small" ? " leading-6 xs:leading-none xs:!text-sm" : " leading-8"}`}
+			>
+				{authors.map((author) => author.name).join(", ")}
+			</p>
 		)
 	}
 </div>
