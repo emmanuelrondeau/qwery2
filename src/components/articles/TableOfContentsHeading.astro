@@ -12,13 +12,13 @@ const { heading, depth, "aria-current": ariaCurrent } = Astro.props;
 <li class="list-none relative w-full h-full">
 	<a
 		href={"#" + heading.slug}
-		class="peer !no-underline hover:!underline block py-[.375rem] aria-current:font-semibold aria-current:text-gray-900 hover:text-violet-700"
+		class="peer !no-underline hover:!underline block py-[.375rem] aria-current:font-semibold aria-current:text-gray-900 dark:aria-current:text-gray-50 hover:text-violet-700 dark:hover:text-violet-300"
 		aria-current={ariaCurrent}
 	>
 		{heading.text}
 	</a>
 	<div
-		class="absolute top-0 bottom-0 w-[2px] bg-gray-200 peer-aria-current:bg-violet-600"
+		class="absolute top-0 bottom-0 w-[2px] bg-gray-200 dark:bg-gray-800 peer-aria-current:bg-violet-600 dark:peer-aria-current:bg-violet-400"
 	>
 	</div>
 	{

@@ -3,7 +3,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,mdoc,svelte,ts,tsx,vue}"],
-	darkMode: "selector",
+	darkMode: ['selector', '[data-theme="dark"]'],
 	theme: {
 		fontFamily: {
 			"josefin-sans": [

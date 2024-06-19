@@ -3,6 +3,7 @@ import { GoogleFontsOptimizer } from "@herob191/astro-google-fonts-optimizer";
 import twemoji from "@twemoji/api";
 import GlobalStyles from "../components/GlobalStyles.astro";
 import { SEO, type Props as SEOProps } from "astro-seo";
+import ThemeProvider from "../components/primitives/ThemeProvider.astro";
 
 interface Props {
 	seo: SEOProps;
@@ -61,6 +62,7 @@ const newSeoProp: SEOProps = {
 		href={`${Astro.site}rss.xml`}
 	/>
 	<title>{title}</title>
+	<ThemeProvider />
 	<GlobalStyles />
 	<script
 		is:inline

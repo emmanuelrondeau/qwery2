@@ -3,6 +3,7 @@ import AutoImport from "astro-auto-import";
 
 import netlify from "@astrojs/netlify";
 import mdx from "@astrojs/mdx";
+import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
 import { rehypeAutolink } from "./plugins/rehype-autolink";
@@ -36,7 +37,7 @@ export default defineConfig({
 			],
 		}),
 		mdx(),
-		// svelte(),
+		svelte(),
 		tailwind(),
 	],
 	output: output,

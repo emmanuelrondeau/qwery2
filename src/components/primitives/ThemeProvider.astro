@@ -1,0 +1,52 @@
+---
+import LightMode24DpFILL0Wght400GRAD0Opsz24 from "../../assets/icons/light_mode_24dp_FILL0_wght400_GRAD0_opsz24.astro";
+import DarkMode24DpFILL0Wght400GRAD0Opsz24 from "../../assets/icons/dark_mode_24dp_FILL0_wght400_GRAD0_opsz24.astro";
+import LaptopWindows24DpFILL0Wght400GRAD0Opsz24 from "../../assets/icons/laptop_windows_24dp_FILL0_wght400_GRAD0_opsz24.astro";
+---
+
+{/* This is intentionally inlined to avoid FOUC. */}
+<script is:inline>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== "undefined" &&
+			localStorage.getItem("starlight-theme");
+		const impliedTheme = window.matchMedia("(prefers-color-scheme: light)")
+			.matches
+			? "light"
+			: "dark";
+		const theme = storedTheme || impliedTheme;
+		document.documentElement.dataset.theme =
+			theme === "light" ? "light" : "dark";
+		return {
+			updatePickers(theme = storedTheme || "auto") {
+				document
+					.querySelectorAll("starlight-theme-select")
+					.forEach((picker) => {
+						const select = picker.querySelector("select");
+						if (select) select.value = theme;
+						/** @type {HTMLTemplateElement | null} */
+						const tmpl = document.querySelector(`#theme-icons`);
+						const selectorTheme = theme == "auto" ? impliedTheme : theme;
+						const newIcon =
+							tmpl && tmpl.content.querySelector("." + selectorTheme);
+						if (!newIcon) {
+							console.error(`new icon ${selectorTheme} not found`);
+							return;
+						}
+						const oldIcon = picker.querySelector("svg.label-icon");
+						if (!oldIcon) {
+							console.error(`old icon not found`);
+							return;
+						}
+						oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+					});
+			},
+		};
+	})();
+</script>
+
+<template id="theme-icons">
+	<LightMode24DpFILL0Wght400GRAD0Opsz24 />
+	<DarkMode24DpFILL0Wght400GRAD0Opsz24 />
+	<LaptopWindows24DpFILL0Wght400GRAD0Opsz24 />
+</template>

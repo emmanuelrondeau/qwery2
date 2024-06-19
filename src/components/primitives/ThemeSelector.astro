@@ -1,0 +1,112 @@
+---
+import LightMode24DpFILL0Wght400GRAD0Opsz24 from "../../assets/icons/light_mode_24dp_FILL0_wght400_GRAD0_opsz24.astro";
+import ThemeSelectorSvelte from "./ThemeSelector.svelte";
+---
+
+<starlight-theme-select
+	class="relative fill-violet-800 dark:fill-gray-300 hover:fill-violet-300 focus:fill-violet-300 dark:focus:fill-violet-400 hover:opacity-80 focus:opacity-80"
+>
+	<ThemeSelectorSvelte client:load>
+		<LightMode24DpFILL0Wght400GRAD0Opsz24 class="label-icon" />
+	</ThemeSelectorSvelte>
+
+	{/* Inlined to avoid FOUC. Uses global scope from `ThemeProvider.astro` */}
+	<script is:inline>
+		StarlightThemeProvider.updatePickers();
+	</script>
+
+	<script>
+		import { selectedTheme } from "../../stores";
+
+		type Theme = "auto" | "dark" | "light";
+
+		/** Key in `localStorage` to store color theme preference at. */
+		const storageKey = "starlight-theme";
+
+		/** Get a typesafe theme string from any JS value (unknown values are coerced to `'auto'`). */
+		const parseTheme = (theme: unknown): Theme =>
+			theme === "auto" || theme === "dark" || theme === "light"
+				? theme
+				: "auto";
+
+		/** Load the user’s preference from `localStorage`. */
+		const loadTheme = (): Theme =>
+			parseTheme(
+				typeof localStorage !== "undefined" && localStorage.getItem(storageKey)
+			);
+
+		/** Store the user’s preference in `localStorage`. */
+		function storeTheme(theme: Theme): void {
+			if (typeof localStorage !== "undefined") {
+				localStorage.setItem(
+					storageKey,
+					theme === "light" || theme === "dark" ? theme : ""
+				);
+			}
+		}
+
+		/** Get the preferred system color scheme. */
+		const getPreferredColorScheme = (): Theme =>
+			matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+
+		/** Update select menu UI, document theme, and local storage state. */
+		function onThemeChange(theme: Theme): void {
+			// @ts-expect-error - No clue why this errors, probably to do with how
+			//                    I implemented the types for this.
+			StarlightThemeProvider.updatePickers(theme);
+			document.documentElement.dataset.theme =
+				theme === "auto" ? getPreferredColorScheme() : theme;
+			storeTheme(theme);
+		}
+
+		// React to changes in system color scheme.
+		matchMedia(`(prefers-color-scheme: light)`).addEventListener(
+			"change",
+			() => {
+				if (loadTheme() === "auto") onThemeChange("auto");
+			}
+		);
+
+		class StarlightThemeSelect extends HTMLElement {
+			constructor() {
+				super();
+				const themeString = loadTheme();
+				onThemeChange(themeString);
+				selectedTheme.set({
+					value: themeString,
+					label: "", // Can be left blank
+				});
+				selectedTheme.subscribe((selected) => {
+					onThemeChange(parseTheme(selected.value));
+				});
+			}
+		}
+		customElements.define("starlight-theme-select", StarlightThemeSelect);
+	</script>
+</starlight-theme-select>
+
+{
+	/*
+MIT License
+
+Copyright (c) 2023 [Astro contributors](https://github.com/withastro/starlight/graphs/contributors)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+}
