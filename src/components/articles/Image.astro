@@ -25,8 +25,11 @@ const {
 	alt={alt}
 	class={`flex items-center justify-center rounded-md object-cover mx-auto h-auto w-auto ${className ?? ""}`}
 	src={src}
+	formats={["avif", "webp"]}
+	widths={[240, 616, 730, src.width]}
+	sizes={`(max-width: 360px) 240px, (max-width: 720px) 616px, (max-width: 1600px) 730px, ${src.width}px`}
 	loading={loading}
 	decoding={decoding}
-	quality={quality}
+	quality={quality ?? "high"}
 	placeholder={placeholder}
 />
