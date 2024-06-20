@@ -11,12 +11,12 @@ const { href, target } = Astro.props;
 		<a
 			href={href}
 			target={target}
-			class="flex items-center justify-center h-12 bg-violet-100 dark:bg-gray-400 hover:bg-violet-200 dark:bg-opacity-15 dark:hover:bg-opacity-25 active:bg-violet-300 dark:active:bg-violet-400 dark:active:bg-opacity-40 active:text-violet-950 dark:active:text-violet-50 text-violet-800 dark:text-gray-300 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 dark:ring-gray-50"
+			class="flex items-center justify-center h-12 bg-violet-100 dark:bg-gray-400 hover:bg-violet-200 dark:bg-opacity-15 dark:hover:bg-opacity-25 active:bg-violet-300 dark:active:bg-opacity-20 active:text-violet-950 dark:active:text-gray-400 text-violet-800 dark:text-gray-300 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 dark:ring-gray-50"
 		>
 			<slot />
 		</a>
 	) : (
-		<button class="flex items-center justify-center h-12 bg-violet-100 dark:bg-gray-400 hover:bg-violet-200 dark:bg-opacity-15 dark:hover:bg-opacity-25 active:bg-violet-300 dark:active:bg-violet-400 dark:active:bg-opacity-40 active:text-violet-950 dark:active:text-violet-50 text-violet-800 dark:text-gray-300 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 dark:ring-gray-50">
+		<button class="flex items-center justify-center h-12 bg-violet-100 dark:bg-gray-400 hover:bg-violet-200 dark:bg-opacity-15 dark:hover:bg-opacity-25 active:bg-violet-300 dark:active:bg-opacity-20 active:text-violet-950 dark:active:text-gray-400 text-violet-800 dark:text-gray-300 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 dark:ring-gray-50">
 			<slot />
 		</button>
 	)
