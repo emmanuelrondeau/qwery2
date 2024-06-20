@@ -90,7 +90,7 @@ const authors = await Promise.all(authorsPromise);
 				post.data.tag && post.data.tag.length > 0 && (
 					<Link
 						href="/"
-						class="not-format block font-semibold mb-3 uppercase no-underline"
+						class="not-format block font-semibold mb-3 uppercase no-underline dark:text-gray-400"
 					>
 						{post.data.tag}
 					</Link>
@@ -114,7 +114,7 @@ const authors = await Promise.all(authorsPromise);
 			</div>
 		</div>
 		<div class="flex flex-col justify-between lg:flex-row-reverse w-full">
-			<div class="format dark:format-invert lg:sticky top-0 right-0 lg:w-[28rem] h-fit lg:pt-8 lg:pl-12">
+			<div class="format dark:format-invert lg:sticky top-0 right-0 lg:min-w-96 lg:max-w-[28rem] h-fit lg:pt-8 lg:pl-12">
 				<TableOfContents headings={headings} />
 			</div>
 			<div class="block format dark:format-invert lg:format-lg mt-8">
