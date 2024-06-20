@@ -6,7 +6,7 @@ authors:
   - fio-cobbs
 tag: Transportation
 created: 2024-05-21
-lastEdited: 2024-05-21
+lastEdited: 2024-06-18
 cover: /src/assets/images/how-to-take-the-bus-in-winnipeg/how-to-take-the-bus-in-winnipeg.avif
 ---
 
@@ -43,8 +43,9 @@ To get bus tickets, check out [Where to Buy - Winnipeg Transit](https://info.win
 	To pay for fares with a debit or credit card, you'll need to do that ahead of
 	time with a Peggo card.
 
-	First, you need to buy a Peggo card, to be able to preload it with e-Cash. You can buy one online for $5.00 on the	[Winnipeg Transit e-Fare](https://efare.winnipegtransit.com/e-Fare/welcome.html) site, with free shipping. Alternatively, there are physical locations to be
-	able to purchase one.
+	First, you need to buy a Peggo card, to be able to preload it with e-Cash. You can buy one online for $5 on the [Winnipeg Transit e-Fare](https://efare.winnipegtransit.com/e-Fare/welcome.html) site, with free shipping.
+	
+	Alternatively, there are physical locations to be able to purchase a Peggo card. You can also purchase bus tickets physically, which doesn't have that extra $5 cost.
 </Callout>
 
 <figure>
@@ -59,11 +60,7 @@ To pay, walk to the front door of your bus. Upon entering, you'll see a fare box
 
 <figure>
 	{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
-	<Image
-		alt="Fare box"
-		class="!mx-auto flex max-w-96 items-center justify-center rounded-md object-cover shadow"
-		src={FareBox}
-	/>
+	<Image alt="Fare box" class="xs:max-w-sm" src={FareBox} />
 </figure>
 
 - **Cash:** There will be a little slot on the bottom right to insert coins. Pay in exact change, as the bus driver does not carry change. Otherwise, you'll overpay.
@@ -79,21 +76,21 @@ For more info and current pricing, check out [Transit Fares](https://info.winnip
 
 ## Routing a Trip
 
-Use [Google Maps](https://www.google.com/maps/) for the best experience of bus routing, that doesn't rely on Google. I was not able to find a better app for bus routing. Sorry, privacy advocates.
+Use [Google Maps](https://www.google.com/maps/) for the best experience of bus routing. For something that doesn't rely on Google, I was not able to find a better app service. Sorry, privacy advocates.
 
 Simply put your destination, press "Directions", enter your starting point, then select the transit icon on top.
 
 <figure>
-	<div class="flex justify-center gap-x-4">
+	<div class="side-by-side-images">
 		<Image
 			alt="Google Maps website, with Klinic Community Health searched up"
 			src={GoogleMaps1}
-			class="!my-0 !h-[454px]"
+			class="!my-0"
 		/>
 		<Image
 			alt="Google Maps website, with Assiniboine Park Zoo as the starting point, Klinic as the destination, and the transit icon selected"
 			src={GoogleMaps2}
-			class="!my-0 !h-[454px]"
+			class="!my-0"
 		/>
 	</div>
 	<FigureCaption>
@@ -116,18 +113,16 @@ Once you're about to reach your stop, wait to make sure you've passed the stop b
 Alternatively, you can press a red stop button found on certain poles. For wheelchair users, a stop button can be found on the sides of folded-up seats, at the front of the bus. If the seats are folded down, folding them up should reveal the button.
 
 <figure>
-	<div class="flex justify-center gap-x-4">
+	<div class="side-by-side-images">
 		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 		<Image
 			alt="The yellow cord to pull on the bus"
 			src={YellowCord}
-			class="!my-0 !h-96"
 		/>
 		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 		<Image
 			alt="A red stop button on a yellow pole"
 			src={StopButton}
-			class="!my-0 !h-96"
 		/>
 	</div>
 	<FigureCaption class="max-w-lg">
@@ -143,8 +138,8 @@ For most people, you should exit via the back side door of the bus. To exit, pre
 	{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 	<Image
 		alt="The back side door of the bus, with yellow handles"
-		class="max-w-lg"
 		src={BackSideDoor}
+		class="sm:max-w-md"
 	/>
 	<FigureCaption>
 		The back side door to exit the bus.
@@ -160,18 +155,16 @@ Sometimes, the bus was early and passed by you. There are also times where buses
 Winnipeg Transit and Google Maps can tell you when the next bus will come. You can also call the [TeleBUS number](tel:2042877433) that's put on every bus stop sign, to figure out when your bus will arrive too.
 
 <figure>
-	<div class="flex justify-center gap-x-4">
+	<div class="side-by-side-images">
 		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 		<Image
 			alt="Old bus stop sign"
 			src={OldBusStopSign}
-			class="!my-0 !h-96"
 		/>
 		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 		<Image
 			alt="New bus stop sign"
 			src={NewBusStopSign}
-			class="!my-0 !h-96"
 		/>
 	</div>
 	<FigureCaption class="max-w-lg">
@@ -201,7 +194,7 @@ Once you pay your fare, the bus driver should give you a paper transfer.
 	{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 	<Image
 		alt="Paper transfer"
-		class="mx-auto flex max-w-sm items-center justify-center rounded-md object-cover shadow"
+		class="xs:max-w-sm"
 		src={PaperTransfer}
 	/>
 	<FigureCaption class="max-w-lg">
@@ -235,7 +228,7 @@ Regular buses are the main type of bus you see. In transit apps, these have whit
 
 <Image
 	alt="Route on Google Maps with regular buses"
-	class="max-w-xl !shadow-none border-2 border-[#dadce0]"
+	class="sm:max-w-xl !shadow-none border-2 border-[#dadce0] dark:border-none"
 	src={RegularBusIcon}
 />
 
@@ -247,7 +240,7 @@ BLUE buses are part of a rapid transit line, which come by fairly frequently. In
 
 <Image
 	alt="Route on Google Maps with a BLUE bus"
-	class="max-w-xl !shadow-none border-2 border-[#dadce0]"
+	class="sm:max-w-xl !shadow-none border-2 border-[#dadce0] dark:border-none"
 	src={BlueBusIcon}
 />
 
@@ -277,7 +270,7 @@ In transit apps, you'll notice that there are yellow and black background transi
 <figure>
 	<Image
 		alt="Express route bus"
-		class="max-w-xl !shadow-none border-2 border-[#dadce0]"
+		class="sm:max-w-xl !shadow-none border-2 border-[#dadce0] dark:border-none"
 		src={YellowBusIcon}
 	/>
 	<FigureCaption>
@@ -287,7 +280,7 @@ In transit apps, you'll notice that there are yellow and black background transi
 <figure>
 	<Image
 		alt="Peak-hours bus"
-		class="max-w-xl !shadow-none border-2 border-[#dadce0]"
+		class="sm:max-w-xl !shadow-none border-2 border-[#dadce0] dark:border-none"
 		src={BlackBusIcon}
 	/>
 	<FigureCaption>
@@ -304,7 +297,7 @@ You'll see some buses, but with a vertical line split down multiple of them. Thi
 <figure>
 	<Image
 		alt="Route on Google Maps with a split line"
-		class="max-w-xl !shadow-none border-2 border-[#dadce0]"
+		class="sm:max-w-xl !shadow-none border-2 border-[#dadce0] dark:border-none"
 		src={SplitLineBus}
 	/>
 	<FigureCaption>
