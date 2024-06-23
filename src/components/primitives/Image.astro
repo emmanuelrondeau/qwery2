@@ -4,10 +4,6 @@ import type { ImageMetadata, ImageTransform } from "astro";
 type Props = {
 	src: ImageMetadata;
 	alt: string;
-	/**
-	 * Array of screens to generate the image for i.e [320, 480, 1200]
-	 * Maximum width will be 1200 regardless if screen is larger
-	 */
 	deviceSizes?: number[];
 	placeholder?: "blur" | "empty";
 	formats?: ("avif" | "webp" | "png" | "jpg")[];
@@ -28,7 +24,6 @@ const {
 	decoding = "async",
 	sizes,
 	deviceSizes = [320, 480, 640, 750, 828, 1200, 1920, 2048, 3840],
-	// deviceSizes = [320, 1080],
 	placeholder: placeholderType,
 	emptySpaceFillBlur,
 	...rest
