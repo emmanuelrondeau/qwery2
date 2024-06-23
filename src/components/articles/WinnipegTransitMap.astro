@@ -5,9 +5,6 @@ import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 
 <div id="map" class="w-full h-[28rem] rounded-md"></div>
 <script>
-	import L from "leaflet";
-	import { GestureHandling } from "leaflet-gesture-handling";
-
 	let init = false;
 
 	document.addEventListener("DOMContentLoaded", initMap);
@@ -16,8 +13,12 @@ import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 
 	function clearFunctions() {
 		document.removeEventListener("astro:page-load", initMap);
+		document.removeEventListener("DOMContentLoaded", initMap);
 	}
-	function initMap() {
+	async function initMap() {
+		const L = await import("leaflet");
+		const { GestureHandling } = await import("leaflet-gesture-handling");
+
 		if (init) return;
 		init = true;
 
