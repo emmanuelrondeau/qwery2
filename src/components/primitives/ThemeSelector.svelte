@@ -2,6 +2,8 @@
 	import { createSelect, melt } from "@melt-ui/svelte";
 	import { selectedTheme, theme } from "../../stores";
 	import { onMount } from "svelte";
+	import { scale } from "svelte/transition";
+	import { cubicOut } from "svelte/easing";
 
 	const options: { value: string; label: string; icon?: Element | null }[] = [
 		{ value: "light", label: "Light" },
@@ -22,7 +24,7 @@
 			// sameWidth: true,
 			strategy: "absolute",
 		},
-		selected: selectedTheme
+		selected: selectedTheme,
 	});
 
 	onMount(() => {
@@ -39,25 +41,51 @@
 		}
 
 		selectedLabel.subscribe((value) => {
-			// Totally won't bite me in the ass, if we need to localize to French.
-			// (it will)
+			// Totally won't bite me in the ass, if we need to localize to
+			// French. (it probably will)
 			theme.set(value.toLowerCase());
 		});
 	});
+
+	// Code copied from link; is unlicensed, but is probably good to copy anyway
+	// https://svelte.dev/repl/de8970d53ce040159aba167c0a4af6ef?version=3.2.2
+	function fadeScale(
+		node: Element,
+		{ delay = 0, duration = 200, easing = cubicOut, baseScale = 0 },
+	) {
+		const o = +getComputedStyle(node).opacity;
+		const m = getComputedStyle(node).transform.match(/scale\(([0-9.]+)\)/);
+		const s = m ? Number(m[1]) : 1;
+		const is = 1 - baseScale;
+
+		return {
+			delay,
+			duration,
+			css: (t: number) => {
+				const eased = easing(t);
+				return `opacity: ${eased * o}; transform: scale(${eased * s * is + baseScale})`;
+			},
+		};
+	}
 </script>
 
 <div class="flex flex-col gap-1">
 	<button
-		class="flex items-center justify-between rounded p-2 aria-expanded:text-violet-700 outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50"
+		class="group flex items-center justify-between rounded p-2 aria-expanded:text-violet-700 outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50"
 		use:melt={$trigger}
 		aria-label="Open theme switcher"
 	>
-		<slot />
+		<div
+			class="group-hover:scale-105 group-aria-expanded:scale-105 transition-transform duration-75"
+		>
+			<slot />
+		</div>
 	</button>
 	{#if $open}
 		<div
 			class="z-40 flex flex-col rounded bg-gray-50 dark:bg-gray-800 p-2 shadow focus:!ring-0"
 			use:melt={$menu}
+			transition:fadeScale={{ duration: 75, baseScale: .9 }}
 		>
 			{#each options as item}
 				<div
