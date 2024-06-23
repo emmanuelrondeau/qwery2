@@ -1,6 +1,7 @@
 # build output
 dist/
 .netlify/
+bundlemeta.json
 
 # generated types
 .astro/
