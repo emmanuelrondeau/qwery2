@@ -7,7 +7,7 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
 import { rehypeAutolink } from "./plugins/rehype-autolink";
-import { remarkReadingTime } from "./remark-reading-time.mjs";
+import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
 import rehypeSlug from "rehype-slug";
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
