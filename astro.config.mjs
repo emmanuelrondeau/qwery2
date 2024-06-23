@@ -12,6 +12,8 @@ import rehypeSlug from "rehype-slug";
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 
+import bundlesize from "vite-plugin-bundlesize";
+
 export const output = "hybrid";
 export const adapter =
 	process.env.NETLIFY === "true"
@@ -40,6 +42,10 @@ export default defineConfig({
 		svelte(),
 		tailwind(),
 	],
+	// vite: {
+	// 	build: { sourcemap: "hidden" },
+	// 	plugins: [bundlesize({ allowFail: true })],
+	// },
 	output: output,
 	adapter: netlify(),
 });
