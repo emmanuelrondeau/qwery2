@@ -21,15 +21,21 @@ const {
 } = Astro.props;
 ---
 
-<ImagePrimative
-	alt={alt}
-	class={`flex items-center justify-center rounded-md object-cover mx-auto h-auto w-auto ${className ?? ""}`}
-	src={src}
-	formats={["avif", "webp"]}
-	widths={[240, 616, 730, src.width]}
-	sizes={`(max-width: 360px) 240px, (max-width: 720px) 616px, (max-width: 1600px) 730px, ${src.width}px`}
-	loading={loading}
-	decoding={decoding}
-	quality={quality ?? "high"}
-	placeholder={placeholder}
-/>
+<button
+	id="bigger-picture"
+	class="flex mx-auto items-center justify-center rounded-md ring-offset-4 ring-offset-white dark:ring-offset-gray-900 outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50 hover:cursor-pointer"
+	aria-label="Expand image"
+>
+	<ImagePrimative
+		alt={alt}
+		class={`flex items-center justify-center object-cover mx-auto !my-0 h-auto w-auto ${className ?? ""}`}
+		src={src}
+		formats={["avif", "webp"]}
+		widths={[240, 616, 730, src.width]}
+		sizes={`(max-width: 360px) 240px, (max-width: 720px) 616px, (max-width: 1600px) 730px, ${src.width}px`}
+		loading={loading}
+		decoding={decoding}
+		quality={quality ?? "high"}
+		placeholder={placeholder}
+	/>
+</a>
