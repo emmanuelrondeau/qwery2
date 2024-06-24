@@ -1,0 +1,66 @@
+diff --git a/package.json b/package.json
+index 68a5562657e2befe59c02dcfe7c860c68b090881..2a53ab46b662c7213039342ea95eb771be62bda9 100644
+--- a/package.json
++++ b/package.json
+@@ -1,32 +1,52 @@
+ {
+ 	"name": "bigger-picture",
+ 	"version": "1.1.17",
++	"main": "./dist/bigger-picture.cjs",
++	"module": "./dist/bigger-picture.mjs",
+ 	"type": "module",
+ 	"exports": {
+ 		".": {
+-			"import": "./dist/bigger-picture.mjs",
+-			"require": "./dist/bigger-picture.cjs",
++			"import": {
++				"types": "./index.d.ts",
++				"default": "./dist/bigger-picture.mjs"
++			},
++			"require": {
++				"types": "./index.d.ts",
++				"default": "./dist/bigger-picture.cjs"
++			},
++			"svelte": {
++				"types": "./index.d.ts",
++				"default": "./src/bigger-picture.js"
++			},
+ 			"default": "./dist/bigger-picture.mjs",
+-			"svelte": "./src/bigger-picture.js",
+ 			"types": "./index.d.ts"
+ 		},
+-		"./src/bigger-picture.js": "./src/bigger-picture.js",
+-		"./svelte": "./src/bigger-picture.js",
+-		"./vanilla": "./dist/bigger-picture.mjs",
++		"./src/bigger-picture.js": {
++			"types": "./index.d.ts",
++			"default": "./src/bigger-picture.js"
++		},
++		"./svelte": {
++			"types": "./index.d.ts",
++			"default": "./src/bigger-picture.js"
++		},
++		"./vanilla": {
++			"types": "./index.d.ts",
++			"default": "./dist/bigger-picture.mjs"
++		},
+ 		"./dist/bigger-picture.css": "./dist/bigger-picture.css",
+ 		"./dist/bigger-picture.scss": "./dist/bigger-picture.scss",
+ 		"./css": "./dist/bigger-picture.css",
+ 		"./scss": "./dist/bigger-picture.scss"
+ 	},
+ 	"svelte": "./src/bigger-picture.js",
+-	"types": "index.d.ts",
++	"types": "./index.d.ts",
+ 	"typesVersions": {
+ 		"*": {
+ 			"vanilla": [
+-				"index.d.ts"
++				"./index.d.ts"
+ 			],
+ 			"svelte": [
+-				"index.d.ts"
++				"./index.d.ts"
+ 			]
+ 		}
+ 	},
