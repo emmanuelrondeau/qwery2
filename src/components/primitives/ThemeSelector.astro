@@ -51,8 +51,6 @@ import ThemeSelectorSvelte from "./ThemeSelector.svelte";
 
 		/** Update select menu UI, document theme, and local storage state. */
 		function onThemeChange(theme: Theme): void {
-			// @ts-expect-error - No clue why this errors, probably to do with how
-			//                    I implemented the types for this.
 			StarlightThemeProvider.updatePickers(theme);
 			document.documentElement.dataset.theme =
 				theme === "auto" ? getPreferredColorScheme() : theme;

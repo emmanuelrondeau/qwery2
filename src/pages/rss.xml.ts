@@ -3,7 +3,7 @@ export const prerender = false;
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
-export async function GET(context) {
+export async function GET(context: { site: string; }) {
 	const posts = await getCollection("posts");
 	return rss({
 		// `<title>` field in output xml
@@ -17,12 +17,12 @@ export async function GET(context) {
 		// Array of `<item>`s in output xml
 		// See "Generating items" section for examples using content collections and glob imports
 		items: posts
-			.filter((post) => !post.draft)
+			.filter((post) => !post.data.draft)
 			.map((post) => ({
 				title: post.data.title,
 				pubDate: post.data.created,
 				description: post.data.description,
-				customData: post.data.customData,
+				// customData: post.data.customData,
 				link: `/posts/${post.slug}/`,
 			})),
 		customData: `<language>en-us</language>`,
