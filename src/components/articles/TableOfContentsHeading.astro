@@ -24,7 +24,7 @@ const { heading, depth, "aria-current": ariaCurrent } = Astro.props;
 	{
 		heading.subheadings && heading.subheadings.length > 0 && (
 			<ul>
-				{heading.subheadings.map((subheading) => (
+				{heading.subheadings.map((subheading: any) => (
 					<Astro.self heading={subheading} depth={(depth ?? 1) + 1} />
 				))}
 			</ul>
