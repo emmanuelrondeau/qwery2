@@ -117,15 +117,20 @@ const authors = await Promise.all(authorsPromise);
 		</div>
 		<div class="flex flex-col justify-between lg:flex-row-reverse w-full">
 			<div
-				class="format dark:format-invert lg:sticky top-0 right-0 lg:min-w-96 lg:max-w-[28rem] h-fit lg:pt-8 lg:pl-12"
+				class="flex format dark:format-invert lg:sticky top-0 right-0 h-fit lg:pt-8 lg:pl-12 w-full"
 			>
-				<TableOfContents headings={headings} />
+				<div class="ml-auto lg:min-w-96 lg:max-w-[28rem]">
+					<TableOfContents headings={headings} />
+				</div>
 			</div>
 			<div class="block format dark:format-invert lg:format-lg mt-8">
 				{
 					post.data.draft && (
 						<Callout type="Warning" typeText="">
-							<strong>This is a draft post!</strong> It has yet to be finalized.
+							<p>
+								<strong>This is a draft post!</strong> It has yet to be
+								finalized.
+							</p>
 						</Callout>
 					)
 				}
