@@ -1,4 +1,5 @@
 ---
+import type { MarkdownHeading } from "astro";
 import { PAGE_TITLE_ID } from "../../constants";
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
 
@@ -6,8 +7,8 @@ import TableOfContentsHeading from "./TableOfContentsHeading.astro";
 const { headings } = Astro.props;
 const toc = buildToc(headings);
 
-function buildToc(headings) {
-	const toc = [];
+function buildToc(headings: MarkdownHeading[]) {
+	const toc: MarkdownHeading[] = [];
 	const parentHeadings = new Map();
 	headings.forEach((h) => {
 		const heading = { ...h, subheadings: [] };
@@ -24,11 +25,13 @@ function buildToc(headings) {
 ---
 
 <starlight-toc>
-	<nav class="toc pb-2 lg:max-h-[calc(100dvh-4rem)] outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50 rounded lg:overflow-y-auto lg:scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-thumb-rounded-full pr-4">
+	<nav
+		class="toc pb-2 lg:max-h-[calc(100dvh-4rem)] outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50 rounded lg:overflow-y-auto lg:scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-thumb-rounded-full pr-4"
+	>
 		<h2 class="!font-semibold !text-lg">Table of Contents</h2>
 		<div class="not-format relative">
 			<ul class="text-base">
-				<TableOfContentsHeading	
+				<TableOfContentsHeading
 					aria-current={true}
 					heading={{ slug: PAGE_TITLE_ID, text: "Overview" }}
 				/>
