@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  bigger-picture@1.1.17:
+    hash: ueaz4xbzcxqe5gbq63gnzekvde
+    path: patches/bigger-picture@1.1.17.patch
+
 importers:
 
   .:
@@ -52,7 +57,7 @@ importers:
         version: 0.8.4(prettier@3.3.1)(typescript@5.4.5)
       bigger-picture:
         specifier: ^1.1.17
-        version: 1.1.17
+        version: 1.1.17(patch_hash=ueaz4xbzcxqe5gbq63gnzekvde)
       embla-carousel:
         specifier: ^8.1.3
         version: 8.1.3
@@ -5015,7 +5020,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  bigger-picture@1.1.17: {}
+  bigger-picture@1.1.17(patch_hash=ueaz4xbzcxqe5gbq63gnzekvde): {}
 
   binary-extensions@2.3.0: {}
 
