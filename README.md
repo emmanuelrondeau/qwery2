@@ -74,7 +74,7 @@ The images in this repository are either:
 
 Any images taken from Unsplash or any third party belong to their respective owners. Unsplash images may be uncredited through the website's content itself. Otherwise, any images under the Creative Commons will have a caption with proper attribution.
 
-Any photos taken by us are licensed under [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) rules.
+Any photos taken or images created by us are licensed under [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) rules.
 
 If you're a copyright owner of any of the images hosted, please [create an issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues). We unfortunately don't have an email currently.
 
