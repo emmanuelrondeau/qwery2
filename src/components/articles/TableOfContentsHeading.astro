@@ -1,15 +1,20 @@
 ---
+import type { MarkdownHeading } from "astro";
+
 interface Props {
-	heading: any;
+	heading: MarkdownHeading & { subheadings?: MarkdownHeading[] };
 	depth?: number;
 	"aria-current"?: boolean;
 }
 
 // Copied mostly from https://kld.dev/building-table-of-contents/
-const { heading, depth, "aria-current": ariaCurrent } = Astro.props;
+const { heading, "aria-current": ariaCurrent } = Astro.props;
+const depth = Astro.props.depth ?? 1;
 ---
 
-<li class="list-none relative w-full h-full">
+<li
+	class={`${depth > 2 ? `hidden group-has-[[aria-current=true]]/item:block` : depth == 2 ? "group/item" : ""} list-none relative w-full h-full`}
+>
 	<a
 		href={"#" + heading.slug}
 		class="peer !no-underline hover:!underline block py-[.375rem] aria-current:text-gray-950 dark:aria-current:text-gray-50 hover:text-violet-700 dark:hover:text-violet-300"
@@ -24,15 +29,15 @@ const { heading, depth, "aria-current": ariaCurrent } = Astro.props;
 	{
 		heading.subheadings && heading.subheadings.length > 0 && (
 			<ul>
-				{heading.subheadings.map((subheading: any) => (
-					<Astro.self heading={subheading} depth={(depth ?? 1) + 1} />
-				))}
+				{heading.subheadings.map((subheading) => {
+					return <Astro.self heading={subheading} depth={depth + 1} />;
+				})}
 			</ul>
 		)
 	}
 </li>
 
-<style define:vars={{ depth: depth ?? 1 }}>
+<style define:vars={{ depth }}>
 	a {
 		margin-left: 1.75rem;
 		padding-left: calc(1.75rem * calc(var(--depth) - 1)); /* 28px */

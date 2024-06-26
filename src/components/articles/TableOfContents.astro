@@ -3,6 +3,10 @@ import type { MarkdownHeading } from "astro";
 import { PAGE_TITLE_ID } from "../../constants";
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
 
+interface Props {
+	headings: MarkdownHeading[];
+}
+
 // Copied from https://kld.dev/building-table-of-contents/
 const { headings } = Astro.props;
 const toc = buildToc(headings);
@@ -33,7 +37,7 @@ function buildToc(headings: MarkdownHeading[]) {
 			<ul class="text-base">
 				<TableOfContentsHeading
 					aria-current={true}
-					heading={{ slug: PAGE_TITLE_ID, text: "Overview" }}
+					heading={{ slug: PAGE_TITLE_ID, text: "Overview" } as MarkdownHeading}
 				/>
 				{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
 			</ul>
