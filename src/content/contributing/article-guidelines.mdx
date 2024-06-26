@@ -7,13 +7,16 @@ created: 2024-04-03
 
 ## Formatting
 
+- Do not start with an `h1` (aka. `# A header with only one # character`); We already got our top-level header as the frontmatter title.
 - Titles and subtitles: use Wikipedia with https://titlecaseconverter.com/
 - Use sentence case if the title is a sentence
 - Otherwise, refer to https://www.noslangues-ourlanguages.gc.ca/en/writing-tips-plus/index-eng
+- Don't make any headers deeper than an `h4` (aka. `#### No more than these amounts of #s`)
+  - If you for some reason *need* this, create an issue
 
 ## Images
 
-- If images are licensed, please put the license terms in a figcaption
+- If images are licensed, please put the license terms in a `<FigureCaption>` component
 - For screenshots, you usually want to zoom in to help with mobile screens or high DPI ones
 - If you don't know what this all means, ignore it. These are marginal improvements to image quality
   - Try and make sure fonts are antialiased as grayscale, and not subpixeled 
