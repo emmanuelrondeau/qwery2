@@ -241,6 +241,9 @@ const authors = await Promise.all(authorsPromise);
 </script>
 <style is:global>
 	html.bp-lock {
+		/** Needed to fix the TOC from disappearing upon "clicking" a picture
+		to enter a lightbox. This causes a non-scrollable horizontal scrollbar
+		to appear on Chromium, however. */
 		overflow-y: inherit;
 	}
 </style>
