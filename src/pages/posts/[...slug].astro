@@ -108,7 +108,7 @@ const authors = await Promise.all(authorsPromise);
 					<span class="text-center">
 						<PublishedOrUpdated
 							lastEdited={post.data.lastEdited}
-							{...post.data}
+							created={post.data.created}
 						/> •
 						<MinutesRead postId={post.id} />
 					</span>
