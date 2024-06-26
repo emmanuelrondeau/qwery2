@@ -25,6 +25,7 @@ export const adapter =
 // https://astro.build/config
 export default defineConfig({
 	site: "https://queerwinnipeg.ca",
+	prefetch: { prefetchAll: true },
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		rehypePlugins: [rehypeSlug, ...rehypeAutolink(), withToc, withTocExport],
