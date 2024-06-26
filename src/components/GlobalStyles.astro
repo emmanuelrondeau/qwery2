@@ -58,10 +58,6 @@
 		@apply rounded underline outline-none ring-violet-600 hover:no-underline focus-visible:ring-2 dark:ring-gray-50;
 	}
 
-	.format img:not(.emoji):not(.not-format) {
-		@apply flex items-center justify-center rounded-md object-cover shadow;
-	}
-
 	.format .callout :where(strong):not(:where([class~="not-format"] *)) {
 		color: revert;
 	}
