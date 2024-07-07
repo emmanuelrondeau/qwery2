@@ -1,10 +1,8 @@
 ---
-import { Picture } from "astro:assets";
 import { type CollectionEntry, getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/articles/ArticleCard.astro";
 import { TagEnum } from "../content/config";
-// import { Image } from "astro:assets";
 import StarGrid from "../assets/star-grid.svg?raw";
 
 const posts = await getCollection("posts");
@@ -24,7 +22,10 @@ const mostRecent = posts.sort(
 		class="mx-auto w-full max-w-screen-xl px-4 pt-24 -mt-8 format dark:format-invert lg:format-lg"
 	>
 		<section class="max-w-prose mt-4 mb-24 relative">
-			<span class="absolute -z-10 -top-11 -left-11 dark:opacity-30" aria-hidden="true">
+			<span
+				class="absolute -z-10 -top-11 -left-11 dark:opacity-30"
+				aria-hidden="true"
+			>
 				<Fragment set:html={StarGrid} />
 			</span>
 			<h1 class="!mb-[0.5em] !text-[2.25em]">Queer Winnipeg</h1>
@@ -39,12 +40,27 @@ const mostRecent = posts.sort(
 				<h2 class="!text-[1.75em]">Featured</h2>
 				<div class="flex flex-col lg:flex-row gap-x-8 gap-y-6">
 					<div class="lg:max-w-max lg:w-1/2">
-						<ArticleCard large postId="how-to-start-hrt-in-winnipeg.mdx" />
+						<ArticleCard
+							large
+							postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
+						/>
 					</div>
 					<div class="flex flex-col gap-6 lg:w-1/2">
 						{
 							posts
-								.filter((post) => !post.data.draft)
+								.filter((post) =>
+									[
+										"a-guide-to-financial-literacy-in-canada.mdx",
+										"how-to-start-hrt-in-winnipeg.mdx",
+										"how-to-take-the-bus-in-winnipeg.mdx",
+										"save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx",
+									].includes(post.id)
+								)
+								.sort(
+									(a, b) =>
+										(b.data.lastEdited ?? b.data.created).getTime() -
+										(a.data.lastEdited ?? a.data.created).getTime()
+								)
 								.map((post) => <ArticleCard postId={post.id} />)
 						}
 					</div>
