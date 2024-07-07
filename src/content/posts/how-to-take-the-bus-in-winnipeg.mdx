@@ -6,7 +6,7 @@ authors:
   - fio-cobbs
 tag: Transportation
 created: 2024-05-21
-lastEdited: 2024-06-22
+lastEdited: 2024-07-07
 cover: /src/assets/images/how-to-take-the-bus-in-winnipeg/how-to-take-the-bus-in-winnipeg.avif
 ---
 
@@ -14,6 +14,8 @@ import WinnipegTransitMap from "/src/components/articles/WinnipegTransitMap.astr
 
 import GoogleMaps1 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps1.webp";
 import GoogleMaps2 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps2.webp";
+import GoogleMaps3 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps3.webp";
+import GoogleMaps4 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps4.webp";
 import StNorbertBus from "/src/assets/images/how-to-take-the-bus-in-winnipeg/st-norbert-bus.webp";
 import BusTickets from "/src/assets/images/how-to-take-the-bus-in-winnipeg/bus-tickets.avif";
 import SplitLineBus from "/src/assets/images/how-to-take-the-bus-in-winnipeg/split-line-bus.avif";
@@ -61,8 +63,8 @@ To pay, walk to the front door of your bus. Upon entering, you'll see a fare box
 	<Image alt="Fare box" class="xs:max-w-sm" src={FareBox} />
 </figure>
 
-- **Cash:** There will be a little slot on the bottom right to insert coins. Pay in exact change, as the bus driver does not carry change. Otherwise, you'll overpay.
-  - **Paying cash costs more than bus tickets or a Peggo card!** If possible, use bus tickets or a Peggo card if you want to save some money.
+- **Change:** There will be a little slot on the bottom right to insert coins. Pay in exact change, as the bus driver does not carry change. Otherwise, you'll overpay.
+  - **Paying in change costs more than bus tickets or a Peggo card!** If possible, use bus tickets or a Peggo card if you want to save some money.
 - **Bus tickets:** There will be another slot on thet top right, used to accept bus tickets.
 - **Peggo card:** The fare box will have a rectangular scanner. Simply tap the scanner to pay, and you'll hear a beep confirming your payment.
 
@@ -97,6 +99,44 @@ Simply put your destination, press "Directions", enter your starting point, then
 The Winnipeg Transit app is not great. It may be worth downloading it anyway to refer to schedule times for bus stops. You can also use the [web app](https://app.winnipegtransit.com/).
 
 If you have an Apple device, it may be worth trying Apple Maps. From my limited experience, I've found it to be a worse experience.
+
+### Getting On the Right Bus
+
+All buses have a route number (or the BLUE identifier), along with a destination. You will likely need both of these pieces of information.
+
+Routes are usually formed through loops, and the bus may go back to the same place, but on the other side of the road. With the exception of BLUE buses, there are only two different destinations per route.
+
+<figure>
+	<Image
+		alt="Google Maps website"
+		src={GoogleMaps3}
+		class="shadow dark:shadow-none"
+	/>
+	<FigureCaption>
+		A bus on route 18, with the destination "Garden City Centre via Jefferson".
+	</FigureCaption>
+</figure>
+
+<figure>
+	<Image
+		alt="Google Maps website"
+		src={GoogleMaps4}
+		class="shadow dark:shadow-none"
+	/>
+	<FigureCaption>
+		A bus on route 18, with the different destination "Assiniboine".
+	</FigureCaption>
+</figure>
+
+**If you board a bus with the wrong route number or destination, you might go the wrong way!**
+
+Buses with the same route number, but different destination, can come at roughly the same time. Different stops for the same route, but a different destination, are usually roughly parallel to each other too.
+
+#### Tips & Tricks
+
+Make sure the bus you're waiting and/or getting on, is going the direction that Google Maps says to go to.
+
+Also, before getting on the bus, check _both_ the number and destination, to make sure you're going on the right bus.
 
 ### Getting On and Off the Bus
 
@@ -270,7 +310,7 @@ Functionally, as long as you're using a service such as Google Maps, these buses
 
 ### Split Lines
 
-You'll see some buses, but with a vertical line split down multiple of them. This means that you could take any one of these buses, to complete your route. These can be any color or type, but usually are branch buses.
+You'll see some buses, but with a vertical line split down multiple of them. This means that you could take any one of these buses, to complete your route.
 
 <figure>
 	<Image
@@ -283,6 +323,10 @@ You'll see some buses, but with a vertical line split down multiple of them. Thi
 		destination.
 	</FigureCaption>
 </figure>
+
+## More Info
+
+For more information on Winnipeg's transit system, including accessibility, lost and found, and travel training, check out the official government website for [Winnipeg Transit Info](https://info.winnipegtransit.com/).
 
 ## Conclusion
 
