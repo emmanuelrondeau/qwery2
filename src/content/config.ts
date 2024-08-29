@@ -14,6 +14,7 @@ const posts = defineCollection({
 	schema: ({ image }) =>
 		z.object({
 			draft: z.boolean().optional(),
+			containsReferralLinks: z.boolean().optional(),
 			title: z.string(),
 			description: z.string().optional(),
 			tag: TagEnum.default("Other"),
@@ -34,6 +35,8 @@ export const TagEnum = z.enum([
 	"Mutual Aid",
 	"Other",
 	"Politics",
+	"Privacy",
+	"Technology",
 	"Transportation",
 ]);
 export type TagEnum = z.infer<typeof TagEnum>;

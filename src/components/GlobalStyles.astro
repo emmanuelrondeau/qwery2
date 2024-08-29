@@ -21,27 +21,9 @@
 		@apply bg-violet-100 text-violet-950 dark:bg-gray-700 dark:bg-opacity-50 dark:text-violet-100;
 	}
 
-	/**
-	 * Manually added from Tailwind, to handle rehypeAutolink properly.
-	 * Hopefully can be removed at some point, when the string "sr-only"
-	 * shows up in our Astro code, presumably.
-	 * https://tailwindcss.com/docs/screen-readers
-	 */
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border-width: 0;
-	}
-
 	/* SkipLinks */
 	body .skip-links a {
-		@apply rounded bg-violet-200 dark:bg-gray-800 text-violet-900 dark:text-gray-100 outline-none ring-violet-900 focus-visible:ring-2 dark:ring-gray-50;
+		@apply rounded bg-violet-200 text-violet-900 outline-none ring-violet-900 focus-visible:ring-2 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-50;
 	}
 
 	body .skip-links a:focus-visible {
@@ -54,23 +36,15 @@
 	}
 
 	/* Article Formatting */
+	.format {
+		@apply format-code:font-normal format-table:tabular-nums format-thead:bg-violet-50 format-thead:bg-opacity-50 format-thead:dark:bg-gray-800;
+	}
+
 	.format a:not(.not-format) {
 		@apply rounded underline outline-none ring-violet-600 hover:no-underline focus-visible:ring-2 dark:ring-gray-50;
 	}
 
-	.format .callout :where(strong):not(:where([class~="not-format"] *)) {
-		color: revert;
-	}
-
-	.format .callout :where(a):not(:where([class~="not-format"] *)) {
-		color: revert;
-	}
-
-	.format :where(table):not(:where([class~="not-format"])) {
-		@apply tabular-nums;
-	}
-
-	.money-table table tbody {
+	.format .money-table table tbody {
 		@apply font-mono;
 	}
 
@@ -86,20 +60,55 @@
 		@apply my-0;
 	}
 
-	.format :where(table thead):not(:where([class~="not-format"])) {
-		@apply bg-violet-50 bg-opacity-50 dark:bg-gray-800;
+	.format .callout {
+		@apply rounded border-l-4 px-5 py-3 outline-none;
+
+		/* Replicate `format lg:format-lg` */
+		@apply my-[1.25em] lg:my-[1.3333333em];
 	}
 
-	.callout.callout-info :where(a):not(:where([class~="not-format"] *)),
-	.callout.callout-info :where(strong):not(:where([class~="not-format"] *)) {
+	.format .callout .callout-content {
+		@apply -my-[1.25em] lg:-my-[1.3333333em];
+	}
+
+	.format .callout :where(strong):not(:where([class~="not-format"] *)),
+	.format .callout :where(a):not(:where([class~="not-format"] *)) {
+		color: revert;
+	}
+
+	.format .callout.callout-info {
+		@apply border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900 dark:bg-opacity-15 dark:text-violet-300 dark:selection:bg-violet-800 dark:selection:bg-opacity-50 dark:selection:text-violet-300;
+	}
+
+	.format .callout.callout-warning {
+		@apply border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900 dark:bg-opacity-25 dark:text-yellow-400 dark:selection:bg-yellow-800 dark:selection:bg-opacity-50 dark:selection:text-yellow-300;
+	}
+
+	.format .callout.callout-caution {
+		@apply border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-900 dark:bg-opacity-25 dark:text-red-400 dark:selection:bg-red-900 dark:selection:bg-opacity-50 dark:selection:text-red-300;
+	}
+
+	.format .callout.callout-info :where(a):not(:where([class~="not-format"] *)),
+	.format
+		.callout.callout-info
+		:where(strong):not(:where([class~="not-format"] *)) {
 		@apply text-violet-800 dark:text-violet-300;
 	}
 
-	.callout.callout-warning :where(a):not(:where([class~="not-format"] *)) {
+	.format
+		.callout.callout-warning
+		:where(a):not(:where([class~="not-format"] *)) {
 		@apply text-yellow-800 dark:text-yellow-300;
 	}
-	.callout.callout-caution :where(a):not(:where([class~="not-format"] *)) {
-		@apply text-red-800 dark:text-yellow-300;
+
+	.format
+		.callout.callout-caution
+		:where(a):not(:where([class~="not-format"] *)) {
+		@apply text-red-800 dark:text-red-300;
+	}
+
+	.format .callout-title {
+		@apply font-bold;
 	}
 
 	.format > :first-child:is(.callout) {

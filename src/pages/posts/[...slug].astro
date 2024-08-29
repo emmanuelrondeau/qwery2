@@ -123,13 +123,25 @@ const authors = await Promise.all(authorsPromise);
 					<TableOfContents headings={headings} />
 				</div>
 			</div>
-			<div class="block format dark:format-invert lg:format-lg mt-8">
+			<div
+				class="block overflow-x-auto format dark:format-invert lg:format-lg mt-8"
+			>
 				{
 					post.data.draft && (
 						<Callout type="Warning" typeText="">
 							<p>
 								<strong>This is a draft post!</strong> It has yet to be
 								finalized.
+							</p>
+						</Callout>
+					)
+				}
+				{
+					post.data.containsReferralLinks && (
+						<Callout type="Info" typeText="This article contains affiliate links!">
+							<p>
+								We receive a commission if you sign up for certain services
+								linked below.
 							</p>
 						</Callout>
 					)
