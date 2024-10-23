@@ -2,7 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/articles/ArticleCard.astro";
-import { TagEnum } from "../content/config";
+// import { TagEnum } from "../content/config";
 import StarGrid from "../assets/star-grid.svg?raw";
 
 import RSSPromotion from "../components/RSSPromotion.astro";
@@ -13,9 +13,9 @@ type Props = {
 	entry: CollectionEntry<"posts">;
 };
 
-const mostRecent = posts.sort(
-	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
-)[0];
+// const mostRecent = posts.sort(
+// 	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
+// )[0];
 ---
 
 <BaseLayout seo={{ title: "Home" }}>

@@ -20,7 +20,7 @@ const AnchorLinkIcon = h(
 );
 
 const createSROnlyLabel = (text: string) => {
-	const node = h("span.sr-only", `Section titled ${escape(text)}`);
+	const node = h("span.sr-only", `Section titled ${encodeURIComponent(text)}`);
 	node.properties["is:raw"] = true;
 	return node;
 };

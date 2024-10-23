@@ -10,9 +10,9 @@ type Props = {
 	entry: CollectionEntry<"posts">;
 };
 
-const mostRecent = posts.sort(
-	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
-)[0];
+// const mostRecent = posts.sort(
+// 	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
+// )[0];
 ---
 
 <BaseLayout seo={{ title: "Articles" }}>
@@ -27,7 +27,7 @@ const mostRecent = posts.sort(
 				<ul class="list-none !p-0 !m-0 flex flex-col gap-6 lg:align-middle">
 					{
 						posts
-							// .filter((p) => !p.data.draft)
+							.filter((p) => !p.data.draft)
 							.map(async (post) => <ArticleCard postId={post.id} />)
 					}
 				</ul>
