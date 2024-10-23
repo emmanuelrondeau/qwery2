@@ -3,5 +3,28 @@
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
-	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "class:list"],
+	"tailwindCSS.classAttributes": [
+		"class",
+		"className",
+		"ngClass",
+		"class:list"
+	],
+	"cSpell.words": [
+		"astro",
+		"astrojs",
+		"benjc",
+		"bowser",
+		"bundlesize",
+		"callouts",
+		"embla",
+		"flowbite",
+		"hastscript",
+		"herob",
+		"lqip",
+		"mdast",
+		"queerwinnipeg",
+		"rehype",
+		"stefanprobst",
+		"tailwindcss"
+	],
 }
