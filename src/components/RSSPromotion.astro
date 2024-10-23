@@ -55,7 +55,6 @@ import RSSRings from "../assets/rss-rings.svg?raw";
 	const button = document.getElementById(
 		"enable-notifs"
 	) as HTMLButtonElement | null;
-	const listener = button?.addEventListener("click", onClick);
 
 	function onClick() {
 		if (!("Notification" in window)) {
