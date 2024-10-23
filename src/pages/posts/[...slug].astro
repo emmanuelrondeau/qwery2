@@ -72,20 +72,6 @@ const authors = await Promise.all(authorsPromise);
 				placeholder="blur"
 				emptySpaceFillBlur
 			/>
-			<!-- <div>
-				<Image
-					alt=""
-					class="absolute top-0 bottom-0"
-					src={post.data.cover}
-					loading="eager"
-					decoding="async"
-					formats={["avif", "webp", "png"]}
-					quality="high"
-					widths={[432, 720, 1080, post.data.cover.width]}
-					sizes=`(max-width: 720px) 432px, (max-width: 1600px) 720px, (max-width: 2560px) 1080px, ${post.data.cover.width}px`
-					transition:name=`cover-${post.slug}`
-				/>
-			</div> -->
 		</div>
 		<div class="format dark:format-invert lg:format-lg !max-w-full">
 			{
@@ -119,7 +105,7 @@ const authors = await Promise.all(authorsPromise);
 			<div
 				class="flex format dark:format-invert lg:sticky top-0 right-0 h-fit lg:pt-8 lg:pl-12 w-full"
 			>
-				<div class="ml-auto lg:min-w-96 lg:max-w-[28rem]">
+				<div class="lg:ml-auto lg:min-w-96 lg:max-w-[28rem]">
 					<TableOfContents headings={headings} />
 				</div>
 			</div>
@@ -138,7 +124,10 @@ const authors = await Promise.all(authorsPromise);
 				}
 				{
 					post.data.containsReferralLinks && (
-						<Callout type="Info" typeText="This article contains affiliate links!">
+						<Callout
+							type="Info"
+							typeText="This article contains affiliate links!"
+						>
 							<p>
 								We receive a commission if you sign up for certain services
 								linked below.
@@ -165,10 +154,10 @@ const authors = await Promise.all(authorsPromise);
 	);
 
 	for (const figure of figures) {
+		// Go through all the buttons to put the images as "items" for bp to group
 		const buttons = figure.getElementsByTagName("button");
+		const items: HTMLElement | NodeList | HTMLCollection | item[] = [];
 		for (const button of buttons) {
-			const items: HTMLElement | NodeList | HTMLCollection | item[] = [];
-
 			// Theoretically, there shouldn't be multiple images, but
 			// this should still catch cases like this.
 			const imgs = button.getElementsByTagName("img");
@@ -193,7 +182,10 @@ const authors = await Promise.all(authorsPromise);
 					element: img,
 				});
 			}
+		}
 
+		// Add the `bp.open` command containing all images in the group
+		for (const button of buttons) {
 			button.addEventListener("click", (event) => {
 				event.preventDefault();
 				bp.open({ items });

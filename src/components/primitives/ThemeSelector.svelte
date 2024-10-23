@@ -75,17 +75,13 @@
 		use:melt={$trigger}
 		aria-label="Open theme switcher"
 	>
-		<div
-			class="group-hover:scale-105 group-aria-expanded:scale-105 transition-transform duration-75"
-		>
-			<slot />
-		</div>
+		<slot />
 	</button>
 	{#if $open}
 		<div
 			class="z-40 flex flex-col rounded bg-gray-50 dark:bg-gray-800 p-2 shadow focus:!ring-0"
 			use:melt={$menu}
-			transition:fadeScale={{ duration: 75, baseScale: .9 }}
+			transition:fadeScale={{ duration: 75, baseScale: 0.9 }}
 		>
 			{#each options as item}
 				<div

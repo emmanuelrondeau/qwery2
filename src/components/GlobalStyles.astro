@@ -61,14 +61,16 @@
 	}
 
 	.format .callout {
-		@apply rounded border-l-4 px-5 py-3 outline-none;
-
-		/* Replicate `format lg:format-lg` */
-		@apply my-[1.25em] lg:my-[1.3333333em];
+		@apply rounded border-l-4 px-5 py-3 mb-8 outline-none;
 	}
 
 	.format .callout .callout-content {
-		@apply -my-[1.25em] lg:-my-[1.3333333em];
+		position: relative;
+		bottom: -0.1em;
+	}
+
+	.format .callout > .callout-content *:only-child {
+		@apply m-0;
 	}
 
 	.format .callout :where(strong):not(:where([class~="not-format"] *)),
@@ -109,10 +111,6 @@
 
 	.format .callout-title {
 		@apply font-bold;
-	}
-
-	.format > :first-child:is(.callout) {
-		@apply !m-0;
 	}
 
 	/* Rehype Autolink */

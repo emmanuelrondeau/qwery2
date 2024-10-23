@@ -32,7 +32,12 @@ const { size } = Astro.props;
 				author.profile ? (
 					<Image
 						alt=""
-						class={`not-format !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900 ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-7 h-7 xs:w-6 xs:h-6"}`}
+						class:list={[
+							"not-format !mt-0 !mb-0 object-cover rounded-full border-2 border-white dark:border-gray-900",
+							{ "w-12 h-12 lg:w-14 lg:h-14": size === "large" },
+							{ "w-7 h-7": size === "medium" },
+							{ "w-7 h-7 xs:w-6 xs:h-6": size === "small" },
+						]}
 						src={author.profile}
 						formats={["avif", "webp", "png"]}
 						quality="high"
@@ -40,11 +45,19 @@ const { size } = Astro.props;
 					/>
 				) : (
 					<div
-						class={`relative inline-flex items-center justify-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900 z-[1] ${size === "large" ? "w-12 h-12 lg:w-14 lg:h-14" : size == "medium" ? "w-7 h-7" : "w-7 h-7 xs:w-6 xs:h-6"}`}
+						class:list={[
+							"relative inline-flex items-center justify-center overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 border-2 border-white dark:border-gray-900 z-[1]",
+							{ "w-12 h-12 lg:w-14 lg:h-14": size === "large" },
+							{ "w-7 h-7": size === "medium" },
+							{ "w-7 h-7 xs:w-6 xs:h-6": size === "small" },
+						]}
 						aria-hidden={true}
 					>
 						<span
-							class={`${size !== "large" ? "text-[0.5rem]" : ""} mt-[0.25em] font-medium text-gray-600 dark:text-gray-300 select-none`}
+							class:list={[
+								"mt-[0.25em] font-medium text-gray-600 dark:text-gray-300 select-none",
+								{ "text-[0.5rem]": size !== "large" },
+							]}
 						>
 							{author.name
 								.split(" ")
@@ -60,7 +73,11 @@ const { size } = Astro.props;
 	{
 		size !== "large" && (
 			<p
-				class={`format dark:format-invert !m-0${size === "small" ? " leading-6 xs:leading-none xs:!text-sm" : " leading-8"}`}
+				class:list={[
+					"format dark:format-invert !m-0",
+					{ "leading-6 xs:leading-none xs:!text-sm": size === "small" },
+					{ "leading-8": size === "medium" },
+				]}
 			>
 				{authors.map((author) => author.name).join(", ")}
 			</p>

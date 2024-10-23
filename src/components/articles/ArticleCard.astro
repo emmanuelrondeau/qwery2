@@ -7,7 +7,7 @@ import ArticleAuthors from "./ArticleAuthors.astro";
 
 interface Props {
 	postId: string;
-	large?: boolean;
+	size?: "small" | "medium" | "large";
 }
 const { postId }: Props = Astro.props;
 const posts = await getCollection("posts");
@@ -15,23 +15,40 @@ const post = posts.find((post) => post.id === postId);
 
 if (!post) return;
 
-const { large } = Astro.props;
+let { size } = Astro.props;
+if (!size) size = "small";
 ---
 
 <li
-	class=`!p-0 !m-0 flex xs:items-center gap-4 ${!large ? "xs:flex-row flex-col" : "flex-col sm:flex-row lg:flex-col"}`
+	class:list={[
+		"!p-0 !m-0 flex xs:items-center gap-4",
+		{ "xs:flex-row flex-col": size === "small" },
+		{ "flex-col sm:flex-row lg:flex-col": size === "large" },
+	]}
 >
 	<a
 		href=`/posts/${post.slug}`
 		aria-hidden={true}
 		tabindex={-1}
-		class=`flex-shrink-0${large ? " sm:h-48 sm:w-auto lg:w-full lg:h-auto" : ""}`
+		class:list={[
+			{ "flex-shrink-0": size === "small" },
+			{ "sm:h-48 sm:w-auto lg:w-full lg:h-auto": size === "large" },
+		]}
 	>
-		<!-- formats={["avif", "webp"]} -->
 		<Image
 			aria-hidden={true}
 			alt=""
-			class=`not-format transition-transform !m-0 flex object-cover rounded items-center justify-center ${!large ? "sm:hover:scale-105 xs:w-48 xs:h-36 sm:h-auto aspect-video w-full" : "sm:hover:scale-[102%] w-full aspect-video sm:aspect-auto sm:h-48 sm:w-auto lg:w-full lg:h-auto lg:aspect-video"}`
+			class:list={[
+				"not-format transition-transform !m-0 flex object-cover rounded items-center justify-center",
+				{
+					"sm:hover:scale-105 xs:w-48 xs:h-36 sm:h-auto aspect-video w-full":
+						size === "small",
+				},
+				{
+					"sm:hover:scale-[102%] w-full aspect-video sm:aspect-auto sm:h-48 sm:w-auto lg:w-full lg:h-auto lg:aspect-video":
+						size === "large",
+				},
+			]}
 			src={post.data.cover}
 			loading="eager"
 			quality="high"
@@ -42,7 +59,7 @@ const { large } = Astro.props;
 		/>
 	</a>
 	{
-		!large ? (
+		size === "small" && (
 			<div class="my-auto !m-0 flex-1 min-w-0">
 				<a
 					href={`/posts/${post.slug}`}
@@ -61,7 +78,10 @@ const { large } = Astro.props;
 					<ArticleAuthors postId={post.id} size="small" />
 				</div>
 			</div>
-		) : (
+		)
+	}
+	{
+		size === "large" && (
 			<div class="flex flex-col gap-y-3 mr-auto">
 				<div class="format dark:format-invert">
 					<PublishedOrUpdated {...post.data} /> •{" "}
@@ -76,11 +96,9 @@ const { large } = Astro.props;
 						{post.data.title}
 					</h3>
 				</a>
-				{large && (
-					<p class="!m-0 max-w-prose">
-						{post.data.description ?? <i>No description found.</i>}
-					</p>
-				)}
+				<p class="!m-0 max-w-prose">
+					{post.data.description ?? <i>No description found.</i>}
+				</p>
 				<ArticleAuthors postId={post.id} size="medium" />
 			</div>
 		)

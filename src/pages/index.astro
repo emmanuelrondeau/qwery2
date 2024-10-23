@@ -5,6 +5,8 @@ import ArticleCard from "../components/articles/ArticleCard.astro";
 import { TagEnum } from "../content/config";
 import StarGrid from "../assets/star-grid.svg?raw";
 
+import RSSPromotion from "../components/RSSPromotion.astro";
+
 const posts = await getCollection("posts");
 
 type Props = {
@@ -41,7 +43,7 @@ const mostRecent = posts.sort(
 				<div class="flex flex-col lg:flex-row gap-x-8 gap-y-6">
 					<div class="lg:max-w-max lg:w-1/2">
 						<ArticleCard
-							large
+							size="large"
 							postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
 						/>
 					</div>
@@ -66,21 +68,7 @@ const mostRecent = posts.sort(
 					</div>
 				</div>
 			</section>
-
-			<!-- <div
-				class="w-full md:flex-shrink-0 md:w-[40%] p-8 rounded-md border-gray-300 border"
-			>
-				<Image
-					src={mostRecent.data.cover}
-					alt={mostRecent.data.coverAlt ?? ""}
-					class="!m-0 flex aspect-video h-full object-cover rounded-md items-center justify-center shadow"
-				/>
-				<h2 class="!text-xl">
-					Want to get notified when new articles come out?
-				</h2>
-				<p>We have an RSS feed!</p>
-			</div> -->
-
+			<RSSPromotion />
 			<!-- <div class="flex flex-col gap-y-8">
 				{
 					TagEnum.options.map((value) => {
@@ -90,7 +78,7 @@ const mostRecent = posts.sort(
 							return;
 						return (
 							<div>
-								<h2 class="!text-2xl">{value}</h2>
+								<h2 class="!text-[1.75em]">{value}</h2>
 								<ul class="list-none !p-0 !m-0 flex flex-col gap-6 lg:align-middle">
 									{posts
 										.filter(

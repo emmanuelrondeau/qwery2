@@ -1,25 +1,27 @@
 ---
-import ImagePrimative from "../primitives/Image.astro";
+import Picture from "astro/components/Picture.astro";
+import type { ImageMetadata, ImageTransform } from "astro";
 
-interface Props {
-	alt: string;
-	class?: string | null;
+type Props = {
 	src: ImageMetadata;
-	quality?: "low" | "mid" | "high" | "max";
-	decoding?: "async" | "auto" | "sync";
-	loading?: "lazy" | "eager";
+	alt: string;
+	deviceSizes?: number[];
 	placeholder?: "blur" | "empty";
-	style?: string | astroHTML.JSX.CSSProperties | null | undefined;
-}
+	formats?: ("avif" | "webp" | "png" | "jpg")[];
+	emptySpaceFillBlur?: boolean;
+} & Omit<ImageTransform, "src"> &
+	Omit<astroHTML.JSX.ImgHTMLAttributes, "src" | "width" | "height">;
+
 const {
 	src,
 	alt,
+	title,
 	class: className,
 	quality,
-	decoding,
 	loading,
-	placeholder,
+	decoding,
 	style,
+	...rest
 } = Astro.props;
 ---
 
@@ -28,17 +30,16 @@ const {
 	class="flex mx-auto items-center justify-center rounded-md ring-offset-4 ring-offset-white dark:ring-offset-gray-900 outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50 hover:cursor-pointer"
 	aria-label="Expand image"
 >
-	<ImagePrimative
-		alt={alt}
-		class={`flex items-center justify-center object-cover rounded-md mx-auto !my-0 h-auto w-auto ${className ?? ""}`}
+	<Picture
 		src={src}
-		formats={["avif", "webp"]}
-		widths={[240, 616, 730, src.width]}
-		sizes={`(max-width: 360px) 240px, (max-width: 720px) 616px, (max-width: 1600px) 730px, ${src.width}px`}
+		alt={alt}
+		title={title}
+		class={`flex items-center justify-center object-cover rounded-md mx-auto !my-0 h-auto w-auto${className ? ` ${className}` : ""}`}
+		quality={quality}
 		loading={loading}
 		decoding={decoding}
-		quality={quality ?? "high"}
-		placeholder={placeholder}
 		style={style}
+		formats={["avif", "webp"]}
+		{...rest}
 	/>
 </button>
