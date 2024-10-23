@@ -1,0 +1,64 @@
+---
+draft: true
+title: What is RSS?
+description: Know tips and tricks on how to not have your personal information leaked.
+authors:
+  - fio-cobbs
+tag: Privacy
+created: 2024-09-18
+lastEdited: 2024-09-18
+cover: /src/assets/images/how-to-change-your-legal-name-or-sex-in-manitoba/how-to-change-your-legal-name-or-sex-in-manitoba.png
+---
+
+import FeedScreenshot from "/src/assets/images/what-is-rss/feeds.png";
+import FlowScreenshot from "/src/assets/images/what-is-rss/flow.png";
+import ReadScreenshot from "/src/assets/images/what-is-rss/read.png";
+
+import NNWFeedScreenshot from "/src/assets/images/what-is-rss/nnw-feeds.webp";
+import NNWUnreadScreenshot from "/src/assets/images/what-is-rss/nnw-unread.webp";
+import NNWReadScreenshot from "/src/assets/images/what-is-rss/nnw-read.webp";
+
+You might've seen that we use <abbr>RSS</abbr>, but what is it exactly? How do you use it?
+
+**<abbr>RSS</abbr>** (<dfn>RDF Site Summary</dfn> or <dfn>Really Simple Syndication)</dfn> is a web feed standard. You can subscribe to an <abbr>RSS</abbr> feed, and it'll regularly update with new articles, posts, or updates. It is commonly used by blogs, news websites, and podcasts.
+
+## What's in a feed?
+
+RSS feeds typically contain a summary of the content, along with a link to the full post. This lets users more easily sort through lots of content, see what catches their eye, and go to the post if they're interested.
+
+## Benefit of using <abbr>RSS</abbr>
+
+With RSS, **you aren't required give an email to a third-party entity.** A mailing list oftentimes gets processed by a corporation, like Mailchimp or Sendgrid. They may mishandle your data, and/or experience a data breach.
+
+In order for <abbr>RSS</abbr> to give you updates, a reader just needs to visit a URL on the website (like [queerwinnipeg.ca/rss.xml](https://queerwinnipeg.ca/rss.xml)). It'll read its contents, and then display it in a friendly manner. The only data you give is whatever data you give when visiting a website. Pretty private!
+
+> [!info]
+> The only real privacy risk to using RSS feeds, is that your <abbr>DNS</abbr> (<dfn>Domain Name System</dfn>) server is leaking to your internet service provider what websites you're visiting (ie. this site).
+
+If you do want the convenience of having your RSS feed in your email, there are third party services that you can use to have your feed sent straight to your inbox.
+
+## <abbr>RSS</abbr> Readers
+
+Using [Thunderbird](https://www.thunderbird.net/en-US/) or [Betterbird](https://www.betterbird.eu/) on your desktop or laptop? Not only are they email clients, but [also RSS readers!](https://blog.thunderbird.net/2022/05/thunderbird-rss-feeds-guide-favorite-content-to-the-inbox/)
+
+On Android, you may want to check out [Read You](https://github.com/Ashinch/ReadYou). It's an free and open source RSS reader following the Material You design language.
+
+<figure>
+	<div class="side-by-side-images">
+		<Image src={FeedScreenshot} alt="" />
+		<Image src={FlowScreenshot} alt="" />
+		<Image src={ReadScreenshot} alt="" />
+	</div>
+	<figcaption>Various screenshots of Read You, from the Read You GitHub page</figcaption>
+</figure>
+
+For users on macOS and/or iOS, [NetNewsWire](https://netnewswire.com/) is a free and open source <abbr>RSS</abbr> reader. Its source code can be found on [GitHub](https://github.com/Ranchero-Software/NetNewsWire).
+
+<figure>
+	<div class="side-by-side-images">
+		<Image src={NNWFeedScreenshot} alt="" />
+		<Image src={NNWUnreadScreenshot} alt="" />
+		<Image src={NNWReadScreenshot} alt="" />
+	</div>
+	<figcaption>Various screenshots of NetNewsWire, from the Apple Store page</figcaption>
+</figure>

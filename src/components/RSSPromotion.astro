@@ -1,0 +1,154 @@
+---
+import Button from "../components/primitives/Button.astro";
+import Link from "../components/primitives/Link.astro";
+
+import RSSFeed from "../assets/icons/RssFeed.astro";
+import RssFeedReflection from "../assets/icons/RssFeedReflection.astro";
+import RSSRings from "../assets/rss-rings.svg?raw";
+---
+
+<!-- Presumes that you already have `format` styling -->
+<div
+	class="flex flex-col-reverse sm:flex-row bg-violet-50 dark:bg-violet-800 dark:bg-opacity-10 w-full rounded-md"
+>
+	<div
+		class="flex flex-col gap-y-3 justify-center my-auto p-6 sm:p-10 sm:h-auto sm:w-1/2"
+	>
+		<h2 class="!text-xl !m-0">
+			Want to get notified when new articles come out?
+		</h2>
+		<p class="!m-0">
+			We currently don't have an email newsletter, but we do have in-browser
+			notifications and an <Link
+				href="/rss.xml"
+				class="text-violet-800 dark:text-violet-300 !m-0">RSS feed!</Link
+			>
+		</p>
+		<div class="flex mt-[.2em] not-format">
+			<Button
+				id="enable-notifs"
+				type="primary"
+				class="block not-format"
+				slotClass="px-1">Enable notifications</Button
+			>
+		</div>
+	</div>
+	<div
+		class="relative bg-gradient-to-b from-violet-100 to-violet-200 dark:from-[#4d1d9557] dark:to-[#5a21b619] fill-violet-600 dark:fill-violet-400 sm:h-auto sm:w-1/2 overflow-clip"
+		style="clip-path: view-box;"
+	>
+		<div class="absolute inset-0 flex items-center justify-center">
+			<RSSFeed width={80} class="absolute" />
+			<div class="relative -bottom-20 -scale-y-100">
+				<RssFeedReflection width={80} gradientColor="#C4B5FD" />
+			</div>
+		</div>
+		<div class="absolute inset-0 -translate-x-1/2 -translate-y-1/2">
+			<Fragment set:html={RSSRings} />
+		</div>
+	</div>
+</div>
+
+<script>
+	import Bowser from "bowser";
+
+	const button = document.getElementById(
+		"enable-notifs"
+	) as HTMLButtonElement | null;
+	const listener = button?.addEventListener("click", onClick);
+
+	function onClick() {
+		if (!("Notification" in window)) {
+			alert("This browser does not support desktop notification");
+			return;
+		}
+
+		modifyMessage();
+		button?.removeEventListener("click", onClick);
+
+		if (Notification.permission === "granted") {
+			new Notification("Notifications has already been enabled!", {
+				icon: "favicon.svg",
+				body: "You probably shouldn't be seeing this message, though.",
+			});
+		} else if (Notification.permission !== "denied") {
+			Notification.requestPermission().then((permission) => {
+				if (permission === "granted")
+					new Notification("Notifications enabled!", {
+						icon: "favicon.svg",
+						body: "Thank you for subscribing to our articles.",
+					});
+			});
+		}
+	}
+
+	function cloneAttributes(target: HTMLBaseElement, source: HTMLButtonElement) {
+		[...source.attributes].forEach((attr) => {
+			target.setAttribute(attr.nodeName, attr.nodeValue ?? "");
+		});
+	}
+
+	function modifyMessage() {
+		const h2 = button?.parentElement?.parentElement
+			?.getElementsByTagName("h2")
+			.item(0);
+		const p = button?.parentElement?.parentElement
+			?.getElementsByTagName("p")
+			.item(0);
+		if (!(h2 && p && button && Notification.permission === "granted")) return;
+
+		h2.setHTMLUnsafe("You enabled notifications!");
+		p.setHTMLUnsafe(
+			`To stop being notified on new articles, you'll need to revoke notification permissions in your browser or operating system.`
+		);
+
+		// Clones the button into an anchor
+		const anchor = document.createElement("a");
+		anchor.innerHTML = button.innerHTML;
+		cloneAttributes(anchor, button);
+
+		// Then set the proper attributes
+		const browser = Bowser.getParser(window.navigator.userAgent);
+		let href = "";
+		let label = "";
+		switch (browser.getBrowserName(true)) {
+			case "firefox":
+				href =
+					"https://support.mozilla.org/en-US/kb/push-notifications-firefox#w_upgraded-notifications";
+				label = "Firefox notifications";
+				break;
+			case "safari":
+				if (browser.getPlatformType(true) == "desktop") {
+					href = "https://support.apple.com/en-ca/guide/safari/sfri40734/mac";
+					label = "Safari notifications";
+				} else {
+					href =
+						"https://support.apple.com/en-ca/guide/iphone/iph7c3d96bab/ios";
+					label = "iPhone notifications";
+				}
+				break;
+			default:
+				if (browser.getOSName(true) == "ios") {
+					href =
+						"https://support.google.com/chrome/answer/3220216?hl=en&co=GENIE.Platform%3DiOS&oco=0";
+				} else if (browser.getPlatformType(true) == "mobile") {
+					href =
+						"https://support.google.com/chrome/answer/3220216?hl=en&co=GENIE.Platform%3DAndroid&oco=0";
+				} else {
+					href =
+						"https://support.google.com/chrome/answer/3220216?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Cblock-pop-ups-from-a-site";
+				}
+				label = "Chrome notifications";
+				break;
+		}
+		anchor.setAttribute("href", href);
+		anchor.setAttribute("target", "_blank");
+		anchor.firstElementChild?.setHTMLUnsafe(label);
+
+		// Cleanup
+		button.removeEventListener("click", onClick);
+		button.parentNode?.replaceChild(anchor, button);
+	}
+
+	modifyMessage();
+</script>

@@ -124,13 +124,13 @@ If the image is under the Creative Commons and you're not the copyright owner, g
 		alt="The St. Norbert Bus"
 		src={StNorbertBus}
 	/>
-	<FigureCaption>
+	<figcaption>
 		{/* prettier-ignore-start */}
 
     	Picture by [Justin Rombough](https://www.flickr.com/photos/bpomanitoba) on [Flicker](https://www.flickr.com/photos/bpomanitoba/50368893052/in/photostream/), licensed under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/).
 
     	{/* prettier-ignore-end */}
-    </FigureCaption>
+    </figcaption>
 
 </figure>
 ```

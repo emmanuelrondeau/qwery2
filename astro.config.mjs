@@ -6,11 +6,12 @@ import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
-import { rehypeAutolink } from "./plugins/rehype-autolink";
-import { remarkReadingTime } from "./plugins/remark-reading-time.mjs";
-import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
-import rehypeSlug from "rehype-slug";
+import rehypeAutolink from "./plugins/rehype-autolink";
 import rehypeCallouts from "rehype-callouts";
+import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
+import rehypeFigCaption from "./plugins/rehype-figcaption";
+import remarkReadingTime from "./plugins/remark-reading-time";
+import rehypeSlug from "rehype-slug";
 
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
@@ -37,11 +38,17 @@ export default defineConfig({
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		rehypePlugins: [
-			rehypeSlug,
-			...rehypeAutolink(),
-			withToc,
-			withTocExport,
-			// [rehypeWrap, { selector: "table", wrapper: "div.overflow-x-auto" }],
+			[
+				rehypeCallouts,
+				{
+					callouts: {
+						info: { title: "Info:" },
+						warning: { title: "Warning:" },
+						caution: { title: "Caution:" },
+					},
+					showIndicator: false,
+				},
+			],
 			[
 				rehypeEnhancedTables,
 				{
@@ -58,17 +65,11 @@ export default defineConfig({
 					},
 				},
 			],
-			[
-				rehypeCallouts,
-				{
-					callouts: {
-						info: { title: "Info" },
-						warning: { title: "Warning" },
-						caution: { title: "Caution" },
-					},
-					showIndicator: false,
-				},
-			],
+			rehypeFigCaption,
+			rehypeSlug,
+			...rehypeAutolink(),
+			withToc,
+			withTocExport,
 		],
 	},
 	integrations: [
@@ -77,17 +78,16 @@ export default defineConfig({
 			imports: [
 				"/src/components/primitives/Callout.astro",
 				"/src/components/articles/Image.astro",
-				"/src/components/articles/FigureCaption.astro",
 			],
 		}),
 		mdx(),
 		svelte(),
 		tailwind(),
 	],
-	// vite: {
-	// 	build: { sourcemap: "hidden" },
-	// 	plugins: [bundlesize({ allowFail: true })],
-	// },
+	vite: {
+		build: { sourcemap: "hidden" },
+		plugins: [bundlesize({ allowFail: true })],
+	},
 	output: output,
 	adapter: netlify(),
 });

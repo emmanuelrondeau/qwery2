@@ -21,7 +21,9 @@ const { type, typeText } = Astro.props;
 >
 	{
 		typeText !== "" && (
-			<div class="callout-title">{typeText !== undefined ? typeText : `${type}: `}</div>
+			<div class="callout-title">
+				{typeText !== undefined ? typeText : `${type}: `}
+			</div>
 		)
 	}
 	<div class="callout-content">
