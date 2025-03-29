@@ -1,193 +1,232 @@
 <style is:global>
-	/* Twemoji */
-	img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-		pointer-events: none;
+	@import "tailwindcss";
+
+	@plugin "@tailwindcss/typography" {
+		/*
+		For some reason, Prettier turns "className" into "classname", which
+		unsurprisingly breaks our CSS. Because of this, the prettier-ignore is
+		needed. The "format" name is a remnant of migration	from flowbite-typography.
+		*/
+
+		/* prettier-ignore */
+		className: format;
+	}
+	@plugin 'tailwind-scrollbar' {
+		nocompatible: true;
 	}
 
-	footer img.emoji {
-		vertical-align: -0.275em !important;
+	@theme {
+		--breakpoint-xs: 475px; /* Unsure where this came from */
+
+		--font-josefin-sans:
+			"Josefin Sans", "ui-sans-serif", "system-ui", "sans-serif",
+			"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+			"Noto Color Emoji";
+		--font-mono:
+			"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
+			"Liberation Mono", "Courier New", "monospace";
 	}
 
-	::selection {
-		@apply bg-violet-100 text-violet-950 dark:bg-gray-700 dark:bg-opacity-50 dark:text-violet-100;
+	@custom-variant aria-current (&[aria-current="true"]);
+	@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+	@layer base {
+		/* Twemoji */
+		img.emoji {
+			display: inline !important;
+			border: none !important;
+			box-shadow: none !important;
+			height: 1em !important;
+			width: 1em !important;
+			margin: 0 0.07em !important;
+			vertical-align: -0.1em !important;
+			background: none !important;
+			padding: 0 !important;
+			pointer-events: none;
+		}
+
+		footer img.emoji {
+			vertical-align: -0.275em !important;
+		}
+
+		::selection {
+			@apply bg-violet-100 text-violet-950 dark:bg-gray-700/50 dark:text-violet-100;
+		}
+
+		/* SkipLink from accessible-astro-components */
+		body .skip-link a {
+			@apply rounded bg-violet-200 text-violet-900 ring-violet-900 transition-none outline-none focus-visible:ring-2 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-50;
+		}
+
+		body .skip-link a:focus-visible {
+			@apply top-1 left-1;
+			outline-offset: 2px;
+		}
+
+		body main#main-content {
+			@apply outline-none;
+		}
+
+		/* Leaflet Map */
+		.leaflet-pane {
+			z-index: 10 !important;
+		}
+
+		.leaflet-top,
+		.leaflet-bottom {
+			z-index: 30 !important;
+		}
+
+		.leaflet-control {
+			z-index: 20 !important;
+		}
+
+		.leaflet-container {
+			z-index: 30 !important;
+		}
 	}
 
-	/* SkipLinks */
-	body .skip-links a {
-		@apply rounded bg-violet-200 text-violet-900 outline-none ring-violet-900 focus-visible:ring-2 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-50;
-	}
+	@layer components {
+		/* Article Formatting */
+		.format {
+			@apply format-code:font-normal format-table:tabular-nums format-thead:bg-violet-50/50 format-thead:dark:bg-gray-800;
+			/* @apply format-headings:font-bold; */
+		}
 
-	body .skip-links a:focus-visible {
-		@apply left-1 top-1;
-		outline-offset: 2px;
-	}
+		.format a:not(.not-format) {
+			@apply rounded underline ring-violet-600 outline-none hover:no-underline focus-visible:ring-2 dark:ring-gray-50;
+		}
 
-	body main#main-content {
-		@apply outline-none;
-	}
+		.format .money-table table tbody {
+			@apply font-mono;
+		}
 
-	/* Article Formatting */
-	.format {
-		@apply format-code:font-normal format-table:tabular-nums format-thead:bg-violet-50 format-thead:bg-opacity-50 format-thead:dark:bg-gray-800;
-	}
+		.format figure > div.side-by-side-images {
+			@apply mx-auto flex justify-center gap-x-4;
+		}
 
-	.format a:not(.not-format) {
-		@apply rounded underline outline-none ring-violet-600 hover:no-underline focus-visible:ring-2 dark:ring-gray-50;
-	}
+		.format figure > div.side-by-side-images > * {
+			@apply w-1/2;
+		}
 
-	.format .money-table table tbody {
-		@apply font-mono;
-	}
+		.format figure > div.side-by-side-images picture img {
+			@apply my-0;
+		}
 
-	.format figure > div.side-by-side-images {
-		@apply mx-auto flex justify-center gap-x-4;
-	}
+		.format .callout {
+			@apply mb-8 rounded border-l-4 px-5 py-3 outline-none;
+		}
 
-	.format figure > div.side-by-side-images > * {
-		@apply w-1/2;
-	}
+		.format .callout .callout-content {
+			position: relative;
+			bottom: -0.1em;
+		}
 
-	.format figure > div.side-by-side-images picture img {
-		@apply my-0;
-	}
+		.format .callout > .callout-content *:only-child {
+			@apply m-0;
+		}
 
-	.format .callout {
-		@apply rounded border-l-4 px-5 py-3 mb-8 outline-none;
-	}
+		.format .callout :where(strong):not(:where([class~="not-format"] *)),
+		.format .callout :where(a):not(:where([class~="not-format"] *)) {
+			color: revert;
+		}
 
-	.format .callout .callout-content {
-		position: relative;
-		bottom: -0.1em;
-	}
+		.format .callout.callout-info {
+			@apply border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:text-violet-300 dark:selection:bg-violet-800/50 dark:selection:text-violet-300;
+		}
 
-	.format .callout > .callout-content *:only-child {
-		@apply m-0;
-	}
+		.format .callout.callout-warning {
+			@apply border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:text-yellow-400 dark:selection:bg-yellow-800/50 dark:selection:text-yellow-300;
+		}
 
-	.format .callout :where(strong):not(:where([class~="not-format"] *)),
-	.format .callout :where(a):not(:where([class~="not-format"] *)) {
-		color: revert;
-	}
+		.format .callout.callout-caution {
+			@apply border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:text-red-400 dark:selection:bg-red-900/50 dark:selection:text-red-300;
+		}
 
-	.format .callout.callout-info {
-		@apply border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900 dark:bg-opacity-15 dark:text-violet-300 dark:selection:bg-violet-800 dark:selection:bg-opacity-50 dark:selection:text-violet-300;
-	}
+		.format
+			.callout.callout-info
+			:where(a):not(:where([class~="not-format"] *)),
+		.format
+			.callout.callout-info
+			:where(strong):not(:where([class~="not-format"] *)) {
+			@apply text-violet-800 dark:text-violet-300;
+		}
 
-	.format .callout.callout-warning {
-		@apply border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900 dark:bg-opacity-25 dark:text-yellow-400 dark:selection:bg-yellow-800 dark:selection:bg-opacity-50 dark:selection:text-yellow-300;
-	}
+		.format
+			.callout.callout-warning
+			:where(a):not(:where([class~="not-format"] *)) {
+			@apply text-yellow-800 dark:text-yellow-300;
+		}
 
-	.format .callout.callout-caution {
-		@apply border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-900 dark:bg-opacity-25 dark:text-red-400 dark:selection:bg-red-900 dark:selection:bg-opacity-50 dark:selection:text-red-300;
-	}
+		.format
+			.callout.callout-caution
+			:where(a):not(:where([class~="not-format"] *)) {
+			@apply text-red-800 dark:text-red-300;
+		}
 
-	.format .callout.callout-info :where(a):not(:where([class~="not-format"] *)),
-	.format
-		.callout.callout-info
-		:where(strong):not(:where([class~="not-format"] *)) {
-		@apply text-violet-800 dark:text-violet-300;
-	}
+		.format .callout-title {
+			@apply font-bold;
+		}
 
-	.format
-		.callout.callout-warning
-		:where(a):not(:where([class~="not-format"] *)) {
-		@apply text-yellow-800 dark:text-yellow-300;
-	}
+		/* Rehype Autolink */
+		.format .heading-wrapper {
+			@apply relative mb-[1em] flex items-center gap-2;
+		}
 
-	.format
-		.callout.callout-caution
-		:where(a):not(:where([class~="not-format"] *)) {
-		@apply text-red-800 dark:text-red-300;
-	}
-
-	.format .callout-title {
-		@apply font-bold;
-	}
-
-	/* Rehype Autolink */
-	.format .heading-wrapper {
-		@apply relative mb-[1em] flex items-center gap-2;
-	}
-
-	.format
-		.heading-wrapper
-		:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
-		@apply mb-0;
-	}
-
-	.format .heading-wrapper a {
-		@apply absolute left-0 -translate-x-full text-violet-300 no-underline opacity-0 dark:text-violet-400;
-		transition-property: filter, opacity, color, background-color, border-color,
-			text-decoration-color, fill, stroke;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		transition-duration: 150ms;
-	}
-
-	.format .heading-wrapper:hover a {
-		@apply opacity-100;
-	}
-	.format .heading-wrapper:hover a:hover {
-		@apply text-violet-300 saturate-[0.75];
-	}
-	.format .heading-wrapper.level-h2 a {
-		font-size: 1.5em;
-	}
-	.format .heading-wrapper.level-h3 a {
-		font-size: 1.25em;
-	}
-	.format .heading-wrapper a {
-		margin-bottom: 0.125em;
-		width: 1em;
-	}
-
-	@media screen(lg) {
-		.lg\:format-lg
+		.format
 			.heading-wrapper
 			:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
 			@apply mb-0;
 		}
-		.lg\:format-lg .heading-wrapper a {
+
+		.format .heading-wrapper a {
+			@apply absolute left-0 -translate-x-full text-violet-300 no-underline opacity-0 dark:text-violet-400;
+			transition-property:
+				filter, opacity, color, background-color, border-color,
+				text-decoration-color, fill, stroke;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			transition-duration: 150ms;
+		}
+
+		.format .heading-wrapper:hover a {
+			@apply opacity-100;
+		}
+		.format .heading-wrapper:hover a:hover {
+			@apply text-violet-300 saturate-[0.75];
+		}
+		.format .heading-wrapper.level-h2 a {
+			font-size: 1.5em;
+		}
+		.format .heading-wrapper.level-h3 a {
+			font-size: 1.25em;
+		}
+		.format .heading-wrapper a {
+			margin-bottom: 0.125em;
 			width: 1em;
 		}
-		.lg\:format-lg .heading-wrapper.level-h2 a {
-			font-size: 2em;
-			/* margin-bottom: 0.5em; */
+
+		@media screen(lg) {
+			.lg\:format-lg
+				.heading-wrapper
+				:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
+				@apply mb-0;
+			}
+			.lg\:format-lg .heading-wrapper a {
+				width: 1em;
+			}
+			.lg\:format-lg .heading-wrapper.level-h2 a {
+				font-size: 2em;
+				/* margin-bottom: 0.5em; */
+			}
+			.lg\:format-lg .heading-wrapper.level-h3 a {
+				font-size: 1.3333333em;
+				/* margin-bottom: 0.25em; */
+			}
+
+			.lg\:format-lg .heading-wrapper.level-h4 a {
+				font-size: 1em;
+				/* margin-bottom: 0.125em; */
+			}
 		}
-		.lg\:format-lg .heading-wrapper.level-h3 a {
-			font-size: 1.3333333em;
-			/* margin-bottom: 0.25em; */
-		}
-
-		.lg\:format-lg .heading-wrapper.level-h4 a {
-			font-size: 1em;
-			/* margin-bottom: 0.125em; */
-		}
-	}
-
-	/* Leaflet Map */
-	.leaflet-pane {
-		z-index: 10 !important;
-	}
-
-	.leaflet-top,
-	.leaflet-bottom {
-		z-index: 30 !important;
-	}
-
-	.leaflet-control {
-		z-index: 20 !important;
-	}
-
-	.leaflet-container {
-		z-index: 30 !important;
 	}
 </style>
