@@ -1,5 +1,7 @@
 ---
-import { GoogleFontsOptimizer } from "@herob191/astro-google-fonts-optimizer";
+import "@fontsource-variable/josefin-sans";
+import josefinSansWoff2 from  "@fontsource-variable/josefin-sans/files/josefin-sans-latin-wght-normal.woff2";
+
 import GlobalStyles from "../components/GlobalStyles.astro";
 import { SEO, type Props as SEOProps } from "astro-seo";
 import ThemeProvider from "../components/primitives/ThemeProvider.astro";
@@ -47,13 +49,10 @@ const newSeoProp: SEOProps = {
 
 <head>
 	<meta charset="UTF-8" />
-	<GoogleFontsOptimizer
-		url="https://fonts.bunny.net/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-		preconnectUrl="https://fonts.bunny.net"
-	/>
 	<SEO {...newSeoProp} />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
+  <link rel="preload" as="font" type="font/woff2" href={josefinSansWoff2} crossorigin="anonymous" />
 	<link
 		rel="alternate"
 		type="application/rss+xml"

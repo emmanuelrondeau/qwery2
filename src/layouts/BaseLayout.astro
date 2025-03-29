@@ -1,7 +1,7 @@
 ---
-import Navbar from "../components/primitives/Navbar.astro";
-import Footer from "../components/primitives/Footer.astro";
 import Head from "./Head.astro";
+import Footer from "../components/primitives/Footer.astro";
+import Navbar from "../components/primitives/Navbar.astro";
 import { type Props as SEOProps } from "astro-seo";
 import { SkipLink } from "accessible-astro-components";
 
@@ -16,7 +16,7 @@ const { seo } = Astro.props;
 <html lang="en" class="scroll-p-4">
 	<Head seo={seo} />
 	<body
-		class="font-josefin-sans dark:bg-gray-900 flex flex-col min-h-[calc(100vh-10rem)]"
+		class="font-sans dark:bg-gray-900 flex flex-col min-h-[calc(100vh-10rem)]"
 	>
 		<SkipLink />
 		<Navbar />
