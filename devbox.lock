@@ -1,0 +1,121 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "resolved": "github:NixOS/nixpkgs/6c5963357f3c1c840201eda129a99d455074db04?lastModified=1743076231&narHash=sha256-yQugdVfi316qUfqzN8JMaA2vixl%2B45GxNm4oUfXlbgw%3D"
+    },
+    "nodejs-slim@22": {
+      "last_modified": "2025-03-11T17:52:14Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/0d534853a55b5d02a4ababa1d71921ce8f0aee4c#nodejs-slim",
+      "source": "devbox-search",
+      "version": "22.14.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hwxg4pmwlj60agk951y73v7v2mqs7bn1-nodejs-slim-22.14.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/9hxizhrdw4f5a80bcgz2g2pr6b7f4pll-nodejs-slim-22.14.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/hwxg4pmwlj60agk951y73v7v2mqs7bn1-nodejs-slim-22.14.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/p1kjc8i49bryr99ydchs3pn37h03g2qm-nodejs-slim-22.14.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/w08d1zn6z9jvn0zq1qc7pnxczp093983-nodejs-slim-22.14.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/p1kjc8i49bryr99ydchs3pn37h03g2qm-nodejs-slim-22.14.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8ns2iqn73yqklrnxkvpjifqzycwvpnms-nodejs-slim-22.14.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/vqq87aryzvir9hclmlls99n56fbvs30l-nodejs-slim-22.14.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/8ns2iqn73yqklrnxkvpjifqzycwvpnms-nodejs-slim-22.14.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/q7vsjxfhmqyl5j04bfvdr0377xppqm0q-nodejs-slim-22.14.0",
+              "default": true
+            },
+            {
+              "name": "libv8",
+              "path": "/nix/store/djs51rna837sf2km0rrrcsdi80fr78mb-nodejs-slim-22.14.0-libv8"
+            }
+          ],
+          "store_path": "/nix/store/q7vsjxfhmqyl5j04bfvdr0377xppqm0q-nodejs-slim-22.14.0"
+        }
+      }
+    },
+    "pnpm@10": {
+      "last_modified": "2025-03-23T05:31:05Z",
+      "resolved": "github:NixOS/nixpkgs/dd613136ee91f67e5dba3f3f41ac99ae89c5406b#pnpm",
+      "source": "devbox-search",
+      "version": "10.6.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3mvfs924rkwslbghxpj7nj85mm7dr154-pnpm-10.6.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/3mvfs924rkwslbghxpj7nj85mm7dr154-pnpm-10.6.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/nk5an4k7dc4y6lagis6qf8h2jy3z0alf-pnpm-10.6.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/nk5an4k7dc4y6lagis6qf8h2jy3z0alf-pnpm-10.6.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y7izrrg5k2jr8y1pmg67mypdndkj758g-pnpm-10.6.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/y7izrrg5k2jr8y1pmg67mypdndkj758g-pnpm-10.6.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/f0h5wr87cj838jn7zwybs5z7xq5wb3rw-pnpm-10.6.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/f0h5wr87cj838jn7zwybs5z7xq5wb3rw-pnpm-10.6.5"
+        }
+      }
+    }
+  }
+}
