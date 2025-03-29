@@ -16,24 +16,23 @@ export default function rehypeFigCaption() {
 				if (!(node.type == "mdxJsxFlowElement" && node.name == "figcaption")) {
 					continue;
 				}
-				console.log(node);
 
-				// @ts-expect-error - type mitigation
-				const children = [...(node.children as RootContent[])];
-				if (!children) return;
-
-				// @ts-expect-error - type mitigation
-				(node.children as RootContent[]) = [
-					{
-						type: "element",
-						tagName: "p",
-						properties: {
-							className: `mx-auto text-center italic`,
-						},
-						// @ts-ignore - Don't know if it's complaining about something valid
-						children: children,
-					},
-				];
+				// @ts-expect-error - I'm in hell
+				const classAttribute = node.attributes.find(
+					// @ts-expect-error - I'm in hell
+					(attr) => attr.name == "class",
+				);
+				const classToAdd = "mx-auto text-center italic";
+				if (!classAttribute) {
+					// @ts-expect-error - I'm in hell
+					node.attributes.push({
+						type: "mdxJsxAttribute",
+						name: "class",
+						value: classToAdd,
+					});
+				} else {
+					classAttribute.value += ` ${classToAdd}`;
+				}
 			}
 		}
 	};
