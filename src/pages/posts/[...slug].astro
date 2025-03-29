@@ -26,7 +26,7 @@ type Props = {
 };
 
 const authorsPromise = post.data.authors.map(
-	async (author) => (await getEntry("authors", author.id)).data
+	async (author) => (await getEntry("authors", author.id)).data,
 );
 const authors = await Promise.all(authorsPromise);
 ---
@@ -150,7 +150,7 @@ const authors = await Promise.all(authorsPromise);
 	});
 
 	const figures = document.querySelectorAll(
-		"figure:has(button#bigger-picture)"
+		"figure:has(button#bigger-picture)",
 	);
 
 	for (const figure of figures) {
@@ -166,10 +166,10 @@ const authors = await Promise.all(authorsPromise);
 				// fallback that sometimes works. That said, attributes should
 				// always have a height and width, assuming the images are local.
 				const height = Number(
-					img.attributes.getNamedItem("height")?.value ?? img.naturalHeight
+					img.attributes.getNamedItem("height")?.value ?? img.naturalHeight,
 				);
 				const width = Number(
-					img.attributes.getNamedItem("width")?.value ?? img.naturalWidth
+					img.attributes.getNamedItem("width")?.value ?? img.naturalWidth,
 				);
 
 				items.push({
