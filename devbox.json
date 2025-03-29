@@ -2,7 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
   "packages": [
     "nodejs-slim@22",
-    "pnpm@10"
+    "nodePackages.prettier@3",
+    "pnpm@10",
+    "vscode-langservers-extracted@4.8"
   ],
   "shell": {
     "init_hook": [
