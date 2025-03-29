@@ -98,7 +98,7 @@
 								? "group-hover:bg-violet-300 dark:group-hover:bg-violet-700 group-data-[highlighted]:bg-violet-100 dark:group-data-[highlighted]:bg-violet-400 dark:group-data-[highlighted]:bg-opacity-25"
 								: "group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-data-[highlighted]:bg-gray-200 dark:group-data-[highlighted]:bg-gray-700"
 						}`}
-					/>
+					></div>
 					{@html item.icon?.outerHTML}
 					<span class="mt-1">{item.label}</span>
 				</div>

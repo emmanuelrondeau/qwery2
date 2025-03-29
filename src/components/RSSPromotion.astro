@@ -9,7 +9,7 @@ import RSSRings from "../assets/rss-rings.svg?raw";
 
 <!-- Presumes that you already have `format` styling -->
 <div
-	class="flex flex-col-reverse sm:flex-row bg-violet-50 dark:bg-violet-800 dark:bg-opacity-10 w-full rounded-md"
+	class="flex flex-col-reverse sm:flex-row bg-violet-50 dark:bg-violet-800/10 w-full rounded-md"
 >
 	<div
 		class="flex flex-col gap-y-3 justify-center my-auto p-6 sm:p-10 sm:h-auto sm:w-1/2"
@@ -53,7 +53,7 @@ import RSSRings from "../assets/rss-rings.svg?raw";
 	import Bowser from "bowser";
 
 	const button = document.getElementById(
-		"enable-notifs"
+		"enable-notifs",
 	) as HTMLButtonElement | null;
 
 	function onClick() {
@@ -98,7 +98,7 @@ import RSSRings from "../assets/rss-rings.svg?raw";
 
 		h2.setHTMLUnsafe("You enabled notifications!");
 		p.setHTMLUnsafe(
-			`To stop being notified on new articles, you'll need to revoke notification permissions in your browser or operating system.`
+			`To stop being notified on new articles, you'll need to revoke notification permissions in your browser or operating system.`,
 		);
 
 		// Clones the button into an anchor
