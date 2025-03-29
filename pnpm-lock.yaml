@@ -34,7 +34,7 @@ importers:
       '@benjc/rehype-enhanced-tables':
         specifier: ^0.1.1
         version: 0.1.1
-      '@fontsource/josefin-sans':
+      '@fontsource-variable/josefin-sans':
         specifier: ^5.2.5
         version: 5.2.5
       '@stefanprobst/rehype-extract-toc':
@@ -698,8 +698,8 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@fontsource/josefin-sans@5.2.5':
-    resolution: {integrity: sha512-dGRoST8a6Wp5K5LmZldWBwuHppqDdCAq16kKT7lsyaYFQUKvWT/w8sxzm6RxUkbMtf2VwSo3eh+YV6/qw+5dIQ==}
+  '@fontsource-variable/josefin-sans@5.2.5':
+    resolution: {integrity: sha512-7zRLx1BY5b+Vq3bRBiGXzJn/mo56s1W2ffVJedWQwrb01BZf3OlDC3s5UR+c+DL6bF8XyhvbGDZuVQMBU4nGOg==}
 
   '@herob191/astro-google-fonts-optimizer@0.3.3':
     resolution: {integrity: sha512-d80DscDJsDL4ImQJ7PzFSTSmSJ+R2EZyk3LKfq0WHILAmM6DgGW3D3z+s/C0ASNkH2KZ89bDFlT7kzgSSV/jRg==}
@@ -4398,7 +4398,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@fontsource/josefin-sans@5.2.5': {}
+  '@fontsource-variable/josefin-sans@5.2.5': {}
 
   '@herob191/astro-google-fonts-optimizer@0.3.3': {}
 
