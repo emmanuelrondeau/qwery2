@@ -23,7 +23,7 @@ type Props = {
 		id="main-content"
 		class="mx-auto w-full max-w-screen-xl px-4 pt-24 -mt-8 format dark:format-invert lg:format-lg"
 	>
-		<section class="max-w-prose mt-4 mb-24 relative">
+		<section class="max-w-prose my-4 relative">
 			<span
 				class="absolute -z-10 -top-11 -left-11 dark:opacity-30"
 				aria-hidden="true"
@@ -56,12 +56,12 @@ type Props = {
 										"how-to-start-hrt-in-winnipeg.mdx",
 										"how-to-take-the-bus-in-winnipeg.mdx",
 										"save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx",
-									].includes(post.id)
+									].includes(post.id),
 								)
 								.sort(
 									(a, b) =>
 										(b.data.lastEdited ?? b.data.created).getTime() -
-										(a.data.lastEdited ?? a.data.created).getTime()
+										(a.data.lastEdited ?? a.data.created).getTime(),
 								)
 								.map((post) => <ArticleCard postId={post.id} />)
 						}

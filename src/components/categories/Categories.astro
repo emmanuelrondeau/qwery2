@@ -5,7 +5,9 @@ import Category from "./Category.astro";
 
 <div class="embla">
 	<div class="embla__viewport overflow-hidden -ml-1">
-		<div class="embla__container flex flex-row gap-x-2 touch-pan-y pt-2 mb-4 pl-1 mr-1">
+		<div
+			class="embla__container flex flex-row gap-x-2 touch-pan-y pt-2 mb-4 pl-1 mr-1"
+		>
 			{
 				TagEnum.options.map((value) => (
 					<div class="embla__slide">
@@ -20,7 +22,7 @@ import Category from "./Category.astro";
 	import EmblaCarousel from "embla-carousel";
 	const emblaNode = document.querySelector(".embla") as HTMLElement;
 	const viewportNode = emblaNode.querySelector(
-		".embla__viewport"
+		".embla__viewport",
 	) as HTMLElement;
 	EmblaCarousel(viewportNode, { dragFree: true });
 </script>

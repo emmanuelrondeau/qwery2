@@ -4,7 +4,6 @@ import AutoImport from "astro-auto-import";
 import netlify from "@astrojs/netlify";
 import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
 
 import rehypeAutolink from "./plugins/rehype-autolink";
 import rehypeCallouts from "rehype-callouts";
@@ -18,12 +17,12 @@ import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 
 import bundlesize from "vite-plugin-bundlesize";
 
+import tailwindcss from "@tailwindcss/vite";
+
 // import resolveConfig from 'tailwindcss/resolveConfig'
-// import tailwindConfig from './tailwind.config.mjs'
 
 // const fullConfig = resolveConfig(tailwindConfig)
 
-export const output = "hybrid";
 export const adapter =
 	process.env.NETLIFY === "true"
 		? "netlify"
@@ -82,12 +81,10 @@ export default defineConfig({
 		}),
 		mdx(),
 		svelte(),
-		tailwind(),
 	],
 	vite: {
 		build: { sourcemap: "hidden" },
-		plugins: [bundlesize({ allowFail: true })],
+		plugins: [bundlesize({ allowFail: true }), tailwindcss()],
 	},
-	output: output,
 	adapter: netlify(),
 });

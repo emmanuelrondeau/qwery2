@@ -39,7 +39,7 @@ if (!size) size = "small";
 			aria-hidden={true}
 			alt=""
 			class:list={[
-				"not-format transition-transform !m-0 flex object-cover rounded items-center justify-center",
+				"transition-transform !m-0 flex object-cover rounded items-center justify-center",
 				{
 					"sm:hover:scale-105 xs:w-48 xs:h-36 sm:h-auto aspect-video w-full":
 						size === "small",
@@ -66,7 +66,7 @@ if (!size) size = "small";
 					class="group !no-underline outline-none !ring-0 flex-1 min-w-0"
 				>
 					{/* Workaround for broken styles if applied to a tag */}
-					<h3 class="group-hover:underline !text-xl !mb-1 ring-violet-600 dark:ring-gray-50 group-focus-visible:ring-2 rounded-md lg:text-ellipsis lg:whitespace-nowrap lg:overflow-hidden">
+					<h3 class="group-hover:underline !text-xl !my-1 ring-violet-600 dark:ring-gray-50 group-focus-visible:ring-2 rounded-md lg:text-ellipsis lg:whitespace-nowrap lg:overflow-hidden">
 						{post.data.title}
 					</h3>
 				</a>
@@ -82,7 +82,7 @@ if (!size) size = "small";
 	}
 	{
 		size === "large" && (
-			<div class="flex flex-col gap-y-3 mr-auto">
+			<div class="flex flex-col gap-y-2.5 mr-auto">
 				<div class="format dark:format-invert">
 					<PublishedOrUpdated {...post.data} /> •{" "}
 					<MinutesRead postId={post.id} />
@@ -92,7 +92,7 @@ if (!size) size = "small";
 					class="group !no-underline outline-none !ring-0"
 				>
 					{/* Workaround for broken styles if applied to a tag */}
-					<h3 class="group-hover:underline !text-xl !mb-0 ring-violet-600 dark:ring-gray-50 group-focus-visible:ring-2 rounded-md">
+					<h3 class="group-hover:underline !text-xl !mt-1 !mb-0 ring-violet-600 dark:ring-gray-50 group-focus-visible:ring-2 rounded-md">
 						{post.data.title}
 					</h3>
 				</a>
