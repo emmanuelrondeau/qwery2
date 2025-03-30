@@ -1,3 +1,7 @@
-pnpm-lock.yaml
-*.lock
+dist
+node_modules
+.github
+devbox.lock
 *.mdx
+*.md
+pnpm-lock.yaml
