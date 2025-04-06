@@ -1,5 +1,7 @@
 # Welcome to the Queer Winnipeg website repository!
 
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
+
 If you're here, welcome to the repo! Contributions are greatly appreciated. If you've found an issue with the site, create a [new issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues) and we'll do our best to address it.
 
 ## Getting Started for Writers
