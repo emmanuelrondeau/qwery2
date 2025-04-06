@@ -1,10 +1,15 @@
 {
-	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"[astro]": {
-		"editor.defaultFormatter": "astro-build.astro-vscode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"files.associations": {
+		"*.css": "tailwindcss"
 	},
 	"tailwindCSS.classAttributes": [
 		"class",
@@ -12,10 +17,12 @@
 		"ngClass",
 		"class:list"
 	],
+	"typescript.tsdk": "node_modules/typescript/lib",
 	"cSpell.words": [
 		"astro",
 		"astrojs",
 		"benjc",
+		"bezier",
 		"bowser",
 		"bundlesize",
 		"callouts",
@@ -25,8 +32,10 @@
 		"direnv",
 		"embla",
 		"flowbite",
+		"fontsource",
 		"hastscript",
 		"herob",
+		"jdecked's",
 		"Josefin",
 		"lqip",
 		"mdast",
@@ -41,6 +50,7 @@
 		"stefanprobst",
 		"tailwindcss",
 		"Twemoji",
-		"Wealthsimple"
+		"Wealthsimple",
+		"wght"
 	]
 }
