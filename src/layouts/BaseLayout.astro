@@ -1,9 +1,9 @@
 ---
-import Head from "./Head.astro";
+import { SkipLink } from "accessible-astro-components";
+import type { Props as SEOProps } from "astro-seo";
 import Footer from "../components/primitives/Footer.astro";
 import Navbar from "../components/primitives/Navbar.astro";
-import type { Props as SEOProps } from "astro-seo";
-import { SkipLink } from "accessible-astro-components";
+import Head from "./Head.astro";
 
 interface Props {
 	seo: SEOProps;
