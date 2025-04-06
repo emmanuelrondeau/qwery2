@@ -1,11 +1,20 @@
 ---
-import { Picture } from "astro:assets";
+import {
+	Picture,
+	type LocalImageProps,
+	type RemoteImageProps,
+} from "astro:assets";
 
 import type { HTMLAttributes } from "astro/types";
-interface Props extends HTMLAttributes<"img"> {
-	alt: string;
+import type { ImageOutputFormat } from "astro";
+
+// Shamelessly duplicated (with missing props) from Picture.astro
+// because I don't know any better
+type Props = (LocalImageProps | RemoteImageProps) & {
 	pictureAttributes: HTMLAttributes<"picture">;
-}
+	formats?: ImageOutputFormat[];
+	fallbackFormat?: ImageOutputFormat;
+};
 
 const { class: className, pictureAttributes, ...rest } = Astro.props;
 ---
