@@ -1,14 +1,14 @@
 ---
-import { PAGE_TITLE_ID } from "../../constants";
-import { getCollection, type CollectionEntry, getEntry } from "astro:content";
-import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { Picture } from "astro:assets";
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
+import ArticleAuthors from "../../components/articles/ArticleAuthors.astro";
+import MinutesRead from "../../components/articles/MinutesRead.astro";
 import PublishedOrUpdated from "../../components/articles/PublishedOrUpdated.astro";
+import TableOfContents from "../../components/articles/TableOfContents.astro";
 import Callout from "../../components/primitives/Callout.astro";
 import Link from "../../components/primitives/Link.astro";
-import MinutesRead from "../../components/articles/MinutesRead.astro";
-import ArticleAuthors from "../../components/articles/ArticleAuthors.astro";
-import { Picture } from "astro:assets";
-import TableOfContents from "../../components/articles/TableOfContents.astro";
+import { PAGE_TITLE_ID } from "../../constants";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -78,7 +78,7 @@ const authors = await Promise.all(authorsPromise);
 				post.data.tag && post.data.tag.length > 0 && (
 					<Link
 						href="/"
-						class="not-format mb-3 block font-semibold uppercase no-underline dark:text-gray-400"
+						class="not-format mb-3 block font-semibold uppercase no-underline"
 					>
 						{post.data.tag}
 					</Link>
