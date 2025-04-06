@@ -6,56 +6,46 @@ If you're here, welcome to the repo! Contributions are greatly appreciated. If y
 
 If you wish to write for the website, currently you'll have to go through the steps of a developer. Writing for the website currently is also somewhat technical, requiring knowledge of Markdown and MDX.
 
-Other than searching up tutorials on the basics of Markdown, the existing articles are a great reference point for how to format articles you make within Decap CMS.
+Other than searching up tutorials on the basics of Markdown, the existing articles are a great reference point for how to format articles you make.
 
 ## Getting Started for Developers
 
-If you're looking to do code improvements for the website, here's what you need to know:
+For ease of development, [Devbox](https://www.jetify.com/devbox/) is the recommended way to install dependencies. Alternatively, you could look in [devbox.json](./devbox.json) to figure out what to install manually.
 
-### The Basics
+I recommend you first [install Devbox](https://www.jetify.com/docs/devbox/installing_devbox/) and [Git](https://git-scm.com). Then, in a terminal, run the following:
 
-1. Clone the repository with [Git](https://git-scm.com). You may need to install it if you don't have it already. To close the repository, open a terminal, then run the following commands:
+```sh
+git clone https://gitlab.com/queerwinnipeg/queerwinnipeg.ca
+cd queerwinnipeg.ca
+devbox shell
+```
 
-   ```sh
-   git clone https://gitlab.com/queerwinnipeg/queerwinnipeg.ca
-   ```
+> [!tip]
+> If you're fancy, [direnv](https://direnv.net/) is supported. If you have that set up, it'll automatically run `devbox shell` after running `cd queerwinnipeg.ca`, to activate the environment for you.
 
-1. Then install [pnpm](https://pnpm.io/installation). Then in a terminal, run the command for your respective system;
+If it worked, great! You've now installed some important dependencies, such as pnpm. pnpm is a package manager commonly used for installing and managing JavaScript/TypeScript packages. We'll now download said packages with the following command:
 
-   ```powershell
-   # Windows
-   iwr https://get.pnpm.io/install.ps1 -useb | iex
-   ```
+```sh
+pnpm install
+```
 
-   ```sh
-   # On POSIX systems
-   curl -fsSL https://bun.sh/install | bash
-   ```
+Once that's done, we're now ready to cross our fingers and see if your local instance of the website runs. Lastly, run the following command:
 
-1. Run the following commands:
+```sh
+pnpm dev
+```
 
-   ```sh
-   pnpm install
-   pnpm dev
-   ```
+If everything went well, ta-da! You now have a working development instance on http://localhost:4321.
 
-   Ta-da! You now have a working development instance on http://localhost:4321.
+### Editors
 
-### Decap CMS
+If you don't already have a code editor to work with this repository, I recommend [VS Codium](https://vscodium.com). We also have some helpers for VS Cod(ium) that suggests extensions you should install, to make your development experience better (and in my opinion, actually usable).
 
-You may want to have the Decap server running on your local instance. Once you've done the above steps, this will let you access a local admin panel.
+### Maintenance
 
-**This is important if you wish to create new content on the website!** Creating `.mdx` files manually may cause the articles to not appear in the CMS, despite it displaying on the website. To make this work:
-
-1. Run the following in a terminal
-
-   ```sh
-   pnpx decap-server
-   ```
-
-2. Go to http://localhost:4321/admin, and you should be good to go.
-
-
+- To upgrade the container dependencies, run `devbox update`
+- To upgrade the web dependencies, run `pnpm upgrade`
+	- There's also `pnpm upgrade-deps` if you want an interactive terminal user interface, along with upgrading dependencies to major versions that may break things.
 
 ## License
 
@@ -78,9 +68,9 @@ Any photos taken or images created by us are licensed under [Creative Commons BY
 
 If you're a copyright owner of any of the images hosted, please [create an issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues). We unfortunately don't have an email currently.
 
-### Text Content
+### Text
 
-The text content is copyrighted, and all rights are reserved to their respective authors.
+Text contents (ex. text that appears on the website, articles/posts, etc.) is copyrighted, and all rights are reserved to their respective authors. This does *not* include developer documentation (ex. this README), and the pure code/markup (ex. the HTML and TypeScript within .astro files, boilerplate MDX). Feel free to create an issue for clarification.
 
 ## Contributing
 
@@ -92,7 +82,6 @@ If you use any images, please make sure you can legally use that image!
 
 If you use any copyrighted works, but believe it can be used in fair use, please make a comment like this within the article, something like this:
 
-<!-- prettier-ignore-start -->
 ```mdx
 {/* Picture licensed under All Rights Reserved, on https://www.wealthsimple.com/en-ca/learn/50-30-20-rule */}
 <Image
@@ -100,23 +89,18 @@ If you use any copyrighted works, but believe it can be used in fair use, please
    src={Wealthsimple_50_30_20_Rule}
 />
 ```
-<!-- prettier-ignore-end -->
 
 If you're contributing your own photos, follow the below formatting. CC BY-SA 4.0 is used as an example.
 
-<!-- prettier-ignore-start -->
 ```mdx
 {/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 <Image
    alt="Paper transfer"
    src={PaperTransfer}
 />
-   ```
-<!-- prettier-ignore-end -->
+```
 
 If the image is under the Creative Commons and you're not the copyright owner, give adequate credit. An example of doing this properly can be found in [How to Take the Bus in Winnipeg - BLUE Buses](https://queerwinnipeg.ca/posts/how-to-take-the-bus-in-winnipeg/#blue-buses).
-
-> Just in case, assuming you're not making edits with VS Code and using Prettier, make sure the line breaks comments are the same, and the `prettier-ignore` comments preserved.
 
 ```mdx
 <figure>
@@ -125,17 +109,12 @@ If the image is under the Creative Commons and you're not the copyright owner, g
 		src={StNorbertBus}
 	/>
 	<figcaption>
-		{/* prettier-ignore-start */}
-
     	Picture by [Justin Rombough](https://www.flickr.com/photos/bpomanitoba) on [Flicker](https://www.flickr.com/photos/bpomanitoba/50368893052/in/photostream/), licensed under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/).
-
-    	{/* prettier-ignore-end */}
     </figcaption>
-
 </figure>
 ```
 
-If you're contributing your own photos under a Creative Commons license, feel free to credit yourself. For contributing cover images, and you wish to credit yourself, please put your attribution at the bottom of the article.
+If you're contributing your own photos under a Creative Commons license, feel free to credit yourself. For contributing cover images, and you wish to credit yourself, please put your attribution at the bottom of the article for now. Hopefully I figure out a way to credit in a way that isn't too intrusive.
 
 ### Text Content
 
