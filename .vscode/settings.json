@@ -11,6 +11,7 @@
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
+	"editor.formatOnSave": true,
 	"tailwindCSS.classAttributes": [
 		"class",
 		"className",
