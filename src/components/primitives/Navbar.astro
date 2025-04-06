@@ -1,43 +1,44 @@
 ---
 import Background from "../../assets/josh-lavallee-sM0q8DxTkWQ-unsplash-crop.webp";
 import Link from "./Link.astro";
-import Image from "./Image.astro";
 import Button from "./Button.astro";
 import ThemeSelector from "./ThemeSelector.astro";
+
+import { Picture } from "astro:assets";
 ---
 
 <div
-	class="pointer-events-none select-none absolute h-[450px] -z-10 dark:hidden"
+	class="pointer-events-none absolute -z-10 h-[450px] select-none dark:hidden"
 >
 	<div
-		class="absolute left-0 right-0 bg-gradient-to-b from-white via-white via-30% h-24"
+		class="absolute right-0 left-0 h-24 bg-gradient-to-b from-white via-white via-30%"
 	>
 	</div>
-	<Image
+	<Picture
 		alt=""
 		src={Background}
 		formats={["avif", "webp", "jpg"]}
-		class="object-cover h-full"
+		class="h-full object-cover"
 		loading="eager"
 		quality="high"
 	/>
 	<div
-		class="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-white via-white via-30% h-48"
+		class="absolute right-0 bottom-0 left-0 h-48 bg-gradient-to-t from-white via-white via-30%"
 	>
 	</div>
 </div>
 <nav
 	id="main-nav"
-	class="flex w-full py-6 z-10"
+	class="z-10 flex w-full py-6"
 	transition:animate="none"
 	transition:persist
 >
 	<div
-		class="flex max-w-screen-xl w-full px-4 mx-auto items-center justify-between dark:text-gray-50 text-violet-900"
+		class="mx-auto flex w-full max-w-screen-xl items-center justify-between px-4 text-violet-900 dark:text-gray-50"
 	>
 		<Link
 			href="/"
-			class="text-3xl font-bold select-none text-gray-900 dark:text-gray-50 hover:text-violet-700 dark:hover:text-violet-300 hover:transition-colors"
+			class="text-3xl font-bold text-gray-900 select-none hover:text-violet-700 hover:transition-colors dark:text-gray-50 dark:hover:text-violet-300"
 			><span role="img" aria-label="Logo">QW</span></Link
 		>
 		<div class="flex items-center gap-x-6">

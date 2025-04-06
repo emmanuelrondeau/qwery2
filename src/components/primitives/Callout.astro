@@ -11,22 +11,34 @@ interface Props {
 const { type, typeText } = Astro.props;
 ---
 
-<div
+<aside
 	class:list={[
-		"callout",
-		{ "callout-info": type === "Info" },
-		{ "callout-warning": type === "Warning" },
-		{ "callout-caution": type === "Caution" },
+		// Originally named "callout"
+		"my-[1.25em] lg:my-[1.3333333em] has-[+.heading-wrapper]:mb-0 rounded border-l-4 px-5 py-4 lg:py-5 outline-none",
+		type === "Info" &&
+			"border-violet-500 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:selection:bg-violet-900/50 dark:selection:text-violet-50",
+		type === "Warning" &&
+			"border-yellow-500 bg-yellow-50 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50",
+		type === "Caution" &&
+			"border-red-500 bg-red-50 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:selection:bg-red-900/50 dark:selection:text-red-50",
 	]}
 >
 	{
 		typeText !== "" && (
-			<div class="callout-title">
+			<div
+				class:list={[
+					// Originally named "callout-title"
+					"relative top-[.1em] font-bold",
+					type == "Info" && "text-violet-800 dark:text-violet-300",
+					type == "Warning" && "text-yellow-800 dark:text-yellow-300",
+					type == "Caution" && "text-red-800 dark:text-red-300",
+				]}
+			>
 				{typeText !== undefined ? typeText : `${type}: `}
 			</div>
 		)
 	}
-	<div class="callout-content">
+	<div class="relative [&>*]:first:mt-1 [&>*]:last:mb-0">
 		<slot />
 	</div>
-</div>
+</aside>

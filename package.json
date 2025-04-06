@@ -15,6 +15,7 @@
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
 		"@astrojs/cloudflare": "^12.3.1",
+		"@astrojs/markdown-remark": "^6.3.1",
 		"@astrojs/mdx": "^4.2.2",
 		"@astrojs/netlify": "^6.2.4",
 		"@astrojs/rss": "^4.0.11",
@@ -28,7 +29,7 @@
 		"astro": "^5.5.5",
 		"astro-auto-import": "^0.4.4",
 		"astro-seo": "^0.8.4",
-		"bigger-picture": "^1.1.17",
+		"bigger-picture": "^1.1.19",
 		"bowser": "^2.11.0",
 		"embla-carousel": "^8.5.2",
 		"hast-util-select": "^6.0.4",
@@ -49,6 +50,7 @@
 		"unist-util-remove": "^4.0.0"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.23.0",
 		"@fec/remark-a11y-emoji": "^4.0.2",
 		"@herob191/astro-google-fonts-optimizer": "^0.3.3",
 		"@melt-ui/pp": "^0.3.2",
@@ -60,16 +62,13 @@
 		"@typescript-eslint/parser": "^8.28.0",
 		"eslint": "^9.23.0",
 		"eslint-plugin-astro": "^1.3.1",
-		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"globals": "^16.0.0",
 		"prettier": "^3.5.3",
 		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"tailwind-scrollbar": "^4.0.1",
+		"typescript-eslint": "^8.29.0",
 		"vite-plugin-bundlesize": "^0.1.0"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"rehype-callouts": "patches/rehype-callouts.patch"
-		}
 	}
 }

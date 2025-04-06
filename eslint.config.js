@@ -1,12 +1,27 @@
-import eslintPluginAstro from 'eslint-plugin-astro';
-export default [
-  // add more generic rule sets here, such as:
-  // js.configs.recommended,
-  ...eslintPluginAstro.configs.recommended,
-  {
-    rules: {
-      // override/add rules settings here, such as:
-      // "astro/no-set-html-directive": "error"
-    }
-  }
-];
+// Mostly derived from https://github.com/withastro/docs/blob/main/eslint.config.mjs
+import eslintPluginAstro from "eslint-plugin-astro";
+import tseslint from "typescript-eslint";
+import globals from "globals";
+
+export default tseslint.config(
+	{
+		ignores: [
+			"**/dist",
+			"**/node_modules",
+			"**/.astro",
+			"**/.github",
+			"**/.changeset",
+		],
+	},
+
+	// Astro
+	...eslintPluginAstro.configs.recommended,
+
+	// Set globals for Node scripts.
+	{
+		files: ["astro.config.*", "scripts/**"],
+		languageOptions: {
+			globals: globals.node,
+		},
+	},
+);

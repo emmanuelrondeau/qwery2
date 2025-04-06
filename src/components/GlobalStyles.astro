@@ -31,6 +31,10 @@
 	@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 	@layer base {
+		:root {
+			@apply selection:bg-violet-100 selection:text-violet-950 dark:selection:bg-violet-400/10 dark:selection:text-violet-100;
+		}
+
 		/* Twemoji */
 		img.emoji {
 			display: inline !important;
@@ -47,10 +51,6 @@
 
 		footer img.emoji {
 			vertical-align: -0.275em !important;
-		}
-
-		::selection {
-			@apply bg-violet-100 text-violet-950 dark:bg-gray-700/50 dark:text-violet-100;
 		}
 
 		/* SkipLink from accessible-astro-components */
@@ -89,7 +89,7 @@
 	@layer components {
 		/* Article Formatting */
 		.format {
-			@apply format-code:font-normal format-table:tabular-nums format-thead:bg-violet-50/50 format-thead:dark:bg-gray-800;
+			@apply format-code:font-normal format-table:tabular-nums;
 			/* @apply format-headings:font-bold; */
 		}
 
@@ -112,121 +112,79 @@
 		.format figure > div.side-by-side-images picture img {
 			@apply my-0;
 		}
+	}
 
-		.format .callout {
-			@apply mb-8 rounded border-l-4 px-5 py-3 outline-none;
-		}
-
-		.format .callout .callout-content {
-			position: relative;
-			bottom: -0.1em;
-		}
-
-		.format .callout > .callout-content *:only-child {
-			@apply m-0;
-		}
-
-		.format .callout :where(strong):not(:where([class~="not-format"] *)),
-		.format .callout :where(a):not(:where([class~="not-format"] *)) {
-			color: revert;
-		}
-
-		.format .callout.callout-info {
-			@apply border-violet-500 text-violet-700 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:text-violet-300 dark:selection:bg-violet-800/50 dark:selection:text-violet-300;
-		}
-
-		.format .callout.callout-warning {
-			@apply border-yellow-500 bg-yellow-50 text-yellow-700 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:text-yellow-400 dark:selection:bg-yellow-800/50 dark:selection:text-yellow-300;
-		}
-
-		.format .callout.callout-caution {
-			@apply border-red-500 bg-red-50 text-red-700 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:text-red-400 dark:selection:bg-red-900/50 dark:selection:text-red-300;
-		}
-
-		.format
-			.callout.callout-info
-			:where(a):not(:where([class~="not-format"] *)),
-		.format
-			.callout.callout-info
-			:where(strong):not(:where([class~="not-format"] *)) {
-			@apply text-violet-800 dark:text-violet-300;
-		}
-
-		.format
-			.callout.callout-warning
-			:where(a):not(:where([class~="not-format"] *)) {
-			@apply text-yellow-800 dark:text-yellow-300;
-		}
-
-		.format
-			.callout.callout-caution
-			:where(a):not(:where([class~="not-format"] *)) {
-			@apply text-red-800 dark:text-red-300;
-		}
-
-		.format .callout-title {
-			@apply font-bold;
-		}
-
-		/* Rehype Autolink */
+	@layer utilities {
+		/* Rehype Autolink - Custom styles for heading anchor links. */
 		.format .heading-wrapper {
-			@apply relative mb-[1em] flex items-center gap-2;
+			/* @apply relative mb-[1em] flex items-center gap-2; */
+			--icon-size: 1em;
+			--icon-spacing: 0.5em;
+
+			@media (min-width: 95em) {
+				@apply flex flex-row-reverse justify-end;
+			}
+
+			gap: var(--icon-spacing);
 		}
 
-		.format
-			.heading-wrapper
-			:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
-			@apply mb-0;
+		.format .heading-wrapper > :first-child {
+			margin-inline-end: calc(var(--icon-size) + var(--icon-spacing));
+			display: inline-block; /* Starlight uses inline, but i want margins working */
 		}
 
 		.format .heading-wrapper a {
+			@apply m-0;
+			margin-inline-start: calc(-1 * (var(--icon-size)));
+			display: inline;
+
+			/*
 			@apply absolute left-0 -translate-x-full text-violet-300 no-underline opacity-0 dark:text-violet-400;
 			transition-property:
 				filter, opacity, color, background-color, border-color,
 				text-decoration-color, fill, stroke;
 			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			transition-duration: 150ms;
+			*/
+		}
+		.format p:has(+ .heading-wrapper) {
+			@apply mb-0;
+		}
+		.format .heading-wrapper + p,
+		.format .heading-wrapper + figure {
+			@apply mt-0;
 		}
 
-		.format .heading-wrapper:hover a {
-			@apply opacity-100;
-		}
-		.format .heading-wrapper:hover a:hover {
-			@apply text-violet-300 saturate-[0.75];
-		}
 		.format .heading-wrapper.level-h2 a {
 			font-size: 1.5em;
 		}
 		.format .heading-wrapper.level-h3 a {
 			font-size: 1.25em;
 		}
-		.format .heading-wrapper a {
-			margin-bottom: 0.125em;
-			width: 1em;
+		.format .heading-wrapper.level-h4 a,
+		.format .heading-wrapper.level-h5 a,
+		.format .heading-wrapper.level-h6 a {
+			font-size: 1em;
 		}
 
-		@media screen(lg) {
-			.lg\:format-lg
-				.heading-wrapper
-				:where(h2, h3, h4, h5, h6):not(:where([class~="not-format"] *)) {
-				@apply mb-0;
-			}
-			.lg\:format-lg .heading-wrapper a {
-				width: 1em;
-			}
-			.lg\:format-lg .heading-wrapper.level-h2 a {
-				font-size: 2em;
-				/* margin-bottom: 0.5em; */
-			}
-			.lg\:format-lg .heading-wrapper.level-h3 a {
-				font-size: 1.3333333em;
-				/* margin-bottom: 0.25em; */
-			}
+		/* Prevent double or triple clicks from potentially selecting the anchor link a11y text. */
+		.format .heading-wrapper a .sr-only {
+			-webkit-user-select: none;
+			@apply select-none;
+		}
 
-			.lg\:format-lg .heading-wrapper.level-h4 a {
-				font-size: 1em;
-				/* margin-bottom: 0.125em; */
+		@media (hover: hover) {
+			.format .heading-wrapper a {
+				@apply opacity-0;
 			}
+		}
+
+		.format .heading-wrapper:hover a,
+		.format .heading-wrapper a:focus {
+			@apply text-violet-300 no-underline opacity-100;
+		}
+		.format .heading-wrapper:hover a:hover {
+			@apply text-violet-50 saturate-[0.75];
 		}
 	}
 </style>

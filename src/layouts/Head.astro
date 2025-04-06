@@ -1,6 +1,6 @@
 ---
 import "@fontsource-variable/josefin-sans";
-import josefinSansWoff2 from  "@fontsource-variable/josefin-sans/files/josefin-sans-latin-wght-normal.woff2";
+import josefinSansWoff2 from "@fontsource-variable/josefin-sans/files/josefin-sans-latin-wght-normal.woff2";
 
 import GlobalStyles from "../components/GlobalStyles.astro";
 import { SEO, type Props as SEOProps } from "astro-seo";
@@ -52,7 +52,13 @@ const newSeoProp: SEOProps = {
 	<SEO {...newSeoProp} />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
-  <link rel="preload" as="font" type="font/woff2" href={josefinSansWoff2} crossorigin="anonymous" />
+	<link
+		rel="preload"
+		as="font"
+		type="font/woff2"
+		href={josefinSansWoff2}
+		crossorigin="anonymous"
+	/>
 	<link
 		rel="alternate"
 		type="application/rss+xml"

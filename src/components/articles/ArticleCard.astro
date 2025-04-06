@@ -1,5 +1,5 @@
 ---
-import Image from "../primitives/Image.astro";
+import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import PublishedOrUpdated from "./PublishedOrUpdated.astro";
 import MinutesRead from "./MinutesRead.astro";
@@ -21,7 +21,7 @@ if (!size) size = "small";
 
 <li
 	class:list={[
-		"!p-0 !m-0 flex xs:items-center gap-4",
+		"xs:items-center !m-0 flex gap-4 !p-0",
 		{ "xs:flex-row flex-col": size === "small" },
 		{ "flex-col sm:flex-row lg:flex-col": size === "large" },
 	]}
@@ -31,21 +31,22 @@ if (!size) size = "small";
 		aria-hidden={true}
 		tabindex={-1}
 		class:list={[
+			"not-format",
 			{ "flex-shrink-0": size === "small" },
-			{ "sm:h-48 sm:w-auto lg:w-full lg:h-auto": size === "large" },
+			{ "sm:h-48 sm:w-auto lg:h-auto lg:w-full": size === "large" },
 		]}
 	>
-		<Image
+		<Picture
 			aria-hidden={true}
 			alt=""
 			class:list={[
-				"transition-transform !m-0 flex object-cover rounded items-center justify-center",
+				"!m-0 flex items-center justify-center rounded object-cover transition-transform",
 				{
-					"sm:hover:scale-105 xs:w-48 xs:h-36 sm:h-auto aspect-video w-full":
+					"xs:w-48 xs:h-36 aspect-video w-full sm:h-auto sm:hover:scale-105":
 						size === "small",
 				},
 				{
-					"sm:hover:scale-[102%] w-full aspect-video sm:aspect-auto sm:h-48 sm:w-auto lg:w-full lg:h-auto lg:aspect-video":
+					"aspect-video w-full sm:aspect-auto sm:h-48 sm:w-auto sm:hover:scale-[102%] lg:aspect-video lg:h-auto lg:w-full":
 						size === "large",
 				},
 			]}
@@ -55,18 +56,17 @@ if (!size) size = "small";
 			widths={[432, 720]}
 			sizes=`(max-width: 720px) 720px, (max-width: 1600px) 1000px`
 			transition:name=`cover-${post.slug}`
-			placeholder="blur"
 		/>
 	</a>
 	{
 		size === "small" && (
-			<div class="my-auto !m-0 flex-1 min-w-0">
+			<div class="!m-0 my-auto min-w-0 flex-1">
 				<a
 					href={`/posts/${post.slug}`}
-					class="group !no-underline outline-none !ring-0 flex-1 min-w-0"
+					class="group min-w-0 flex-1 !no-underline !ring-0 outline-none"
 				>
 					{/* Workaround for broken styles if applied to a tag */}
-					<h3 class="group-hover:underline !text-xl !my-1 ring-violet-600 dark:ring-gray-50 group-focus-visible:ring-2 rounded-md lg:text-ellipsis lg:whitespace-nowrap lg:overflow-hidden">
+					<h3 class="!my-1 rounded-md !text-xl ring-violet-600 group-hover:underline group-focus-visible:ring-2 lg:overflow-hidden lg:text-ellipsis lg:whitespace-nowrap dark:ring-gray-50">
 						{post.data.title}
 					</h3>
 				</a>
@@ -82,17 +82,17 @@ if (!size) size = "small";
 	}
 	{
 		size === "large" && (
-			<div class="flex flex-col gap-y-2.5 mr-auto">
+			<div class="mt-1 mr-auto flex flex-col gap-y-2.5">
 				<div class="format dark:format-invert">
 					<PublishedOrUpdated {...post.data} /> •{" "}
 					<MinutesRead postId={post.id} />
 				</div>
 				<a
 					href={`/posts/${post.slug}`}
-					class="group !no-underline outline-none !ring-0"
+					class="group !no-underline !ring-0 outline-none"
 				>
 					{/* Workaround for broken styles if applied to a tag */}
-					<h3 class="group-hover:underline !text-xl !mt-1 !mb-0 ring-violet-600 dark:ring-gray-50 group-focus-visible:ring-2 rounded-md">
+					<h3 class="!mt-1 !mb-0 rounded-md !text-xl ring-violet-600 group-hover:underline group-focus-visible:ring-2 dark:ring-gray-50">
 						{post.data.title}
 					</h3>
 				</a>

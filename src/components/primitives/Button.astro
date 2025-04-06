@@ -23,11 +23,11 @@ const {
 			href={href}
 			target={target}
 			class:list={[
-				"flex items-center justify-center h-12 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 dark:ring-gray-50 transition-colors active:transition-none",
+				"flex h-12 items-center justify-center rounded px-5 ring-violet-800 transition-colors outline-none focus-visible:ring-2 active:transition-none dark:ring-gray-50",
 				{
-					"bg-violet-200/50 dark:bg-violet-400/15 hover:bg-violet-200 dark:hover:bg-violet-400/25 active:bg-violet-300/20 active:text-violet-950 dark:active:text-violet-400 text-violet-800 dark:text-violet-300":
+					"bg-violet-200/50 text-violet-800 hover:bg-violet-200 active:bg-violet-300/20 active:text-violet-950 dark:bg-violet-400/15 dark:text-violet-300 dark:hover:bg-violet-400/25 dark:active:text-violet-400":
 						!buttonType || buttonType == "primary",
-					"bg-gray-100 dark:bg-gray-400 hover:bg-gray-200/15 dark:hover:bg-gray-400/25 active:bg-gray-300/20 active:text-gray-950 dark:active:text-gray-400 text-gray-800 dark:text-gray-300":
+					"bg-gray-100 text-gray-800 hover:bg-gray-200/15 active:bg-gray-300/20 active:text-gray-950 dark:bg-gray-400 dark:text-gray-300 dark:hover:bg-gray-400/25 dark:active:text-gray-400":
 						buttonType == "secondary",
 				},
 				className,
@@ -41,11 +41,11 @@ const {
 	) : (
 		<button
 			class:list={[
-				"flex items-center justify-center h-12 rounded px-5 outline-none focus-visible:ring-2 ring-violet-800 dark:ring-gray-50 transition-colors active:transition-none",
+				"flex h-12 items-center justify-center rounded px-5 ring-violet-800 transition-colors outline-none focus-visible:ring-2 active:transition-none dark:ring-gray-50",
 				{
-					"bg-violet-200/50 dark:bg-violet-400/15 hover:bg-violet-200 dark:hover:bg-violet-400/25 active:bg-violet-300 dark:active:bg-violet-300/20 active:text-violet-950 dark:active:text-violet-400 text-violet-800 dark:text-violet-300":
+					"bg-violet-200/50 text-violet-800 hover:bg-violet-200 active:bg-violet-300 active:text-violet-950 dark:bg-violet-400/15 dark:text-violet-300 dark:hover:bg-violet-400/25 dark:active:bg-violet-300/20 dark:active:text-violet-400":
 						!buttonType || buttonType == "primary",
-					"bg-gray-100 dark:bg-gray-400 hover:bg-gray-200 dark:bg-gray-200/15 dark:hover:bg-gray-400/25 active:bg-gray-300/20 active:text-gray-950 dark:active:text-gray-400 text-gray-800 dark:text-gray-300":
+					"bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300/20 active:text-gray-950 dark:bg-gray-200/15 dark:bg-gray-400 dark:text-gray-300 dark:hover:bg-gray-400/25 dark:active:text-gray-400":
 						buttonType == "secondary",
 				},
 				className,
