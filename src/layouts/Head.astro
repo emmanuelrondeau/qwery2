@@ -1,8 +1,9 @@
 ---
+import "../styles/global.css";
+
 import "@fontsource-variable/josefin-sans";
 import josefinSansWoff2 from "@fontsource-variable/josefin-sans/files/josefin-sans-latin-wght-normal.woff2";
 
-import GlobalStyles from "../components/GlobalStyles.astro";
 import { SEO, type Props as SEOProps } from "astro-seo";
 import ThemeProvider from "../components/primitives/ThemeProvider.astro";
 
@@ -67,7 +68,6 @@ const newSeoProp: SEOProps = {
 	/>
 	<title>{title}</title>
 	<ThemeProvider />
-	<GlobalStyles />
 	<script
 		is:inline
 		src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js"

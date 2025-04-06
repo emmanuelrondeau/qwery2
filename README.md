@@ -41,6 +41,11 @@ If everything went well, ta-da! You now have a working development instance on h
 
 If you don't already have a code editor to work with this repository, I recommend [VS Codium](https://vscodium.com). We also have some helpers for VS Cod(ium) that suggests extensions you should install, to make your development experience better (and in my opinion, actually usable).
 
+> [!tip]
+> As of April 5, 2025, the latest (0.14.13) Tailwind CSS IntelliSense extension is broken, and you may not get autofill while trying to edit Tailwind classes. To fix this, you may need to install 0.14.11.
+>
+> See https://github.com/tailwindlabs/tailwindcss-intellisense/issues/1033#issuecomment-2754371774 for more info.
+
 ### Maintenance
 
 - To upgrade the container dependencies, run `devbox update`
