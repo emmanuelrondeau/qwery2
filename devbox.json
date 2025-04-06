@@ -1,19 +1,18 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
-  "packages": [
-    "nodejs-slim@22",
-    "nodePackages.prettier@3",
-    "pnpm@10",
-    "vscode-langservers-extracted@4.8"
-  ],
-  "shell": {
-    "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
-    ],
-    "scripts": {
-      "test": [
-        "echo \"Error: no test specified\" && exit 1"
-      ]
-    }
-  }
+	"$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
+	"packages": [
+		"nodejs-slim@22",
+		"nodePackages.prettier@3",
+		"pnpm@10",
+		"astro-language-server@latest",
+		"svelte-language-server@latest",
+		"tailwindcss-language-server@latest",
+		"vscode-langservers-extracted@4.8"
+	],
+	"shell": {
+		"init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
+		"scripts": {
+			"test": ["echo \"Error: no test specified\" && exit 1"]
+		}
+	}
 }
