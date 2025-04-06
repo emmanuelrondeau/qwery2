@@ -7,7 +7,7 @@ import Callout from "../../components/primitives/Callout.astro";
 import Link from "../../components/primitives/Link.astro";
 import MinutesRead from "../../components/articles/MinutesRead.astro";
 import ArticleAuthors from "../../components/articles/ArticleAuthors.astro";
-import Image from "../../components/primitives/Image.astro";
+import { Picture } from "astro:assets";
 import TableOfContents from "../../components/articles/TableOfContents.astro";
 
 export async function getStaticPaths() {
@@ -25,9 +25,11 @@ type Props = {
 	entry: CollectionEntry<"posts">;
 };
 
-const authorsPromise = post.data.authors.map(
-	async (author) => (await getEntry("authors", author.id)).data,
-);
+const authorsPromise = post.data.authors.map(async (author) => {
+	const authorEntry = await getEntry("authors", author.id);
+	if (!authorEntry) throw new Error(`Missing author (author.id ${author.id})`);
+	return authorEntry.data;
+});
 const authors = await Promise.all(authorsPromise);
 ---
 
@@ -53,14 +55,14 @@ const authors = await Promise.all(authorsPromise);
 	hasImage
 >
 	<div
-		class="relative flex flex-col gap-y-2 max-w-prose lg:max-w-screen-xl mx-auto px-4"
+		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-screen-xl"
 	>
 		<div
-			class="relative lg:h-96 flex aspect-video w-full object-cover items-center justify-center rounded mb-4 overflow-clip max-w-full mx-auto"
+			class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded object-cover lg:h-96"
 		>
-			<Image
+			<Picture
 				alt=""
-				class="h-full w-full object-cover aspect-video lg:rounded-none rounded"
+				class="aspect-video h-full w-full rounded object-cover lg:rounded-none"
 				src={post.data.cover}
 				loading="eager"
 				decoding="async"
@@ -69,8 +71,6 @@ const authors = await Promise.all(authorsPromise);
 				widths={[1280, 1080, post.data.cover.width]}
 				sizes=`(max-width: 1600px) 1280px ${post.data.cover.width}px`
 				transition:name=`cover-${post.slug}`
-				placeholder="blur"
-				emptySpaceFillBlur
 			/>
 		</div>
 		<div class="format dark:format-invert lg:format-lg !max-w-full">
@@ -78,17 +78,17 @@ const authors = await Promise.all(authorsPromise);
 				post.data.tag && post.data.tag.length > 0 && (
 					<Link
 						href="/"
-						class="not-format block font-semibold mb-3 uppercase no-underline dark:text-gray-400"
+						class="not-format mb-3 block font-semibold uppercase no-underline dark:text-gray-400"
 					>
 						{post.data.tag}
 					</Link>
 				)
 			}
 			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
-			<div class="flex flex-col xs:flex-row gap-4 !mb-4 lg:!mb-0">
+			<div class="xs:flex-row !mb-4 flex flex-col gap-4 lg:!mb-0">
 				<ArticleAuthors postId={post.id} size="large" />
 				<div class="block">
-					<span class="text-center"
+					<span class="relative top-[.1em] text-center"
 						>Written by {authors.map((author) => author.name).join(", ")}</span
 					><br />
 					<span class="text-center">
@@ -101,16 +101,16 @@ const authors = await Promise.all(authorsPromise);
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-col justify-between lg:flex-row-reverse w-full">
+		<div class="flex w-full flex-col justify-between lg:flex-row-reverse">
 			<div
-				class="flex format dark:format-invert lg:sticky top-0 right-0 h-fit lg:pt-8 lg:pl-12 w-full"
+				class="format dark:format-invert top-0 right-0 flex h-fit w-full lg:sticky lg:pt-8 lg:pl-12"
 			>
-				<div class="lg:ml-auto lg:min-w-96 lg:max-w-[28rem]">
+				<div class="lg:ml-auto lg:max-w-[28rem] lg:min-w-96">
 					<TableOfContents headings={headings} />
 				</div>
 			</div>
 			<div
-				class="block overflow-x-auto format dark:format-invert lg:format-lg mt-8"
+				class="format dark:format-invert lg:format-lg mt-8 block overflow-x-auto"
 			>
 				{
 					post.data.draft && (
@@ -142,7 +142,7 @@ const authors = await Promise.all(authorsPromise);
 </ArticleLayout>
 
 <script>
-	import BiggerPicture from "bigger-picture/svelte";
+	import BiggerPicture from "bigger-picture";
 	import "bigger-picture/css";
 
 	const bp = BiggerPicture({
@@ -209,9 +209,9 @@ const authors = await Promise.all(authorsPromise);
 		/** For native video and audio, an array of objects specifying [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-src) (required) and [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-type) (optional). A string may be used if it is JSON parsable. Each object will create a `source` element, and all key / value pairs in the object will be added as attributes. */
 		sources?: object[] | string;
 		/** HTML that will be rendered in the container. When using HTML, please control dimensions with CSS. No need to pass `width` or `height`.
-		 * 
+		 *
 		 * For advanced use, you can pass an empty string, then mount a component using the [`onOpen`](https://github.com/henrygd/bigger-picture#onopen) method:
-		 * 
+		 *
 		 * ```js
 		 * // mounting svelte component (firewatch example from demo site)
 		 * onOpen(container) {

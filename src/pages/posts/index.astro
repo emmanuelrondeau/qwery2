@@ -1,14 +1,14 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/articles/ArticleCard.astro";
 import Categories from "../../components/categories/Categories.astro";
 
 const posts = await getCollection("posts");
 
-type Props = {
-	entry: CollectionEntry<"posts">;
-};
+// type Props = {
+// 	entry: CollectionEntry<"posts">;
+// };
 
 // const mostRecent = posts.sort(
 // 	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
@@ -17,14 +17,14 @@ type Props = {
 
 <BaseLayout seo={{ title: "Articles" }}>
 	<main
-		class="mx-auto w-full max-w-screen-xl px-4 pt-24 format dark:format-invert lg:format-lg"
+		class="format dark:format-invert lg:format-lg mx-auto w-full max-w-screen-xl px-4 pt-24"
 	>
 		<h1>Articles</h1>
 		<p>Neat, articles!</p>
 		<Categories />
-		<div class="flex flex-col md:flex-row gap-8">
+		<div class="flex flex-col gap-8 md:flex-row">
 			<div>
-				<ul class="list-none !p-0 !m-0 flex flex-col gap-6 lg:align-middle">
+				<ul class="!m-0 flex list-none flex-col gap-6 !p-0 lg:align-middle">
 					{
 						posts
 							.filter((p) => !p.data.draft)

@@ -1,46 +1,27 @@
 ---
-import Picture from "astro/components/Picture.astro";
-import type { ImageMetadata, ImageTransform } from "astro";
+import { Picture } from "astro:assets";
 
-type Props = {
-	src: ImageMetadata;
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"img"> {
 	alt: string;
-	deviceSizes?: number[];
-	placeholder?: "blur" | "empty";
-	formats?: ("avif" | "webp" | "png" | "jpg")[];
-	emptySpaceFillBlur?: boolean;
-} & Omit<ImageTransform, "src"> &
-	Omit<astroHTML.JSX.ImgHTMLAttributes, "src" | "width" | "height">;
+	pictureAttributes: HTMLAttributes<"picture">;
+}
 
-const {
-	src,
-	alt,
-	title,
-	class: className,
-	quality,
-	loading,
-	decoding,
-	style,
-	...rest
-} = Astro.props;
+const { class: className, pictureAttributes, ...rest } = Astro.props;
 ---
 
 <button
 	id="bigger-picture"
-	class="flex mx-auto items-center justify-center rounded-md ring-offset-4 ring-offset-white dark:ring-offset-gray-900 outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50 hover:cursor-pointer"
+	class="mx-auto flex items-center justify-center rounded-md ring-violet-600 ring-offset-4 ring-offset-white outline-none hover:cursor-pointer focus-visible:ring-2 dark:ring-gray-50 dark:ring-offset-gray-900"
 	aria-label="Expand image"
 >
 	<Picture
-		src={src}
-		alt={alt}
-		title={title}
-		class={`flex items-center justify-center object-cover rounded-md mx-auto !my-0 h-auto w-auto${className ? ` ${className}` : ""}`}
-		quality={quality}
-		loading={loading}
-		decoding={decoding}
-		style={style}
 		formats={["avif", "webp"]}
-		pictureAttributes={{ class: "not-format" }}
 		{...rest}
+		class:list={[
+			"mx-auto !my-0 flex h-auto w-auto items-center justify-center rounded-md object-cover",
+			className,
+		]}
+		pictureAttributes={pictureAttributes ?? { class: "not-format" }}
 	/>
 </button>

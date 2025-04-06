@@ -1,6 +1,8 @@
 import { defineConfig } from "astro/config";
 import AutoImport from "astro-auto-import";
 
+import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import cloudflare from "@astrojs/cloudflare";
 import netlify from "@astrojs/netlify";
 import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
@@ -10,30 +12,25 @@ import rehypeCallouts from "rehype-callouts";
 import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
 import rehypeFigCaption from "./plugins/rehype-figcaption";
 import remarkReadingTime from "./plugins/remark-reading-time";
-import rehypeSlug from "rehype-slug";
-
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 
 import bundlesize from "vite-plugin-bundlesize";
-
 import tailwindcss from "@tailwindcss/vite";
 
-// import resolveConfig from 'tailwindcss/resolveConfig'
+/* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
+const NETLIFY_PREVIEW_SITE =
+	process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL;
 
-// const fullConfig = resolveConfig(tailwindConfig)
-
-export const adapter =
-	process.env.NETLIFY === "true"
-		? "netlify"
-		: process.env.CF_PAGES === "1"
-			? "cloudflare"
-			: "netlify";
+const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://queerwinnipeg.ca",
+	site,
 	prefetch: { prefetchAll: true },
+	experimental: {
+		clientPrerender: true,
+	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		rehypePlugins: [
@@ -54,18 +51,18 @@ export default defineConfig({
 					classes: {
 						wrapper: "overflow-x-auto",
 						caption: "",
-						table: "mt-0 mb-0",
+						table: "",
 						tbody: "",
 						td: "",
 						tfoot: "",
-						th: "whitespace-nowrap pt-4",
+						th: "whitespace-nowrap",
 						thead: "",
 						tr: "",
 					},
 				},
 			],
 			rehypeFigCaption,
-			rehypeSlug,
+			rehypeHeadingIds,
 			...rehypeAutolink(),
 			withToc,
 			withTocExport,
@@ -86,5 +83,10 @@ export default defineConfig({
 		build: { sourcemap: "hidden" },
 		plugins: [bundlesize({ allowFail: true }), tailwindcss()],
 	},
-	adapter: netlify(),
+	adapter:
+		process.env.CF_PAGES == "1"
+			? cloudflare()
+			: process.env.NETLIFY === "true"
+				? netlify()
+				: undefined,
 });

@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/articles/ArticleCard.astro";
 // import { TagEnum } from "../content/config";
@@ -9,10 +9,10 @@ import RSSPromotion from "../components/RSSPromotion.astro";
 
 const posts = await getCollection("posts");
 
-type Props = {
-	entry: CollectionEntry<"posts">;
-};
-
+// type Props = {
+// 	entry: CollectionEntry<"posts">;
+// };
+//
 // const mostRecent = posts.sort(
 // 	(p) => p.data.lastEdited?.getDate() ?? p.data.created.getDate()
 // )[0];
@@ -21,11 +21,11 @@ type Props = {
 <BaseLayout seo={{ title: "Home" }}>
 	<main
 		id="main-content"
-		class="mx-auto w-full max-w-screen-xl px-4 pt-24 -mt-8 format dark:format-invert lg:format-lg"
+		class="format dark:format-invert lg:format-lg mx-auto -mt-8 w-full max-w-screen-xl px-4 pt-24"
 	>
-		<section class="max-w-prose my-4 relative">
+		<section class="relative my-4 max-w-prose">
 			<span
-				class="absolute -z-10 -top-11 -left-11 dark:opacity-30"
+				class="absolute -top-11 -left-11 -z-10 dark:opacity-30"
 				aria-hidden="true"
 			>
 				<Fragment set:html={StarGrid} />
@@ -40,8 +40,8 @@ type Props = {
 		<div class="flex flex-col gap-8">
 			<section>
 				<h2 class="!text-[1.75em]">Featured</h2>
-				<div class="flex flex-col lg:flex-row gap-x-8 gap-y-6">
-					<div class="lg:max-w-max lg:w-1/2">
+				<div class="flex flex-col gap-x-8 gap-y-6 lg:flex-row">
+					<div class="lg:w-1/2 lg:max-w-max">
 						<ArticleCard
 							size="large"
 							postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
