@@ -1,7 +1,7 @@
 export const prerender = true;
 
-import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
+import rss from "@astrojs/rss";
 
 export async function GET(context: { site: string }) {
 	const posts = await getCollection("posts");
@@ -25,6 +25,6 @@ export async function GET(context: { site: string }) {
 				// customData: post.data.customData,
 				link: `/posts/${post.slug}/`,
 			})),
-		customData: `<language>en-us</language>`,
+		customData: "<language>en-us</language>",
 	});
 }

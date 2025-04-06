@@ -1,26 +1,23 @@
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography" {
-	/* 
-    For some reason, Prettier turns "className" into "classname", which unsurprisingly breaks our CSS. Because of this, the prettier-ignore is
-    needed. The "format" name is a remnant of migration	from flowbite-typography.
-    */
-
-	/* prettier-ignore */
+	/* biome-ignore lint/correctness/noUnknownProperty:
+	No clue why it does not recognize it is part of Tailwind */
 	className: format;
 }
 @plugin 'tailwind-scrollbar' {
+	/* biome-ignore lint/correctness/noUnknownProperty:
+	No clue why it does not recognize it is part of Tailwind */
 	nocompatible: true;
 }
 
 @theme {
 	--breakpoint-xs: 475px; /* Unsure where this came from */
 
-	--font-sans:
-		"Josefin Sans Variable", "ui-sans-serif", "system-ui", "sans-serif",
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--font-mono:
-		"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
+	--font-sans: "Josefin Sans Variable", "ui-sans-serif", "system-ui",
+		"sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
+	--font-mono: "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
 		"Liberation Mono", "Courier New", "monospace";
 }
 

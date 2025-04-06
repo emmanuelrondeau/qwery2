@@ -1,72 +1,72 @@
 <script lang="ts">
-	import { createSelect, melt } from "@melt-ui/svelte";
-	import { selectedTheme, theme } from "../../stores";
-	import { onMount } from "svelte";
-	import { scale } from "svelte/transition";
-	import { cubicOut } from "svelte/easing";
+import { createSelect, melt } from "@melt-ui/svelte";
+import { onMount } from "svelte";
+import { cubicOut } from "svelte/easing";
+import { scale } from "svelte/transition";
+import { selectedTheme, theme } from "../../stores";
 
-	const options: { value: string; label: string; icon?: Element | null }[] = [
-		{ value: "light", label: "Light" },
-		{ value: "dark", label: "Dark" },
-		{ value: "auto", label: "Auto" },
-	];
+const options: { value: string; label: string; icon?: Element | null }[] = [
+	{ value: "light", label: "Light" },
+	{ value: "dark", label: "Dark" },
+	{ value: "auto", label: "Auto" },
+];
 
-	const {
-		elements: { trigger, menu, option },
-		states: { selectedLabel, open },
-		helpers: { isSelected },
-	} = createSelect<string>({
-		forceVisible: true,
-		preventScroll: false,
-		positioning: {
-			placement: "bottom",
-			fitViewport: true,
-			// sameWidth: true,
-			strategy: "absolute",
-		},
-		selected: selectedTheme,
-	});
+const {
+	elements: { trigger, menu, option },
+	states: { selectedLabel, open },
+	helpers: { isSelected },
+} = createSelect<string>({
+	forceVisible: true,
+	preventScroll: false,
+	positioning: {
+		placement: "bottom",
+		fitViewport: true,
+		// sameWidth: true,
+		strategy: "absolute",
+	},
+	selected: selectedTheme,
+});
 
-	onMount(() => {
-		const tmpl: HTMLTemplateElement | null =
-			document.querySelector(`#theme-icons`);
-		if (tmpl) {
-			for (const optionElement of options) {
-				optionElement.icon = tmpl.content.querySelector(
-					`.${optionElement.value}`,
-				);
-				optionElement.icon?.setAttribute("width", "24px");
-				optionElement.icon?.setAttribute("height", "24px");
-			}
+onMount(() => {
+	const tmpl: HTMLTemplateElement | null =
+		document.querySelector("#theme-icons");
+	if (tmpl) {
+		for (const optionElement of options) {
+			optionElement.icon = tmpl.content.querySelector(
+				`.${optionElement.value}`,
+			);
+			optionElement.icon?.setAttribute("width", "24px");
+			optionElement.icon?.setAttribute("height", "24px");
 		}
-
-		selectedLabel.subscribe((value) => {
-			// Totally won't bite me in the ass, if we need to localize to
-			// French. (it probably will)
-			theme.set(value.toLowerCase());
-		});
-	});
-
-	// Code copied from link; is unlicensed, but is probably good to copy anyway
-	// https://svelte.dev/repl/de8970d53ce040159aba167c0a4af6ef?version=3.2.2
-	function fadeScale(
-		node: Element,
-		{ delay = 0, duration = 200, easing = cubicOut, baseScale = 0 },
-	) {
-		const o = +getComputedStyle(node).opacity;
-		const m = getComputedStyle(node).transform.match(/scale\(([0-9.]+)\)/);
-		const s = m ? Number(m[1]) : 1;
-		const is = 1 - baseScale;
-
-		return {
-			delay,
-			duration,
-			css: (t: number) => {
-				const eased = easing(t);
-				return `opacity: ${eased * o}; transform: scale(${eased * s * is + baseScale})`;
-			},
-		};
 	}
+
+	selectedLabel.subscribe((value) => {
+		// Totally won't bite me in the ass, if we need to localize to
+		// French. (it probably will)
+		theme.set(value.toLowerCase());
+	});
+});
+
+// Code copied from link; is unlicensed, but is probably good to copy anyway
+// https://svelte.dev/repl/de8970d53ce040159aba167c0a4af6ef?version=3.2.2
+function fadeScale(
+	node: Element,
+	{ delay = 0, duration = 200, easing = cubicOut, baseScale = 0 },
+) {
+	const o = +getComputedStyle(node).opacity;
+	const m = getComputedStyle(node).transform.match(/scale\(([0-9.]+)\)/);
+	const s = m ? Number(m[1]) : 1;
+	const is = 1 - baseScale;
+
+	return {
+		delay,
+		duration,
+		css: (t: number) => {
+			const eased = easing(t);
+			return `opacity: ${eased * o}; transform: scale(${eased * s * is + baseScale})`;
+		},
+	};
+}
 </script>
 
 <div class="flex flex-col gap-1">
