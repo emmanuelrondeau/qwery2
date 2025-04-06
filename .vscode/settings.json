@@ -3,6 +3,9 @@
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	"tailwindCSS.classAttributes": [
 		"class",
 		"className",
@@ -16,15 +19,28 @@
 		"bowser",
 		"bundlesize",
 		"callouts",
+		"Cobbs",
+		"Consolas",
+		"devbox",
+		"direnv",
 		"embla",
 		"flowbite",
 		"hastscript",
 		"herob",
+		"Josefin",
 		"lqip",
 		"mdast",
+		"Menlo",
+		"nocompatible",
+		"Noto",
+		"nums",
 		"queerwinnipeg",
 		"rehype",
+		"Rombough",
+		"Segoe",
 		"stefanprobst",
-		"tailwindcss"
+		"tailwindcss",
+		"Twemoji",
+		"Wealthsimple"
 	]
 }
