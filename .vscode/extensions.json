@@ -1,8 +1,12 @@
 {
 	"recommendations": [
 		"astro-build.astro-vscode",
+		"bradlc.vscode-tailwindcss",
 		"esbenp.prettier-vscode",
-		"unifiedjs.vscode-mdx"
+		"streetsidesoftware.code-spell-checker-canadian-english",
+		"streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries",
+		"unifiedjs.vscode-mdx",
+		"yoavbls.pretty-ts-errors"
 	],
 	"unwantedRecommendations": []
 }
