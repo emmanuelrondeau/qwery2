@@ -1,14 +1,14 @@
 ---
 import { Picture } from "astro:assets";
 import { type CollectionEntry, getCollection, getEntry } from "astro:content";
-import ArticleAuthors from "../../components/articles/ArticleAuthors.astro";
-import MinutesRead from "../../components/articles/MinutesRead.astro";
-import PublishedOrUpdated from "../../components/articles/PublishedOrUpdated.astro";
-import TableOfContents from "../../components/articles/TableOfContents.astro";
-import Callout from "../../components/primitives/Callout.astro";
-import Link from "../../components/primitives/Link.astro";
-import { PAGE_TITLE_ID } from "../../constants";
-import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import ArticleAuthors from "@/components/articles/ArticleAuthors.astro";
+import MinutesRead from "@/components/articles/MinutesRead.astro";
+import PublishedOrUpdated from "@/components/articles/PublishedOrUpdated.astro";
+import TableOfContents from "@/components/articles/TableOfContents.astro";
+import Callout from "@/components/primitives/Callout.astro";
+import Link from "@/components/primitives/Link.astro";
+import { PAGE_TITLE_ID } from "@/constants";
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");

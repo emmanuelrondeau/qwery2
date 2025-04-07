@@ -1,4 +1,5 @@
 ---
+import { MAIN_NAV_ID } from "@/constants";
 import Background from "../../assets/josh-lavallee-sM0q8DxTkWQ-unsplash-crop.webp";
 import Button from "./Button.astro";
 import Link from "./Link.astro";
@@ -28,7 +29,7 @@ import { Picture } from "astro:assets";
 	</div>
 </div>
 <nav
-	id="main-nav"
+	id={MAIN_NAV_ID}
 	class="z-10 flex w-full py-6"
 	transition:animate="none"
 	transition:persist
