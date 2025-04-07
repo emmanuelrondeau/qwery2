@@ -6,8 +6,8 @@
 		"astro": "astro",
 		"build": "astro check && astro build",
 		"dev": "astro dev",
-		"fmt": "biome format --write ./src",
-		"lint": "biome lint --write --error-on-warnings ./src",
+		"fmt": "biome format --write ./src ./plugins",
+		"lint": "biome lint --write --error-on-warnings ./src ./plugins",
 		"preview": "astro preview",
 		"start": "astro dev",
 		"upgrade-deps": "pnpm upgrade -iL"

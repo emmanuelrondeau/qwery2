@@ -1,10 +1,10 @@
 import type { Root, RootContent } from "hast";
 
 export default function rehypeFigCaption() {
-	return function (tree: Root) {
+	return (tree: Root) => {
 		for (const node of tree.children) {
 			// @ts-expect-error - type doesn't exist
-			if (!(node.type == "mdxJsxFlowElement" && node.name == "figure")) {
+			if (!(node.type === "mdxJsxFlowElement" && node.name === "figure")) {
 				continue;
 			}
 
@@ -12,15 +12,17 @@ export default function rehypeFigCaption() {
 			const children = node.children as RootContent[];
 
 			for (const node of children) {
-				// @ts-expect-error - type doesn't exist
-				if (!(node.type == "mdxJsxFlowElement" && node.name == "figcaption")) {
+				if (
+					// @ts-expect-error - type doesn't exist
+					!(node.type === "mdxJsxFlowElement" && node.name === "figcaption")
+				) {
 					continue;
 				}
 
 				// @ts-expect-error - I'm in hell
 				const classAttribute = node.attributes.find(
 					// @ts-expect-error - I'm in hell
-					(attr) => attr.name == "class",
+					(attr) => attr.name === "class",
 				);
 				const classToAdd = "mx-auto text-center italic";
 				if (!classAttribute) {

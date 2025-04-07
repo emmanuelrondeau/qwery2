@@ -1,9 +1,9 @@
+import type { RehypePlugins } from "astro";
+import { toString as hastToString } from "hast-util-to-string";
 import { h } from "hastscript";
-import { toString } from "hast-util-to-string";
 import rehypeAutolinkHeadings, {
 	type Options as AutolinkOptions,
 } from "rehype-autolink-headings";
-import type { RehypePlugins } from "astro";
 
 const AnchorLinkIcon = h(
 	"span",
@@ -25,7 +25,7 @@ const autolinkConfig: AutolinkOptions = {
 		h(
 			"span",
 			{ "is:raw": true, class: "sr-only" },
-			`Section titled ${encodeURIComponent(toString(heading))}`,
+			`Section titled ${encodeURIComponent(hastToString(heading))}`,
 		),
 	],
 };
