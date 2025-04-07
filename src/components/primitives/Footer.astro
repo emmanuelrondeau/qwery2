@@ -1,4 +1,5 @@
 ---
+import { MAIN_NAV_ID } from "@/constants";
 import Link from "./Link.astro";
 ---
 
@@ -46,7 +47,7 @@ import Link from "./Link.astro";
 					>
 				</li>
 				<li>
-					<Link href="#" class="me-4 hover:underline md:me-6">Back to Top</Link>
+					<Link href={`#${MAIN_NAV_ID}`} class="me-4 hover:underline md:me-6">Back to Top</Link>
 				</li>
 			</ul>
 		</div>
