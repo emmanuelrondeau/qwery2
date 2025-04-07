@@ -24,7 +24,7 @@ export default function rehypeFigCaption() {
 					// @ts-expect-error - I'm in hell
 					(attr) => attr.name === "class",
 				);
-				const classToAdd = "mx-auto text-center italic";
+				const classToAdd = "mx-auto text-center italic max-w-[90%]";
 				if (!classAttribute) {
 					// @ts-expect-error - I'm in hell
 					node.attributes.push({
