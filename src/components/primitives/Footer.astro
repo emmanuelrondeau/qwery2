@@ -1,11 +1,11 @@
 ---
-import { MAIN_NAV_ID } from "@/constants";
+import { BOTTOM_PAGE_SENTINEL_ID, MAIN_NAV_ID } from "@/constants";
 import Link from "./Link.astro";
 ---
 
 <footer class="bg-white dark:bg-gray-900" transition:persist>
 	<div class="mx-auto w-full max-w-screen-xl px-4 pt-8 pb-6 sm:pt-16 lg:pb-8">
-		<hr class="my-6 border-gray-200 md:mx-auto lg:my-8 dark:border-gray-700" />
+		<hr class="my-6 border-gray-200 md:mx-auto lg:my-8 dark:border-gray-700" id={BOTTOM_PAGE_SENTINEL_ID} />
 		<div class="flex flex-col md:flex-row md:items-center md:justify-between">
 			<span
 				class="pb-2 text-sm font-medium text-gray-500 md:pb-0 md:text-center dark:text-gray-400"
