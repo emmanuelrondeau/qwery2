@@ -14,6 +14,9 @@
 	"[jsonc]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
@@ -37,8 +40,10 @@
 		"bundlemeta",
 		"bundlesize",
 		"callouts",
+		"CDIC",
 		"Cobbs",
 		"Consolas",
+		"currentcolor",
 		"devbox",
 		"direnv",
 		"embla",
@@ -50,6 +55,7 @@
 		"imgs",
 		"jdecked's",
 		"Josefin",
+		"KOHO",
 		"lavallee",
 		"lightbox",
 		"lqip",
