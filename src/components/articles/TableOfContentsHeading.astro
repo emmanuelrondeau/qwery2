@@ -17,10 +17,12 @@ const depth = Astro.props.depth ?? 1;
 >
 	<a
 		href={"#" + heading.slug}
-		class="peer block py-[.375rem] !no-underline hover:text-violet-700 hover:!underline aria-current:text-gray-950 dark:hover:text-violet-300 dark:aria-current:text-gray-50"
+		class="peer block py-[.375rem] !no-underline hover:!underline aria-current:text-gray-950 dark:aria-current:text-gray-50"
 		aria-current={ariaCurrent}
 	>
-		{heading.text}
+		<span class="relative top-[.1em]">
+			{heading.text}
+		</span>
 	</a>
 	<div
 		class="absolute top-0 bottom-0 w-[2px] bg-gray-200 peer-aria-current:bg-violet-600 dark:bg-gray-800 dark:peer-aria-current:bg-violet-400"

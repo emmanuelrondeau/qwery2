@@ -5,6 +5,7 @@
 	No clue why it does not recognize it is part of Tailwind */
 	className: format;
 }
+
 @plugin 'tailwind-scrollbar' {
 	/* biome-ignore lint/correctness/noUnknownProperty:
 	No clue why it does not recognize it is part of Tailwind */
@@ -12,7 +13,8 @@
 }
 
 @theme {
-	--breakpoint-xs: 475px; /* Unsure where this came from */
+	--breakpoint-xs: 475px;
+	/* Unsure where this came from */
 
 	--font-sans: "Josefin Sans Variable", "ui-sans-serif", "system-ui",
 		"sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
@@ -84,15 +86,6 @@
 	/* Article Formatting */
 	.format {
 		@apply format-code:font-normal format-table:tabular-nums;
-		/* @apply format-headings:font-bold; */
-	}
-
-	.format a:not(.not-format) {
-		@apply rounded underline ring-violet-600 outline-none hover:no-underline focus-visible:ring-2 dark:ring-gray-50;
-	}
-
-	.format .money-table table tbody {
-		@apply font-mono;
 	}
 
 	.format figure > div.side-by-side-images {
@@ -106,25 +99,27 @@
 	.format figure > div.side-by-side-images picture img {
 		@apply my-0;
 	}
+
+	/* Custom for the finances article */
+	.format .money-table table tbody {
+		@apply font-mono;
+	}
 }
 
 @layer utilities {
+	.format a:not(.not-format) {
+		@apply rounded underline ring-violet-600 outline-none focus-visible:ring-2 dark:ring-gray-50 hover:text-violet-800 dark:hover:text-violet-300;
+	}
+
 	/* Rehype Autolink - Custom styles for heading anchor links. */
 	.format .heading-wrapper {
-		/* @apply relative mb-[1em] flex items-center gap-2; */
 		--icon-size: 1em;
-		--icon-spacing: 0.5em;
-
-		@media (min-width: 95em) {
-			@apply flex flex-row-reverse justify-end;
-		}
-
-		gap: var(--icon-spacing);
+		--icon-spacing: 0.25em;
 	}
 
 	.format .heading-wrapper > :first-child {
 		margin-inline-end: calc(var(--icon-size) + var(--icon-spacing));
-		display: inline-block; /* Starlight uses inline, but i want margins working */
+		display: inline-block;
 	}
 
 	.format .heading-wrapper a {
@@ -141,9 +136,34 @@
 			transition-duration: 150ms;
 			*/
 	}
+
+	.format .heading-wrapper a svg {
+		@apply inline relative origin-center -rotate-45;
+		/* display: inline;
+		position: relative;
+		transform-origin: center;
+		transform: rotate(-45deg); */
+		bottom: .125em;
+		width: var(--icon-size);
+	}
+
+	.format
+		:where(.heading-wrapper.level-h2 + .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		)
+		h3,
+	.format
+		:where(.heading-wrapper.level-h3 + .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		)
+		h4 {
+		@apply mt-0;
+	}
+
 	.format p:has(+ .heading-wrapper) {
 		@apply mb-0;
 	}
+
 	.format .heading-wrapper + p,
 	.format .heading-wrapper + figure {
 		@apply mt-0;
@@ -152,9 +172,11 @@
 	.format .heading-wrapper.level-h2 a {
 		font-size: 1.5em;
 	}
+
 	.format .heading-wrapper.level-h3 a {
 		font-size: 1.25em;
 	}
+
 	.format .heading-wrapper.level-h4 a,
 	.format .heading-wrapper.level-h5 a,
 	.format .heading-wrapper.level-h6 a {
@@ -175,9 +197,10 @@
 
 	.format .heading-wrapper:hover a,
 	.format .heading-wrapper a:focus {
-		@apply text-violet-300 no-underline opacity-100;
+		@apply text-violet-500 dark:text-violet-300 no-underline opacity-100;
 	}
+
 	.format .heading-wrapper:hover a:hover {
-		@apply text-violet-50 saturate-[0.75];
+		@apply text-violet-700 dark:text-violet-50 saturate-[0.75];
 	}
 }
