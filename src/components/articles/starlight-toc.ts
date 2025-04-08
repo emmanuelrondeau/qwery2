@@ -1,4 +1,4 @@
-import { PAGE_TITLE_ID } from "../../constants";
+import { BOTTOM_PAGE_SENTINEL_ID, PAGE_TITLE_ID } from "@/constants";
 
 export class StarlightTOC extends HTMLElement {
 	private _current = this.querySelector(
@@ -61,12 +61,47 @@ export class StarlightTOC extends HTMLElement {
 			for (const { isIntersecting, target } of entries) {
 				if (!isIntersecting) continue;
 				const heading = getElementHeading(target);
-				if (!heading) continue;
+				if (!heading) {
+					continue;
+				}
 				const link = links.find(
 					(link) => link.hash === "#" + encodeURIComponent(heading.id),
 				);
-				if (link) {
+				if (!link) continue;
+				if (this.current != link) {
 					this.current = link;
+
+					// Test scroll stuff
+					// const container = this.getElementsByTagName("nav").item(0);
+					// if (!container) {
+					// 	console.error("Missing starlight-toc nav");
+					// 	break;
+					// }
+					// if (!link.parentElement) {
+					// 	console.error("Link parent missing");
+					// 	break;
+					// }
+
+					// const linkRect = link.getBoundingClientRect();
+					// const containerRect = container.getBoundingClientRect();
+					// const scrollTop =
+					// 	linkRect.top + container.scrollTop - containerRect.top;
+					// container.scrollTo({
+					// 	top: scrollTop,
+					// 	behavior: "smooth",
+					// });
+
+					break;
+				}
+			}
+		};
+
+		const setCurrentBottomPage: IntersectionObserverCallback = (entries) => {
+			for (const { isIntersecting, target } of entries) {
+				if (!isIntersecting) continue;
+				if (target.id === BOTTOM_PAGE_SENTINEL_ID) {
+					const lastLink = links[links.length - 1];
+					this.current = lastLink;
 					break;
 				}
 			}
@@ -77,6 +112,11 @@ export class StarlightTOC extends HTMLElement {
 		// the first heading.
 		const toObserve = document.querySelectorAll(
 			"main [id], main [id] ~ *, main .content > *",
+		);
+		// Bottom page observe, as an escape hatch to make sure it'll actually
+		// say it reached the end if the page cannot scroll anymore
+		const bottomPageToObserve = document.querySelector(
+			`#${BOTTOM_PAGE_SENTINEL_ID}`,
 		);
 
 		let observer: IntersectionObserver | undefined;
@@ -89,14 +129,45 @@ export class StarlightTOC extends HTMLElement {
 		};
 		observe();
 
+		let bottomPageObserver: IntersectionObserver | undefined;
+		const bottomPageObserve = () => {
+			if (bottomPageObserver) bottomPageObserver.disconnect();
+			bottomPageObserver = new IntersectionObserver(setCurrentBottomPage, {
+				root: null,
+				rootMargin: "0px",
+				threshold: 1,
+			});
+			if (bottomPageToObserve) bottomPageObserver.observe(bottomPageToObserve);
+		};
+		bottomPageObserve();
+
 		const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
 		let timeout: NodeJS.Timeout;
 		window.addEventListener("resize", () => {
 			// Disable intersection observer while window is resizing.
 			if (observer) observer.disconnect();
+			if (bottomPageObserver) bottomPageObserver.disconnect();
 			clearTimeout(timeout);
-			timeout = setTimeout(() => onIdle(observe), 200);
+			timeout = setTimeout(
+				() =>
+					onIdle(() => {
+						observe();
+						bottomPageObserve();
+					}),
+				200,
+			);
 		});
+
+		const setCurrentLinkFromHash = () => {
+			const hash = window.location.hash;
+			const link = links.find((link) => link.hash === hash);
+			if (link) this.current = link;
+		};
+		// If using view transitions, replace "DOMContentLoaded"
+		// with "astro:page-load"
+		document.addEventListener("DOMContentLoaded", setCurrentLinkFromHash);
+		// Used for when the user clicks on one of the TOC links
+		window.addEventListener("hashchange", setCurrentLinkFromHash);
 	}
 
 	private getRootMargin(): `-${number}px 0% ${number}px` {
