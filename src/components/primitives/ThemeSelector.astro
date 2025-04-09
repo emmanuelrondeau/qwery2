@@ -23,7 +23,7 @@ import ThemeSelectorSvelte from "./ThemeSelector.svelte";
 		/** Key in `localStorage` to store color theme preference at. */
 		const storageKey = "starlight-theme";
 
-		/** Get a typesafe theme string from any JS value (unknown values are coerced to `'auto'`). */
+		/** Get a type-safe theme string from any JS value (unknown values are coerced to `'auto'`). */
 		const parseTheme = (theme: unknown): Theme =>
 			theme === "auto" || theme === "dark" || theme === "light"
 				? theme
