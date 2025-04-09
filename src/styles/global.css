@@ -160,6 +160,19 @@
 		@apply mt-0;
 	}
 
+	.format
+		figure:has(+ .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		),
+	.format
+		figure:has(+ .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		)
+		figcaption
+		p:last-child {
+		@apply mb-0;
+	}
+
 	.format p:has(+ .heading-wrapper) {
 		@apply mb-0;
 	}
