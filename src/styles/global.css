@@ -63,6 +63,11 @@
 		@apply outline-none;
 	}
 
+	/* Default styling */
+	button {
+		@apply cursor-pointer outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50;
+	}
+
 	/* Leaflet Map */
 	.leaflet-pane {
 		z-index: 10 !important;
@@ -143,8 +148,12 @@
 		position: relative;
 		transform-origin: center;
 		transform: rotate(-45deg); */
-		bottom: .125em;
 		width: var(--icon-size);
+		bottom: .125em;
+	}
+
+	.format .heading-wrapper.level-h2 a svg {
+		bottom: .175em;
 	}
 
 	.format
