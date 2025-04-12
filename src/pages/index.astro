@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 // import { TagEnum } from "../content/config";
-import StarGrid from "../assets/star-grid.svg?raw";
-import ArticleCard from "../components/articles/ArticleCard.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import StarGrid from "@/assets/decorations/star-grid.svg?raw";
+import ArticleCard from "@/components/articles/ArticleCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
-import RSSPromotion from "../components/RSSPromotion.astro";
+import RSSPromotion from "@/components/RSSPromotion.astro";
 
 const posts = await getCollection("posts");
 
