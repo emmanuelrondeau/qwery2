@@ -95,7 +95,7 @@ function fadeScale(
 					<div
 						class={`-z-10 absolute top-0 bottom-0 left-0 right-0 rounded ${
 							$isSelected(item.value)
-								? "group-hover:bg-violet-300 dark:group-hover:bg-violet-700 group-data-[highlighted]:bg-violet-100 dark:group-data-[highlighted]:bg-violet-400 dark:group-data-[highlighted]:bg-opacity-25"
+								? "group-hover:bg-violet-300 dark:group-hover:bg-violet-400/25 group-data-[highlighted]:bg-violet-100 dark:group-data-[highlighted]:bg-violet-400/25 dark:group-data-[highlighted]:bg-opacity-25"
 								: "group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-data-[highlighted]:bg-gray-200 dark:group-data-[highlighted]:bg-gray-700"
 						}`}
 					></div>
