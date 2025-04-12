@@ -1,4 +1,7 @@
 ---
+import OpenInNew from "@/assets/icons/open-in-new.svg";
+import { tv } from "tailwind-variants";
+
 interface Props {
 	id?: string;
 	href?: string;
@@ -15,6 +18,21 @@ const {
 	type: buttonType,
 	...rest
 } = Astro.props;
+
+const button = tv({
+	base: "flex gap-x-1.5 h-12 items-center justify-center rounded px-5 ring-violet-800 transition-colors outline-none focus-visible:ring-2 active:transition-none dark:ring-gray-50",
+	variants: {
+		color: {
+			primary:
+				"bg-violet-200/50 text-violet-800 hover:bg-violet-200 active:bg-violet-300/20 active:text-violet-950 dark:bg-violet-400/15 dark:text-violet-300 dark:hover:bg-violet-400/25 dark:active:text-violet-400",
+			secondary:
+				"bg-gray-100 text-gray-800 hover:bg-gray-200/15 active:bg-gray-300/20 active:text-gray-950 dark:bg-gray-400 dark:text-gray-300 dark:hover:bg-gray-400/25 dark:active:text-gray-400",
+		},
+	},
+	defaultVariants: {
+		color: "primary",
+	},
+});
 ---
 
 {
@@ -23,13 +41,7 @@ const {
 			href={href}
 			target={target}
 			class:list={[
-				"flex h-12 items-center justify-center rounded px-5 ring-violet-800 transition-colors outline-none focus-visible:ring-2 active:transition-none dark:ring-gray-50",
-				{
-					"bg-violet-200/50 text-violet-800 hover:bg-violet-200 active:bg-violet-300/20 active:text-violet-950 dark:bg-violet-400/15 dark:text-violet-300 dark:hover:bg-violet-400/25 dark:active:text-violet-400":
-						!buttonType || buttonType == "primary",
-					"bg-gray-100 text-gray-800 hover:bg-gray-200/15 active:bg-gray-300/20 active:text-gray-950 dark:bg-gray-400 dark:text-gray-300 dark:hover:bg-gray-400/25 dark:active:text-gray-400":
-						buttonType == "secondary",
-				},
+				button({ color: buttonType }),
 				className,
 			]}
 			{...rest}
@@ -37,6 +49,7 @@ const {
 			<div class={slotClass} style="position: relative; bottom: -0.1em;">
 				<slot />
 			</div>
+			{ !href.startsWith("/") && <OpenInNew width="1em" height="1em" fill="currentcolor" /> }
 		</a>
 	) : (
 		<button

@@ -14,6 +14,9 @@
 	"[jsonc]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
+	"[svelte]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
 	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
@@ -30,8 +33,13 @@
 		"ngClass",
 		"class:list"
 	],
+	"tailwindCSS.experimental.classRegex": [
+		// https://www.tailwind-variants.org/docs/getting-started#intellisense-setup-optional
+		["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"cSpell.words": [
+		"adblocking",
 		"astro",
 		"astrojs",
 		"benjc",
@@ -44,6 +52,7 @@
 		"Cobbs",
 		"Consolas",
 		"currentcolor",
+		"deanonymized",
 		"devbox",
 		"direnv",
 		"embla",
@@ -51,6 +60,7 @@
 		"firewatch",
 		"flowbite",
 		"fontsource",
+		"FOUC",
 		"hastscript",
 		"herob",
 		"imgs",
@@ -77,6 +87,7 @@
 		"tailwindcss",
 		"Tele",
 		"Twemoji",
+		"WCAG",
 		"Wealthsimple",
 		"wght",
 		"withastro"

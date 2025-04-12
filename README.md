@@ -7,7 +7,7 @@ If you're here, welcome to the repo! Contributions are greatly appreciated. If y
 
 ## Getting Started for Writers
 
-If you wish to write for the website, currently you'll have to go through the steps of a developer. Writing for the website currently is also somewhat technical, requiring knowledge of Markdown and MDX.
+If you wish to write for the website, currently you'll have to go through the steps of a developer. Writing for the website currently is also somewhat technical, requiring knowledge of Markdown and a bit of MDX.
 
 Other than searching up tutorials on the basics of Markdown, the existing articles are a great reference point for how to format articles you make.
 

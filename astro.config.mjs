@@ -20,73 +20,74 @@ import bundlesize from "vite-plugin-bundlesize";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE =
-  process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL;
+	process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL;
 
 const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 
 // https://astro.build/config
 export default defineConfig({
-  site,
-  prefetch: { prefetchAll: true },
-  experimental: {
-    clientPrerender: true,
-  },
-  markdown: {
-    remarkPlugins: [remarkReadingTime],
-    rehypePlugins: [
-      [
-        rehypeCallouts,
-        {
-          callouts: {
-            info: { title: "Info:" },
-            warning: { title: "Warning:" },
-            caution: { title: "Caution:" },
-          },
-          showIndicator: false,
-        },
-      ],
-      [
-        rehypeEnhancedTables,
-        {
-          classes: {
-            wrapper: "overflow-x-auto",
-            caption: "",
-            table: "",
-            tbody: "",
-            td: "",
-            tfoot: "",
-            th: "whitespace-nowrap",
-            thead: "",
-            tr: "",
-          },
-        },
-      ],
-      rehypeFigCaption,
-      rehypeHeadingIds,
-      ...rehypeAutolink(),
-      withToc,
-      withTocExport,
-    ],
-  },
-  integrations: [
-    AutoImport({
-      // https://github.com/delucis/astro-auto-import/tree/main/packages/astro-auto-import
-      imports: [
-        "/src/components/primitives/Callout.astro",
-        "/src/components/articles/Image.astro",
-      ],
-    }),
-    mdx(),
-    svelte(),
-  ],
-  vite: {
-    build: { sourcemap: "hidden" },
-    plugins: [bundlesize({ allowFail: true }), tailwindcss()],
-  },
-  adapter:
-    process.env.CF_PAGES === "1"
-      ? cloudflare()
-      : process.env.NETLIFY === "true"
-        ? netlify()
-        : undefined,
+	site,
+	prefetch: { prefetchAll: true },
+	experimental: {
+		clientPrerender: true,
+		svg: true,
+	},
+	markdown: {
+		remarkPlugins: [remarkReadingTime],
+		rehypePlugins: [
+			[
+				rehypeCallouts,
+				{
+					callouts: {
+						info: { title: "Info:" },
+						warning: { title: "Warning:" },
+						caution: { title: "Caution:" },
+					},
+					showIndicator: false,
+				},
+			],
+			[
+				rehypeEnhancedTables,
+				{
+					classes: {
+						wrapper: "overflow-x-auto",
+						caption: "",
+						table: "",
+						tbody: "",
+						td: "",
+						tfoot: "",
+						th: "whitespace-nowrap",
+						thead: "",
+						tr: "",
+					},
+				},
+			],
+			rehypeFigCaption,
+			rehypeHeadingIds,
+			...rehypeAutolink(),
+			withToc,
+			withTocExport,
+		],
+	},
+	integrations: [
+		AutoImport({
+			// https://github.com/delucis/astro-auto-import/tree/main/packages/astro-auto-import
+			imports: [
+				"/src/components/primitives/Callout.astro",
+				"/src/components/articles/Image.astro",
+			],
+		}),
+		mdx(),
+		svelte(),
+	],
+	vite: {
+		build: { sourcemap: "hidden" },
+		plugins: [bundlesize({ allowFail: true }), tailwindcss()],
+	},
+	adapter:
+		process.env.CF_PAGES === "1"
+			? cloudflare()
+			: process.env.NETLIFY === "true"
+				? netlify()
+				: undefined,
 });

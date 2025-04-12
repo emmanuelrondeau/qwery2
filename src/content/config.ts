@@ -19,7 +19,7 @@ const posts = defineCollection({
 			description: z.string().optional(),
 			tag: TagEnum.default("Other"),
 			otherTags: z.array(TagEnum).optional(),
-			cover: image(),
+			cover: image().optional(),
 			authors: z.array(reference("authors")),
 			created: z.date(),
 			lastEdited: z.date().optional(),
