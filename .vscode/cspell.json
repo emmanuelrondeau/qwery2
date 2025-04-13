@@ -1,5 +1,8 @@
 {
 	"version": "0.2",
+	"flagWords": [
+		"behavior"
+	],
 	"ignorePaths": [],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
@@ -42,6 +45,7 @@
 		"lqip",
 		"mdast",
 		"Menlo",
+		"neurodivergent",
 		"nocompatible",
 		"notifs",
 		"Noto",
@@ -60,6 +64,7 @@
 		"Simplii",
 		"Sobeys",
 		"stefanprobst",
+		"subpixeled",
 		"subreddits",
 		"Supercentres",
 		"tailwindcss",
@@ -75,7 +80,9 @@
 		"XEQT",
 		"XGRO"
 	],
-	"ignoreWords": ["rehypei"],
+	"ignoreWords": [
+		"rehypei"
+	],
 	"import": [],
 	"language": "en,en-CA"
 }
