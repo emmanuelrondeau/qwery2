@@ -182,12 +182,17 @@
 		@apply mb-0;
 	}
 
-	.format p:has(+ .heading-wrapper) {
+	.format
+		p:has(+ .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		) {
 		@apply mb-0;
 	}
 
 	.format .heading-wrapper + p,
-	.format .heading-wrapper + figure {
+	.format .heading-wrapper + figure,
+	.format .heading-wrapper + pre,
+	.format .heading-wrapper + ul {
 		@apply mt-0;
 	}
 
@@ -224,5 +229,37 @@
 
 	.format .heading-wrapper:hover a:hover {
 		@apply text-violet-700 dark:text-violet-50 saturate-[0.75];
+	}
+
+	/* Callouts */
+	.callout {
+		@apply my-[1.25em] lg:my-[1.3333333em] has-[+.heading-wrapper]:mb-0 rounded border-l-4 px-5 py-4 lg:py-5 outline-none;
+	}
+	.callout[data-callout="info"] {
+		@apply marker:text-violet-300 border-violet-500 bg-violet-50 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:selection:bg-violet-900/50 dark:selection:text-violet-50;
+	}
+	.callout[data-callout="warning"] {
+		@apply marker:text-yellow-300 border-yellow-500 bg-yellow-50 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;
+	}
+	.callout[data-callout="caution"] {
+		@apply marker:text-red-300 border-red-500 bg-red-50 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:selection:bg-red-900/50 dark:selection:text-red-50;
+	}
+
+	.callout .callout-title {
+		@apply relative top-[.1em] font-bold;
+	}
+
+	.callout[data-callout="info"] .callout-title {
+		@apply text-violet-800 dark:text-violet-300;
+	}
+	.callout[data-callout="warning"] .callout-title {
+		@apply text-yellow-800 dark:text-yellow-300;
+	}
+	.callout[data-callout="caution"] .callout-title {
+		@apply text-red-800 dark:text-red-300;
+	}
+
+	.callout .callout-content {
+		@apply relative [&>*]:first:mt-1 [&>*]:last:mb-0 dark:text-gray-200;
 	}
 }
