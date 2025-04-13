@@ -52,7 +52,6 @@ const authors = await Promise.all(authorsPromise);
 		},
 	}}
 	disableFormat
-	hasImage={!!post.data.cover}
 >
 	<div
 		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-screen-xl"
@@ -105,14 +104,14 @@ const authors = await Promise.all(authorsPromise);
 		</div>
 		<div class="flex w-full flex-col justify-between lg:flex-row-reverse">
 			<div
-				class="format dark:format-invert top-0 right-0 flex h-fit w-full lg:sticky lg:pt-8 lg:pl-12"
+				class="format dark:format-invert top-0 right-0 flex h-fit lg:sticky lg:pt-8 lg:pl-12"
 			>
 				<div class="lg:ml-auto lg:max-w-[28rem] lg:min-w-96">
 					<TableOfContents headings={headings} />
 				</div>
 			</div>
 			<div
-				class="format dark:format-invert lg:format-lg mt-8 block overflow-x-auto"
+				class="format dark:format-invert lg:format-lg mt-8 block overflow-x-clip"
 			>
 				{
 					post.data.draft && (

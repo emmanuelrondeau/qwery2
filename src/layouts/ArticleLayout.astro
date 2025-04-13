@@ -4,18 +4,23 @@ import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
 	seo: SEOProps;
-	hasImage?: boolean;
+	legalTextFormatting?: boolean;
 	disableFormat?: boolean;
 }
 
-const { hasImage, disableFormat } = Astro.props;
+const { legalTextFormatting, disableFormat } = Astro.props;
 ---
 
 <BaseLayout {...Astro.props}>
 	<article>
 		<main
 			id="main-content"
-			class=`mx-auto ${!disableFormat ? " format dark:format-invert lg:format-lg" : ""} ${!hasImage ? 'py-32' : 'pt-4 lg:pt-10 pb-32'}`
+			class:list={[
+				"mx-auto",
+				{ "format dark:format-invert lg:format-lg": !disableFormat},
+				{ "py-32": legalTextFormatting},
+				{ 'pt-4 lg:pt-10 pb-32': !legalTextFormatting}
+			]}
 		>
 			<slot />
 		</main>
