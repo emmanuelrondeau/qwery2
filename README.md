@@ -42,7 +42,10 @@ If everything went well, ta-da! You now have a working development instance on h
 
 ### Editors
 
-If you don't already have a code editor to work with this repository, I recommend [VS Codium](https://vscodium.com). We also have some helpers for VS Cod(ium) that suggests extensions you should install, to make your development experience better (and in my opinion, actually usable).
+If you don't already have a code editor to work with this repository, I recommend [VS Codium](https://vscodium.com). We also have some helpers for VS Cod(ium) that suggests extensions you should install, to make your development experience better (and in my opinion, actually usable).i
+
+> [!info]
+> To have formatting work on global.css, you'll need to make sure you're on a prerelease version of Biome.js. See https://github.com/biomejs/biome-vscode/issues/388.
 
 ### Maintenance
 
