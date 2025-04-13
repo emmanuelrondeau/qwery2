@@ -1,0 +1,59 @@
+---
+title: Article Style Guide
+authors:
+  - fio-cobbs
+created: 2024-04-03
+lastEdited: 2025-04-13
+tag: Meta
+---
+
+This post is a reference to what rules we basically follow for articles. If there's any ambiguity, definitely create an issue on the GitLab about it. If it isn't explicitly laid out here for something to do with formatting, either follow your gut or follow [Wikipedia's Manual of Style](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style).
+
+## Titles and Headings
+
+We currently use "Title Case" for most headings. If the heading title is read more like a sentence, use "Sentence case".
+
+### Don't start with an `h1` tag
+
+```md
+# A header with only one "#" character is disallowed!
+Don't do this!
+```
+
+This will break formatting assumptions, and may confuse screen readers. We also already got our top-level header as the title of the article. Your first header should therefore always be an `h2`.
+ 
+```md
+## This is a proper "h2" header
+This is good!
+```
+
+### No headers deeper than `h4`
+
+Don't make any headers deeper than an `h4`. The table of contents will break, and formatting likely breaks too. Needing an `h4` is indicative of a structural issue with the article.
+
+```md
+#### No more than these amounts of "#"s
+This is what we call an "h4".
+```
+
+## Spelling
+
+Since this is a Canadian site, try and abide by [Canadian English spelling](https://en.wikipedia.org/wiki/Canadian_English#Spelling).
+
+## Images
+
+- All images must be wrapped with a `<figure>` tag, to allow users to load a higher-quality version and zoom in some cases.
+- If images are licensed, you must put the license terms in a `<figcaption>` component.
+- General accessibility rules very much apply here. This includes having alt text on images (with its specific accessibility caveats), and [avoiding using images to display text instead of actual text](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style#Avoid_using_images_to_display_text).
+
+### Screenshots
+
+For screenshots, you usually want to zoom in to help with mobile screens or high DPI ones. If you're savvy enough to try, make sure fonts are antialiased as grayscale, and not subpixeled. If you're on Windows, download [BetterClearTypeTuner](https://github.com/bp2008/BetterClearTypeTuner/releases) to set to grayscale.
+
+If you don't wanna mess with a 3rd party program, but are comfortable with your browser's dev tools, you can find a parent element and set its opacity to 0.98. See https://web.dev/articles/antialiasing-101 for more info.
+
+Screenshots of apps or webpages generally aren't covered under any license, so you usually don't need to add attribution.
+
+## Punctuation
+
+- Bullet points should end in some punctuation (eg. a period, semicolon, or colon).
