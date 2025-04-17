@@ -13,7 +13,7 @@ import Link from "./Link.astro";
 				Made with love, hope, and <Link
 					href="https://youtu.be/CUgFQv4ocLI?t=7005"
 					target="_blank"
-					class="no-underline hover:underline">(especially trans) joy</Link
+					class="no-underline hover:underline dark:hover:text-gray-100 hover:text-gray-700">(especially trans) joy</Link
 				> 💜
 			</span>
 			<ul
@@ -24,7 +24,7 @@ import Link from "./Link.astro";
 						href="/"
 						target="_self"
 						referrerpolicy="strict-origin-when-cross-origin"
-						class="me-4 hover:underline md:me-6">Home</Link
+						class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6">Home</Link
 					>
 				</li>
 				<!-- <li>
@@ -38,16 +38,16 @@ import Link from "./Link.astro";
 					<Link
 						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
 						target="_blank"
-						class="me-4 hover:underline md:me-6">GitLab</Link
+						class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6">GitLab</Link
 					>
 				</li>
 				<li>
-					<Link href="/privacy" class="me-4 hover:underline md:me-6"
+					<Link href="/privacy" class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6"
 						>Privacy</Link
 					>
 				</li>
 				<li>
-					<Link href={`#${MAIN_NAV_ID}`} class="me-4 hover:underline md:me-6">Back to Top</Link>
+					<Link href={`#${MAIN_NAV_ID}`} class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6">Back to Top</Link>
 				</li>
 			</ul>
 		</div>
