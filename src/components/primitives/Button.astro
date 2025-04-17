@@ -49,7 +49,12 @@ const button = tv({
 			<div class={slotClass} style="position: relative; bottom: -0.1em;">
 				<slot />
 			</div>
-			{ !href.startsWith("/") && <OpenInNew width="1em" height="1em" fill="currentcolor" /> }
+			{target == "_blank" &&
+				<>
+					<OpenInNew width="1em" height="1em" fill="currentcolor" aria-hidden={true} />
+					<span class="sr-only">Opens in new tab</span>
+				</>
+			}
 		</a>
 	) : (
 		<button
