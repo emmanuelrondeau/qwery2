@@ -189,8 +189,8 @@
 		@apply mb-0;
 	}
 
-	.format .heading-wrapper + p,
 	.format .heading-wrapper + figure,
+	.format .heading-wrapper + p,
 	.format .heading-wrapper + pre,
 	.format .heading-wrapper + ul {
 		@apply mt-0;
@@ -232,6 +232,14 @@
 	}
 
 	/* Callouts */
+	&
+		.callout:where(.format > :first-child):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		) {
+		/* For some reason, the ".callout" class overrides the default format behaviour?? */
+		@apply !mt-0;
+	}
+
 	.callout {
 		@apply my-[1.25em] lg:my-[1.3333333em] has-[+.heading-wrapper]:mb-0 rounded border-l-4 px-5 py-4 lg:py-5 outline-none;
 	}
