@@ -26,38 +26,40 @@ if (!size) size = "small";
 		{ "flex-col sm:flex-row lg:flex-col": size === "large" },
 	]}
 >
-	<a
-		href=`/posts/${post.slug}`
-		aria-hidden={true}
-		tabindex={-1}
-		class:list={[
-			"not-format",
-			{ "flex-shrink-0": size === "small" },
-			{ "sm:h-48 sm:w-auto lg:h-auto lg:w-full": size === "large" },
-		]}
-	>
-		<Picture
+	{post.data.cover &&
+		<a
+			href={`/posts/${post.slug}`}
 			aria-hidden={true}
-			alt=""
+			tabindex={-1}
 			class:list={[
-				"!m-0 flex items-center justify-center rounded object-cover transition-transform",
-				{
-					"xs:w-48 xs:h-36 aspect-video w-full sm:h-auto sm:hover:scale-105":
-						size === "small",
-				},
-				{
-					"aspect-video w-full sm:aspect-auto sm:h-48 sm:w-auto sm:hover:scale-[102%] lg:aspect-video lg:h-auto lg:w-full":
-						size === "large",
-				},
+				"not-format",
+				{ "flex-shrink-0": size === "small" },
+				{ "sm:h-48 sm:w-auto lg:h-auto lg:w-full": size === "large" },
 			]}
-			src={post.data.cover}
-			loading="eager"
-			quality="high"
-			widths={[432, 720]}
-			sizes=`(max-width: 720px) 720px, (max-width: 1600px) 1000px`
-			transition:name=`cover-${post.slug}`
-		/>
-	</a>
+		>
+			<Picture
+				aria-hidden={true}
+				alt=""
+				class:list={[
+					"!m-0 flex items-center justify-center rounded object-cover transition-transform",
+					{
+						"xs:w-48 xs:h-36 aspect-video w-full sm:h-auto sm:hover:scale-105":
+						size === "small",
+					},
+					{
+						"aspect-video w-full sm:aspect-auto sm:h-48 sm:w-auto sm:hover:scale-[102%] lg:aspect-video lg:h-auto lg:w-full":
+							size === "large",
+					},
+				]}
+				src={post.data.cover}
+				loading="eager"
+				quality="high"
+				widths={[432, 720]}
+			sizes={`(max-width: 720px) 720px, (max-width: 1600px) 1000px`}
+				transition:name={`cover-${post.slug}`}
+			/>
+		</a>
+	}
 	{
 		size === "small" && (
 			<div class="!m-0 my-auto min-w-0 flex-1">
