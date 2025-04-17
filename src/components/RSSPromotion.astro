@@ -18,18 +18,23 @@ import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 			Want to get notified when new articles come out?
 		</h2>
 		<p class="!m-0">
-			We currently don't have an email newsletter, but we do have in-browser
-			notifications and an <Link
+			We currently don't have an email newsletter, but we do have an <Link
 				href="/rss.xml"
 				class="!m-0 text-violet-800 dark:text-violet-300">RSS feed!</Link
 			>
 		</p>
 		<div class="not-format mt-[.2em] flex">
-			<Button
+			<!-- Disabled because its not implemented -->
+			<!-- <Button
 				id="enable-notifs"
 				type="primary"
 				class="not-format block"
 				slotClass="px-1">Enable notifications</Button
+			> -->
+			<Button
+				type="primary"
+				class="not-format block"
+				href="/posts/what-is-rss">What is RSS?</Button
 			>
 		</div>
 	</div>
