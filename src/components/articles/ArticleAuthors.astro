@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 
 import { getCollection, getEntry } from "astro:content";
+import { tv } from "tailwind-variants";
 
 interface Props {
 	postId: string;
@@ -20,17 +21,21 @@ const authorsPromise = post.data.authors.map(async (author) => {
 });
 const authors = await Promise.all(authorsPromise);
 
+const authorStyling = tv({
+	base: "flex gap-2 not-format",
+	variants: {
+		size: {
+			large: "xs:self-center items-end",
+			medium: "",
+			small: "items-end text-sm",
+		},
+	},
+});
+
 const { size } = Astro.props;
 ---
 
-<div
-	class:list={[
-		"not-format flex gap-2",
-		size === "large" && "xs:self-center items-end",
-		size === "medium" && "format dark:format-invert",
-		size === "small" && "items-end text-sm",
-	]}
->
+<div class={authorStyling({ size })}>
 	<div
 		class=`flex ${size === "large" ? "-space-x-4" : "-space-x-2"} rtl:space-x-reverse flex-shrink-0 ${size !== "medium" ? "items-end" : ""} `
 	>
