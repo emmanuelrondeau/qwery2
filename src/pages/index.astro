@@ -44,7 +44,7 @@ const posts = await getCollection("posts");
 					<div class="lg:w-1/2 lg:max-w-max">
 						<ArticleCard
 							size="large"
-							postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
+							postId="how-to-take-the-bus-in-winnipeg.mdx",
 						/>
 					</div>
 					<div class="flex flex-col gap-6 lg:w-1/2">
@@ -53,8 +53,8 @@ const posts = await getCollection("posts");
 								.filter((post) =>
 									[
 										"a-guide-to-financial-literacy-in-canada.mdx",
+										"how-to-change-your-legal-name-or-sex-in-manitoba.mdx",
 										"how-to-start-hrt-in-winnipeg.mdx",
-										"how-to-take-the-bus-in-winnipeg.mdx",
 										"save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx",
 									].includes(post.id),
 								)
