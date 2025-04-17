@@ -32,6 +32,7 @@ export const TagEnum = z.enum([
 	"Legal",
 	"Medical",
 	"Mental Health",
+	"Meta",
 	"Mutual Aid",
 	"Other",
 	"Politics",
