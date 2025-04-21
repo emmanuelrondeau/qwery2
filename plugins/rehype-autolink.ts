@@ -26,6 +26,7 @@ const AnchorLinkIcon = h(
  */
 const autolinkConfig: AutolinkOptions = {
 	properties: { class: "anchor-link" },
+	// cspell:disable-next-line
 	behavior: "after",
 	group: ({ tagName }) =>
 		h("div", { tabIndex: -1, class: `heading-wrapper level-${tagName}` }),
