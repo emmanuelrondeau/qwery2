@@ -40,30 +40,26 @@ const button = tv({
 		<a
 			href={href}
 			target={target}
-			class:list={[
-				button({ color: buttonType }),
-				className,
-			]}
+			class:list={[button({ color: buttonType }), className]}
 			{...rest}
 		>
 			<div class={slotClass} style="position: relative; bottom: -0.1em;">
 				<slot />
 			</div>
-			{target == "_blank" &&
+			{target == "_blank" && (
 				<>
-					<OpenInNew width="1em" height="1em" fill="currentcolor" aria-hidden={true} />
+					<OpenInNew
+						width="1em"
+						height="1em"
+						fill="currentcolor"
+						aria-hidden={true}
+					/>
 					<span class="sr-only">Opens in new tab</span>
 				</>
-			}
+			)}
 		</a>
 	) : (
-		<button
-			class:list={[
-				button({ color: buttonType }),
-				className,
-			]}
-			{...rest}
-		>
+		<button class:list={[button({ color: buttonType }), className]} {...rest}>
 			<div class={slotClass} style="position: relative; bottom: -0.1em;">
 				<slot />
 			</div>

@@ -17,9 +17,9 @@ const { legalTextFormatting, disableFormat } = Astro.props;
 			id="main-content"
 			class:list={[
 				"mx-auto",
-				{ "format dark:format-invert lg:format-lg": !disableFormat},
-				{ "py-32": legalTextFormatting},
-				{ 'pt-4 lg:pt-10 pb-32': !legalTextFormatting}
+				{ "format dark:format-invert lg:format-lg": !disableFormat },
+				{ "py-32": legalTextFormatting },
+				{ "pt-4 pb-32 lg:pt-10": !legalTextFormatting },
 			]}
 		>
 			<slot />

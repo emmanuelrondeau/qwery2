@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* prettier-ignore */
 @plugin "@tailwindcss/typography" {
 	/* biome-ignore lint/correctness/noUnknownProperty:
 	No clue why it does not recognize it is part of Tailwind */
@@ -16,10 +17,11 @@
 	--breakpoint-xs: 475px;
 	/* Unsure where this came from */
 
-	--font-sans: "Josefin Sans Variable", "ui-sans-serif", "system-ui",
-		"sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-		"Noto Color Emoji";
-	--font-mono: "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
+	--font-sans:
+		"Josefin Sans Variable", "ui-sans-serif", "system-ui", "sans-serif",
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-mono:
+		"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
 		"Liberation Mono", "Courier New", "monospace";
 }
 
@@ -65,7 +67,7 @@
 
 	/* Default styling */
 	button {
-		@apply cursor-pointer outline-none focus-visible:ring-2 ring-violet-600 dark:ring-gray-50;
+		@apply cursor-pointer ring-violet-600 outline-none focus-visible:ring-2 dark:ring-gray-50;
 	}
 
 	/* Leaflet Map */
@@ -113,7 +115,7 @@
 
 @layer utilities {
 	.format a:not(.not-format) {
-		@apply rounded underline ring-violet-600 outline-none focus-visible:ring-2 dark:ring-gray-50 hover:text-violet-800 dark:hover:text-violet-300;
+		@apply rounded underline ring-violet-600 outline-none hover:text-violet-800 focus-visible:ring-2 dark:ring-gray-50 dark:hover:text-violet-300;
 	}
 
 	/* Rehype Autolink - Custom styles for heading anchor links. */
@@ -143,17 +145,17 @@
 	}
 
 	.format .heading-wrapper a svg {
-		@apply inline relative origin-center -rotate-45;
+		@apply relative inline origin-center -rotate-45;
 		/* display: inline;
 		position: relative;
 		transform-origin: center;
 		transform: rotate(-45deg); */
 		width: var(--icon-size);
-		bottom: .125em;
+		bottom: 0.125em;
 	}
 
 	.format .heading-wrapper.level-h2 a svg {
-		bottom: .175em;
+		bottom: 0.175em;
 	}
 
 	.format
@@ -224,11 +226,11 @@
 
 	.format .heading-wrapper:hover a,
 	.format .heading-wrapper a:focus {
-		@apply text-violet-500 dark:text-violet-300 no-underline opacity-100;
+		@apply text-violet-500 no-underline opacity-100 dark:text-violet-300;
 	}
 
 	.format .heading-wrapper:hover a:hover {
-		@apply text-violet-700 dark:text-violet-50 saturate-[0.75];
+		@apply text-violet-700 saturate-[0.75] dark:text-violet-50;
 	}
 
 	/* Callouts */
@@ -241,16 +243,16 @@
 	}
 
 	.callout {
-		@apply my-[1.25em] lg:my-[1.3333333em] has-[+.heading-wrapper]:mb-0 rounded border-l-4 px-5 py-4 lg:py-5 outline-none;
+		@apply my-[1.25em] rounded border-l-4 px-5 py-4 outline-none has-[+.heading-wrapper]:mb-0 lg:my-[1.3333333em] lg:py-5;
 	}
 	.callout[data-callout="info"] {
-		@apply marker:text-violet-300 border-violet-500 bg-violet-50 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:selection:bg-violet-900/50 dark:selection:text-violet-50;
+		@apply border-violet-500 bg-violet-50 marker:text-violet-300 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:selection:bg-violet-900/50 dark:selection:text-violet-50;
 	}
 	.callout[data-callout="warning"] {
-		@apply marker:text-yellow-300 border-yellow-500 bg-yellow-50 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;
+		@apply border-yellow-500 bg-yellow-50 marker:text-yellow-300 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;
 	}
 	.callout[data-callout="caution"] {
-		@apply marker:text-red-300 border-red-500 bg-red-50 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:selection:bg-red-900/50 dark:selection:text-red-50;
+		@apply border-red-500 bg-red-50 marker:text-red-300 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:selection:bg-red-900/50 dark:selection:text-red-50;
 	}
 
 	.callout .callout-title {
@@ -268,6 +270,6 @@
 	}
 
 	.callout .callout-content {
-		@apply relative [&>*]:first:mt-1 [&>*]:last:mb-0 dark:text-gray-200;
+		@apply relative dark:text-gray-200 [&>*]:first:mt-1 [&>*]:last:mb-0;
 	}
 }

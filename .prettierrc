@@ -1,0 +1,28 @@
+{
+	"plugins": [
+		"prettier-plugin-astro",
+		"prettier-plugin-svelte",
+		"prettier-plugin-tailwindcss"
+	],
+	"useTabs": true,
+	"overrides": [
+		{
+			"files": "*.astro",
+			"options": {
+				"parser": "astro"
+			}
+		},
+		{
+			"files": ["*.mdx"],
+			"options": {
+				"parser": "mdx",
+				"proseWrap": "never",
+				"printWidth": 9999
+			}
+		},
+		{
+			"files": ["*.json"],
+			"options": { "trailingComma": "all" }
+		}
+	]
+}

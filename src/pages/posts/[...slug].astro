@@ -56,23 +56,23 @@ const authors = await Promise.all(authorsPromise);
 	<div
 		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-screen-xl"
 	>
-		{post.data.cover &&
-			<div
-				class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded object-cover lg:h-96"
-			>
-				<Picture
-					alt=""
-					class="aspect-video h-full w-full rounded object-cover lg:rounded-none"
-					src={post.data.cover}
-					loading="eager"
-					decoding="async"
-					formats={["avif", "webp", "png"]}
-					quality="high"
-					widths={[1280, 1080, post.data.cover.width]}
-					sizes={`(max-width: 1600px) 1280px ${post.data.cover.width}px`}
-					transition:name={`cover-${post.slug}`}
-				/>
-			</div>
+		{
+			post.data.cover && (
+				<div class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded object-cover lg:h-96">
+					<Picture
+						alt=""
+						class="aspect-video h-full w-full rounded object-cover lg:rounded-none"
+						src={post.data.cover}
+						loading="eager"
+						decoding="async"
+						formats={["avif", "webp", "png"]}
+						quality="high"
+						widths={[1280, 1080, post.data.cover.width]}
+						sizes={`(max-width: 1600px) 1280px ${post.data.cover.width}px`}
+						transition:name={`cover-${post.slug}`}
+					/>
+				</div>
+			)
 		}
 		<div class="format dark:format-invert lg:format-lg !max-w-full">
 			{
