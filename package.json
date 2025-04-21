@@ -10,7 +10,8 @@
 		"lint": "biome lint --write --error-on-warnings ./src ./plugins",
 		"preview": "astro preview",
 		"start": "astro dev",
-		"upgrade-deps": "pnpm upgrade -iL"
+		"upgrade-deps": "pnpm upgrade -iL",
+		"postinstall": "astro telemetry disable"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
