@@ -22,7 +22,7 @@ const authorsPromise = post.data.authors.map(async (author) => {
 const authors = await Promise.all(authorsPromise);
 
 const authorStyling = tv({
-	base: "flex gap-2 not-format",
+	base: "not-format flex gap-2",
 	variants: {
 		size: {
 			large: "xs:self-center items-end",
