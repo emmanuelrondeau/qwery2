@@ -18,6 +18,8 @@ import remarkReadingTime from "./plugins/remark-reading-time";
 import tailwindcss from "@tailwindcss/vite";
 import bundlesize from "vite-plugin-bundlesize";
 
+import expressiveCode from "astro-expressive-code";
+
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE =
 	process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL;
@@ -76,6 +78,38 @@ export default defineConfig({
 				"/src/components/primitives/Callout.astro",
 				"/src/components/articles/Image.astro",
 			],
+		}),
+		expressiveCode({
+			defaultProps: {
+				overridesByLang: {
+					"markdown,mdx": { wrap: true },
+				},
+			},
+			shiki: {
+				bundledLangs: ["mdx", "markdown"],
+			},
+			styleOverrides: {
+				// UI font family explicitly not overwritten, as the main typeface of
+				// this website has alignment issues
+				frames: {
+					shadowColor: "#00000000",
+				},
+			},
+			themeCssSelector: (theme) =>
+				`[data-theme='${
+					theme.name.includes(
+						// Input light theme here
+						"latte",
+					)
+						? "light"
+						: "dark"
+				}']`,
+			themes: ["catppuccin-latte", "one-dark-pro"],
+
+			// Theoretically better as "false" for accessibility, although we already
+			// mess with selection colors. Since these are tailored to their
+			// respective backgrounds, it's probably best
+			useThemedSelectionColors: true,
 		}),
 		mdx(),
 		svelte(),

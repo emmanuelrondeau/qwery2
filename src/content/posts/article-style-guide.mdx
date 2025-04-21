@@ -15,14 +15,14 @@ We currently use "Title Case" for most headings. If the heading title is read mo
 
 ### Don't start with an `h1` tag
 
-```md
+```md title="example.mdx"
 # A header with only one "#" character is disallowed!
 Don't do this!
 ```
 
 This will break formatting assumptions, and may confuse screen readers. We also already got our top-level header as the title of the article. Your first header should therefore always be an `h2`.
  
-```md
+```md title="example.mdx"
 ## This is a proper "h2" header
 This is good!
 ```
@@ -31,7 +31,7 @@ This is good!
 
 Don't make any headers deeper than an `h4`. The table of contents will break, and formatting likely breaks too. Needing an `h4` is indicative of a structural issue with the article.
 
-```md
+```md title="example.mdx"
 #### No more than these amounts of "#"s
 This is what we call an "h4".
 ```
@@ -52,7 +52,7 @@ If you use any images, please make sure you can legally use that image!
 
 If you use any copyrighted works, but believe it can be used in fair use, please make a comment like this within the article, something like this:
 
-```mdx
+```mdx title="src/content/posts/a-guide-to-financial-literacy-in-canada.mdx"
 {/* Picture licensed under All Rights Reserved, on https://www.wealthsimple.com/en-ca/learn/50-30-20-rule */}
 <Image
    alt="Pie chart breaking down the 50:30:20 rule"
@@ -62,7 +62,7 @@ If you use any copyrighted works, but believe it can be used in fair use, please
 
 If you're contributing your own photos, follow the below formatting. CC BY-SA 4.0 is used as an example.
 
-```mdx
+```mdx title="src/content/posts/how-to-take-the-bus-in-winnipeg.mdx"
 {/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 <Image
    alt="Paper transfer"
@@ -72,7 +72,7 @@ If you're contributing your own photos, follow the below formatting. CC BY-SA 4.
 
 If the image is under the Creative Commons and you're not the copyright owner, give adequate credit. An example of doing this properly can be found in [How to Take the Bus in Winnipeg - BLUE Buses](https://queerwinnipeg.ca/posts/how-to-take-the-bus-in-winnipeg/#blue-buses).
 
-```mdx
+```mdx title="src/content/posts/how-to-take-the-bus-in-winnipeg.mdx"
 <figure>
 	<Image
 		alt="The St. Norbert Bus"
