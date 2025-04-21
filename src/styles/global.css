@@ -224,9 +224,13 @@
 		}
 	}
 
+	.format .heading-wrapper a {
+		@apply text-violet-500 dark:text-violet-300;
+	}
+
 	.format .heading-wrapper:hover a,
 	.format .heading-wrapper a:focus {
-		@apply text-violet-500 no-underline opacity-100 dark:text-violet-300;
+		@apply no-underline opacity-100;
 	}
 
 	.format .heading-wrapper:hover a:hover {
