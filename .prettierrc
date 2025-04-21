@@ -4,6 +4,7 @@
 		"prettier-plugin-svelte",
 		"prettier-plugin-tailwindcss"
 	],
+	"tailwindFunctions": ["tv"],
 	"useTabs": true,
 	"overrides": [
 		{
