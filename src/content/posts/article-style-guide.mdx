@@ -3,7 +3,7 @@ title: Article Style Guide
 authors:
   - fio-cobbs
 created: 2024-04-03
-lastEdited: 2025-04-13
+lastEdited: 2025-04-20
 tag: Meta
 ---
 
@@ -43,8 +43,49 @@ Since this is a Canadian site, try and abide by [Canadian English spelling](http
 ## Images
 
 - All images must be wrapped with a `<figure>` tag, to allow users to load a higher-quality version and zoom in some cases.
-- If images are licensed, you must put the license terms in a `<figcaption>` component.
+- If images are licensed, you must put the license terms in a `<figcaption>` component. See section [Attribution](#attribution) for more details.
 - General accessibility rules very much apply here. This includes having alt text on images (with its specific accessibility caveats), and [avoiding using images to display text instead of actual text](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style#Avoid_using_images_to_display_text).
+
+### Attribution
+
+If you use any images, please make sure you can legally use that image!
+
+If you use any copyrighted works, but believe it can be used in fair use, please make a comment like this within the article, something like this:
+
+```mdx
+{/* Picture licensed under All Rights Reserved, on https://www.wealthsimple.com/en-ca/learn/50-30-20-rule */}
+<Image
+   alt="Pie chart breaking down the 50:30:20 rule"
+   src={Wealthsimple_50_30_20_Rule}
+/>
+```
+
+If you're contributing your own photos, follow the below formatting. CC BY-SA 4.0 is used as an example.
+
+```mdx
+{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
+<Image
+   alt="Paper transfer"
+   src={PaperTransfer}
+/>
+```
+
+If the image is under the Creative Commons and you're not the copyright owner, give adequate credit. An example of doing this properly can be found in [How to Take the Bus in Winnipeg - BLUE Buses](https://queerwinnipeg.ca/posts/how-to-take-the-bus-in-winnipeg/#blue-buses).
+
+```mdx
+<figure>
+	<Image
+		alt="The St. Norbert Bus"
+		src={StNorbertBus}
+	/>
+	<figcaption>
+    	Picture by [Justin Rombough](https://www.flickr.com/photos/bpomanitoba) on [Flicker](https://www.flickr.com/photos/bpomanitoba/50368893052/in/photostream/), licensed under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/).
+    </figcaption>
+</figure>
+```
+
+If you're contributing your own photos under a Creative Commons license, feel free to credit yourself. For contributing cover images, and you wish to credit yourself, please put your attribution at the bottom of the article for now. Hopefully I figure out a way to credit in a way that isn't too intrusive.
+
 
 ### Screenshots
 

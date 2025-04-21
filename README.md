@@ -79,56 +79,7 @@ Text contents (ex. text that appears on the website, articles/posts, etc.) is co
 
 ## Contributing
 
-We're open to contributions! You can create a [Merge Request](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/merge_requests) here. Here's some things you should know;
-
-### Images
-
-If you use any images, please make sure you can legally use that image!
-
-If you use any copyrighted works, but believe it can be used in fair use, please make a comment like this within the article, something like this:
-
-```mdx
-{/* Picture licensed under All Rights Reserved, on https://www.wealthsimple.com/en-ca/learn/50-30-20-rule */}
-<Image
-   alt="Pie chart breaking down the 50:30:20 rule"
-   src={Wealthsimple_50_30_20_Rule}
-/>
-```
-
-If you're contributing your own photos, follow the below formatting. CC BY-SA 4.0 is used as an example.
-
-```mdx
-{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
-<Image
-   alt="Paper transfer"
-   src={PaperTransfer}
-/>
-```
-
-If the image is under the Creative Commons and you're not the copyright owner, give adequate credit. An example of doing this properly can be found in [How to Take the Bus in Winnipeg - BLUE Buses](https://queerwinnipeg.ca/posts/how-to-take-the-bus-in-winnipeg/#blue-buses).
-
-```mdx
-<figure>
-	<Image
-		alt="The St. Norbert Bus"
-		src={StNorbertBus}
-	/>
-	<figcaption>
-    	Picture by [Justin Rombough](https://www.flickr.com/photos/bpomanitoba) on [Flicker](https://www.flickr.com/photos/bpomanitoba/50368893052/in/photostream/), licensed under [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/).
-    </figcaption>
-</figure>
-```
-
-If you're contributing your own photos under a Creative Commons license, feel free to credit yourself. For contributing cover images, and you wish to credit yourself, please put your attribution at the bottom of the article for now. Hopefully I figure out a way to credit in a way that isn't too intrusive.
-
-### Text Content
-
-For headers:
-
-- For sentences as the header, use sentence case
-- For any other kind of header, use Wikipedia title formatting
-
-You can get an authoritative answer on how to case from https://titlecaseconverter.com/.
+We're open to contributions! You can create a [Merge Request](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/merge_requests) here. If you're looking to create an article, see the [Article Style Guide](https://queerwinnipeg.ca/posts/article-style-guide).
 
 ## Attribution
 
