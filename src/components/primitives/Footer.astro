@@ -5,7 +5,10 @@ import Link from "./Link.astro";
 
 <footer class="bg-white dark:bg-gray-900" transition:persist>
 	<div class="mx-auto w-full max-w-screen-xl px-4 pt-8 pb-6 sm:pt-16 lg:pb-8">
-		<hr class="my-6 border-gray-200 md:mx-auto lg:my-8 dark:border-gray-700" id={BOTTOM_PAGE_SENTINEL_ID} />
+		<hr
+			class="my-6 border-gray-200 md:mx-auto lg:my-8 dark:border-gray-700"
+			id={BOTTOM_PAGE_SENTINEL_ID}
+		/>
 		<div class="flex flex-col md:flex-row md:items-center md:justify-between">
 			<span
 				class="pb-2 text-sm font-medium text-gray-500 md:pb-0 md:text-center dark:text-gray-400"
@@ -13,7 +16,8 @@ import Link from "./Link.astro";
 				Made with love, hope, and <Link
 					href="https://youtu.be/CUgFQv4ocLI?t=7005"
 					target="_blank"
-					class="no-underline hover:underline dark:hover:text-gray-100 hover:text-gray-700">(especially trans) joy</Link
+					class="no-underline hover:text-gray-700 hover:underline dark:hover:text-gray-100"
+					>(especially trans) joy</Link
 				> 💜
 			</span>
 			<ul
@@ -24,7 +28,8 @@ import Link from "./Link.astro";
 						href="/"
 						target="_self"
 						referrerpolicy="strict-origin-when-cross-origin"
-						class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6">Home</Link
+						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
+						>Home</Link
 					>
 				</li>
 				<!-- <li>
@@ -38,16 +43,23 @@ import Link from "./Link.astro";
 					<Link
 						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
 						target="_blank"
-						class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6">GitLab</Link
+						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
+						>GitLab</Link
 					>
 				</li>
 				<li>
-					<Link href="/privacy" class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6"
+					<Link
+						href="/privacy"
+						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
 						>Privacy</Link
 					>
 				</li>
 				<li>
-					<Link href={`#${MAIN_NAV_ID}`} class="me-4 hover:underline dark:hover:text-gray-100 hover:text-gray-700 md:me-6">Back to Top</Link>
+					<Link
+						href={`#${MAIN_NAV_ID}`}
+						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
+						>Back to Top</Link
+					>
 				</li>
 			</ul>
 		</div>

@@ -1,0 +1,20 @@
+src/assets/images/**/*
+*.avif
+*.jpg
+*.png
+*.pdn
+
+# MDX comments break with Prettier
+# https://github.com/prettier/prettier/issues/12209
+# https://github.com/prettier/prettier/issues/12209
+*.mdx
+
+# I also just dislike Prettier's opinionated formatting for Markdown
+*.md
+
+# Lockfiles
+pnpm-lock.yaml
+devbox.lock
+
+# I have no idea why the file becomes so noisy about the commas
+biome.json*

@@ -20,7 +20,8 @@ import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 		<p class="!m-0 max-w-[24rem]">
 			We currently don't have an email newsletter, but we do have an <Link
 				href="/rss.xml"
-				class="!m-0 text-violet-800 hover:!text-violet-600 dark:text-violet-300 dark:hover:!text-violet-50">RSS feed!</Link
+				class="!m-0 text-violet-800 hover:!text-violet-600 dark:text-violet-300 dark:hover:!text-violet-50"
+				>RSS feed!</Link
 			>
 		</p>
 		<div class="not-format mt-[.2em] flex">
@@ -31,10 +32,8 @@ import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 				class="not-format block"
 				slotClass="px-1">Enable notifications</Button
 			> -->
-			<Button
-				type="primary"
-				class="not-format block"
-				href="/posts/what-is-rss">What is RSS?</Button
+			<Button type="primary" class="not-format block" href="/posts/what-is-rss"
+				>What is RSS?</Button
 			>
 		</div>
 	</div>
@@ -42,14 +41,14 @@ import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 		class="relative overflow-clip bg-gradient-to-b from-violet-100 to-violet-200 fill-violet-600 sm:h-auto sm:w-1/2 dark:from-[#4d1d9557] dark:to-[#5a21b619] dark:fill-violet-400"
 		style="clip-path: view-box;"
 	>
+		<div class="absolute inset-0 -translate-x-1/2 -translate-y-1/2">
+			<Fragment set:html={RSSRings} />
+		</div>
 		<div class="absolute inset-0 flex items-center justify-center">
 			<RSSFeed width={80} class="absolute" />
 			<div class="relative -bottom-20 -scale-y-100">
 				<RssFeedReflection width={80} gradientColor="#C4B5FD" />
 			</div>
-		</div>
-		<div class="absolute inset-0 -translate-x-1/2 -translate-y-1/2">
-			<Fragment set:html={RSSRings} />
 		</div>
 	</div>
 </div>

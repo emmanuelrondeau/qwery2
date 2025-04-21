@@ -11,13 +11,14 @@ interface Props {
 const { type, typeText } = Astro.props;
 ---
 
-{/** 
- * Callouts should be a div, if WebAIM is to go off by this site, which I'd 
- * wager would be a good example to follow:
- * https://webaim.org/resources/htmlcheatsheet/
- */}
-<div class="callout" data-callout={type.toLowerCase()}
->
+{
+	/**
+	 * Callouts should be a div, if WebAIM is to go off by this site, which I'd
+	 * wager would be a good example to follow:
+	 * https://webaim.org/resources/htmlcheatsheet/
+	 */
+}
+<div class="callout" data-callout={type.toLowerCase()}>
 	{
 		typeText !== "" && (
 			<div class="callout-title">
