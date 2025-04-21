@@ -20,9 +20,14 @@
 		"ngClass",
 		"class:list"
 	],
+	// Doesn't work, dunno why
+	"tailwindCSS.classFunctions": ["tv"],
 	"tailwindCSS.experimental.classRegex": [
 		// https://www.tailwind-variants.org/docs/getting-started#intellisense-setup-optional
-		["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		// ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+
+		// https://github.com/tailwindlabs/tailwindcss-intellisense/issues/1032#issuecomment-2575812786
+		"(?<=tv\\([\\s\\S]*?)[\"']([^\"']+)[\"']"
 	],
 	"typescript.tsdk": "node_modules/typescript/lib"
 }
