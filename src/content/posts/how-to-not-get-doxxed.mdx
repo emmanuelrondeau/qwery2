@@ -1,0 +1,140 @@
+---
+draft: true
+title: How to Not Get Doxxed in Canada
+description: Know tips and tricks on how to not have your personal information leaked.
+authors:
+  - fio-cobbs
+tag: Privacy
+created: 2024-06-29
+lastEdited: 2024-06-29
+cover: /src/assets/images/how-to-change-your-legal-name-or-sex-in-manitoba/how-to-change-your-legal-name-or-sex-in-manitoba.png
+---
+
+> [!info]	
+> Although there will be advice applicable internationally, this won't go into any United States specifics. Check out [Naomi Brockwell TV](https://www.youtube.com/@NaomiBrockwellTV) for more US centric coverage. She covers US specifics on financial privacy and the danger of phone numbers.
+
+Want to protect your personal information?
+
+## Your Threat Model
+
+**One of the most important things when considering privacy, is a threat model.**
+
+There are certain privacy tech that are useful for some people with specific goals, but not others.
+
+The [Tor Browser](https://www.torproject.org/) is a useful tool for hiding that you're accessing certain websites. However, if you're just looking to get away from online tracking, this may be overkill in most situations.
+
+If you log into accounts via Tor, you can be tracked via that account, regardless of Tor, an adblocker like [uBlock Origin](https://github.com/gorhill/uBlock), or a VPN.
+
+For your threat model, we're going to assume that you don't want your personal information online.
+
+## How Your Information Gets Leaked
+
+Black-hat hackers will target institutions such as corporations or governments in cyberattacks. These malicious hackers can enter systems through a multitude of ways, including social engineering, phishing attacks, or scanning for vulnerabilities via automated tools.
+
+Some may be able to enter through negligence by the institution, as documented by Maia "arson" crimew's [How to Hack an Airline](https://maia.crimew.gay/posts/how-to-hack-an-airline/).
+
+Maia was able to retreive the Transportation Security Administration (<abbr>TSA</abbr>)'s "no-fly" list easily through an improperly-secured Amazon S3 bucket.
+
+Malicious hackers sell your information on online black markets, such as BreachForums. Hackers then buy this information for various reasons, including identity theft, credit card fraud, phishing attacks, and doxxing.
+
+## Why are data breaches dangerous?
+
+Data breaches can be used to figure out lots of personal information about you. This includes your full legal name, birth date, your address(es), and phone number.
+
+Depending on what you've given the place that got hacks, and who leaked the data, you could have your government documents, social insurance number, or intimate photos out in the open.
+
+Through correlating multiple data leaks, black-hats can figure out many of these things. Your IP address, phone number, or email address may be a common linking factor.
+
+A hacker for example might not have your legal name on one data leak. Another data leak might have the same email or phone number, and that might have your legal name.
+
+## Tips & Tricks
+
+Although there's no fool-proof way on not having personal information leaked about you, here's some tips on how to limit how much gets leaked:
+
+### 1. Use a password manager
+
+A password manager can help you break the habit of reusing passwords, or ever so slightly changing your "main" password. It can also notify you if your email have been seen in a breach. You can also check if your information has been leaked with [haveibeenpwned.com](https://haveibeenpwned.com/).
+
+**If you reuse passwords, your passwords along with your email can be used to try logging into other websites.**
+
+23andMe had an infamous data leak, exposing approximately 6.9 million users' personal information. This included name, date of birth, grandparents's names, ethnicity estimates, and certain parts of their DNA.
+
+23andMe security wasn't broken into, however. Attackers did a technique called "credential stuffing". To do this kind of attack, they obtained leaks with emails and passwords, and tried using those credentials using an automated program. Anyone reusing passwords would have been compromised.
+
+**Your browser's built-in password manager is a great place to get started.** It'll generate a cryptographically-secure password, impossible to break in for lifetimes with current computer processing power.
+
+It'll also allow you to autofill password fields, making it more convenient than typing in your password all the time. Convenient!
+
+### 2. Delete accounts you don't use
+
+This is where a password manager can be incredibly handy; it'll have a sortable list of services you sign in frequently, and ones that you've not used in years.
+
+To limit your chances of your account details being caught in a breach, deleting accounts you don't use anymore will help limit your exposure.
+
+Some websites make it easy, but some might make it hard. You might find searching up queries such as "how to delete Facebook account" useful, for websites that make it tricky to delete your information.
+
+### 3. Check old accounts for personal information
+
+You may have put personal information such as your legal name, age, gender, and date of birth on services that have _zero_ need for that information.
+
+Certain websites or apps *may* need personal info, such as financial services. However, Wattpad doesn't need your first and last name. The only people that will see that info is in a data leak that happened in June 2020.
+
+<Callout type="Info">
+	Social media sites ask for this info to develop a profile on you, to better target you for advertising.
+</Callout>
+
+If you still wish to use those services, it may be best to put fake info if required, and leave out as much info as possible.
+
+### 4. Use email aliases
+
+With email aliases, you can obscure your real email address. Services include:
+
+- [SimpleLogin](https://simplelogin.io)
+- [Addy.io](https://addy.io)
+
+This is a useful tool in the case of data leaks, as this will make correlation between data leaks harder.
+
+The free plans on the sites listed above are not unlimited. The best way to utilize your limited aliases, is by having a category assigned for an alias.
+
+For example, finances can go into a finance alias, medical can go into a medical alias, gaming services can go into its own, and random junk that you don't put any personal info on any account you create with it can be its own separate thing.
+
+This makes it so that if a gaming service got hacked, it'd be significantly harder to find any data involving your financial information.
+
+[DuckDuckGo](https://duckduckgo.com/email/) allows for infinite aliases, however to use it, you'll need to download their Privacy Essentials extension. This may clash with better content blockers such as [uBlock Origin](https://github.com/gorhill/uBlock).
+
+DuckDuckGo's reputation isn't also the most pristine, as they've made a browser that [allows Microsoft to track users](https://www.bleepingcomputer.com/news/security/duckduckgo-browser-allows-microsoft-trackers-due-to-search-agreement/).
+
+### 5. Give your phone number sparingly
+
+In the United States of America, people can pay [US$300 to track down a phone's location](https://www.vice.com/en/article/nepxbz/i-gave-a-bounty-hunter-300-dollars-located-phone-microbilt-zumigo-tmobile), just with its phone number.
+
+Due to how cell technology fundementally works, the location of every phone is tracked in a database. If the phone location isn't known, it'd be impossible for towers to figure out where to send signals to it.
+
+To my knowledge in Canada, this database of each phone number's location doesn't appear to be for-sale. However, your phone is still isn't without risk. Correlation attacks are still possible, by using your phone number as a common identifier in data leaks.
+
+If you need to give an entity your phone number, [jmp.chat](https://jmp.chat) may be of use. It limits the amount of personal information it collects.
+
+The most information required by them is just giving them your eSIM. This has the privacy disadvantages of a regular SIM once connected to the network, therefore exposing your location to a network.
+
+The upsides of using them over a traditional network, is that you are able to pay through mail or cryptocurrency, allowing your transaction to be private. If you trust their [privacy policy](https://jmp.chat/privacy), they may be worth considering. Check out their [FAQ](https://jmp.chat/faq) for more details.
+
+### 6. Don't reuse the same username online
+
+You can unknowingly create a massive digital footprint by reusing the same username online.
+
+If you're trying to grow on social media, and shared usernames are important, make sure the sites you do reuse usenames are done intentionally.
+
+This can help limit your exposure if you give any personal information about yourself to others.
+
+### 7. Delete old messages/posts
+
+You may have revealed your country, province, or city in a Discord chat. You may have also screenshotted chats and posted them, which gives away what timezone you're in.
+
+This can be a painful process, but tools like [Redact](https://redact.dev/) exist for Reddit to delete content. Depending on who you are, and on which platform you're on, you may find deleting your account to be easiest.
+
+> [!warning] Warning:
+> Discord and Reddit doesn't delete your content if you delete your account. If you delete your account, you can't delete any posts/comments you've made after the fact!
+
+## Conclusion
+
+I hope this article acts as a useful guide on how to develop better privacy for you. Privacy can be overwhelming, but hopefully this gives you an idea on where to look!
