@@ -15,30 +15,32 @@ We currently use "Title Case" for most headings. If the heading title is read mo
 
 ### Don't start with an `h1` tag
 
-```md title="example.mdx"
-# A header with only one "#" character is disallowed!
-Don't do this!
-```
-
 This will break formatting assumptions, and may confuse screen readers. We also already got our top-level header as the title of the article. Your first header should therefore always be an `h2`.
- 
-```md title="example.mdx"
-## This is a proper "h2" header
-This is good!
+
+```mdx del={1} add={2} title="example.mdx"
+# An "h1" tag header
+## An "h2" header
+
+A header with only one "#" character is disallowed. Instead, use two "##" characters to create your first header.
 ```
 
 ### No headers deeper than `h4`
 
 Don't make any headers deeper than an `h4`. The table of contents will break, and formatting likely breaks too. Needing an `h4` is indicative of a structural issue with the article.
 
-```md title="example.mdx"
-#### No more than these amounts of "#"s
-This is what we call an "h4".
+```mdx add={1} del={2} title="example.mdx"
+#### An "h4" header
+##### An "h5" header
+
+No more than four "#" characters should be used!
 ```
 
 ## Spelling
 
 Since this is a Canadian site, try and abide by [Canadian English spelling](https://en.wikipedia.org/wiki/Canadian_English#Spelling).
+
+> [!info]
+> If you're using VS Cod(ium), you should be prompted to install cSpell and its Canadian dictionary, via the recommended extensions list.
 
 ## Images
 
@@ -52,7 +54,7 @@ If you use any images, please make sure you can legally use that image!
 
 If you use any copyrighted works, but believe it can be used in fair use, please make a comment like this within the article, something like this:
 
-```mdx title="src/content/posts/a-guide-to-financial-literacy-in-canada.mdx"
+```mdx {1} title="src/content/posts/a-guide-to-financial-literacy-in-canada.mdx"
 {/* Picture licensed under All Rights Reserved, on https://www.wealthsimple.com/en-ca/learn/50-30-20-rule */}
 <Image
    alt="Pie chart breaking down the 50:30:20 rule"
@@ -62,7 +64,7 @@ If you use any copyrighted works, but believe it can be used in fair use, please
 
 If you're contributing your own photos, follow the below formatting. CC BY-SA 4.0 is used as an example.
 
-```mdx title="src/content/posts/how-to-take-the-bus-in-winnipeg.mdx"
+```mdx {1} title="src/content/posts/how-to-take-the-bus-in-winnipeg.mdx"
 {/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
 <Image
    alt="Paper transfer"
@@ -72,7 +74,7 @@ If you're contributing your own photos, follow the below formatting. CC BY-SA 4.
 
 If the image is under the Creative Commons and you're not the copyright owner, give adequate credit. An example of doing this properly can be found in [How to Take the Bus in Winnipeg - BLUE Buses](https://queerwinnipeg.ca/posts/how-to-take-the-bus-in-winnipeg/#blue-buses).
 
-```mdx title="src/content/posts/how-to-take-the-bus-in-winnipeg.mdx"
+```mdx {6-8} title="src/content/posts/how-to-take-the-bus-in-winnipeg.mdx"
 <figure>
 	<Image
 		alt="The St. Norbert Bus"
@@ -84,12 +86,14 @@ If the image is under the Creative Commons and you're not the copyright owner, g
 </figure>
 ```
 
-If you're contributing your own photos under a Creative Commons license, feel free to credit yourself. For contributing cover images, and you wish to credit yourself, please put your attribution at the bottom of the article for now. Hopefully I figure out a way to credit in a way that isn't too intrusive.
+If you're contributing your own photos under a Creative Commons license, feel free to credit yourself as displayed like this.
+
+For contributing cover images, and you wish to credit yourself, please put your attribution at the bottom of the article for now. Hopefully I figure out a way to credit in a way that isn't too intrusive.
 
 
 ### Screenshots
 
-For screenshots, you usually want to zoom in to help with mobile screens or high DPI ones. If you're savvy enough to try, make sure fonts are antialiased as grayscale, and not subpixeled. If you're on Windows, download [BetterClearTypeTuner](https://github.com/bp2008/BetterClearTypeTuner/releases) to set to grayscale.
+For screenshots, you usually want to zoom in to help with mobile screens or high DPI ones. If you're savvy enough to try, make sure fonts are antialiased as grayscale, and not subpixeled. If you're on Windows, [download BetterClearTypeTuner](https://github.com/bp2008/BetterClearTypeTuner/releases) to set to grayscale.
 
 If you don't wanna mess with a 3rd party program, but are comfortable with your browser's dev tools, you can find a parent element and set its opacity to 0.98. See https://web.dev/articles/antialiasing-101 for more info.
 
