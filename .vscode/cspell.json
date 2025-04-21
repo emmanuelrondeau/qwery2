@@ -1,6 +1,8 @@
 {
 	"version": "0.2",
-	"flagWords": ["behavior"],
+	"flagWords": [
+		"behavior"
+	],
 	"ignorePaths": [],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
@@ -19,6 +21,7 @@
 		"Cobbs",
 		"Consolas",
 		"currentcolor",
+		"Cyproterone",
 		"deanonymized",
 		"devbox",
 		"direnv",
@@ -40,11 +43,14 @@
 		"Klinic",
 		"KOHO",
 		"lavallee",
+		"lettermail",
 		"lightbox",
 		"Lockfiles",
 		"lqip",
 		"mdast",
+		"meds",
 		"Menlo",
+		"MEPP",
 		"neurodivergent",
 		"neurodivergents",
 		"nocompatible",
@@ -53,6 +59,7 @@
 		"nums",
 		"Peggo",
 		"pharmacare",
+		"PHIN",
 		"piggybank",
 		"queerwinnipeg",
 		"Questrade",
@@ -64,6 +71,7 @@
 		"Segoe",
 		"Simplii",
 		"Sobeys",
+		"Spironolactone",
 		"stefanprobst",
 		"subpixeled",
 		"subreddits",
@@ -72,17 +80,20 @@
 		"Tele",
 		"TFSA",
 		"Twemoji",
+		"Vyvanse",
 		"Walmarts",
 		"WCAG",
-		"WINNpass",
 		"Wealthsimple",
 		"wght",
+		"WINNpass",
 		"withastro",
 		"XBAL",
 		"XEQT",
 		"XGRO"
 	],
-	"ignoreWords": ["rehypei"],
+	"ignoreWords": [
+		"rehypei"
+	],
 	"import": [],
 	"language": "en,en-CA"
 }
