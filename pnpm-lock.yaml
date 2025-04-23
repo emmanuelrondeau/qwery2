@@ -119,6 +119,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.3
         version: 4.1.3
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@4.1.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -159,6 +162,9 @@ importers:
       globals:
         specifier: ^16.0.0
         version: 16.0.0
+      phosphor-svelte:
+        specifier: ^3.0.1
+        version: 3.0.1(svelte@5.25.9)(vite@6.3.2(@types/node@22.5.5)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1))
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -1737,14 +1743,12 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
-<<<<<<< Updated upstream
   dfa@1.2.0:
     resolution: {integrity: sha512-ED3jP8saaweFTjeGX8HQPjeC1YYyZs98jGNZx6IiBvxW7JG5v492kamAQB3m2wop07CvU/RQmzcKr6bgcC5D/Q==}
-=======
+
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
->>>>>>> Stashed changes
 
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
@@ -2438,16 +2442,14 @@ packages:
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
 
-<<<<<<< Updated upstream
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
-=======
+
   melt@0.29.2:
     resolution: {integrity: sha512-x0qR8yE8+x2Bu6s1DRJNAxPBN295ANfTVJ/8UcWsNm/hb7M14ws9G64OFpRExZcI45kdh2KZb1LwHFmNsLwUbQ==}
     peerDependencies:
       '@floating-ui/dom': ^1.6.0
       svelte: ^5.0.0
->>>>>>> Stashed changes
 
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -2745,6 +2747,15 @@ packages:
 
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
+
+  phosphor-svelte@3.0.1:
+    resolution: {integrity: sha512-QuxdzWCBjNZXglk4XpmaKb+JRA6XgKOYWpBY8k82NZwxO5ec7u2iFuueAijKYgj/7hLWHtreAPc2Q5uZFNTRSQ==}
+    peerDependencies:
+      svelte: ^5.0.0 || ^5.0.0-next.96
+      vite: '>=5'
+    peerDependenciesMeta:
+      vite:
+        optional: true
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -3175,6 +3186,11 @@ packages:
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
+
+  tailwindcss-animate@1.0.7:
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
 
   tailwindcss@4.1.3:
     resolution: {integrity: sha512-2Q+rw9vy1WFXu5cIxlvsabCwhU2qUwodGq03ODhLJ0jW4ek5BUtoCsnLB0qG+m8AHgEsSJcJGDSDe06FXlP74g==}
@@ -5388,11 +5404,9 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
-<<<<<<< Updated upstream
   dfa@1.2.0: {}
-=======
+
   diff-sequences@29.6.3: {}
->>>>>>> Stashed changes
 
   diff@5.2.0: {}
 
@@ -6356,9 +6370,8 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-<<<<<<< Updated upstream
   mdn-data@2.12.2: {}
-=======
+
   melt@0.29.2(@floating-ui/dom@1.6.13)(svelte@5.25.9):
     dependencies:
       '@floating-ui/dom': 1.6.13
@@ -6367,7 +6380,6 @@ snapshots:
       nanoid: 5.1.5
       runed: 0.23.4(svelte@5.25.9)
       svelte: 5.25.9
->>>>>>> Stashed changes
 
   merge2@1.4.1: {}
 
@@ -6824,6 +6836,14 @@ snapshots:
 
   pathe@2.0.3: {}
 
+  phosphor-svelte@3.0.1(svelte@5.25.9)(vite@6.3.2(@types/node@22.5.5)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)):
+    dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
+      svelte: 5.25.9
+    optionalDependencies:
+      vite: 6.3.2(@types/node@22.5.5)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.5.1)
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -7144,17 +7164,12 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-<<<<<<< Updated upstream
-  s.color@0.0.15: {}
-=======
   runed@0.23.4(svelte@5.25.9):
     dependencies:
       esm-env: 1.2.2
       svelte: 5.25.9
 
-  s.color@0.0.15:
-    optional: true
->>>>>>> Stashed changes
+  s.color@0.0.15: {}
 
   sass-formatter@0.7.9:
     dependencies:
@@ -7337,6 +7352,10 @@ snapshots:
   tailwind-variants@1.0.0(tailwindcss@4.1.3):
     dependencies:
       tailwind-merge: 3.0.2
+      tailwindcss: 4.1.3
+
+  tailwindcss-animate@1.0.7(tailwindcss@4.1.3):
+    dependencies:
       tailwindcss: 4.1.3
 
   tailwindcss@4.1.3: {}
