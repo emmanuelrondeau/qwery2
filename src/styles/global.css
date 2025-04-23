@@ -13,6 +13,8 @@
 	nocompatible: true;
 }
 
+@plugin 'tailwindcss-animate';
+
 @theme {
 	--breakpoint-xs: 475px;
 	/* Unsure where this came from */
