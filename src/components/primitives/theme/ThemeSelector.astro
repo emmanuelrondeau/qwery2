@@ -1,30 +1,30 @@
 ---
-import LightMode24DpFILL0Wght400GRAD0Opsz24 from "../../assets/icons/light_mode_24dp_FILL0_wght400_GRAD0_opsz24.astro";
-import ThemeSelectorSvelte from "./ThemeSelector.svelte";
+import LightMode from "@/assets/icons/light_mode_24dp_FILL0_wght400_GRAD0_opsz24.astro";
+import ThemeDropdown from "@/components/primitives/theme/ThemeDropdown.svelte";
 ---
 
 <starlight-theme-select
-	class="relative fill-violet-800 transition-colors duration-75 hover:fill-violet-300 hover:opacity-80 focus:fill-violet-300 focus:opacity-80 dark:fill-gray-300 dark:focus:fill-violet-400"
+	class="relative flex fill-violet-800 transition-colors duration-75 hover:fill-violet-300 hover:opacity-80 focus:fill-violet-300 focus:opacity-80 dark:fill-gray-300 dark:focus:fill-violet-400"
 >
-	<ThemeSelectorSvelte client:load>
-		<LightMode24DpFILL0Wght400GRAD0Opsz24 class="label-icon" />
-	</ThemeSelectorSvelte>
+	<ThemeDropdown client:load>
+		<LightMode class="label-icon" />
+	</ThemeDropdown>
 
-	{/* Inlined to avoid FOUC. Uses global scope from `ThemeProvider.astro` */}
+	{
+		/* Inlined to avoid Flash of Unstyled Content (FOUC). Uses global scope from `ThemeProvider.astro` */
+	}
 	<script is:inline>
 		StarlightThemeProvider.updatePickers();
 	</script>
 
 	<script>
-		import { selectedTheme } from "../../stores";
-
-		type Theme = "auto" | "dark" | "light";
+		import { theme, type Theme } from "@/stores";
 
 		/** Key in `localStorage` to store color theme preference at. */
 		const storageKey = "starlight-theme";
 
 		/** Get a type-safe theme string from any JS value (unknown values are coerced to `'auto'`). */
-		const parseTheme = (theme: unknown): Theme =>
+		const parseTheme = (theme?: Theme): Theme =>
 			theme === "auto" || theme === "dark" || theme === "light"
 				? theme
 				: "auto";
@@ -32,7 +32,9 @@ import ThemeSelectorSvelte from "./ThemeSelector.svelte";
 		/** Load the user’s preference from `localStorage`. */
 		const loadTheme = (): Theme =>
 			parseTheme(
-				typeof localStorage !== "undefined" && localStorage.getItem(storageKey),
+				typeof localStorage !== "undefined"
+					? (localStorage.getItem(storageKey) as Theme)
+					: undefined,
 			);
 
 		/** Store the user’s preference in `localStorage`. */
@@ -70,12 +72,9 @@ import ThemeSelectorSvelte from "./ThemeSelector.svelte";
 				super();
 				const themeString = loadTheme();
 				onThemeChange(themeString);
-				selectedTheme.set({
-					value: themeString,
-					label: "", // Can be left blank
-				});
-				selectedTheme.subscribe((selected) => {
-					onThemeChange(parseTheme(selected.value));
+				theme.set(themeString);
+				theme.subscribe((v) => {
+					onThemeChange(parseTheme(v));
 				});
 			}
 		}

@@ -1,7 +1,9 @@
 import { writable } from "svelte/store";
 
-export const theme = writable("auto");
+export type Theme = "auto" | "dark" | "light";
+
+export const theme = writable("auto" as Theme);
 export const selectedTheme = writable({
-	value: "auto",
+	value: "auto" as Theme,
 	label: "Auto",
 });
