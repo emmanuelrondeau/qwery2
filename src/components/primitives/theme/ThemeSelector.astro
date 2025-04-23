@@ -1,22 +1,24 @@
 ---
 import LightMode from "@/assets/icons/light_mode_24dp_FILL0_wght400_GRAD0_opsz24.astro";
-import ThemeSelectorSvelte from "./ThemeSelector5.svelte";
+import ThemeDropdown from "@/components/primitives/theme/ThemeDropdown.svelte";
 ---
 
 <starlight-theme-select
-	class="flex relative fill-violet-800 transition-colors duration-75 hover:fill-violet-300 hover:opacity-80 focus:fill-violet-300 focus:opacity-80 dark:fill-gray-300 dark:focus:fill-violet-400"
+	class="relative flex fill-violet-800 transition-colors duration-75 hover:fill-violet-300 hover:opacity-80 focus:fill-violet-300 focus:opacity-80 dark:fill-gray-300 dark:focus:fill-violet-400"
 >
-	<ThemeSelectorSvelte client:load>
+	<ThemeDropdown client:load>
 		<LightMode class="label-icon" />
-	</ThemeSelectorSvelte>
+	</ThemeDropdown>
 
-	{/* Inlined to avoid Flash of Unstyled Content (FOUC). Uses global scope from `ThemeProvider.astro` */}
+	{
+		/* Inlined to avoid Flash of Unstyled Content (FOUC). Uses global scope from `ThemeProvider.astro` */
+	}
 	<script is:inline>
 		StarlightThemeProvider.updatePickers();
 	</script>
 
 	<script>
-		import { selectedTheme, type Theme } from "@/stores";
+		import { theme, type Theme } from "@/stores";
 
 		/** Key in `localStorage` to store color theme preference at. */
 		const storageKey = "starlight-theme";
@@ -31,8 +33,8 @@ import ThemeSelectorSvelte from "./ThemeSelector5.svelte";
 		const loadTheme = (): Theme =>
 			parseTheme(
 				typeof localStorage !== "undefined"
-					? localStorage.getItem(storageKey) as Theme
-					: undefined
+					? (localStorage.getItem(storageKey) as Theme)
+					: undefined,
 			);
 
 		/** Store the user’s preference in `localStorage`. */
@@ -70,12 +72,9 @@ import ThemeSelectorSvelte from "./ThemeSelector5.svelte";
 				super();
 				const themeString = loadTheme();
 				onThemeChange(themeString);
-				selectedTheme.set({
-					value: themeString,
-					label: "", // Can be left blank
-				});
-				selectedTheme.subscribe((selected) => {
-					onThemeChange(parseTheme(selected.value));
+				theme.set(themeString);
+				theme.subscribe((v) => {
+					onThemeChange(parseTheme(v));
 				});
 			}
 		}
