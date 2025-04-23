@@ -2,8 +2,8 @@
 import Button from "@/components/primitives/Button.astro";
 import Link from "@/components/primitives/Link.astro";
 
-import RSSRings from "@/assets/decorations/rss-rings.svg?raw";
-import RSSFeed from "@/assets/icons/RssFeed.astro";
+import RSSRings from "@/assets/decorations/rss-rings.svg";
+import RSSFeed from "@/assets/decorations/rss-feed.svg";
 import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 ---
 
@@ -12,11 +12,9 @@ import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 	class="flex w-full flex-col-reverse rounded-md bg-violet-50 sm:flex-row dark:bg-violet-800/10"
 >
 	<div
-		class="my-auto flex flex-col justify-center gap-y-3 p-6 sm:h-auto sm:w-2/3 md:w-1/2 lg:w-2/5 sm:p-10"
+		class="my-auto flex flex-col justify-center gap-y-3 p-8 sm:h-auto sm:w-2/3 sm:p-10 md:w-1/2 lg:w-2/5"
 	>
-		<h2 class="!m-0 !text-xl">
-			Get Notified for New Articles
-		</h2>
+		<h2 class="!m-0 !text-xl">Get Notified for New Articles</h2>
 		<p class="!m-0 max-w-[24rem]">
 			We currently don't have an email newsletter, but we do have an <Link
 				href="/rss.xml"
@@ -38,14 +36,14 @@ import RssFeedReflection from "@/assets/icons/RssFeedReflection.astro";
 		</div>
 	</div>
 	<div
-		class="relative overflow-clip bg-gradient-to-b from-violet-100 to-violet-200 fill-violet-600 sm:h-auto sm:w-1/3 md:w-1/2 lg:w-3/5 dark:from-[#4d1d9557] dark:to-[#5a21b619] dark:fill-violet-400"
+		class="relative h-48 overflow-clip bg-gradient-to-b from-violet-100 to-violet-200 fill-violet-600 sm:h-auto sm:w-1/3 md:w-1/2 lg:w-3/5 dark:from-[#4d1d9557] dark:to-[#5a21b619] dark:fill-violet-400"
 		style="clip-path: view-box;"
 	>
 		<div class="absolute inset-0 translate-x-0 -translate-y-1/2">
-			<Fragment set:html={RSSRings} />
+			<RSSRings aria-hidden={true} />
 		</div>
 		<div class="absolute inset-0 flex items-center justify-center">
-			<RSSFeed width={80} class="absolute" />
+			<RSSFeed width={80} class="absolute" fill="inherit" />
 			<div class="relative -bottom-20 -scale-y-100">
 				<RssFeedReflection width={80} gradientColor="#C4B5FD" />
 			</div>
