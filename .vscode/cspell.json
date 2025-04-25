@@ -1,7 +1,11 @@
 {
 	"version": "0.2",
-	"flagWords": ["behavior"],
-	"ignorePaths": [".devcontainer"],
+	"flagWords": [
+		"behavior"
+	],
+	"ignorePaths": [
+		".devcontainer"
+	],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -92,11 +96,14 @@
 		"wght",
 		"WINNpass",
 		"withastro",
+		"WPRFM",
 		"XBAL",
 		"XEQT",
 		"XGRO"
 	],
-	"ignoreWords": ["rehypei"],
+	"ignoreWords": [
+		"rehypei"
+	],
 	"import": [],
 	"language": "en,en-CA"
 }
