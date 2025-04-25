@@ -45,11 +45,7 @@ workflow:
     - corepack enable
     - corepack prepare pnpm@latest-10 --activate
     - pnpm config set store-dir .pnpm-store
-
-  script:
-    # The steps involved to build your app here
     - pnpm install
-    - pnpm run build
 
   artifacts:
     paths:
