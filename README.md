@@ -73,7 +73,11 @@ If you're a copyright owner of any of the images hosted, please [create an issue
 
 ### Text
 
-Text contents (ex. text that appears on the website, articles/posts, etc.) is copyrighted, and all rights are reserved to their respective authors. This does *not* include developer documentation (ex. this README), and the pure code/markup (ex. the HTML and TypeScript within .astro files, boilerplate MDX). Feel free to create an issue for clarification.
+Text contents (ex. text that appears on the website, articles/posts, etc.), except where otherwise specified, is copyrighted. All rights are reserved to their respective authors. Articles may specify within their body, or within their raw `.mdx` file, found within `/src/content/posts`.
+
+This does *not* include developer documentation (ex. this README), and the pure code/markup (ex. the HTML and TypeScript within .astro files, boilerplate MDX).
+
+Feel free to create an issue for clarification.
 
 ## Contributing
 
