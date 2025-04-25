@@ -1,0 +1,137 @@
+# Mostly blindly copying stuff from mradugin, licensed under MIT
+# https://github.com/mradugin/deploy-hugo-from-gitlab-to-cloudflare-pages/blob/main/.gitlab-ci.yml,
+
+# The following environment variables are required from within GitLab
+# https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/settings/ci_cd#js-cicd-variables-settings
+# - CLOUDFLARE_ACCOUNT_ID
+# - CLOUDFLARE_API_TOKEN
+
+stages:
+  - build
+  - deploy
+  - cleanup
+
+variables:
+  CLOUDFLARE_PROJECT_NAME: "queerwinnipeg"
+  DIST_FOLDER: ./dist
+  GIT_SUBMODULE_STRATEGY: recursive # This is unused
+
+workflow:
+  rules:
+    # Always run for tag
+    - if: "$CI_COMMIT_TAG"
+    # Run pipeline for merge request
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    # Do not run branch pipeline if there is merge request and branch
+    - if: "$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS"
+      when: never
+    # Always run every commit on default branch that does not have a tag
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TAG !~ /^./"
+      # Always run on schedule
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+
+build:
+  # The Docker image that will be used to build your app
+  # (intentionally not using devbox because it seems to not
+  # really have a good integration story with GitLab CI)
+  image: node:22-alpine
+
+  # Directly copied from https://pnpm.io/continuous-integration#gitlab-ci
+  # which uses corepack
+  before_script:
+    - npm install --global corepack@latest
+    - corepack enable
+    - corepack prepare pnpm@latest-10 --activate
+    - pnpm config set store-dir .pnpm-store
+
+  artifacts:
+    paths:
+      - "$DIST_FOLDER"
+
+  script:
+    # The steps involved to build your app here
+    - pnpm install
+    - pnpm run build
+
+  cache:
+    - key:
+        files:
+          - pnpm-lock.yaml
+      paths:
+        - .pnpm-store
+    - key: "$CI_COMMIT_BRANCH"
+      paths:
+        - "$DIST_FOLDER"
+
+.deploy:
+  image: node:22-alpine
+  stage: deploy
+  variables:
+    CLOUDFLARE_BRANCH: "$CI_COMMIT_BRANCH"
+    CLOUDFLARE_COMMIT_HASH: "$CI_COMMIT_SHA"
+    CLOUDFLARE_COMMIT_MESSAGE: "$CI_COMMIT_MESSAGE"
+  script: |
+    npx wrangler pages deploy "$DIST_FOLDER" \
+      --project-name "$CLOUDFLARE_PROJECT_NAME" \
+      --branch "$CLOUDFLARE_BRANCH" \
+      --commit-hash "$CLOUDFLARE_COMMIT_HASH" \
+      --commit-message "$CLOUDFLARE_COMMIT_MESSAGE" \
+      --commit-dirty false
+
+deploy:preview:
+  extends:
+    - .deploy
+  needs:
+    - build
+  environment: staging
+  variables:
+    CLOUDFLARE_BRANCH: "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: manual
+      variables:
+        CLOUDFLARE_BRANCH: "$CI_COMMIT_BRANCH-preview"
+    - if: "$CI_COMMIT_TAG"
+      when: never
+    - when: manual
+  allow_failure: true
+
+deploy:production:
+  extends:
+    - .deploy
+  needs:
+    - build
+  environment: production
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: manual
+    - if: "$CI_COMMIT_TAG"
+      when: always
+      variables:
+        # Cloudflare pages do not treat tags as "production" deployments, to overcome this
+        # pretend that branch is default, i.e. main, add tag name into commit message
+        CLOUDFLARE_BRANCH: "$CI_DEFAULT_BRANCH"
+        CLOUDFLARE_COMMIT_MESSAGE: "$CI_COMMIT_TAG - $CI_COMMIT_TAG_MESSAGE"
+    - when: never
+
+.cleanup:
+  image: python:3.11-alpine
+  stage: cleanup
+  variables:
+    CLEANUP_KEEP_DAYS: 7
+  before_script:
+    - pip install requests python-dateutil
+  script:
+    - python scripts/cleanup-deployments.py --environment ${CLEANUP_ENVIRONMENT} --days ${CLEANUP_KEEP_DAYS} --count ${CLEANUP_KEEP_COUNT}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+
+cleanup:preview:
+  extends: [.cleanup]
+  variables:
+    CLEANUP_ENVIRONMENT: "preview"
+    CLEANUP_KEEP_COUNT: 0
