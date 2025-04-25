@@ -30,11 +30,13 @@ workflow:
       # Always run on schedule
     - if: $CI_PIPELINE_SOURCE == "schedule"
 
-build:
+.build:
   # The Docker image that will be used to build your app
   # (intentionally not using devbox because it seems to not
   # really have a good integration story with GitLab CI)
   image: node:22-alpine
+
+  stage: build
 
   # Directly copied from https://pnpm.io/continuous-integration#gitlab-ci
   # which uses corepack
@@ -44,14 +46,14 @@ build:
     - corepack prepare pnpm@latest-10 --activate
     - pnpm config set store-dir .pnpm-store
 
-  artifacts:
-    paths:
-      - "$DIST_FOLDER"
-
   script:
     # The steps involved to build your app here
     - pnpm install
     - pnpm run build
+
+  artifacts:
+    paths:
+      - "$DIST_FOLDER"
 
   cache:
     - key:
