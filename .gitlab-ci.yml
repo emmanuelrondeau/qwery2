@@ -65,6 +65,18 @@ workflow:
       paths:
         - "$DIST_FOLDER"
 
+build:preview:
+  extends:
+    - .build
+  script:
+    - pnpm run build
+
+build:production:
+  extends:
+    - .build
+  script:
+    - pnpm run build
+
 .deploy:
   image: node:22-alpine
   stage: deploy
@@ -84,7 +96,7 @@ deploy:preview:
   extends:
     - .deploy
   needs:
-    - build
+    - build:preview
   environment: staging
   variables:
     CLOUDFLARE_BRANCH: "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
@@ -104,7 +116,7 @@ deploy:production:
   extends:
     - .deploy
   needs:
-    - build
+    - build:production
   environment: production
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
