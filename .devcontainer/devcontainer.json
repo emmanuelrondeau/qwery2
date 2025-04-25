@@ -1,0 +1,24 @@
+{
+	"name": "Devbox Remote Container",
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": ".."
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"astro-build.astro-vscode",
+				"biomejs.biome",
+				"bradlc.vscode-tailwindcss",
+				"jetpack-io.devbox",
+				"streetsidesoftware.code-spell-checker-canadian-english",
+				"streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries",
+				"svelte.svelte-vscode",
+				"unifiedjs.vscode-mdx",
+				"yoavbls.pretty-ts-errors"
+			]
+		}
+	},
+	"remoteUser": "devbox"
+}
