@@ -1,9 +1,7 @@
 {
 	"version": "0.2",
-	"flagWords": [
-		"behavior"
-	],
-	"ignorePaths": [],
+	"flagWords": ["behavior"],
+	"ignorePaths": [".devcontainer"],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -98,9 +96,7 @@
 		"XEQT",
 		"XGRO"
 	],
-	"ignoreWords": [
-		"rehypei"
-	],
+	"ignoreWords": ["rehypei"],
 	"import": [],
 	"language": "en,en-CA"
 }
