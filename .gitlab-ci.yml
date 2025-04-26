@@ -92,7 +92,7 @@ deploy:preview:
   extends:
     - .deploy
   needs:
-    - build:preview
+    - build:production
   environment: staging
   variables:
     CLOUDFLARE_BRANCH: "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
