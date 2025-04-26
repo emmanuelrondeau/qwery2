@@ -2,6 +2,8 @@
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 [![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+![Pipeline status](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/badges/main/pipeline.svg)
 
 If you're here, welcome to the repo! Contributions are greatly appreciated. If you've found an issue with the site, create a [new issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues) and we'll do our best to address it.
 
@@ -10,6 +12,8 @@ If you're here, welcome to the repo! Contributions are greatly appreciated. If y
 If you wish to write for the website, currently you'll have to go through the steps of a developer. Writing for the website currently is also somewhat technical, requiring knowledge of Markdown and a bit of MDX.
 
 Other than searching up tutorials on the basics of Markdown, the existing articles are a great reference point for how to format articles you make.
+
+Articles aim to follow this [Article Style Guide](https://queerwinnipeg.ca/posts/article-style-guide).
 
 ## Getting Started for Developers
 
