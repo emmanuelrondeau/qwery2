@@ -4,6 +4,7 @@
 	import { Select } from "bits-ui";
 	import Check from "phosphor-svelte/lib/Check";
 	import { onMount } from "svelte";
+	import { get } from "svelte/store";
 
 	interface Props {
 		children?: import("svelte").Snippet;
@@ -17,7 +18,7 @@
 		{ value: "auto", label: "Auto" },
 	];
 
-	let selectValue = $state<Theme>("auto");
+	let selectValue = $state<Theme>(get(theme));
 
 	onMount(() => {
 		const tmpl: HTMLTemplateElement | null =
