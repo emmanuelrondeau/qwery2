@@ -1,0 +1,71 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+	heading: MarkdownHeading & { subheadings?: MarkdownHeading[] };
+	depth?: number;
+	"aria-current"?: boolean;
+	hideLeftLine?: boolean;
+}
+
+// Copied mostly from https://kld.dev/building-table-of-contents/
+const { heading, hideLeftLine, "aria-current": ariaCurrent } = Astro.props;
+const depth =
+	Astro.props.depth == undefined || Number.isNaN(Astro.props.depth)
+		? 1
+		: Astro.props.depth;
+const paddingLeft = !hideLeftLine ? "1.75rem" : "1rem";
+---
+
+<li
+	class:list={[
+		"relative h-full w-full list-none",
+		{
+			"hidden group-has-[[aria-current=true]]/item:block": depth > 2,
+			"group/item": depth == 2,
+		},
+	]}
+>
+	<a
+		href={"#" + heading.slug}
+		class="peer block py-[.375rem] !no-underline hover:!underline aria-current:text-gray-950 dark:aria-current:text-gray-50"
+		aria-current={ariaCurrent}
+	>
+		<span class="relative top-[.1em]">
+			{heading.text}
+		</span>
+	</a>
+	{
+		!hideLeftLine && (
+			<div
+				class:list={[
+					"absolute top-0 bottom-0 w-[2px] bg-gray-200 peer-aria-current:bg-violet-600 dark:bg-gray-800 dark:peer-aria-current:bg-violet-400",
+				]}
+				aria-hidden={true}
+			/>
+		)
+	}
+	{
+		heading.subheadings && heading.subheadings.length > 0 && (
+			<ul>
+				{heading.subheadings.map((subheading) => {
+					return (
+						<Astro.self
+							heading={subheading}
+							hideLeftLine={hideLeftLine}
+							depth={depth + 1}
+						/>
+					);
+				})}
+			</ul>
+		)
+	}
+</li>
+
+<style define:vars={{ depth, paddingLeft }}>
+	a {
+		padding-left: calc(
+			var(--paddingLeft) * calc(var(--depth) - 1) + var(--paddingLeft)
+		); /* 28px */
+	}
+</style>
