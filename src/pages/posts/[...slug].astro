@@ -4,7 +4,7 @@ import { type CollectionEntry, getCollection, getEntry } from "astro:content";
 import ArticleAuthors from "@/components/articles/ArticleAuthors.astro";
 import MinutesRead from "@/components/articles/MinutesRead.astro";
 import PublishedOrUpdated from "@/components/articles/PublishedOrUpdated.astro";
-import TableOfContents from "@/components/articles/TableOfContents.astro";
+import TableOfContents from "@/components/articles/table-of-contents/TableOfContents.astro";
 import Callout from "@/components/primitives/Callout.astro";
 import Link from "@/components/primitives/Link.astro";
 import { PAGE_TITLE_ID } from "@/constants";
@@ -102,16 +102,16 @@ const authors = await Promise.all(authorsPromise);
 				</div>
 			</div>
 		</div>
-		<div class="flex w-full flex-col justify-between lg:flex-row-reverse">
+		<div
+			class="flex w-full flex-col justify-between pt-2 lg:flex-row-reverse lg:pt-0"
+		>
 			<div
-				class="format dark:format-invert top-0 right-0 flex h-fit !max-w-prose md:!max-w-[38ch] lg:sticky lg:pt-8 lg:pl-12 xl:!max-w-prose"
+				class="format dark:format-invert top-0 right-0 flex h-fit !max-w-[38ch] lg:sticky lg:pl-12 xl:!max-w-prose"
 			>
-				<div class="lg:ml-auto lg:max-w-[28rem] lg:min-w-96">
-					<TableOfContents headings={headings} />
-				</div>
+				<TableOfContents headings={headings} />
 			</div>
 			<div
-				class="format dark:format-invert lg:format-lg mt-8 block overflow-x-auto"
+				class="format dark:format-invert lg:format-lg block overflow-x-auto pt-8"
 			>
 				{
 					post.data.draft && (
@@ -195,6 +195,7 @@ const authors = await Promise.all(authorsPromise);
 	}
 
 	// Copied from index.d.ts from bigger-picture
+	// cSpell:disable
 	interface item {
 		[key: string]: any;
 		/** Largest possible width of media item in pixels. Not required for HTML, which can be sized via CSS. */
@@ -243,6 +244,7 @@ const authors = await Promise.all(authorsPromise);
 		/** Object of attributes to add to the `<img>`, `<iframe>`, `<video>`, `<audio>` elements. */
 		attr?: Record<string, string | boolean> | string;
 	}
+	// cSpell:enable
 </script>
 <style is:global>
 	html.bp-lock {
