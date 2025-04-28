@@ -25,6 +25,28 @@
 	--font-mono:
 		"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
 		"Liberation Mono", "Courier New", "monospace";
+
+	/* easings.net -- https://easings.net/#easeInOutSine */
+	--animate-accordion-down: accordion-down 0.2s cubic-bezier(0.37, 0, 0.63, 1);
+	--animate-accordion-up: accordion-up 0.2s cubic-bezier(0.37, 0, 0.63, 1);
+
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--bits-accordion-content-height);
+		}
+	}
+
+	@keyframes accordion-up {
+		from {
+			height: var(--bits-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
 }
 
 @custom-variant aria-current (&[aria-current="true"]);
@@ -67,11 +89,6 @@
 		@apply outline-none;
 	}
 
-	/* Default styling */
-	button {
-		@apply cursor-pointer ring-violet-600 outline-none focus-visible:ring-2 dark:ring-gray-50;
-	}
-
 	/* Leaflet Map */
 	.leaflet-pane {
 		z-index: 10 !important;
@@ -92,6 +109,18 @@
 }
 
 @layer components {
+	/* Default styling */
+	a,
+	button {
+		@apply cursor-pointer;
+	}
+
+	a,
+	button,
+	main {
+		@apply outline-offset-2 outline-violet-600 focus-visible:outline-2 dark:outline-violet-50;
+	}
+
 	/* Article Formatting */
 	.format {
 		@apply format-code:font-normal format-table:tabular-nums;
@@ -117,47 +146,24 @@
 
 @layer utilities {
 	.format a:not(.not-format) {
-		@apply rounded underline ring-violet-600 outline-none hover:text-violet-800 focus-visible:ring-2 dark:ring-gray-50 dark:hover:text-violet-300;
+		@apply rounded underline outline-violet-600 hover:text-violet-800 focus-visible:outline-2 dark:outline-violet-50 dark:hover:text-violet-300;
 	}
 
 	/* Rehype Autolink - Custom styles for heading anchor links. */
 	.format .heading-wrapper {
+		@apply relative;
 		--icon-size: 1em;
 		--icon-spacing: 0.25em;
 	}
 
 	.format .heading-wrapper > :first-child {
 		margin-inline-end: calc(var(--icon-size) + var(--icon-spacing));
-		display: inline-block;
-	}
-
-	.format .heading-wrapper a {
-		@apply m-0;
-		margin-inline-start: calc(-1 * (var(--icon-size)));
-		display: inline;
-
-		/*
-			@apply absolute left-0 -translate-x-full text-violet-300 no-underline opacity-0 dark:text-violet-400;
-			transition-property:
-				filter, opacity, color, background-color, border-color,
-				text-decoration-color, fill, stroke;
-			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-			transition-duration: 150ms;
-			*/
+		@apply inline-block scroll-mt-[1em];
 	}
 
 	.format .heading-wrapper a svg {
 		@apply relative inline origin-center -rotate-45;
-		/* display: inline;
-		position: relative;
-		transform-origin: center;
-		transform: rotate(-45deg); */
 		width: var(--icon-size);
-		bottom: 0.125em;
-	}
-
-	.format .heading-wrapper.level-h2 a svg {
-		bottom: 0.175em;
 	}
 
 	.format
@@ -220,14 +226,23 @@
 		user-select: none;
 	}
 
-	@media (hover: hover) {
-		.format .heading-wrapper a {
-			@apply opacity-0;
-		}
+	.format .heading-wrapper a {
+		@apply absolute inset-0 m-0 inline text-violet-500 dark:text-violet-300;
+		margin-inline-start: calc(-1 * (var(--icon-size)));
 	}
 
-	.format .heading-wrapper a {
-		@apply text-violet-500 dark:text-violet-300;
+	@media (hover: hover) {
+		.format .heading-wrapper a {
+			@apply relative top-[-.125em] opacity-0;
+		}
+
+		.format .heading-wrapper.level-h2 a {
+			@apply top-[-.1em];
+		}
+
+		.format .heading-wrapper a svg {
+			@apply relative bottom-[.05em];
+		}
 	}
 
 	.format .heading-wrapper:hover a,
