@@ -87,7 +87,7 @@ const authors = await Promise.all(authorsPromise);
 			}
 			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
 			<div class="xs:flex-row !mb-4 flex flex-col gap-4 lg:!mb-0">
-				<ArticleAuthors postId={post.id} size="large" />
+				<ArticleAuthors postId={post.id} size="large" loading="eager" />
 				<div class="relative top-[.1em] block">
 					<span
 						>Written by {authors.map((author) => author.name).join(", ")}</span
@@ -110,8 +110,9 @@ const authors = await Promise.all(authorsPromise);
 			>
 				<TableOfContents headings={headings} />
 			</div>
+			{/* No idea why this is focusable */}
 			<div
-				class="format dark:format-invert lg:format-lg block overflow-x-auto pt-8"
+				class="format dark:format-invert lg:format-lg block overflow-x-auto pt-8 outline-offset-2 outline-violet-800 focus-visible:rounded focus-visible:outline-2 dark:outline-violet-50"
 			>
 				{
 					post.data.draft && (
