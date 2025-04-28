@@ -11,11 +11,11 @@
 	const { children, class: className }: Props = $props();
 </script>
 
-<Accordion.Root type="single" class={className} value="toc">
+<Accordion.Root type="single" class={className}>
 	<Accordion.Item value="toc">
 		<Accordion.Header>
 			<Accordion.Trigger
-				class="flex w-full items-center justify-between rounded p-2 ring-violet-600 outline-none focus-visible:ring-2 dark:ring-gray-50 [&[data-state=open]>span>svg]:rotate-180"
+				class="flex w-full items-center justify-between rounded py-2 pr-1 pl-3 ring-violet-600 outline-none focus-visible:ring-2 dark:ring-gray-50 [&[data-state=open]>span>svg]:rotate-180"
 			>
 				<h2
 					role="presentation"
@@ -31,7 +31,7 @@
 			</Accordion.Trigger>
 		</Accordion.Header>
 		<Accordion.Content
-			class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+			class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-clip"
 		>
 			{@render children?.()}
 		</Accordion.Content>
