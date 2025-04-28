@@ -83,6 +83,9 @@
 		"typescript-eslint": "^8.29.0",
 		"vite-plugin-bundlesize": "^0.1.0"
 	},
+	"optionalDependencies": {
+		"wrangler": "^4.13.2"
+	},
 	"config": {
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
