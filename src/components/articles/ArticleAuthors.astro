@@ -7,6 +7,7 @@ import { tv } from "tailwind-variants";
 interface Props {
 	postId: string;
 	size: "small" | "medium" | "large";
+	loading?: "eager" | "lazy";
 }
 const { postId }: Props = Astro.props;
 const posts = await getCollection("posts");
@@ -32,7 +33,7 @@ const authorStyling = tv({
 	},
 });
 
-const { size } = Astro.props;
+const { size, loading } = Astro.props;
 ---
 
 <div class={authorStyling({ size })}>
@@ -52,6 +53,7 @@ const { size } = Astro.props;
 						]}
 						src={author.profile}
 						quality="high"
+						loading={loading}
 					/>
 				) : (
 					<div
