@@ -1,4 +1,7 @@
 ---
+import { Picture } from "astro:assets";
+import Background from "@/assets/josh-lavallee-sM0q8DxTkWQ-unsplash-bw.avif";
+
 import Footer from "@/components/primitives/Footer.astro";
 import Navbar from "@/components/primitives/Navbar.astro";
 import SkipLink from "@/components/primitives/SkipLink.astro";
@@ -19,6 +22,29 @@ const { seo } = Astro.props;
 		class="flex min-h-[calc(100vh-10rem)] flex-col font-sans dark:bg-gray-900"
 	>
 		<SkipLink />
+		<div
+			class="pointer-events-none absolute -z-10 h-[450px] select-none"
+			aria-hidden="true"
+		>
+			<div class="isolate h-full">
+				<div class="absolute inset-0 bg-violet-50 dark:bg-gray-900"></div>
+				<Picture
+					alt=""
+					src={Background}
+					formats={["avif", "webp", "jpg"]}
+					class="h-full object-cover mix-blend-color-dodge"
+					loading="eager"
+				/>
+			</div>
+			<div
+				class="absolute top-0 right-0 left-0 h-24 bg-gradient-to-b from-white via-white via-30% dark:from-gray-900 dark:via-gray-900 dark:via-30% dark:to-gray-900/0"
+			>
+			</div>
+			<div
+				class="absolute right-0 bottom-0 left-0 h-48 bg-gradient-to-t from-white via-white via-30% dark:from-gray-900 dark:via-gray-900 dark:via-30% dark:to-gray-900/0"
+			>
+			</div>
+		</div>
 		<Navbar />
 		<div class="flex min-h-[calc(100vh-10rem)] flex-col">
 			<slot />
