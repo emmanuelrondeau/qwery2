@@ -65,10 +65,14 @@ const authors = await Promise.all(authorsPromise);
 						src={post.data.cover}
 						loading="eager"
 						decoding="async"
-						formats={["avif", "webp", "png"]}
-						quality="high"
-						widths={[1280, 1080, post.data.cover.width]}
-						sizes={`(max-width: 1600px) 1280px ${post.data.cover.width}px`}
+						formats={["avif", "jpg"]}
+						widths={[640, 1280, post.data.cover.width]}
+						sizes={
+							// Sizes (should) match with Tailwind v4's breakpoints and custom xs
+							`(max-width: 768px) 640px,
+							(max-width: 1536px) 1280px,
+							${post.data.cover.width}px`
+						}
 						transition:name={`cover-${post.slug}`}
 					/>
 				</div>
