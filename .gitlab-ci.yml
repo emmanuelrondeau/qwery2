@@ -59,7 +59,6 @@ workflow:
           - pnpm-lock.yaml
       paths:
         - .pnpm-store
-  cache:
     - key: $CI_COMMIT_REF_SLUG
       paths:
         - .astro
