@@ -1,14 +1,10 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "queerwinnipeg",
-	"main": "./dist/_worker.js/index.js",
 	"pages_build_output_dir": "./dist",
 	// Update to today's date
 	"compatibility_date": "2025-03-25",
 	"compatibility_flags": ["nodejs_compat"],
-	"assets": {
-		"directory": "./dist",
-	},
 	"observability": {
 		"enabled": true,
 	},
