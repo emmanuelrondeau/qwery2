@@ -77,7 +77,7 @@ build:production:
   cache:
     - key: $CI_COMMIT_REF_SLUG
       paths:
-        - _astro
+        - .astro
         - "$DIST_FOLDER"
 
 .deploy:
