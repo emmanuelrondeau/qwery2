@@ -78,7 +78,7 @@ build:production:
     - key: $CI_COMMIT_REF_SLUG
       paths:
         - _astro
-        - dist
+        - "$DIST_FOLDER"
 
 .deploy:
   image: node:22-alpine
