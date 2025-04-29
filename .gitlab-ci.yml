@@ -74,6 +74,11 @@ build:production:
     - .build
   script:
     - pnpm run build
+  cache:
+    - key: $CI_COMMIT_REF_SLUG
+      paths:
+        - _astro
+        - dist
 
 .deploy:
   image: node:22-alpine
