@@ -25,7 +25,7 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 	aria-label="Expand image"
 >
 	<Picture
-		formats={["avif", "webp"]}
+		formats={["avif", "png"]}
 		{...rest}
 		class:list={[
 			"mx-auto !my-0 flex h-auto w-auto items-center justify-center rounded-md object-cover",
