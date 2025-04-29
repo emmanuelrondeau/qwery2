@@ -6,6 +6,7 @@ import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
 import svelte from "@astrojs/svelte";
+import { imageService } from "@unpic/astro/service";
 
 import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
 import withToc from "@stefanprobst/rehype-extract-toc";
@@ -32,6 +33,14 @@ export default defineConfig({
 	prefetch: { prefetchAll: true },
 	experimental: {
 		clientPrerender: true,
+	},
+	image: {
+		service: imageService({
+			// https://unpic.pics/img/astro/#placeholders
+			// Basically doesn't work for us, because our images
+			// are basically all local
+			placeholder: "blurhash",
+		}),
 	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
