@@ -25,7 +25,12 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 	aria-label="Expand image"
 >
 	<Picture
-		formats={["avif", "png"]}
+		formats={[
+			// Formats can intentionally be overridden if a fallback .png is needed,
+			// instead of .jpg. .png is not the default due to large image size.
+			"avif",
+			"jpg",
+		]}
 		{...rest}
 		class:list={[
 			"mx-auto !my-0 flex h-auto w-auto items-center justify-center rounded-md object-cover",
