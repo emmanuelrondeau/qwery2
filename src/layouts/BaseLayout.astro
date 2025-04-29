@@ -31,7 +31,9 @@ const { seo } = Astro.props;
 				<Picture
 					alt=""
 					src={Background}
-					formats={["avif", "jpg"]}
+					format="avif"
+					formats={["avif"]}
+					fallbackFormat="jpg"
 					class="h-full object-cover mix-blend-color-dodge"
 					loading="eager"
 				/>

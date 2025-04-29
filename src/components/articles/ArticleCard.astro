@@ -53,9 +53,12 @@ if (!size) size = "small";
 						},
 					]}
 					src={post.data.cover}
+					format="avif"
+					formats={["avif"]}
+					fallbackFormat="jpg"
 					loading="eager"
 					quality="high"
-					widths={[432, 720]}
+					widths={[720, 1000]}
 					sizes={`(max-width: 720px) 720px, (max-width: 1600px) 1000px`}
 					transition:name={`cover-${post.slug}`}
 				/>

@@ -29,6 +29,7 @@ const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 // https://astro.build/config
 export default defineConfig({
 	site,
+	cacheDir: "./.astro-cache",
 	prefetch: { prefetchAll: true },
 	experimental: {
 		clientPrerender: true,

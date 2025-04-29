@@ -61,8 +61,7 @@ workflow:
         - .pnpm-store
     - key: $CI_COMMIT_REF_SLUG
       paths:
-        - .astro
-        - "$DIST_FOLDER"
+        - .astro-cache
 
 # build:preview:
 #   extends:
