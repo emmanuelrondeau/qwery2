@@ -51,6 +51,7 @@ const { size, loading } = Astro.props;
 							{ "h-7 w-7": size === "medium" },
 							{ "xs:w-6 xs:h-6 h-7 w-7": size === "small" },
 						]}
+						formats={["avif", "jpg"]}
 						src={author.profile}
 						quality="high"
 						loading={loading}
