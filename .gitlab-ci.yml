@@ -47,7 +47,7 @@ workflow:
     - corepack enable
     - corepack prepare pnpm@latest-10 --activate
     - pnpm config set store-dir .pnpm-store
-    - pnpm install --frozen-lockfiles
+    - pnpm install --frozen-lockfile
 
   artifacts:
     paths:
