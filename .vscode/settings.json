@@ -5,6 +5,9 @@
 	"[mdx]": {
 		"editor.wordWrap": "on"
 	},
+	"[ignore]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.codeActionsOnSave": {
 		"source.organizeImports.biome": "explicit"

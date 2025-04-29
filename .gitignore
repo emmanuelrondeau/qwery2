@@ -27,3 +27,9 @@ pnpm-debug.log*
 
 # pre-commit
 .pre-commit-config.yaml
+
+# krita
+*.autosave.kra
+*.avif~
+*.krz~
+*.kra~
