@@ -65,7 +65,9 @@ const authors = await Promise.all(authorsPromise);
 						src={post.data.cover}
 						loading="eager"
 						decoding="async"
-						formats={["avif", "jpg"]}
+						format="avif"
+						formats={["avif"]}
+						fallbackFormat="jpg"
 						widths={[640, 1280, post.data.cover.width]}
 						sizes={
 							// Sizes (should) match with Tailwind v4's breakpoints and custom xs
