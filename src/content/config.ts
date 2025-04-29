@@ -20,6 +20,14 @@ const posts = defineCollection({
 			tag: TagEnum.default("Other"),
 			otherTags: z.array(TagEnum).optional(),
 			cover: image().optional(),
+			coverMetadata: z
+				.object({
+					type: CoverTypeEnum.default("image"),
+					author: z.string().optional(),
+					source: z.string().optional(),
+					license: z.string().optional(),
+				})
+				.optional(),
 			authors: z.array(reference("authors")),
 			created: z.date(),
 			lastEdited: z.date().optional(),
@@ -42,6 +50,10 @@ export const TagEnum = z.enum([
 	"Transportation",
 ]);
 export type TagEnum = z.infer<typeof TagEnum>;
+
+export const CoverTypeEnum = z.enum(["photo", "illustration", "image"]);
+
+export type CoverTypeEnum = z.infer<typeof CoverTypeEnum>;
 
 export const collections = {
 	posts: posts,
