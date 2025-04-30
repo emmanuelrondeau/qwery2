@@ -44,6 +44,13 @@ pnpm dev
 
 If everything went well, ta-da! You now have a working development instance on http://localhost:4321.
 
+### Snippets
+
+```sh
+# Resyncing main branch with dev
+git rebase dev
+```
+
 ### Editors
 
 If you don't already have a code editor to work with this repository, I recommend [VS Codium](https://vscodium.com). We also have some helpers for VS Cod(ium) that suggests extensions you should install, to make your development experience better (and in my opinion, actually usable).
@@ -60,21 +67,6 @@ If you don't already have a code editor to work with this repository, I recommen
 
 The code is (with the exception of otherwise-noted files in the repository) under the <dfn>Mozilla Public License</dfn> 2.0 (<abbr>MPL</abbr>). See [LICENSE](./license) for the legalese, or check the <abbr>MPL</abbr> [<abbr>tl;dr</abbr>Legal](https://www.tldrlegal.com/license/mozilla-public-license-2-0-mpl-2).
 
-### Images
-
-The images in this repository are either:
-
-- Sourced from Unsplash
-- Camera pictures taken by us
-- Screenshots taken by us
-- Copyrighted but used under the pretense of fair dealing
-
-Any images taken from Unsplash or any third party belong to their respective owners. Unsplash images may be uncredited through the website's content itself. Otherwise, any images under the Creative Commons will have a caption with proper attribution.
-
-Any photos taken or images created by us are licensed under [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) rules.
-
-If you're a copyright owner of any of the images hosted, please [create an issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues). We unfortunately don't have an email currently.
-
 ### Text
 
 Text contents (ex. text that appears on the website, articles/posts, etc.), except where otherwise specified, is copyrighted. All rights are reserved to their respective authors. Articles may specify within their body, or within their raw `.mdx` file, found within `/src/content/posts`.
@@ -82,6 +74,10 @@ Text contents (ex. text that appears on the website, articles/posts, etc.), exce
 This does *not* include developer documentation (ex. this README), and the pure code/markup (ex. the HTML and TypeScript within .astro files, boilerplate MDX).
 
 Feel free to create an issue for clarification.
+
+### Images
+
+If you're a copyright owner of any of the images hosted, and wish to exercise your right to remove your content, please [create an issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues). We unfortunately don't have an email currently.
 
 ## Contributing
 
