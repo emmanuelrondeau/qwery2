@@ -11,12 +11,6 @@ import type { HTMLAttributes } from "astro/types";
 // because I don't know any better
 type Props = (LocalImageProps | RemoteImageProps) & {
 	pictureAttributes: HTMLAttributes<"picture">;
-	src:
-		| string
-		| ImageMetadata
-		| Promise<{
-				default: ImageMetadata;
-		  }>;
 };
 
 const { class: className, pictureAttributes, ...rest } = Astro.props;
@@ -30,6 +24,8 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 	<Picture
 		formats={["avif", "jpg"]}
 		fallbackFormat="jpg"
+		layout="constrained"
+		fit="cover"
 		{...rest}
 		class:list={[
 			"mx-auto !my-0 flex items-center justify-center rounded-md bg-violet-100 object-cover dark:bg-gray-800",

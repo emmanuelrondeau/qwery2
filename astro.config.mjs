@@ -33,6 +33,7 @@ export default defineConfig({
 	prefetch: { prefetchAll: true },
 	experimental: {
 		clientPrerender: true,
+		responsiveImages: true,
 	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],

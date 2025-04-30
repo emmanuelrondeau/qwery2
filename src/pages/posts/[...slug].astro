@@ -63,18 +63,10 @@ const authors = await Promise.all(authorsPromise);
 						alt=""
 						class="aspect-video h-full w-full rounded object-cover lg:rounded-none"
 						src={post.data.cover}
-						loading="eager"
-						decoding="async"
-						format="avif"
+						priority={true}
+						layout="full-width"
 						formats={["avif"]}
 						fallbackFormat="jpg"
-						widths={[640, 1280, post.data.cover.width]}
-						sizes={
-							// Sizes (should) match with Tailwind v4's breakpoints and custom xs
-							`(max-width: 768px) 640px,
-							(max-width: 1536px) 1280px,
-							${post.data.cover.width}px`
-						}
 						transition:name={`cover-${post.slug}`}
 					/>
 				</div>
@@ -93,7 +85,7 @@ const authors = await Promise.all(authorsPromise);
 			}
 			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
 			<div class="xs:flex-row !mb-4 flex flex-col gap-4 lg:!mb-0">
-				<ArticleAuthors postId={post.id} size="large" loading="eager" />
+				<ArticleAuthors postId={post.id} size="large" priority={true} />
 				<div class="relative top-[.1em] block">
 					<span
 						>Written by {authors.map((author) => author.name).join(", ")}</span

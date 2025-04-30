@@ -8,6 +8,7 @@ import PublishedOrUpdated from "./PublishedOrUpdated.astro";
 interface Props {
 	postId: string;
 	size?: "small" | "medium" | "large";
+	priority?: boolean;
 }
 const { postId }: Props = Astro.props;
 const posts = await getCollection("posts");
@@ -15,7 +16,7 @@ const post = posts.find((post) => post.id === postId);
 
 if (!post) return;
 
-let { size } = Astro.props;
+let { size, priority } = Astro.props;
 if (!size) size = "small";
 ---
 
@@ -53,13 +54,10 @@ if (!size) size = "small";
 						},
 					]}
 					src={post.data.cover}
-					format="avif"
 					formats={["avif"]}
 					fallbackFormat="jpg"
-					loading="eager"
-					quality="high"
-					widths={[720, 1000]}
-					sizes={`(max-width: 720px) 720px, (max-width: 1600px) 1000px`}
+					layout="constrained"
+					priority={priority}
 					transition:name={`cover-${post.slug}`}
 				/>
 			</a>
@@ -106,7 +104,7 @@ if (!size) size = "small";
 				<p class="!m-0 max-w-prose">
 					{post.data.description ?? <i>No description found.</i>}
 				</p>
-				<ArticleAuthors postId={post.id} size="medium" />
+				<ArticleAuthors postId={post.id} size="medium" priority={priority} />
 			</div>
 		)
 	}

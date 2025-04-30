@@ -45,6 +45,7 @@ const posts = await getCollection("posts");
 						<ArticleCard
 							size="large"
 							postId="how-to-take-the-bus-in-winnipeg.mdx"
+							priority={true}
 						/>
 					</div>
 					<div class="flex flex-col gap-6 lg:w-1/2">
@@ -63,7 +64,7 @@ const posts = await getCollection("posts");
 										(b.data.lastEdited ?? b.data.created).getTime() -
 										(a.data.lastEdited ?? a.data.created).getTime(),
 								)
-								.map((post) => <ArticleCard postId={post.id} />)
+								.map((post) => <ArticleCard postId={post.id} priority={true} />)
 						}
 					</div>
 				</div>
