@@ -21,7 +21,8 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 	class="mx-auto flex items-center justify-center rounded-md ring-violet-600 ring-offset-4 ring-offset-white outline-none hover:cursor-pointer focus-visible:ring-2 dark:ring-gray-50 dark:ring-offset-gray-900"
 	aria-label="Expand image"
 >
-	<!-- @ts-expect-error - I have no idea why types are invalid here it should just work?? -->
+	{/* I have no idea why adding layout="constrained" breaks types */}
+	{/* @ts-expect-error */}
 	<Picture
 		formats={["avif", "jpg"]}
 		fallbackFormat="jpg"
