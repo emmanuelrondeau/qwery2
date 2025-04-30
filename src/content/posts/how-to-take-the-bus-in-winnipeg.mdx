@@ -6,8 +6,12 @@ authors:
   - fio-cobbs
 tag: Transportation
 created: 2024-05-21
-lastEdited: 2025-04-28
+lastEdited: 2025-04-30
 cover: /src/assets/images/how-to-take-the-bus-in-winnipeg/how-to-take-the-bus-in-winnipeg.avif
+coverMetadata:
+  type: photo
+  author: Fio Cobbs
+  license: CC-BY-SA-4.0
 ---
 
 import WinnipegTransitMap from "/src/components/articles/WinnipegTransitMap.astro";
@@ -31,12 +35,11 @@ import NewBusStopSign from "/src/assets/images/how-to-take-the-bus-in-winnipeg/n
 import FareBox from "/src/assets/images/how-to-take-the-bus-in-winnipeg/fare-box.avif";
 import PaperTransfer from "/src/assets/images/how-to-take-the-bus-in-winnipeg/paper-transfer.avif";
 
-<Callout type="Info">
-	On June 29, 2025, Winnipeg Transit will release a improved bus network! This includes new bus stops, new routes, and new destinations. These changes will also allow for more frequent and direct buses.
-	
-	- [Winnipeg’s new bus network launches June 29, 2025 - Winnipeg.ca](https://www.winnipeg.ca/services-programs/transportation-roads-parking/transit/new-bus-network-launches-june-29)
-	- [Winnipeg Transit 2025 System Map](https://www.winnipeg.ca/media/4770)
-</Callout>
+> [!info]
+> On June 29, 2025, Winnipeg Transit will release a improved bus network! This includes new bus stops, new routes, and new destinations. These changes will also allow for more frequent and direct buses.
+>	
+>	- [Winnipeg’s new bus network launches June 29, 2025 - Winnipeg.ca](https://www.winnipeg.ca/services-programs/transportation-roads-parking/transit/new-bus-network-launches-june-29)
+>	- [Winnipeg Transit 2025 System Map](https://www.winnipeg.ca/media/4770)
 
 **Riding the bus for the first time is daunting.**
 
@@ -78,31 +81,36 @@ For more info and current pricing, check out [Transit Fares](https://info.winnip
 
 ## Routing a Trip
 
-Use [Google Maps](https://www.google.com/maps/) for the best experience of bus routing. For something that doesn't rely on Google, I was not able to find a better app service. Sorry, privacy advocates.
-
-Simply put your destination, press "Directions", enter your starting point, then select the transit icon on top.
+Using an app like [Google Maps](https://www.google.com/maps/) can help you plan your route. Simply put your destination, press "Directions", enter your starting point, then select the transit icon on top.
 
 <figure>
 	<div class="side-by-side-images">
 		<Image
 			alt="Google Maps website, with Klinic Community Health searched up"
 			src={GoogleMaps1}
-			class="shadow dark:shadow-none"
+			class="border-2 border-[#dadce0] dark:border-none"
 		/>
 		<Image
 			alt="Google Maps website, with Assiniboine Park Zoo as the starting point, Klinic as the destination, and the transit icon selected"
 			src={GoogleMaps2}
-			class="shadow dark:shadow-none"
+			class="border-2 border-[#dadce0] dark:border-none"
 		/>
 	</div>
 	<figcaption>Routing a trip with Google Maps</figcaption>
 </figure>
 
-The Winnipeg Transit app in my opinion is clunky to use. However, it may be worth downloading it, to refer to more up-to-date schedule times for bus stops, compared to Google Maps. You can also use the [web app](https://app.winnipegtransit.com/).
+The [Winnipeg Transit app](https://app.winnipegtransit.com/) in my opinion is clunky to use, and Navigo doesn't seem to be as good as Google Maps' routing engine. However, it may be worth downloading the app or using the webapp, for more up-to-date schedule times for bus stops, compared to Google Maps.
+
+Do note that Navigo adds a lot more time padding relative to Google Maps, for getting to a bus stop on-time to catch your ride.
 
 If you have an Apple device, it may be worth trying Apple Maps. From my limited experience, I've found it to be a worse experience.
 
-### Getting On the Right Bus
+> [!warning]
+> **Make sure you route your way back home!** Depending on the hours of your trip, and if its a holiday or Sunday, your route's service may have ended, leaving you stranded.
+>
+> In this scenario, if you don't have any friends nor family available to drive you, [you may wish to try a taxi](#a-note-on-taxis).
+
+## Getting On the Right Bus
 
 All buses have a some identifier (ex. a number, BLUE, FX1), along with a destination. You will likely need both of these pieces of information.
 
@@ -112,7 +120,7 @@ Routes are usually formed through loops, and the bus may go back to the same pla
 	<Image
 		alt="Google Maps website"
 		src={GoogleMaps3}
-		class="shadow dark:shadow-none"
+		class="border-2 border-[#dadce0] dark:border-none"
 	/>
 	<figcaption>
 		A bus on route 18, with the destination "Garden City Centre via Jefferson".
@@ -123,7 +131,7 @@ Routes are usually formed through loops, and the bus may go back to the same pla
 	<Image
 		alt="Google Maps website"
 		src={GoogleMaps4}
-		class="shadow dark:shadow-none"
+		class="border-2 border-[#dadce0] dark:border-none"
 	/>
 	<figcaption>
 		A bus on route 18, with the different destination "Assiniboine".
@@ -134,17 +142,21 @@ Routes are usually formed through loops, and the bus may go back to the same pla
 
 Buses with the same route number, but different destination, can come at roughly the same time. Different stops for the same route, but a different destination, are usually roughly parallel to each other too.
 
-#### Tips & Tricks
+### Tips & Tricks
 
 Make sure the bus you're waiting and/or getting on, is going the direction that Google Maps says to go to.
 
 Also, before getting on the bus, check _both_ the number and destination, to make sure you're going on the right bus.
 
-### Getting On and Off the Bus
+## Getting On and Off the Bus
 
-Once you pay your fare (more on that later!), you can now sit down on the bus. Generally, you want to go to the back of the bus. However, depending on how crowded it is, this may not be necessary. If you're on a wheelchair, the bus driver will lower a platform for you to be able to get on.
+Once you pay your fare (more on that later!), you can now sit down on the bus. 
 
-You can check Google Maps to see where you are in your trip.
+Generally, its encouraged to go as far back into the bus. Depending on how crowded your bus is though, this may not be at all necessary. If you have a physical disability, you are encouraged to use the priority seating up front.
+
+For wheelchair users, the bus driver will lower a platform for you to be able to get on.
+
+Bus apps will let you see where you are in your trip. Apps such as Google Maps and Apple Maps show where you are on an easy-to-use interface.
 
 Once you're about to reach your stop, wait to make sure you've passed the stop before yours. Once passed, you can now pull down the yellow cord on the sides of the bus.
 
@@ -176,39 +188,13 @@ For most people, you should exit via the back side door of the bus. To exit, pre
 	<figcaption>The back side door to exit the bus.</figcaption>
 </figure>
 
-For wheelchair users, you may need to announce "wheelchair" to indicate that you need to get off. You will always get off at the front, as there is no ramp at the back doors.
-
-### The bus isn't here, what happened?
-
-Sometimes, the bus was early and passed by you. There are also times where buses may get cancelled. This can be incredibly annoying.
-
-Winnipeg Transit and Google Maps can tell you when the next bus will come. You can also call the [TeleBUS number](tel:2042877433) that's put on every bus stop sign, to figure out when your bus will arrive too.
-
-<figure>
-	<div class="side-by-side-images">
-		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
-		<Image alt="Old bus stop sign" src={OldBusStopSign} />
-		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
-		<Image alt="New bus stop sign" src={NewBusStopSign} />
-	</div>
-	<figcaption>
-		The old and new bus stop signs. Each have the TeleBUS number.
-	</figcaption>
-</figure>
-
-Some major bus stops (such as stations and certain urban areas) will have screens or displays for your convenience.
-
-### What happens if I get lost?
-
-If you have mobile data, simply reroute from your location to where you want to go. If you don't, see if there's any public Wi-Fi nearby.
-
-You may want to come up with an excuse to parents of how you might've gotten lost, if you're transporting yourself to a place that you'd rather keep private.
-
-You may also wish to ask strangers for help. Admittedly, it's a bit scary, but it's better than being stranded. If you just realized you made a wrong turn, you can also talk to the bus driver.
-
-A strategy for if you get lost is to stay on said bus, until you wrap around to your previous location. Otherwise, getting off may be an option if you know you can walk to the next stop or your destination.
+For wheelchair users, you may need to announce "wheelchair" to indicate that you need to get off. You will always get off at the front, as there is no ramp at the back doors..
 
 ## Transfers
+
+To reach your destination, you may need to take multiple buses to get there.
+
+Transfers let you go onto a different bus to get to your destination, without needing to pay for another ticket. This transfer will be valid for roughly a few hours.
 
 ### Paper Transfers
 
@@ -220,11 +206,7 @@ Once you pay your fare, the bus driver should give you a paper transfer.
 	<figcaption>A paper transfer.</figcaption>
 </figure>
 
-**Make sure to take your paper transfer!**
-
-The reason you want to have this transfer, is then you'll be able to take another bus without having to spend another ticket for a period of time.
-
-To reach your destination, you may need to take multiple buses to get there. You can avoid spending another ticket, by putting the transfer's QR code face-first on the scanner.
+If your route has more than one bus, you can use this transfer by putting its QR code face-first on the red scanner.
 
 You'll notice that your transfer has a date and time issued, and how much time until it expires. Once it expires, you'll need to use another ticket, as the machine won't accept it any longer.
 
@@ -238,11 +220,11 @@ If you're using a Peggo card, you won't receive a paper transfer. **Instead, you
 
 It won't charge you again when changing buses, for a period of time. You can verify this by changing buses and scanning your Peggo card as normal. The blue display will tell you when your transfer will expire.
 
-## Types of Buses
+## Route Types
 
-### Regular buses
+### Community
 
-Regular buses are the main type of bus you see. In transit apps, these have white backgrounds with their number.
+Community routes part of the "feeder network" of buses. These are are the main type of bus you see. In transit apps, these have white backgrounds with their number.
 
 <figure>
 	<Image
@@ -254,7 +236,7 @@ Regular buses are the main type of bus you see. In transit apps, these have whit
 
 Although technically there's such things such as feeder routes, we'll ignore these for simplicity. Transit apps label these as the same as regulars, and have no functional difference.
 
-### BLUE buses
+### BLUE / Rapid Transit
 
 BLUE buses are part of a rapid transit line, which come by fairly frequently. In transit apps these have blue backgrounds with the text "BLUE".
 
@@ -281,6 +263,13 @@ The buses are longer than normal, and are called a "bendy". These buses will the
 **Make sure your bus on your route matches the name you see on the road!** Pick the wrong one, and you'll go potentially into the complete wrong direction, or suddenly the wrong direction.
 
 ### Industrial and Express Routes
+
+> [!info]
+> This terminology and coloring will soon be outdated, when the new bus transit network rolls out on July 29th, 2025.
+>
+> The black "industrial" routes will soon be named "limited", and will be stylized the same as community routes. A dotted line instead of a solid one on route maps will be used, to differentiate between them.
+>
+> Express routes will no longer be just yellow; instead, there will be the "frequent express" lines, the "frequent" lines, and "direct" lines.
 
 In transit apps, you'll notice that there are yellow and black background transit buses.
 
@@ -320,6 +309,53 @@ You'll see some buses, but with a vertical line split down multiple of them. Thi
 		destination.
 	</figcaption>
 </figure>
+
+## Questions You May Have
+
+### The bus isn't here, what happened?
+
+Sometimes, the bus was early and passed by you. There are also times where buses may get cancelled. This can be incredibly annoying.
+
+Winnipeg Transit and Google Maps can tell you when the next bus will come. You can also call the [TeleBUS number](tel:2042877433) that's put on every bus stop sign, to figure out when your bus will arrive too.
+
+<figure>
+	<div class="side-by-side-images">
+		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
+		<Image alt="Old bus stop sign" src={OldBusStopSign} />
+		{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
+		<Image alt="New bus stop sign" src={NewBusStopSign} />
+	</div>
+	<figcaption>
+		The old and new bus stop signs. Each have the TeleBUS number.
+	</figcaption>
+</figure>
+
+Some major bus stops (such as stations and certain urban areas) will have screens or displays for your convenience.
+
+If you get caught out on Sunday-hour days (eg. Sundays or holidays), and the bus isn't coming, you can either try asking friends or family to drive you back home, or [use a taxi service](#a-note-on-taxis).
+
+### What happens if I get lost?
+
+If you have mobile data, simply reroute from your location to where you want to go. If you don't, see if there's any public Wi-Fi nearby. If its within your means, having a data plan may save you a ***lot*** of stress.
+
+If you have friends or family that can drive you, this may be safest and cheapest.
+
+> [!info] For minors in uncomfortable living conditions:
+> You may want to come up with an excuse to parents of how you might've gotten lost, if you're transporting yourself to a place that you'd rather keep private.
+
+You may also wish to ask strangers for help. Admittedly, it's a bit scary, but more often than not, they will happily try and help you as best they can for directions. This very much includes bus drivers!
+
+If crippling social anxiety will be a problem though, a strategy for if you get lost is to stay on said bus, until you wrap around to your previous location. Otherwise, getting off may be an option if you know you can walk to the next stop or your destination. For most routes, this should work, although I've had a bus only go one direction once due to scheduling.
+
+## A Note on Taxis
+
+Sentiment on the r/Winnipeg subreddit for local taxi services such Unicity and *especially* Duffy's leans towards them being shady and dangerous. **Uber and Lyft are seen as safer.**
+
+- [Beware of taking taxis or Uber, especially if you are a woman or AFAB.](https://reddit.nerdvpn.de/r/Winnipeg/comments/zqfchb/beware_of_taking_taxis_or_uber_especially_if_you/)
+- [Uber/Lyft VS Unicity/Duffy's](https://reddit.nerdvpn.de/r/Winnipeg/comments/1gnxsr2/uberlyft_vs_unicityduffys/)
+- [Not all taxi drivers](https://reddit.nerdvpn.de/r/Winnipeg/comments/1fbe6c9/not_all_taxi_drivers/)
+
+Taxi services can get fairly expensive compared to a bus ticket--expect to pay from a range of $20 to $50 at most.
 
 ## More Info
 
