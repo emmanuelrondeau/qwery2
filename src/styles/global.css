@@ -274,7 +274,7 @@
 		@apply border-yellow-500 bg-yellow-50 marker:text-yellow-300 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;
 	}
 	.callout[data-callout="caution"] {
-		@apply border-red-500 bg-red-50 marker:text-red-300 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/50 dark:selection:bg-red-900/50 dark:selection:text-red-50;
+		@apply border-red-500 bg-red-50 marker:text-red-300 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/25 dark:selection:bg-red-900/50 dark:selection:text-red-50;
 	}
 
 	.callout .callout-title {
