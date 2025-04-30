@@ -202,7 +202,8 @@
 	.format .heading-wrapper + figure,
 	.format .heading-wrapper + p,
 	.format .heading-wrapper + pre,
-	.format .heading-wrapper + ul {
+	.format .heading-wrapper + ul,
+	.format .heading-wrapper + div {
 		@apply mt-0;
 	}
 

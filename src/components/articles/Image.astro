@@ -5,15 +5,18 @@ import {
 	type RemoteImageProps,
 } from "astro:assets";
 
-import type { ImageOutputFormat } from "astro";
 import type { HTMLAttributes } from "astro/types";
 
 // Shamelessly duplicated (with missing props) from Picture.astro
 // because I don't know any better
 type Props = (LocalImageProps | RemoteImageProps) & {
 	pictureAttributes: HTMLAttributes<"picture">;
-	formats?: ImageOutputFormat[];
-	fallbackFormat?: ImageOutputFormat;
+	src:
+		| string
+		| ImageMetadata
+		| Promise<{
+				default: ImageMetadata;
+		  }>;
 };
 
 const { class: className, pictureAttributes, ...rest } = Astro.props;
@@ -25,12 +28,11 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 	aria-label="Expand image"
 >
 	<Picture
-		format="avif"
-		formats={["avif"]}
+		formats={["avif", "jpg"]}
 		fallbackFormat="jpg"
 		{...rest}
 		class:list={[
-			"mx-auto !my-0 flex h-auto w-auto items-center justify-center rounded-md object-cover",
+			"mx-auto !my-0 flex items-center justify-center rounded-md bg-violet-100 object-cover dark:bg-gray-800",
 			className,
 		]}
 		pictureAttributes={pictureAttributes ?? { class: "not-format" }}
