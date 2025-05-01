@@ -126,6 +126,10 @@
 		@apply format-code:font-normal format-table:tabular-nums;
 	}
 
+	.format figure {
+		@apply mx-auto;
+	}
+
 	.format figure > div.side-by-side-images {
 		@apply mx-auto flex justify-center gap-x-4;
 	}

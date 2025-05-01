@@ -1,5 +1,4 @@
 ---
-import { Picture } from "astro:assets";
 import { type CollectionEntry, getCollection, getEntry } from "astro:content";
 import ArticleAuthors from "@/components/articles/ArticleAuthors.astro";
 import MinutesRead from "@/components/articles/MinutesRead.astro";
@@ -9,6 +8,7 @@ import Callout from "@/components/primitives/Callout.astro";
 import Link from "@/components/primitives/Link.astro";
 import { PAGE_TITLE_ID } from "@/constants";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import Picture from "@/components/primitives/Picture.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");

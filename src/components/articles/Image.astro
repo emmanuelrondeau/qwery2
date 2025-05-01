@@ -1,16 +1,15 @@
 ---
-import {
-	type LocalImageProps,
-	Picture,
-	type RemoteImageProps,
-} from "astro:assets";
-
+import type { LocalImageProps, RemoteImageProps } from "astro:assets";
 import type { HTMLAttributes } from "astro/types";
+import Picture from "@/components/primitives/Picture.astro";
 
-// Shamelessly duplicated (with missing props) from Picture.astro
-// because I don't know any better
+// Duplicated from Picture.astro, with extra "placeholder" param
 type Props = (LocalImageProps | RemoteImageProps) & {
-	pictureAttributes: HTMLAttributes<"picture">;
+	pictureAttributes?: HTMLAttributes<"picture">;
+	/**
+	 * @default true
+	 */
+	placeholder?: boolean;
 };
 
 const { class: className, pictureAttributes, ...rest } = Astro.props;
@@ -29,7 +28,7 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 		layout="constrained"
 		{...rest}
 		class:list={[
-			"mx-auto !my-0 flex items-center justify-center rounded-md bg-violet-100 object-cover dark:bg-gray-800",
+			"mx-auto !my-0 flex items-center justify-center rounded-md object-cover",
 			className,
 		]}
 		pictureAttributes={pictureAttributes ?? { class: "not-format" }}

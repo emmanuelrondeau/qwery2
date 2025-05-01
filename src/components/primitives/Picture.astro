@@ -1,0 +1,63 @@
+---
+import {
+	getConfiguredImageService,
+	type LocalImageProps,
+	Picture as AstroPicture,
+	type RemoteImageProps,
+} from "astro:assets";
+
+import type { HTMLAttributes } from "astro/types";
+import type { LocalImageServiceWithPlaceholder } from "@/image-service";
+import type { ImageOutputFormat } from "astro";
+
+// // Shamelessly duplicated (with missing props) from Picture.astro
+// // because I don't know any better
+// type Props = (LocalImageProps | RemoteImageProps) & {
+// 	pictureAttributes: HTMLAttributes<"picture">;
+// };
+
+// Somewhat duplicated (with missing props) from Picture.astro
+type Props = (LocalImageProps | RemoteImageProps) & {
+	formats?: ImageOutputFormat[] | undefined;
+	fallbackFormat?: ImageOutputFormat | undefined;
+	pictureAttributes?: HTMLAttributes<"picture">;
+	/**
+	 * @default true
+	 */
+	placeholder?: boolean;
+};
+
+const {
+	formats,
+	fallbackFormat,
+	placeholder: tempPlaceholder,
+	...rest
+} = Astro.props;
+
+const placeholder = tempPlaceholder == undefined ? true : tempPlaceholder;
+let placeholderURL = "";
+
+if (placeholder && typeof Astro.props.src !== "string") {
+	const resolveSrc = await Promise.resolve(Astro.props.src);
+	const src = "default" in resolveSrc ? resolveSrc.default : resolveSrc;
+
+	// https://github.com/Princesseuh/erika.florist/blob/3a7898d2c168028ba522bf5fb36d1f929392fd67/src/components/Image.astro#L18C1-L24C1
+	const imageService =
+		(await getConfiguredImageService()) as LocalImageServiceWithPlaceholder;
+	placeholderURL = await imageService.generatePlaceholder(
+		src.src,
+		src.width,
+		src.height,
+	);
+}
+---
+
+<AstroPicture
+	formats={["avif", "jpg"]}
+	fallbackFormat="jpg"
+	{...rest}
+	style={placeholderURL
+		? `background-size: cover;background-image: url(${placeholderURL});image-rendering:auto;`
+		: undefined}
+	onload="this.style.backgroundSize = null; this.style.backgroundImage = null; this.style.imageRendering = null; this.removeAttribute('onload');"
+/>

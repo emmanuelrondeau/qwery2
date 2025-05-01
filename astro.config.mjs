@@ -22,7 +22,9 @@ import expressiveCode from "astro-expressive-code";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE =
-	process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL;
+	process.env.NETLIFY === "true" && process.env.CONTEXT !== "production"
+		? process.env.DEPLOY_PRIME_URL
+		: undefined;
 
 const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 
@@ -30,6 +32,11 @@ const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 export default defineConfig({
 	site,
 	cacheDir: "./.astro-cache",
+	image: {
+		service: {
+			entrypoint: "./src/image-service.ts",
+		},
+	},
 	prefetch: { prefetchAll: true },
 	experimental: {
 		clientPrerender: true,

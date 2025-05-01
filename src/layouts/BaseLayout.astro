@@ -1,5 +1,4 @@
 ---
-import { Picture } from "astro:assets";
 import Background from "@/assets/josh-lavallee-sM0q8DxTkWQ-unsplash-bw.avif";
 
 import Footer from "@/components/primitives/Footer.astro";
@@ -7,6 +6,7 @@ import Navbar from "@/components/primitives/Navbar.astro";
 import SkipLink from "@/components/primitives/SkipLink.astro";
 import type { Props as SEOProps } from "astro-seo";
 import Head from "./Head.astro";
+import Picture from "@/components/primitives/Picture.astro";
 
 interface Props {
 	seo: SEOProps;
@@ -16,7 +16,12 @@ const { seo } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-p-4">
+<html
+	lang="en"
+	class="scroll-p-4"
+	transition:name="root"
+	transition:animate="none"
+>
 	<Head seo={seo} />
 	<body
 		class="flex min-h-[calc(100vh-10rem)] flex-col font-sans dark:bg-gray-900"
@@ -31,7 +36,6 @@ const { seo } = Astro.props;
 				<Picture
 					alt=""
 					src={Background}
-					format="avif"
 					formats={["avif"]}
 					fallbackFormat="jpg"
 					class="h-full object-cover mix-blend-color-dodge"
