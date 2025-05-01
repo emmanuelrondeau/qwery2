@@ -75,10 +75,7 @@ export default defineConfig({
 	integrations: [
 		AutoImport({
 			// https://github.com/delucis/astro-auto-import/tree/main/packages/astro-auto-import
-			imports: [
-				"/src/components/primitives/Callout.astro",
-				"/src/components/articles/Image.astro",
-			],
+			imports: ["/src/components/articles/Image.astro"],
 		}),
 		expressiveCode({
 			defaultProps: {
