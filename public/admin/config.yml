@@ -102,6 +102,13 @@ collections:
 media_folder: "/src/assets/images" # Location where files will be stored in the repo
 public_folder: "/src/assets/images" # The src attribute for uploaded media
 
+backend:
+  name: gitlab
+  repo: queerwinnipeg/queerwinnipeg.ca
+  branch: dev
+  squash_merges: true
+  base_url: https://auth.queerwinnipeg.ca
+
 # https://decapcms.org/docs/working-with-a-local-git-repository/
 local_backend:
   # when using a custom proxy server port
@@ -111,9 +118,5 @@ local_backend:
 
 # https://decapcms.org/docs/editorial-workflows/
 publish_mode: editorial_workflow
-backend:
-  squash_merges: true
-  name: git-gateway
-  branch: dev
 
 site_url: https://queerwinnipeg.ca

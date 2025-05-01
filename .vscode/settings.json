@@ -5,6 +5,9 @@
 	"[mdx]": {
 		"editor.wordWrap": "on"
 	},
+	"[dotenv]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
 	"[ignore]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"
 	},
