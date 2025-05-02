@@ -2,10 +2,14 @@
 // https://github.com/Princesseuh/erika.florist/blob/feat/new-design2/src/imageService.ts
 
 import type { LocalImageService } from "astro";
-import sharpService from "astro/assets/services/sharp";
+import sharpService, {
+	type SharpImageServiceConfig,
+} from "astro/assets/services/sharp";
 import { shorthash } from "astro/runtime/server/shorthash.js";
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import sharp from "sharp";
+import { imageService as betterImageService } from "astro-better-image-service";
+import type { MergedConfig } from "node_modules/astro-better-image-service/dist/config";
 
 import { site } from "astro:config/client";
 export function getBaseSiteURL(): string {
@@ -40,7 +44,8 @@ function getBitmapDimensions(
 	return { width: Math.round(bitmapWidth), height: Math.round(bitmapHeight) };
 }
 
-export interface LocalImageServiceWithPlaceholder extends LocalImageService {
+export interface LocalImageServiceWithPlaceholder
+	extends LocalImageService<SharpImageServiceConfig & MergedConfig> {
 	generatePlaceholder: (
 		src: string,
 		width: number,
@@ -51,6 +56,7 @@ export interface LocalImageServiceWithPlaceholder extends LocalImageService {
 
 const service: LocalImageServiceWithPlaceholder = {
 	...sharpService,
+	...betterImageService,
 	async getHTMLAttributes(options, imageConfig) {
 		const attributes = await sharpService.getHTMLAttributes!(
 			options,

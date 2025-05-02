@@ -17,7 +17,7 @@ import remarkReadingTime from "./plugins/remark-reading-time";
 
 import tailwindcss from "@tailwindcss/vite";
 import bundlesize from "vite-plugin-bundlesize";
-
+import { defaultConfig } from "astro-better-image-service";
 import expressiveCode from "astro-expressive-code";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
@@ -32,18 +32,35 @@ const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 export default defineConfig({
 	site,
 	cacheDir: "./.astro-cache",
+	prefetch: { prefetchAll: true },
 	image: {
 		service: {
+			config: {
+				...defaultConfig,
+				sharp: {
+					...defaultConfig.sharp,
+					jpeg: {
+						mozjpeg: true,
+					},
+					avif: {
+						// cspell:ignore subsampling
+						chromaSubsampling: "4:2:0",
+					},
+				},
+			},
 			entrypoint: "./src/image-service.ts",
 		},
 	},
-	prefetch: { prefetchAll: true },
 	experimental: {
 		clientPrerender: true,
 		responsiveImages: true,
 	},
 	markdown: {
-		remarkPlugins: [remarkReadingTime],
+		remarkPlugins: [
+			// @ts-expect-error - I don't know how to make types work, but the
+			// plugin works at least
+			remarkReadingTime,
+		],
 		rehypePlugins: [
 			[
 				rehypeCallouts,
@@ -74,8 +91,11 @@ export default defineConfig({
 			],
 			rehypeFigCaption,
 			rehypeHeadingIds,
+			// @ts-expect-error - No clue
 			...rehypeAutolink(),
+			// @ts-expect-error - No clue (help)
 			withToc,
+			// @ts-expect-error - No clue (pls help)
 			withTocExport,
 		],
 	},
@@ -118,6 +138,19 @@ export default defineConfig({
 		}),
 		mdx(),
 		svelte(),
+		// @playform/compress should always be last
+		(await import("@playform/compress")).default({
+			// Images and SVGs are handled by astro-better-image-service
+			Image: false,
+			SVG: false,
+			// Rest of the config
+			HTML: {
+				"html-minifier-terser": {
+					removeComments: true,
+					ignoreCustomComments: [],
+				},
+			},
+		}),
 	],
 	vite: {
 		build: { sourcemap: "hidden" },

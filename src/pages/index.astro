@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 // import { TagEnum } from "../content/config";
-import StarGrid from "@/assets/decorations/star-grid.svg?raw";
+import StarGrid from "@/assets/decorations/star-grid.svg";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
@@ -28,7 +28,7 @@ const posts = await getCollection("posts");
 				class="absolute -top-11 -left-11 -z-10 dark:opacity-30"
 				aria-hidden="true"
 			>
-				<Fragment set:html={StarGrid} />
+				<StarGrid />
 			</span>
 			<h1 class="!mb-[0.5em] !text-[2.25em]">Queer Winnipeg</h1>
 			<p>

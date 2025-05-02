@@ -41,23 +41,29 @@ if (placeholder && typeof Astro.props.src !== "string") {
 	const resolveSrc = await Promise.resolve(Astro.props.src);
 	const src = "default" in resolveSrc ? resolveSrc.default : resolveSrc;
 
-	// https://github.com/Princesseuh/erika.florist/blob/3a7898d2c168028ba522bf5fb36d1f929392fd67/src/components/Image.astro#L18C1-L24C1
-	const imageService =
-		(await getConfiguredImageService()) as LocalImageServiceWithPlaceholder;
-	placeholderURL = await imageService.generatePlaceholder(
-		src.src,
-		src.width,
-		src.height,
-	);
+	try {
+		// https://github.com/Princesseuh/erika.florist/blob/3a7898d2c168028ba522bf5fb36d1f929392fd67/src/components/Image.astro#L18C1-L24C1
+		const imageService =
+			(await getConfiguredImageService()) as unknown as LocalImageServiceWithPlaceholder;
+		placeholderURL = await imageService.generatePlaceholder(
+			src.src,
+			src.width,
+			src.height,
+		);
+	} catch (error) {
+		const err = error as Error;
+		console.log(err);
+		throw error;
+	}
 }
 ---
 
 <AstroPicture
-	formats={["avif", "jpg"]}
+	format="avif"
+	formats={["avif"]}
 	fallbackFormat="jpg"
 	{...rest}
 	style={placeholderURL
-		? `background-size: cover;background-image: url(${placeholderURL});image-rendering:auto;`
+		? `background-size: cover;background-image: url(${placeholderURL});image-rendering: auto;color: transparent;`
 		: undefined}
-	onload="this.style.backgroundSize = null; this.style.backgroundImage = null; this.style.imageRendering = null; this.removeAttribute('onload');"
 />

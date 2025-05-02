@@ -6,9 +6,9 @@ import PublishedOrUpdated from "@/components/articles/PublishedOrUpdated.astro";
 import TableOfContents from "@/components/articles/table-of-contents/TableOfContents.astro";
 import Callout from "@/components/primitives/Callout.astro";
 import Link from "@/components/primitives/Link.astro";
+import Picture from "@/components/primitives/Picture.astro";
 import { PAGE_TITLE_ID } from "@/constants";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
-import Picture from "@/components/primitives/Picture.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -61,12 +61,13 @@ const authors = await Promise.all(authorsPromise);
 				<div class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded object-cover lg:h-96">
 					<Picture
 						alt=""
-						class="aspect-video h-full w-full rounded object-cover lg:rounded-none"
+						class="aspect-video object-cover"
 						src={post.data.cover}
 						priority={true}
 						layout="full-width"
 						formats={["avif"]}
 						fallbackFormat="jpg"
+						pictureAttributes={{ class: "w-full" }}
 						transition:name={`cover-${post.slug}`}
 					/>
 				</div>
@@ -86,7 +87,7 @@ const authors = await Promise.all(authorsPromise);
 			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
 			<div class="xs:flex-row !mb-4 flex flex-col gap-4 lg:!mb-0">
 				<ArticleAuthors postId={post.id} size="large" priority={true} />
-				<div class="relative top-[.1em] block">
+				<div class="relative top-[.15em] block">
 					<span
 						>Written by {authors.map((author) => author.name).join(", ")}</span
 					><br />

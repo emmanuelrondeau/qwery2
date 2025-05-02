@@ -3,7 +3,6 @@ import { toString as hastToString } from "mdast-util-to-string";
 import getReadingTime from "reading-time";
 
 export default function remarkReadingTime() {
-	// biome-ignore lint/suspicious/noExplicitAny: hast types are a fuck
 	return (tree: Root, { data }: any) => {
 		const textOnPage = hastToString(tree);
 		const readingTime = getReadingTime(textOnPage);
