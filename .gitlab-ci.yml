@@ -61,7 +61,8 @@ workflow:
       paths:
         - .pnpm-store
     - key: astro-image-cache
-      fallback_keys: $CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - $CI_COMMIT_REF_SLUG
       paths:
         - .astro-cache
 
