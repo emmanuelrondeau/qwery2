@@ -52,6 +52,7 @@ workflow:
   artifacts:
     paths:
       - "$DIST_FOLDER"
+    expire_in: 3 hours
 
   cache:
     - key:
@@ -59,7 +60,8 @@ workflow:
           - pnpm-lock.yaml
       paths:
         - .pnpm-store
-    - key: $CI_COMMIT_REF_SLUG
+    - key: astro-image-cache
+      fallback_keys: $CI_COMMIT_REF_SLUG
       paths:
         - .astro-cache
 
