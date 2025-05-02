@@ -77,7 +77,7 @@
 
 	/* SkipLink from accessible-astro-components */
 	body .skip-link a {
-		@apply rounded bg-violet-200 text-violet-900 ring-violet-900 transition-none outline-none focus-visible:ring-2 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-50;
+		@apply rounded bg-violet-50 text-lg font-semibold text-violet-900 ring-violet-900 transition-none outline-none focus-visible:ring-2 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-50;
 	}
 
 	body .skip-link a:focus-visible {
@@ -126,7 +126,7 @@
 		@apply format-code:font-normal format-table:tabular-nums;
 	}
 
-	.format figure {
+	.format figure:not(:where([class~="not-format"], [class~="not-format"] *)) {
 		@apply mx-auto;
 	}
 
@@ -277,8 +277,14 @@
 	.callout[data-callout="warning"] {
 		@apply border-yellow-500 bg-yellow-50 marker:text-yellow-300 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;
 	}
+	.callout[data-callout="warning"] a {
+		@apply hover:text-yellow-800 dark:hover:text-yellow-300;
+	}
 	.callout[data-callout="caution"] {
 		@apply border-red-500 bg-red-50 marker:text-red-300 selection:bg-red-200 selection:text-red-900 dark:bg-red-900/25 dark:selection:bg-red-900/50 dark:selection:text-red-50;
+	}
+	.callout[data-callout="caution"] a {
+		@apply hover:text-red-800 dark:hover:text-red-300;
 	}
 
 	.callout .callout-title {
