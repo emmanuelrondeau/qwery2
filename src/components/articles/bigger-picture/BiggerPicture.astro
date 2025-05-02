@@ -1,0 +1,347 @@
+---
+import "bigger-picture/css";
+---
+
+<style>
+	html.bp-lock {
+		/** Needed to fix the TOC from disappearing upon "clicking" a picture
+		to enter a lightbox. This causes a non-scrollable horizontal scrollbar
+		to appear on Chromium, however. */
+		overflow-y: inherit;
+	}
+</style>
+<style is:global>
+	.bp-count {
+		/* font-variant-numeric: tabular-nums; */
+		font-family: var(--font-mono);
+	}
+</style>
+<script>
+	import type { activeItem } from "bigger-picture";
+
+	const figures = document.querySelectorAll("figure:has(a#bigger-picture)");
+
+	if (figures.length > 0) {
+		const target = document.body;
+
+		// await for performance gains, for articles without images
+		// (although that's rare)
+		const bp = (await import("bigger-picture")).default({ target });
+
+		// State that is prefixed with "-ing" is to indicate that the
+		// bigger-picture event was triggered via browser navigation, and NOT by
+		// conventional means already handled by bigger-picture.
+		let state: "opened" | "opening" | "closing" | "closed" = "closed";
+
+		/**
+		 * Get bigger-picture recovery data from SessionStorage, using the history
+		 * state to find the key
+		 * @param historyState
+		 */
+		function getBpRecoveryData(historyState: any) {
+			if (!historyState || !("bp" in historyState)) {
+				return null;
+			}
+
+			const uuid = historyState.bp as string;
+
+			const rawData = window.sessionStorage.getItem(`bp-${uuid}`);
+			if (!rawData) {
+				console.warn(`No raw data found for bp-${uuid}`);
+				return null;
+			}
+
+			const data = JSON.parse(rawData);
+
+			if (!("figureIndex" in data)) {
+				throw new Error("figureIndex missing within data", {
+					cause: rawData,
+				});
+			}
+			const figureIndex = data.figureIndex as number;
+			if (!("linkIndex" in data)) {
+				throw new Error("linkIndex missing within data", { cause: rawData });
+			}
+			const linkIndex = data.linkIndex as number;
+			if (!("items" in data)) {
+				throw new Error("items missing within data", { cause: rawData });
+			}
+			const items = data.items as item[];
+
+			const figure = figures[figureIndex];
+			const links = figure.getElementsByTagName("a");
+			if (!links) {
+				console.warn("Unable to find links");
+				return null;
+			}
+			const link = links[linkIndex];
+
+			// "Rehydrate" item elements from JSON
+			const imgs = link.getElementsByTagName("img");
+			for (
+				let index = 0;
+				index < Math.min(items.length, imgs.length);
+				index++
+			) {
+				const img = imgs[index];
+				const item = items[index];
+				item.element = img;
+			}
+
+			const img = link.getElementsByTagName("img").item(0);
+
+			if (!img) {
+				console.warn("img", img != undefined);
+				return null;
+			}
+			if (!link) {
+				console.warn("link", link != undefined);
+				return null;
+			}
+
+			return {
+				items,
+				img,
+				link,
+				figureIndex,
+				linkIndex,
+				uuid,
+			};
+		}
+
+		// If page is refreshed, clear any "bp-" keys in session storage,
+		// as I'm assuming things broke and that's why there's a refresh.
+		window.addEventListener("pageshow", function (event) {
+			if (!event.persisted) return;
+
+			for (const key in sessionStorage) {
+				if (!sessionStorage.hasOwnProperty(key)) return;
+				if (!key.startsWith("bp-")) continue;
+				sessionStorage.removeItem(key);
+			}
+		});
+
+		// Runs when page is opened
+		window.addEventListener("DOMContentLoaded", function (_event) {
+			const data = getBpRecoveryData(window.history.state);
+			if (!data) {
+				const urlParams = new URLSearchParams(window.location.search);
+				if (urlParams.get("bp")) {
+					console.warn(
+						"Tried to load bigger-picture lightbox from history but failed; resetting window.location...",
+					);
+					window.location.replace(
+						`${window.location.origin}${window.location.pathname}${window.location.hash}`,
+					);
+				}
+				return;
+			}
+			const { items, img, link, figureIndex, linkIndex, uuid } = data;
+
+			bp.open({
+				items: items,
+				el: img ?? link,
+				onOpen: (container, activeItem) =>
+					onOpen(container, activeItem, {
+						figureIndex,
+						linkIndex,
+						items: data.items,
+						uuid,
+					}),
+				onClose: onClose,
+			});
+		});
+
+		// Add an event listener for if navigation happened
+		window.addEventListener("popstate", function (event) {
+			if (!event.state || !("bp" in event.state)) {
+				// console.log("popstate closing, withOUT state - from", state);
+				state = "closing";
+				bp.close();
+			} else {
+				// console.log("popstate opening, WITH state - from", state, event.state);
+				state = "opening";
+
+				const data = getBpRecoveryData(event.state);
+				if (!data) return;
+				const { items, img, link, figureIndex, linkIndex, uuid } = data;
+
+				bp.open({
+					items: items,
+					el: img ?? link,
+					onOpen: (container, activeItem) =>
+						onOpen(container, activeItem, {
+							figureIndex,
+							linkIndex,
+							items: data.items,
+							uuid,
+						}),
+					onClose: onClose,
+				});
+			}
+		});
+
+		const onOpen = (
+			container: HTMLElement,
+			_activeItem: activeItem,
+			data: {
+				items: item[];
+				figureIndex: number;
+				linkIndex: number;
+				uuid?: string;
+			},
+		) => {
+			// console.log("onOpen called - from", state);
+			const oldState = state;
+			state = "opened";
+
+			// Blindly copies PR for PhotoSwipe, for accessibility.
+			// https://github.com/dimsemenov/PhotoSwipe/pull/2104/commits/e5c080288fa3bc941ce043c9f139dbdda82ec479
+			container.setAttribute("tabindex", "-1");
+			container.setAttribute("role", "dialog");
+			container.setAttribute("aria-modal", "true");
+
+			// Only write to history and storage, if we're not opening (meaning we're
+			// doing this via browser navigation). If we're opening because
+			// bigger-picture detected interaction, and it isn't based on browser
+			// navigation, we write to history.
+			if (oldState !== "opening") {
+				const uuid = data.uuid ?? crypto.randomUUID();
+				// console.log("+ uuid", uuid);
+				history.pushState({ bp: uuid }, "", `?bp=open${window.location.hash}`);
+				sessionStorage.setItem(
+					`bp-${uuid}`,
+					JSON.stringify(data, undefined, 0),
+				);
+			}
+		};
+
+		const onClose = () => {
+			// console.log("onClose - from", state);
+			if (state === "opened") {
+				const urlString = `${window.location.pathname}${window.location.hash}`;
+				console.log(`pushing ${urlString} to history`);
+				history.pushState({}, "", urlString);
+			}
+			state = "closed";
+		};
+
+		// Add initial event listeners
+		for (let figureIndex = 0; figureIndex < figures.length; figureIndex++) {
+			const figure = figures[figureIndex];
+
+			// Go through all the buttons to put the images as "items" for bp to group,
+			// and add the `bp.open` command containing all images in the group
+			const links = figure.getElementsByTagName("a");
+			const items: HTMLElement | NodeList | HTMLCollection | item[] = [];
+
+			for (let linkIndex = 0; linkIndex < links.length; linkIndex++) {
+				const link = links[linkIndex];
+
+				// Theoretically, there shouldn't be multiple images, but
+				// this should still catch cases like this.
+				const imgs = link.getElementsByTagName("img");
+				for (const img of imgs) {
+					// `naturalHeight` isn't fully reliable, but its definitely a
+					// fallback that sometimes works. That said, attributes should
+					// always have a height and width, assuming the images are local.
+					const height = Number(
+						img.attributes.getNamedItem("height")?.value ??
+							img.attributes.getNamedItem("data-height")?.value ??
+							img.naturalHeight,
+					);
+					const width = Number(
+						img.attributes.getNamedItem("width")?.value ??
+							img.attributes.getNamedItem("data-width")?.value ??
+							img.naturalWidth,
+					);
+
+					items.push({
+						height,
+						width,
+						img: img.srcset,
+						alt: img.alt,
+						attr: { class: "" }, // Clears class styling
+						element: img,
+					});
+				}
+
+				link.addEventListener("click", (event) => {
+					// Since we're using <a> tags as our buttons (which somehow is a
+					// sort of standard?), we need to make sure the link to the image
+					// cannot be clicked, if there's JavaScript enabled
+					event.preventDefault();
+
+					const img = link.getElementsByTagName("img").item(0);
+
+					bp.open({
+						items: items,
+						// "el" must match "element" from our `items.push`;
+						// else it will use the wrong image to start with
+						el: img ?? event.currentTarget ?? undefined,
+
+						onOpen: (container, activeItem) =>
+							onOpen(container, activeItem, {
+								figureIndex,
+								linkIndex,
+								items: items,
+							}),
+						onClose: onClose,
+					});
+				});
+			}
+		}
+	}
+
+	// Copied from index.d.ts from bigger-picture
+	// cSpell:disable
+	interface item {
+		[key: string]: any;
+		/** Largest possible width of media item in pixels. Not required for HTML, which can be sized via CSS. */
+		width?: string | number;
+		/** Largest possible height of media item in pixels. Not required for HTML, which can be sized via CSS. */
+		height?: string | number;
+		/** URL or path to image used for thumbnail displayed before media loads. */
+		thumb?: string;
+		/** URL or path to full image. Can be a `srcset` value.
+		 *
+		 * When using `srcset`, the `sizes` value will update automatically when an image is zoomed. You may override this behavior by setting the [`sizes`](https://github.com/henrygd/bigger-picture#sizes) value. */
+		img?: string;
+		/** For native video and audio, an array of objects specifying [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-src) (required) and [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-type) (optional). A string may be used if it is JSON parsable. Each object will create a `source` element, and all key / value pairs in the object will be added as attributes. */
+		sources?: object[] | string;
+		/** HTML that will be rendered in the container. When using HTML, please control dimensions with CSS. No need to pass `width` or `height`.
+		 *
+		 * For advanced use, you can pass an empty string, then mount a component using the [`onOpen`](https://github.com/henrygd/bigger-picture#onopen) method:
+		 *
+		 * ```js
+		 * // mounting svelte component (firewatch example from demo site)
+		 * onOpen(container) {
+		 *    new Firewatch({
+		 *      target: container.querySelector('.bp-html'),
+		 *    })
+		 * },
+		 ``` */
+		html?: string;
+		/** Image alternative text */
+		alt?: string;
+		/** URL or path to iframe source */
+		iframe?: string;
+		/** Title attribute for iframes */
+		title?: string;
+		/** Text to be displayed using built in caption. You may pass html tags and styles can be overridden via CSS. */
+		caption?: string;
+		/** Sets the sizes attribute if you're using `srcset`. */
+		sizes?: string;
+		/** Restricts an image's maximum zoom level to `maxZoom` times the starting size, even if the item's `width` / `height` is larger. For example, a `maxZoom` of 2 on an image that is 800px wide when zoomed out would limit the image to a maximum zoom of 1600px width.
+		 *
+		 * If `maxZoom` is set on an individual item it will override the value set in options. Attribute name is `data-max-zoom`. */
+		maxZoom?: number;
+		/** Array of text track data to use with videos. String option is just a stringified array. See the [MDN page on track elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track) for more information. */
+		tracks?: string | object[];
+		/** To control the default open / close animation, add a property `element` to each item that contains a node on the page. The active item's `element` will be where the animation opens from / closes to. If you're not using the default scale animation, this is not needed. */
+		element?: HTMLElement | EventTarget;
+		/** Object of attributes to add to the `<img>`, `<iframe>`, `<video>`, `<audio>` elements. */
+		attr?: Record<string, string | boolean> | string;
+	}
+	// cSpell:enable
+</script>

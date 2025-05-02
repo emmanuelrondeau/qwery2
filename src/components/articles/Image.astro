@@ -2,6 +2,7 @@
 import type { LocalImageProps, RemoteImageProps } from "astro:assets";
 import type { HTMLAttributes } from "astro/types";
 import Picture from "@/components/primitives/Picture.astro";
+import { inferRemoteSize } from "astro:assets";
 
 // Duplicated from Picture.astro, with extra "placeholder" param
 type Props = (LocalImageProps | RemoteImageProps) & {
@@ -13,19 +14,38 @@ type Props = (LocalImageProps | RemoteImageProps) & {
 };
 
 const { class: className, pictureAttributes, ...rest } = Astro.props;
+
+let calculatedSrc = "";
+let calculatedWidth = "";
+let calculatedHeight = "";
+
+if (typeof Astro.props.src !== "string") {
+	const resolveSrc = await Promise.resolve(Astro.props.src);
+	const src = "default" in resolveSrc ? resolveSrc.default : resolveSrc;
+	calculatedSrc = src.src;
+	calculatedWidth = String(src.width);
+	calculatedHeight = String(src.height);
+} else {
+	const { width, height } = await inferRemoteSize(Astro.props.src);
+	calculatedSrc = Astro.props.src;
+	calculatedWidth = String(width);
+	calculatedHeight = String(height);
+}
 ---
 
-<button
+<a
 	id="bigger-picture"
+	href={calculatedSrc}
 	class="mx-auto flex items-center justify-center rounded-md ring-violet-600 ring-offset-4 ring-offset-white outline-none hover:cursor-pointer focus-visible:ring-2 dark:ring-gray-50 dark:ring-offset-gray-900"
-	aria-label="Expand image"
 >
 	{/* I have no idea why adding layout="constrained" breaks types */}
 	{/* @ts-expect-error */}
 	<Picture
-		formats={["avif", "jpg"]}
+		formats={["avif"]}
 		fallbackFormat="jpg"
 		layout="constrained"
+		data-width={calculatedWidth}
+		data-height={calculatedHeight}
 		{...rest}
 		class:list={[
 			"mx-auto !my-0 flex items-center justify-center rounded-md object-cover",
@@ -33,4 +53,4 @@ const { class: className, pictureAttributes, ...rest } = Astro.props;
 		]}
 		pictureAttributes={pictureAttributes ?? { class: "not-format" }}
 	/>
-</button>
+</a>
