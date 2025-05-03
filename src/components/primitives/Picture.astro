@@ -67,10 +67,9 @@ if (placeholder && typeof Astro.props.src !== "string") {
 ---
 
 <AstroPicture
-	format="avif"
-	formats={["avif"]}
-	fallbackFormat="jpg"
 	{...rest}
+	formats={formats ?? ["avif"]}
+	fallbackFormat={fallbackFormat ?? "jpg"}
 	style={placeholderURL
 		? `background-size: cover;background-image: url(${placeholderURL});color: transparent;`
 		: undefined}

@@ -41,8 +41,6 @@ if (typeof Astro.props.src !== "string") {
 	{/* I have no idea why adding layout="constrained" breaks types */}
 	{/* @ts-expect-error */}
 	<Picture
-		formats={["avif"]}
-		fallbackFormat="jpg"
 		layout="constrained"
 		data-width={calculatedWidth}
 		data-height={calculatedHeight}
