@@ -49,23 +49,22 @@ const posts = await getCollection("posts");
 						/>
 					</div>
 					<div class="flex flex-col gap-6 lg:w-1/2">
-						{
-							posts
-								.filter((post) =>
-									[
-										"a-guide-to-financial-literacy-in-canada.mdx",
-										"how-to-change-your-legal-name-or-sex-in-manitoba.mdx",
-										"how-to-start-hrt-in-winnipeg.mdx",
-										"save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx",
-									].includes(post.id),
-								)
-								.sort(
-									(a, b) =>
-										(b.data.lastEdited ?? b.data.created).getTime() -
-										(a.data.lastEdited ?? a.data.created).getTime(),
-								)
-								.map((post) => <ArticleCard postId={post.id} priority={true} />)
-						}
+						<ArticleCard
+							postId="how-to-start-hrt-in-winnipeg.mdx"
+							priority={true}
+						/>
+						<ArticleCard
+							postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
+							priority={true}
+						/>
+						<ArticleCard
+							postId="save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx"
+							priority={true}
+						/>
+						<ArticleCard
+							postId="a-guide-to-financial-literacy-in-canada.mdx"
+							priority={true}
+						/>
 					</div>
 				</div>
 			</section>
