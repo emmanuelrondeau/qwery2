@@ -48,7 +48,7 @@ If everything went well, ta-da! You now have a working development instance on h
 
 ```sh
 # Resyncing main branch with dev
-git rebase dev
+git switch main && git rebase origin/dev
 ```
 
 ### Editors
@@ -65,7 +65,7 @@ If you don't already have a code editor to work with this repository, I recommen
 
 ### Codebase
 
-The code is (with the exception of otherwise-noted files in the repository) under the <dfn>Mozilla Public License</dfn> 2.0 (<abbr>MPL</abbr>). See [LICENSE](./license) for the legalese, or check the <abbr>MPL</abbr> [<abbr>tl;dr</abbr>Legal](https://www.tldrlegal.com/license/mozilla-public-license-2-0-mpl-2).
+The code is, except where otherwise noted, under the <dfn>Mozilla Public License</dfn> 2.0 (<abbr>MPL</abbr>). See [LICENSE](./license) for the legalese, or check the <abbr>MPL</abbr> [<abbr>tl;dr</abbr>Legal](https://www.tldrlegal.com/license/mozilla-public-license-2-0-mpl-2).
 
 ### Text
 
@@ -77,7 +77,7 @@ Feel free to create an issue for clarification.
 
 ### Images
 
-If you're a copyright owner of any of the images hosted, and wish to exercise your right to remove your content, please [create an issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues). We unfortunately don't have an email currently.
+Images, except where otherwise specified, are copyrighted. We do however use copyrighted material for articles. If you're a copyright owner of any of the images hosted, and wish to exercise your right to remove your content, please [create an issue](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues) or email [hello@queerwinnipeg.ca](mailto:hello@queerwinnipeg.ca?subject=Content%20Takedown%20Request).
 
 ## Contributing
 
