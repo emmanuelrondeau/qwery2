@@ -10,12 +10,6 @@ import type { HTMLAttributes } from "astro/types";
 import type { LocalImageServiceWithPlaceholder } from "@/image-service";
 import type { ImageOutputFormat } from "astro";
 
-// // Shamelessly duplicated (with missing props) from Picture.astro
-// // because I don't know any better
-// type Props = (LocalImageProps | RemoteImageProps) & {
-// 	pictureAttributes: HTMLAttributes<"picture">;
-// };
-
 // Somewhat duplicated (with missing props) from Picture.astro
 type Props = (LocalImageProps | RemoteImageProps) & {
 	formats?: ImageOutputFormat[] | undefined;
@@ -25,16 +19,30 @@ type Props = (LocalImageProps | RemoteImageProps) & {
 	 * @default true
 	 */
 	placeholder?: boolean;
+	/**
+	 * If the image has transparency, remove the underlying LQIP background (in
+	 * exchange for sending more raw data to the client, and making the client
+	 * do more work).
+	 * @default false
+	 */
+	transparent?: boolean;
 };
 
 const {
 	formats,
 	fallbackFormat,
 	placeholder: tempPlaceholder,
+	transparent: tempTransparent,
 	...rest
 } = Astro.props;
 
 const placeholder = tempPlaceholder == undefined ? true : tempPlaceholder;
+const transparent =
+	typeof tempTransparent === "boolean" ||
+	tempTransparent === undefined ||
+	tempTransparent === null
+		? Boolean(tempTransparent)
+		: tempTransparent === "true";
 let placeholderURL = "";
 
 if (placeholder && typeof Astro.props.src !== "string") {
@@ -66,4 +74,5 @@ if (placeholder && typeof Astro.props.src !== "string") {
 	style={placeholderURL
 		? `background-size: cover;background-image: url(${placeholderURL});color: transparent;`
 		: undefined}
+	onload={transparent ? "this.style.backgroundImage=null" : undefined}
 />
