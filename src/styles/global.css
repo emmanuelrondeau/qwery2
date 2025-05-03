@@ -149,6 +149,10 @@
 }
 
 @layer utilities {
+	.format {
+		@apply format-blockquote:rounded-l;
+	}
+
 	.format a:not(.not-format) {
 		@apply rounded underline outline-violet-600 hover:text-violet-800 focus-visible:outline-2 dark:outline-violet-50 dark:hover:text-violet-300;
 	}
@@ -199,6 +203,14 @@
 	.format
 		p:has(+ .heading-wrapper):not(
 			:where([class~="not-format"], [class~="not-format"] *)
+		),
+	.format
+		ul:has(+ .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		),
+	.format
+		blockquote:has(+ .heading-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
 		) {
 		@apply mb-0;
 	}
@@ -241,6 +253,11 @@
 			@apply relative top-[-.125em];
 		}
 
+		.format .heading-wrapper:hover a,
+		.format .heading-wrapper a:focus {
+			@apply no-underline opacity-100;
+		}
+
 		.format .heading-wrapper.level-h2 a {
 			@apply top-[-.1em];
 		}
@@ -250,9 +267,11 @@
 		}
 	}
 
-	.format .heading-wrapper:hover a,
-	.format .heading-wrapper a:focus {
+	.format .heading-wrapper a:focus-visible {
 		@apply no-underline opacity-100;
+	}
+	.format .heading-wrapper a:focus-visible svg {
+		@apply opacity-0;
 	}
 
 	.format .heading-wrapper:hover a:hover {
