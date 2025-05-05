@@ -77,7 +77,7 @@ export default defineConfig({
 				rehypeEnhancedTables,
 				{
 					classes: {
-						wrapper: "overflow-x-auto",
+						wrapper: "table-wrapper",
 						caption: "",
 						table: "",
 						tbody: "",

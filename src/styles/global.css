@@ -153,6 +153,18 @@
 		@apply format-blockquote:rounded-l;
 	}
 
+	.format
+		:where(.table-wrapper):not(
+			:where([class~="not-format"], [class~="not-format"] *)
+		) {
+		@apply grid grid-cols-1 overflow-auto whitespace-normal;
+	}
+
+	.format
+		:where(table):not(:where([class~="not-format"], [class~="not-format"] *)) {
+		@apply my-1;
+	}
+
 	.format a:not(.not-format) {
 		@apply rounded underline outline-violet-600 hover:text-violet-800 focus-visible:outline-2 dark:outline-violet-50 dark:hover:text-violet-300;
 	}
