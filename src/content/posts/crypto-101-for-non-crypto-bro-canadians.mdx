@@ -2,13 +2,13 @@
 draft: true
 containsReferralLinks: true 
 title: Crypto 101 for (Non-Crypto Bro) Canadians
-description: This is a guide on managing money for Canadians. Learn how to make
-  the most out of your Canadian dollars with this in-depth guide.
+description: Learn the basics of how cryptocurrency works.
 authors:
   - fio-cobbs
 tag: Finances
-created: 2024-09-18
-lastEdited: 2024-09-18
+created: 2024-05-03
+lastEdited: 2025-05-03
+# cSpell:disable-next-line
 cover: /src/assets/images/crypto-101-for-non-crypto-bro-canadians/traxer-kM6QNrgo0YE-unsplash.avif
 coverMetadata:
   type: photo
@@ -19,24 +19,39 @@ coverMetadata:
 
 import Transactions from "/src/assets/images/crypto-101-for-non-crypto-bro-canadians/transactions.webp";
 import BrokersAndExchanges from "/src/assets/images/crypto-101-for-non-crypto-bro-canadians/crypto-exchanges.png";
+import MoneroGUI from "/src/assets/images/crypto-101-for-non-crypto-bro-canadians/monero-gui.png"
+import BC1Q from "/src/assets/images/crypto-101-for-non-crypto-bro-canadians/bc1q.webp"
+import PaperWalletGenerator from "/src/assets/images/crypto-101-for-non-crypto-bro-canadians/paper-wallet-generator.png"
+
+> [!info]
+> I am *not* a financial advisor. This article should not be seen as investment advice.
 
 Do you need a quick education of how cryptocurrency works? Need to purchase something with it? Want to avoid all the financial grifters? You've come to the right place.
 
 ## What is Crypto?
 
-Crypto, or cryptocurrency, is **digital currency designed to be without a centralized authority**, such as the Bank of Canada.
+Crypto, or cryptocurrency, is **digital currency** designed to be **decentralized, without a centralized authority**, such as the Bank of Canada.
 
 Computers (referred to as nodes), run software to negotiate and store the same database, to track transactions and balances. This database is called a blockchain.
 
-### How does money not get infinitely printed?
+### Can someone give themselves infinite crypto?
 
-Crypto is transferred and generated through a set of **programmed rules**.
+With the exceptions of:
 
-Since a bunch of machines are keeping track of the currency, they will all need to have consensus. This is needed so people can't add, remove, or transfer any amount of crypto from anyone to anyone.
+- The beginning of a blockchain, where there are little to no validators, or,
+- The blockchain is a test network, making being able to give themselves arbitrary amounts of (monetarily-worthless) crypto make sense,
 
-One common consensus method is **"proof of work"**, where computers try to solve a cryptographic puzzle. If a computer solves a puzzle, they're able to create a new block. "Mining" this block gives the "miner" a set amount of crypto.
+...the answer is no.
 
-The other common method is **"proof of stake"**, where validators stake a cryptocurrency, and are selected at random to create a block.
+Crypto is transferred and generated through a set of programmed rules.
+
+Since a bunch of machines running the same node software are keeping track of the currency, they will all need to have consensus. This is needed so one rogue machine can't add, remove, or transfer any amount of crypto from anyone to anyone.
+
+One common consensus method is "<dfn>proof of work</dfn>", where computers try to solve a cryptographic puzzle. If a computer solves a puzzle, they're able to create a new block. "Mining" this block gives the "miner" a newly-minted reward of crypto along with transactions fee earnings.
+
+Another common method is "<dfn>proof of stake</dfn>", where validators stake a cryptocurrency, and are selected at random to create a block and earn a reward. This system is more complicated, but the idea is that the more cryptocurrency you have, the more likely you'll be selected to create a block.
+
+As long as there is enough consensus that money shouldn't printed for a user, someone likely can't give themselves infinite.
 
 ### Things to Know About Crypto
 
@@ -47,16 +62,28 @@ Here's a quick rundown of what to know:
 	Crypto is a *highly* speculative asset. Prices will fluctuate wildly, so investing (buying or staking crypto) should be considered—just like buying individual stocks—**gambling**. The line does not always go up.
 	
 	If you plan to grow your money, I recommend an [ETF with a diverse portfolio](/posts/a-guide-to-financial-literacy-in-canada#risk-management) instead. And if you're doing it anyway, watch [Louis Rossmann's video about investing](https://www.youtube.com/watch?v=sIVvB5dC_KU) first.
-
+	
 - **You can't reverse a crypto transaction.**
 
 	With traditional financial systems, you may be able to talk to a central authority to reverse your transaction in case you get scammed. Due to the nature of decentralization, there is basically no central authority you can ask to have a transaction reversed.
 
 	This can rear its ugly head, if you send crypto to the wrong address, or if you've gotten hacked. Be warned!
 
-## Buying/Selling Crypto
+- **<dfn>Non-Fungible Tokens</dfn> (<abbr>NFT</abbr>s) are a grift.**
 
-If you need crypto to pay for **legal** goods and services, you can use a Canadian brokerage or exchange to purchase it.
+	It has been a couple years since they've entered the mainstream, and there hasn't been any valid use case, except to speculatively invest in, and hope you're not the one "holding the bag" in the end.
+
+And seriously; the first point bears repeating.
+
+If you feel you're completely unemployable, looking to get financial independence, and all you need is some luck and knowledge on crypto, this won't work.
+
+I've personally *lost 50%* of my investment in a bull trap, and I consider that lucky. If I "won", I would easily have the potential to lose more because I thought I knew what I was doing.
+
+Alternatives are tough to come by though, especially without the security of a <dfn>Universal Basic Income</dfn> (<abbr>UBI</abbr>). If your net worth is less than $4,000, you may wish to look at [<dfn>Employment and Income Assistance</dfn> (<abbr>EIA</abbr>)](https://www.gov.mb.ca/fs/eia/) or similar outside of Manitoba. This system is complicated, and I recommend you first find social services to help you through this.
+
+## Buying and Selling
+
+If you need crypto to pay for *legal* goods and services, you can use a Canadian brokerage or exchange to purchase it.
 
 ### Why only legal?
 
@@ -77,11 +104,7 @@ If you don't want your transactions traced back to you, you'll need to either:
 
 - [Crypto mining](https://en.bitcoin.it/wiki/Privacy#Mining) (recommended, best)
 
-	We won't go into *too* much detail on how to mine crypto here, but a quick rundown:
-	
-	You can mine to a pool like [Zergpool](https://zergpool.com/) using spare computers or even smartphones. Zergpool lets you exchange easily-minable coins (ex. Raptoreum, Verus), and then auto-exchanges them into other cryptocurrencies that are hard to mine (ex. Bitcoin, Litecoin).
-
-	Most merchants only take Bitcoin, so you'd want to create a Bitcoin address to mine to. However, if the merchant supports faster chains such as Bitcoin Cash, Litecoin, or Monero (which is one of the only chains that isn't transparent!), transfers will be quicker and cheaper. Zergpool does support [a variety of coins](https://zergpool.com/payouts), including Bitcoin.
+	Assuming your electricity bill can't be correlated to you mining, this is a way to obtain clean cryptocurrency without any connection to you. See the section [Mining Crypto](#mining-crypto) for more details.
 
 - Use a [mixer service](https://en.bitcoin.it/wiki/Privacy#Centralized_mixers) (not recommended)
 	
@@ -91,7 +114,7 @@ If you don't want your transactions traced back to you, you'll need to either:
 
 	An alternative to mixer services (with the same privacy and custodial risks), is using a Bitcoin service that doesn't require personal information. Examples of these services are Bitcoin casinos, Bitcoin poker websites, tipping websites, altcoin exchanges or online marketplaces.
 
-For a *signfiicantly* more in-depth article on Bitcoin privacy, check out [Privacy - The Bitcoin Wiki](https://en.bitcoin.it/wiki/Privacy). It includes how to send and receive anonymously, good and bad examples of privacy, and side channels that can attack your privacy.
+For a *significantly* more in-depth article on Bitcoin privacy, check out [Privacy - The Bitcoin Wiki](https://en.bitcoin.it/wiki/Privacy). It includes how to send and receive anonymously, good and bad examples of privacy, and side channels that can attack your privacy.
 
 ### Brokerages
 
@@ -131,9 +154,9 @@ If you're looking for the lowest fees, check out [Canadian Spread](https://cspre
 > [!info] Info:
 > You may know a Bitcoin ATM near you. These let you exchange cash or debit for crypto. These ATMs generally have high fees, and therefore should generally be avoided.
 
-## Transferring Crypto
+## Transferring and Receiving
 
-In order to transfer cryptocurrency, you'll need a wallet address to send it to.
+In order to transfer cryptocurrency, you'll need a wallet address to send it to. Conversely, you will need a cryptocurrency wallet in order to receive crypto.
 
 ### What is a wallet?
 
@@ -143,13 +166,56 @@ A cryptocurrency wallet effectively stores a balance. Using asymmetric cryptogra
 	
 	The public address is where you send crypto to, and is generally meant to be shared. A wallet can have multiple addresses attached to the same private key. You may see a public address as a seemingly random set of characters, or as a QR code.
 
+	<figure>
+		<Image src={BC1Q} alt="QR code containing a Bitcoin wallet address" />
+		<figcaption>A Bitcoin "taproot" address, in the form of a QR code.</figcaption>
+	</figure>
+
 - **A private key**
 	
 	This is needed to access and transfer your wallet funds into a different one. If you're using a brokerage or centralized exchange, they won't give the wallet's private key. Many people's funds are sent to the *same* wallet as you, but as a different address to track who deposited what.
 
-#### Bitcoin addresses
+### How do I get a wallet?
+
+With an exchange, you can get a wallet for whatever that exchange supports. Be warned; these addresses may change over time, and you may lose crypto because of this.
+
+A common phrase you'll hear is "not your keys, not your crypto." This is in reference to centralized exchanges not giving you the private key to your wallet, and therefore you don't actually have your crypto.
+
+This sentiment stems from exchanges getting hacked, losing customer's funds in the process. Usually, these funds aren't able to be recovered.
+
+When you're able to own your own keys, you (and not an exchange) are responsible for keeping your crypto safe.
+
+### Types of Wallets
+
+There are two types of crypto wallets; software wallets, and hardware wallets. We won't go into detail about hardware wallets.
+
+The easiest one to set up are software wallets. Cryptocurrencies will have a way to have software generate a wallet for you. 
+
+Certain cryptocurrencies recommend certain wallets; [Monero](https://www.getmonero.org/downloads/) recommends their first-party GUI wallet on desktop, for the best privacy.
+
+<figure class="max-w-96">
+	{/* Unknown license */}
+	<Image src={MoneroGUI} alt="Monero GUI" />
+	<figcaption>Screenshot from [getmonero.org](https://www.getmonero.org/downloads/#).</figcaption>
+</figure>
+
+For something on the lighter side, [Stack Wallet](https://stackwallet.com/) likely has what you need. It's [open source](https://github.com/cypherstack/stack_wallet), and has apps for mobile and desktop.
+
+You'll also see the distinction of a "hot" and "cold" wallet;
+
+- **<dfn>Hot wallet</dfn>**: A wallet that touches the internet. These are considered less secure, as the internet potentially allows for a vector of attack. For example, a user can accidentally download malware, and that malware can steal that user's crypto.
+- **<dfn>Cold wallet</dfn>**: A wallet that remains offline. These are more secure than hot wallets. As long as the machine generating it isn't compromised (or if so, is unable to communicate to the outside world), a hacker would need physical access  to your literal paper keys, to steal your crypto.
+
+<figure class="max-w-96">
+	<Image src={PaperWalletGenerator} alt="Sample paper wallet" />
+	<figcaption>You can create paper wallets like this from [paperwallet.io](https://printwallet.io/).</figcaption>
+</figure>
+
+### Bitcoin Addresses
 
 For Bitcoin, there are four types of addresses. The table below is ordered by most modern to least.
+
+{/* cSpell:disable */}
 
 | Address Type                                                        	| Prefix 	| Example                                                          	|
 |---------------------------------------------------------------------	|--------	|------------------------------------------------------------------	|
@@ -158,11 +224,13 @@ For Bitcoin, there are four types of addresses. The table below is ordered by mo
 | Script (<abbr title="Pay-to-script-hash">P2SH</abbr>)               	| `3`    	| `335qZjGEBLiEtLzUSxA591nNkKQW5mNV41`                             	|
 | Legacy (<abbr title="Pay-to-public-key-hash">P2PKH</abbr>)          	| `1`    	| `16hmVAATr6tYDzjwN2YBEWsY4xvhhrbyJ7`                             	|
 
+{/* cSpell:enable */}
+
 Ideally, you want to send to the more modern addresses, as transactions are cheaper and more secure. However, compatibility may not be there, and you may be provided an older type of address instead.
 
-#### Bitcoin private keys
+#### Bitcoin Private Keys
 
-Bitcoin private keys can come in many different formats. These include:
+As the term "private key" suggests, these keys are meant to be private, and not shared. If leaked, your crypto may get stolen. Bitcoin private keys can come in many different formats. These include:
 
 - **Seed phrase** (truncated)
 
@@ -186,7 +254,101 @@ Ideally, your private keys is derived from a seed phrase. Bitcoin also supports 
 
 ### Transfer Fees
 
-Blockchains have a transaction fee, to prioritize who gets to get recorded on a block. This is needed to make sure the nodes don't run out of disk space unexpectedly.
+Blockchains have a transaction fee, to prioritize who gets to get recorded on a block.
 
-On most chains, you can prioritize your transactions on how long it'll take.
+This is needed to make sure the size of the blockchain doesn't exceed how much a node has storage space.
 
+On most chains, you can prioritize your transactions on how long it'll take, by spending more on transaction fees. If it's too low however, your transaction may not go through.
+
+## Mining
+
+If you don't wish to buy crypto, but still wish to obtain some, you can mine it.
+
+You can mine to a pool like [Zergpool](https://zergpool.com/) using spare computers (laptops, desktops, or [even smartphones!](https://www.verus.io/mining)). Zergpool lets you exchange easily-minable coins (ex. Raptoreum, Verus, Monero), and then auto-exchanges them into other cryptocurrencies. You can have them given to you in the form of said easily-minable coins, or ones that are harder to mine (ex. Bitcoin, Bitcoin Cash, Litecoin).
+
+### Cost
+
+The cost of mining is usually:
+
+- The electricity to run these intensive cryptographic calculations.
+- Initial cost of purchasing the hardware.
+- Degradation of hardware over time.
+
+### Hardware
+
+There's different types of hardware used to mine cryptocurrency. The common ones are <dfn>central processing unit</dfn> (<abbr>CPU</abbr>), graphics processing unit (<abbr>GPU</abbr>), <dfn>application-specific integrated circuit</dfn> (<abbr>ASIC</abbr>), and field-programmable gate array (<abbr>FPGA</abbr>).
+
+The latter half are specialized hardware specifically made for crypto mining. For most people though, you'll be mining via your existing consumer hardware, which will be on your <abbr>CPU</abbr> and/or <abbr>GPU</abbr>.
+
+Hardware can degrade over time when used. Degradation of hardware has a few caveats:
+
+- **<dfn>Central Processing Unit</dfn> (<abbr>CPU</abbr>)**
+
+	Also known as simply your processor, rarely permanently degrades if ever.
+	
+	For maintenance, this usually is monitoring <abbr>CPU</abbr> temperatures, monitoring thermal throttling, and potentially replacing thermal paste if needed.
+
+- **<dfn>Graphics Processing Unit</dfn> (<abbr>GPU</abbr>)**
+
+	Also known as your graphics card. If you're mining on your <abbr>GPU</abbr>, it can more likely degrade and stop working, if not maintained correctly.
+	
+	General gist of maintaining them revolves around undervolting, monitoring temperatures to make sure (especially VRAM) chips don't overheat, and cleaning up dust or degraded thermal paste.
+
+- **Battery**
+
+	If you're mining with a device with a battery, having it plugged-in all the time can degrade it quicker. To mitigate this, if possible, see if your device has a way to limit the battery charge percentage.
+	
+	You should also monitor the device to see if the battery will become a spicy pillow (aka. a swollen battery). See [What to do with a swollen battery - iFixit](https://www.ifixit.com/Wiki/What_to_do_with_a_swollen_battery) if this happens.
+
+Most merchants only take Bitcoin. However, if the merchant supports faster chains such as Bitcoin Cash, Litecoin, or Monero (which is one of the only chains that isn't transparent!), transfers will be quicker and cheaper.
+
+Zergpool does support [a variety of coins](https://zergpool.com/payouts), including Bitcoin. However, be wary that the payout schedule for Bitcoin is longer than a chain like Bitcoin Cash.
+
+Certain wallet software also allow you to swap your cryptocurrency with another one, although note that you will still be beholden to transactions fees. 
+
+### Software
+
+Crypto mining software does complex calculations on your hardware, as a way to have set rules on the blockchain, that can't be overridden easily by a bad actor. You're rewarded for contributing "<dfn>hashrate</dfn>", the number of calculations per second your hardware can do.
+
+Mining software are commonly flagged as malicious by malware detectors, as malware developers bundle this kind of software (along with stealing cookies, credentials, etc.), to profit off your infected machine.
+
+Mining software itself could *also* be malicious, so I recommend isolating miners from your personal files. This could be, from best to worst, separate mining machines, VMs with GPU passthrough, or containers.
+
+You may wish to forgo those security practices at your own risk, or use open-source mining software. 
+
+Be warned; some closed-source miners exist on platforms such as GitHub, that commonly have open-source miners. Closed-source miners such as GMiner, lolminer, and SRBMiner-Multi are on GitHub, but are not open source.
+
+There are also *many, many* fake websites for crypto miners. If you come across a website for downloading a miner, make sure that website is linked to a GitHub account, with a GitHub repository.
+
+### Likely-Safe Miners
+
+> [!warning]
+> Although I believe these to be malware-free, install at your own risk.
+
+The following miners are open source and minable on Zergpool:
+
+{/* cSpell:disable */}
+
+| Miner                                                                                      | Crypto                        | Hardware              | Operating System                    |
+|--------------------------------------------------------------------------------------------|-------------------------------|-----------------------|-------------------------------------|
+| [monkins1010/ccminer](https://github.com/monkins1010/ccminer/releases)                     | Verus (<abbr>VRSC</abbr>)     | CPU                   | Windows (x86_64)                    |
+| [Oink70/ccminer-verus](https://github.com/Oink70/ccminer-verus/releases)                   | Verus (<abbr>VRSC</abbr>)     | CPU                   | Linux (x86_64, AArch64)             |
+| [evrprogpowminer](https://github.com/EvrmoreOrg/evrprogpowminer/releases)                  | Evrmore (<abbr>EVR</abbr>)    | GPU (6 GB+ VRAM required) | Windows (x86_64), Linux (no binary) |
+| [ccminer-kudaraidee](https://github.com/Kudaraidee/ccminer-kudaraidee/releases) | Garlicoin (<abbr>GLRC</abbr>) | GPU                   | Windows (x86_64), Linux (no binary) |
+| [XMRig](https://github.com/xmrig/xmrig/releases)                                           | Monero (XMR), Raptoreum (RTM) | CPU                   | Windows, Linux (x86_64, AArch64)    |
+
+{/* cSpell:enable */}
+
+Check your hashrates, then how much money you'll make over time with said hashrates, and see which one is most profitable for you. You can use sites like [minerstat.com](https://minerstat.com/coin/VRSC) to calculate this for you.
+
+Note that the GPU miners may not be the most profitable for you, verses a closed-source miner.
+
+## Conclusion
+
+I hope this article helped you get up-to-speed on the technicals of cryptocurrency.
+
+If you'd like to learn more, I recommend the following:
+
+- [Line Goes Up - The Problem With NFTs](https://www.youtube.com/watch?v=YQ_xWvX1n9g): Documentary by Dan Olsen on YouTube.
+- [Web3 is Going Just Great](https://www.web3isgoinggreat.com/): Created by Molly White, detailing the many, many disasters the crypto space has experienced.
+- [Coffeezilla](https://www.youtube.com/@Coffeezilla): A highly-respected investigative journalist in the crypto space on YouTube.
