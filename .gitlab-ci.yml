@@ -12,14 +12,14 @@ stages:
   - cleanup
 
 variables:
-  CLOUDFLARE_PROJECT_NAME: "queerwinnipeg"
+  CLOUDFLARE_PROJECT_NAME: queerwinnipeg
   DIST_FOLDER: ./dist
   GIT_SUBMODULE_STRATEGY: recursive # This is unused
 
 workflow:
   rules:
     # Always run for tag
-    - if: "$CI_COMMIT_TAG"
+    - if: $CI_COMMIT_TAG
     # Run pipeline for merge request
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     # Do not run branch pipeline if there is merge request and branch
@@ -51,7 +51,7 @@ workflow:
 
   artifacts:
     paths:
-      - "$DIST_FOLDER"
+      - $DIST_FOLDER
     expire_in: 3 hours
 
   cache:
@@ -82,9 +82,9 @@ build:production:
   image: node:22-alpine
   stage: deploy
   variables:
-    CLOUDFLARE_BRANCH: "$CI_COMMIT_BRANCH"
-    CLOUDFLARE_COMMIT_HASH: "$CI_COMMIT_SHA"
-    CLOUDFLARE_COMMIT_MESSAGE: "$CI_COMMIT_MESSAGE"
+    CLOUDFLARE_BRANCH: $CI_COMMIT_BRANCH
+    CLOUDFLARE_COMMIT_HASH: $CI_COMMIT_SHA
+    CLOUDFLARE_COMMIT_MESSAGE: $CI_COMMIT_MESSAGE
   script: |
     npx wrangler pages deploy "$DIST_FOLDER" \
       --project-name "$CLOUDFLARE_PROJECT_NAME" \
@@ -100,15 +100,15 @@ deploy:preview:
     - build:production
   environment: staging
   variables:
-    CLOUDFLARE_BRANCH: "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    CLOUDFLARE_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
-    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
       variables:
-        CLOUDFLARE_BRANCH: "$CI_COMMIT_BRANCH-preview"
-    - if: "$CI_COMMIT_TAG"
+        CLOUDFLARE_BRANCH: $CI_COMMIT_BRANCH-preview
+    - if: $CI_COMMIT_TAG
       when: never
     - if: $CI_COMMIT_BRANCH == "dev"
       when: always
@@ -124,16 +124,16 @@ deploy:production:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
-    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       # when: manual
       when: always
-    - if: "$CI_COMMIT_TAG"
+    - if: $CI_COMMIT_TAG
       when: always
       variables:
         # Cloudflare pages do not treat tags as "production" deployments, to overcome this
         # pretend that branch is default, i.e. main, add tag name into commit message
-        CLOUDFLARE_BRANCH: "$CI_DEFAULT_BRANCH"
-        CLOUDFLARE_COMMIT_MESSAGE: "$CI_COMMIT_TAG - $CI_COMMIT_TAG_MESSAGE"
+        CLOUDFLARE_BRANCH: $CI_DEFAULT_BRANCH
+        CLOUDFLARE_COMMIT_MESSAGE: $CI_COMMIT_TAG - $CI_COMMIT_TAG_MESSAGE
     - when: never
 
 .cleanup:
@@ -151,5 +151,5 @@ deploy:production:
 cleanup:preview:
   extends: [.cleanup]
   variables:
-    CLEANUP_ENVIRONMENT: "preview"
+    CLEANUP_ENVIRONMENT: preview
     CLEANUP_KEEP_COUNT: 0

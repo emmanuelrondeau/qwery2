@@ -1,106 +1,94 @@
 collections:
-  - name: "author"
-    label: "Authors"
-    label_singular: "Author"
-    folder: "src/content/authors"
+  - name: author
+    label: Authors
+    label_singular: Author
+    folder: src/content/authors
     create: true
     extension: yml
     fields:
-      - {
-          label: "Name",
-          name: "name",
-          widget: "string",
-          hint: "Generally a first and last name. You can also go by a pseudonym.",
-          required: true,
-        }
-      - {
-          label: "Profile Picture",
-          name: "profile",
-          widget: "image",
-          hint: "Upload a profile picture for yourself. If you're tech-savvy enough, go AVIF at a lossy quality of 100.",
-          required: false,
-          choose_url: false,
-        }
-      - {
-          label: "About Me",
-          name: "about-me",
-          widget: "markdown",
-          hint: "A simple about me section. For the sake of consistency, please don't do anything too fancy here!",
-          required: false,
-        }
+      - label: Name
+        name: name
+        widget: string
+        hint: Generally a first and last name. You can also go by a pseudonym.
+        required: true
+
+      - label: Profile Picture
+        name: profile
+        widget: image
+        hint: "Upload a profile picture for yourself. If you're tech-savvy enough, go AVIF at a lossy quality of 100."
+        required: false
+        choose_url: false
+
+      - label: About Me
+        name: about-me
+        widget: markdown
+        hint: "A simple about me section. For the sake of consistency, please don't do anything too fancy here!"
+        required: false
+
     editor:
       preview: false
-  - name: "post" # Used in routes, e.g., /admin/collections/post
-    label: "Post" # Used in the UI
-    folder: "src/content/posts" # The path to the folder where the documents are stored
+  - name: post # Used in routes, e.g., /admin/collections/post
+    label: Post # Used in the UI
+    folder: src/content/posts # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     extension: mdx
     format: frontmatter
     fields: # The fields for each document, usually in frontmatter
-      - {
-          label: "Title",
-          name: "title",
-          widget: "string",
-          default: "Article Title",
-          hint: "Put your article title here!",
-        }
-      - {
-          label: "Description (SEO)",
-          name: "description",
-          widget: "text",
-          hint: "This will be shown on search results and social media embeds. For optimizing specifically for Google, try and lean 155 (ish) characters or less.",
-        }
-      - {
-          label: "Authors",
-          name: "authors",
-          widget: "relation",
-          collection: "author",
-          search_fields: ["name"],
-          value_field: "{{slug}}",
-          multiple: true,
-          min: 1,
-        }
-      - {
-          label: "Tag",
-          name: "tag",
-          widget: "select",
-          options:
-            [
-              "Fashion",
-              "Finances",
-              "Medical",
-              "Mental Health",
-              "Mutual Aid",
-              "Other",
-              "Politics",
-              "Transportation",
-            ],
-        }
-      - {
-          label: "Published",
-          name: "created",
-          widget: "datetime",
-          date_format: "YYYY-MM-DD",
-          hint: "Set this to the current date, when the article gets published!",
-        }
-      - {
-          label: "Last Edited",
-          name: "lastEdited",
-          widget: "datetime",
-          date_format: "YYYY-MM-DD",
-          hint: "Set this to current date when you edit the article.",
-        }
-      - {
-          label: "Cover / Thumbnail",
-          name: "cover",
-          widget: "image",
-          hint: "This will be the thumbnail shown when browsing articles, and will be the first thing a user will see when they click on the article.",
-          default_value: "/src/assets/images/default-thumb.jpg",
-        }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - label: Title
+        name: title
+        widget: string
+        default: Article Title
+        hint: Put your article title here!
 
-media_folder: "/src/assets/images" # Location where files will be stored in the repo
-public_folder: "/src/assets/images" # The src attribute for uploaded media
+      - label: Description (SEO)
+        name: description
+        widget: text
+        hint: "This will be shown on search results and social media embeds. For optimizing specifically for Google, try and lean 155 (ish) characters or less."
+
+      - label: Authors
+        name: authors
+        widget: relation
+        collection: author
+        search_fields: [name]
+        value_field: "{{slug}}"
+        multiple: true
+        min: 1
+
+      - label: Tag
+        name: tag
+        widget: select
+        options:
+          - Fashion
+          - Finances
+          - Medical
+          - Mental Health
+          - Mutual Aid
+          - Other
+          - Politics
+          - Transportation
+
+      - label: Published
+        name: created
+        widget: datetime
+        date_format: YYYY-MM-DD
+        hint: "Set this to the current date, when the article gets published!"
+
+      - label: Last Edited
+        name: lastEdited
+        widget: datetime
+        date_format: YYYY-MM-DD
+        hint: Set this to current date when you edit the article.
+
+      - label: Cover / Thumbnail
+        name: cover
+        widget: image
+        hint: "This will be the thumbnail shown when browsing articles, and will be the first thing a user will see when they click on the article."
+        default_value: /src/assets/images/default-thumb.jpg
+
+      - {label: Body, name: body, widget: markdown}
+
+media_folder: /src/assets/images # Location where files will be stored in the repo
+public_folder: /src/assets/images # The src attribute for uploaded media
 
 backend:
   name: gitlab
@@ -114,7 +102,7 @@ local_backend:
   # when using a custom proxy server port
   url: http://localhost:8081/api/v1
   # when accessing the local site from a host other than 'localhost' or '127.0.0.1'
-  allowed_hosts: ["192.168.0.1"]
+  allowed_hosts: [192.168.0.1]
 
 # https://decapcms.org/docs/editorial-workflows/
 publish_mode: editorial_workflow
