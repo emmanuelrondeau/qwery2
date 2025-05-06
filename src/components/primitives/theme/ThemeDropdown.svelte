@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { theme, type Theme } from "@/stores";
 
+	// Using the Select instead of DropdownMenu because I didn't think it existed.
+	// (I'm going to hope that this is still semantically-sane enough for screen readers)
 	import { Select } from "bits-ui";
 	import Check from "phosphor-svelte/lib/Check";
 	import { onMount } from "svelte";
@@ -44,7 +46,7 @@
 	items={themes}
 >
 	<Select.Trigger
-		class="group flex items-center justify-between p-2 ring-violet-600 outline-none focus-visible:rounded focus-visible:ring-2 aria-expanded:text-violet-700 dark:ring-gray-50"
+		class="group flex items-center justify-between p-2 ring-violet-600 outline-none select-none focus-visible:rounded focus-visible:ring-2 aria-expanded:text-violet-700 aria-expanded:ring-0 dark:ring-gray-50"
 		aria-label="Select a theme"
 	>
 		{@render children?.()}
