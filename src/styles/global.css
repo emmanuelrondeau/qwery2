@@ -106,6 +106,16 @@
 	.leaflet-container {
 		z-index: 30 !important;
 	}
+
+	/* Workaround for VoiceOver not declaring lists - requires lists to be
+		marked as role="list" for this style to be applied, instead of
+		applying it to all lists. This is because "ul" can change have its
+		styling changed when using `format` (namely with spacing).
+		https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
+	ul[role="list"] li::before {
+		content: "\200B"; /* add zero-width space */
+		position: absolute;
+	}
 }
 
 @layer components {
@@ -257,16 +267,17 @@
 
 	.format .heading-wrapper a {
 		@apply absolute inset-0 m-0 inline text-violet-500 opacity-0 dark:text-violet-300;
-		margin-inline-start: calc(-1 * (var(--icon-size)));
 	}
 
 	@media (hover: hover) {
 		.format .heading-wrapper a {
-			@apply relative top-[-.125em];
+			@apply relative top-[-.125em] opacity-0;
+			margin-inline-start: calc(-1 * (var(--icon-size)));
 		}
 
 		.format .heading-wrapper:hover a,
-		.format .heading-wrapper a:focus {
+		.format .heading-wrapper a:hover,
+		.format .heading-wrapper a:focus-visible {
 			@apply no-underline opacity-100;
 		}
 
@@ -279,11 +290,14 @@
 		}
 	}
 
-	.format .heading-wrapper a:focus-visible {
-		@apply no-underline opacity-100;
-	}
-	.format .heading-wrapper a:focus-visible svg {
-		@apply opacity-0;
+	@media (hover: none) {
+		.format .heading-wrapper a:focus-visible {
+			@apply no-underline opacity-100;
+		}
+
+		.format .heading-wrapper a:focus-visible svg {
+			@apply opacity-0;
+		}
 	}
 
 	.format .heading-wrapper:hover a:hover {
