@@ -19,110 +19,139 @@ import "bigger-picture/css";
 <script>
 	import type { activeItem } from "bigger-picture";
 
-	const figures = document.querySelectorAll("figure:has(a#bigger-picture)");
+	let calledInitFunction = false;
 
-	if (figures.length > 0) {
-		const target = document.body;
+	document.addEventListener("DOMContentLoaded", initBiggerPicture);
 
-		// await for performance gains, for articles without images
-		// (although that's rare)
-		const bp = (await import("bigger-picture")).default({ target });
+	document.addEventListener("astro:before-preparation", clearFunction);
+	document.addEventListener("astro:page-load", initBiggerPicture);
 
-		// State that is prefixed with "-ing" is to indicate that the
-		// bigger-picture event was triggered via browser navigation, and NOT by
-		// conventional means already handled by bigger-picture.
-		let state: "opened" | "opening" | "closing" | "closed" = "closed";
+	// State that is prefixed with "-ing" is to indicate that the
+	// bigger-picture event was triggered via browser navigation, and NOT by
+	// conventional means already handled by bigger-picture.
+	let state: "opened" | "opening" | "closing" | "closed" = "closed";
 
-		/**
-		 * Get bigger-picture recovery data from SessionStorage, using the history
-		 * state to find the key
-		 * @param historyState
-		 */
-		function getBpRecoveryData(historyState: any) {
-			if (!historyState || !("bp" in historyState)) {
-				return null;
+	function clearFunction() {
+		state = "closed";
+		calledInitFunction = false;
+	}
+
+	async function initBiggerPicture() {
+		if (calledInitFunction) return;
+		calledInitFunction = true;
+
+		const figures = document.querySelectorAll("figure:has(a#bigger-picture)");
+
+		if (figures.length > 0) {
+			const target = document.body;
+
+			// await for performance gains, for articles without images
+			// (although that's rare)
+			const bp = (await import("bigger-picture")).default({ target });
+
+			/**
+			 * Get bigger-picture recovery data from SessionStorage, using the history
+			 * state to find the key
+			 * @param historyState
+			 */
+			function getBpRecoveryData(historyState: any) {
+				if (!historyState || !("bp" in historyState)) {
+					return null;
+				}
+
+				const uuid = historyState.bp as string;
+
+				const rawData = window.sessionStorage.getItem(`bp-${uuid}`);
+				if (!rawData) {
+					console.warn(`No raw data found for bp-${uuid}`);
+					return null;
+				}
+
+				const data = JSON.parse(rawData);
+
+				if (!("figureIndex" in data)) {
+					throw new Error("figureIndex missing within data", {
+						cause: rawData,
+					});
+				}
+				const figureIndex = data.figureIndex as number;
+				if (!("linkIndex" in data)) {
+					throw new Error("linkIndex missing within data", { cause: rawData });
+				}
+				const linkIndex = data.linkIndex as number;
+				if (!("items" in data)) {
+					throw new Error("items missing within data", { cause: rawData });
+				}
+				const items = data.items as item[];
+
+				const figure = figures[figureIndex];
+				const links = figure.getElementsByTagName("a");
+				if (!links) {
+					console.warn("Unable to find links");
+					return null;
+				}
+				const link = links[linkIndex];
+
+				// "Rehydrate" item elements from JSON
+				const imgs = link.getElementsByTagName("img");
+				for (
+					let index = 0;
+					index < Math.min(items.length, imgs.length);
+					index++
+				) {
+					const img = imgs[index];
+					const item = items[index];
+					item.element = img;
+				}
+
+				const img = link.getElementsByTagName("img").item(0);
+
+				if (!img) {
+					console.warn("img", img != undefined);
+					return null;
+				}
+				if (!link) {
+					console.warn("link", link != undefined);
+					return null;
+				}
+
+				return {
+					items,
+					img,
+					link,
+					figureIndex,
+					linkIndex,
+					uuid,
+				};
 			}
 
-			const uuid = historyState.bp as string;
+			// If page is refreshed, clear any "bp-" keys in session storage,
+			// as I'm assuming things broke and that's why there's a refresh.
+			function pageshow(event: PageTransitionEvent) {
+				if (!event.persisted) return;
 
-			const rawData = window.sessionStorage.getItem(`bp-${uuid}`);
-			if (!rawData) {
-				console.warn(`No raw data found for bp-${uuid}`);
-				return null;
+				for (const key in sessionStorage) {
+					if (!sessionStorage.hasOwnProperty(key)) return;
+					if (!key.startsWith("bp-")) continue;
+					sessionStorage.removeItem(key);
+				}
+			}
+			window.addEventListener("pageshow", pageshow);
+			window.addEventListener("astro:before-preparation", function () {
+				window.removeEventListener("pageshow", pageshow);
+			});
+
+			function onClose() {
+				// console.log("onClose - from", state);
+				if (state === "opened") {
+					const urlString = `${window.location.pathname}${window.location.hash}`;
+					console.log(`pushing ${urlString} to history`);
+					history.pushState({}, "", urlString);
+				}
+				state = "closed";
 			}
 
-			const data = JSON.parse(rawData);
-
-			if (!("figureIndex" in data)) {
-				throw new Error("figureIndex missing within data", {
-					cause: rawData,
-				});
-			}
-			const figureIndex = data.figureIndex as number;
-			if (!("linkIndex" in data)) {
-				throw new Error("linkIndex missing within data", { cause: rawData });
-			}
-			const linkIndex = data.linkIndex as number;
-			if (!("items" in data)) {
-				throw new Error("items missing within data", { cause: rawData });
-			}
-			const items = data.items as item[];
-
-			const figure = figures[figureIndex];
-			const links = figure.getElementsByTagName("a");
-			if (!links) {
-				console.warn("Unable to find links");
-				return null;
-			}
-			const link = links[linkIndex];
-
-			// "Rehydrate" item elements from JSON
-			const imgs = link.getElementsByTagName("img");
-			for (
-				let index = 0;
-				index < Math.min(items.length, imgs.length);
-				index++
-			) {
-				const img = imgs[index];
-				const item = items[index];
-				item.element = img;
-			}
-
-			const img = link.getElementsByTagName("img").item(0);
-
-			if (!img) {
-				console.warn("img", img != undefined);
-				return null;
-			}
-			if (!link) {
-				console.warn("link", link != undefined);
-				return null;
-			}
-
-			return {
-				items,
-				img,
-				link,
-				figureIndex,
-				linkIndex,
-				uuid,
-			};
-		}
-
-		// If page is refreshed, clear any "bp-" keys in session storage,
-		// as I'm assuming things broke and that's why there's a refresh.
-		window.addEventListener("pageshow", function (event) {
-			if (!event.persisted) return;
-
-			for (const key in sessionStorage) {
-				if (!sessionStorage.hasOwnProperty(key)) return;
-				if (!key.startsWith("bp-")) continue;
-				sessionStorage.removeItem(key);
-			}
-		});
-
-		// Runs when page is opened
-		window.addEventListener("DOMContentLoaded", function (_event) {
+			// Runs when page is opened
 			const data = getBpRecoveryData(window.history.state);
 			if (!data) {
 				const urlParams = new URLSearchParams(window.location.search);
@@ -134,38 +163,8 @@ import "bigger-picture/css";
 						`${window.location.origin}${window.location.pathname}${window.location.hash}`,
 					);
 				}
-				return;
-			}
-			const { items, img, link, figureIndex, linkIndex, uuid } = data;
-
-			bp.open({
-				items: items,
-				el: img ?? link,
-				onOpen: (container, activeItem) =>
-					onOpen(container, activeItem, {
-						figureIndex,
-						linkIndex,
-						items: data.items,
-						uuid,
-					}),
-				onClose: onClose,
-			});
-		});
-
-		// Add an event listener for if navigation happened
-		window.addEventListener("popstate", function (event) {
-			if (!event.state || !("bp" in event.state)) {
-				// console.log("popstate closing, withOUT state - from", state);
-				state = "closing";
-				bp.close();
 			} else {
-				// console.log("popstate opening, WITH state - from", state, event.state);
-				state = "opening";
-
-				const data = getBpRecoveryData(event.state);
-				if (!data) return;
 				const { items, img, link, figureIndex, linkIndex, uuid } = data;
-
 				bp.open({
 					items: items,
 					el: img ?? link,
@@ -179,116 +178,143 @@ import "bigger-picture/css";
 					onClose: onClose,
 				});
 			}
-		});
 
-		const onOpen = (
-			container: HTMLElement,
-			_activeItem: activeItem,
-			data: {
-				items: item[];
-				figureIndex: number;
-				linkIndex: number;
-				uuid?: string;
-			},
-		) => {
-			// console.log("onOpen called - from", state);
-			const oldState = state;
-			state = "opened";
+			// Add an event listener for if navigation happened
+			function popstate(event: PopStateEvent) {
+				if (!event.state || !("bp" in event.state)) {
+					// console.log("popstate closing, withOUT state - from", state);
+					state = "closing";
+					bp.close();
+				} else {
+					// console.log("popstate opening, WITH state - from", state, event.state);
+					state = "opening";
 
-			// Blindly copies PR for PhotoSwipe, for accessibility.
-			// https://github.com/dimsemenov/PhotoSwipe/pull/2104/commits/e5c080288fa3bc941ce043c9f139dbdda82ec479
-			container.setAttribute("tabindex", "-1");
-			container.setAttribute("role", "dialog");
-			container.setAttribute("aria-modal", "true");
-
-			// Only write to history and storage, if we're not opening (meaning we're
-			// doing this via browser navigation). If we're opening because
-			// bigger-picture detected interaction, and it isn't based on browser
-			// navigation, we write to history.
-			if (oldState !== "opening") {
-				const uuid = data.uuid ?? crypto.randomUUID();
-				// console.log("+ uuid", uuid);
-				history.pushState({ bp: uuid }, "", `?bp=open${window.location.hash}`);
-				sessionStorage.setItem(
-					`bp-${uuid}`,
-					JSON.stringify(data, undefined, 0),
-				);
-			}
-		};
-
-		const onClose = () => {
-			// console.log("onClose - from", state);
-			if (state === "opened") {
-				const urlString = `${window.location.pathname}${window.location.hash}`;
-				console.log(`pushing ${urlString} to history`);
-				history.pushState({}, "", urlString);
-			}
-			state = "closed";
-		};
-
-		// Add initial event listeners
-		for (let figureIndex = 0; figureIndex < figures.length; figureIndex++) {
-			const figure = figures[figureIndex];
-
-			// Go through all the buttons to put the images as "items" for bp to group,
-			// and add the `bp.open` command containing all images in the group
-			const links = figure.getElementsByTagName("a");
-			const items: HTMLElement | NodeList | HTMLCollection | item[] = [];
-
-			for (let linkIndex = 0; linkIndex < links.length; linkIndex++) {
-				const link = links[linkIndex];
-
-				// Theoretically, there shouldn't be multiple images, but
-				// this should still catch cases like this.
-				const imgs = link.getElementsByTagName("img");
-				for (const img of imgs) {
-					// `naturalHeight` isn't fully reliable, but its definitely a
-					// fallback that sometimes works. That said, attributes should
-					// always have a height and width, assuming the images are local.
-					const height = Number(
-						img.attributes.getNamedItem("height")?.value ??
-							img.attributes.getNamedItem("data-height")?.value ??
-							img.naturalHeight,
-					);
-					const width = Number(
-						img.attributes.getNamedItem("width")?.value ??
-							img.attributes.getNamedItem("data-width")?.value ??
-							img.naturalWidth,
-					);
-
-					items.push({
-						height,
-						width,
-						img: img.srcset,
-						alt: img.alt,
-						attr: { class: "" }, // Clears class styling
-						element: img,
-					});
-				}
-
-				link.addEventListener("click", (event) => {
-					// Since we're using <a> tags as our buttons (which somehow is a
-					// sort of standard?), we need to make sure the link to the image
-					// cannot be clicked, if there's JavaScript enabled
-					event.preventDefault();
-
-					const img = link.getElementsByTagName("img").item(0);
+					const data = getBpRecoveryData(event.state);
+					if (!data) return;
+					const { items, img, link, figureIndex, linkIndex, uuid } = data;
 
 					bp.open({
 						items: items,
-						// "el" must match "element" from our `items.push`;
-						// else it will use the wrong image to start with
-						el: img ?? event.currentTarget ?? undefined,
-
+						el: img ?? link,
 						onOpen: (container, activeItem) =>
 							onOpen(container, activeItem, {
 								figureIndex,
 								linkIndex,
-								items: items,
+								items: data.items,
+								uuid,
 							}),
 						onClose: onClose,
 					});
-				});
+				}
+			}
+			window.addEventListener("popstate", popstate);
+			window.addEventListener("astro:before-preparation", function () {
+				window.removeEventListener("popstate", popstate);
+			});
+
+			const onOpen = (
+				container: HTMLElement,
+				_activeItem: activeItem,
+				data: {
+					items: item[];
+					figureIndex: number;
+					linkIndex: number;
+					uuid?: string;
+				},
+			) => {
+				// console.log("onOpen called - from", state);
+				const oldState = state;
+				state = "opened";
+
+				// Blindly copies PR for PhotoSwipe, for accessibility.
+				// https://github.com/dimsemenov/PhotoSwipe/pull/2104/commits/e5c080288fa3bc941ce043c9f139dbdda82ec479
+				container.setAttribute("tabindex", "-1");
+				container.setAttribute("role", "dialog");
+				container.setAttribute("aria-modal", "true");
+
+				// Only write to history and storage, if we're not opening (meaning we're
+				// doing this via browser navigation). If we're opening because
+				// bigger-picture detected interaction, and it isn't based on browser
+				// navigation, we write to history.
+				if (oldState !== "opening") {
+					const uuid = data.uuid ?? crypto.randomUUID();
+					// console.log("+ uuid", uuid);
+					history.pushState(
+						{ bp: uuid },
+						"",
+						`?bp=open${window.location.hash}`,
+					);
+					sessionStorage.setItem(
+						`bp-${uuid}`,
+						JSON.stringify(data, undefined, 0),
+					);
+				}
+			};
+
+			// Add initial event listeners
+			for (let figureIndex = 0; figureIndex < figures.length; figureIndex++) {
+				const figure = figures[figureIndex];
+
+				// Go through all the buttons to put the images as "items" for bp to group,
+				// and add the `bp.open` command containing all images in the group
+				const links = figure.getElementsByTagName("a");
+				const items: HTMLElement | NodeList | HTMLCollection | item[] = [];
+
+				for (let linkIndex = 0; linkIndex < links.length; linkIndex++) {
+					const link = links[linkIndex];
+
+					// Theoretically, there shouldn't be multiple images, but
+					// this should still catch cases like this.
+					const imgs = link.getElementsByTagName("img");
+					for (const img of imgs) {
+						// `naturalHeight` isn't fully reliable, but its definitely a
+						// fallback that sometimes works. That said, attributes should
+						// always have a height and width, assuming the images are local.
+						const height = Number(
+							img.attributes.getNamedItem("height")?.value ??
+								img.attributes.getNamedItem("data-height")?.value ??
+								img.naturalHeight,
+						);
+						const width = Number(
+							img.attributes.getNamedItem("width")?.value ??
+								img.attributes.getNamedItem("data-width")?.value ??
+								img.naturalWidth,
+						);
+
+						items.push({
+							height,
+							width,
+							img: img.srcset,
+							alt: img.alt,
+							attr: { class: "" }, // Clears class styling
+							element: img,
+						});
+					}
+
+					link.addEventListener("click", (event) => {
+						// Since we're using <a> tags as our buttons (which somehow is a
+						// sort of standard?), we need to make sure the link to the image
+						// cannot be clicked, if there's JavaScript enabled
+						event.preventDefault();
+
+						const img = link.getElementsByTagName("img").item(0);
+
+						bp.open({
+							items: items,
+							// "el" must match "element" from our `items.push`;
+							// else it will use the wrong image to start with
+							el: img ?? event.currentTarget ?? undefined,
+
+							onOpen: (container, activeItem) =>
+								onOpen(container, activeItem, {
+									figureIndex,
+									linkIndex,
+									items: items,
+								}),
+							onClose: onClose,
+						});
+					});
+				}
 			}
 		}
 	}

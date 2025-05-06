@@ -31,13 +31,13 @@ if (!size) size = "small";
 		post.data.cover && (
 			<a
 				href={`/posts/${post.slug}`}
-				aria-hidden={true}
-				tabindex={-1}
 				class:list={[
 					"not-format",
 					{ "flex-shrink-0": size === "small" },
 					{ "sm:h-48 sm:w-auto lg:h-auto lg:w-full": size === "large" },
 				]}
+				aria-hidden={true}
+				tabindex={-1}
 			>
 				<Picture
 					aria-hidden={true}
@@ -58,7 +58,6 @@ if (!size) size = "small";
 					fallbackFormat="jpg"
 					layout="constrained"
 					priority={priority}
-					transition:name={`cover-${post.slug}`}
 				/>
 			</a>
 		)

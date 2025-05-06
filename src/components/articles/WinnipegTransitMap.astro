@@ -6,22 +6,31 @@ import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
 <div id="map" class="h-[28rem] w-full rounded-md"></div>
 <script>
 	// Code taken from scrolling through the Debugger > info.winnipegtransit.com/en/fares/where-to-buy/(index)
-	let init = false;
+	let calledInitFunction = false;
+	let createdMap = false;
 
-	document.addEventListener("DOMContentLoaded", initMap);
-	document.addEventListener("astro:page-load", initMap);
-	document.addEventListener("astro:before-preparation", clearFunctions);
+	document.addEventListener("DOMContentLoaded", initFunction);
 
-	function clearFunctions() {
-		document.removeEventListener("astro:page-load", initMap);
-		document.removeEventListener("DOMContentLoaded", initMap);
+	document.addEventListener("astro:before-preparation", clearFunction);
+	document.addEventListener("astro:page-load", initFunction);
+
+	function initFunction() {
+		if (calledInitFunction) return;
+		calledInitFunction = true;
+		initMap();
 	}
+
+	function clearFunction() {
+		document.removeEventListener("astro:page-load", initMap);
+		createdMap = false;
+	}
+
 	async function initMap() {
 		const L = await import("leaflet");
 		const { GestureHandling } = await import("leaflet-gesture-handling");
 
-		if (init) return;
-		init = true;
+		if (createdMap) return;
+		createdMap = true;
 
 		// Set up the tilelayer
 		const tiles = L.tileLayer(
