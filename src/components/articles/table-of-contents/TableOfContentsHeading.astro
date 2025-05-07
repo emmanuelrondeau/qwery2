@@ -19,10 +19,12 @@ const paddingLeft = !hideLeftLine ? "1.75rem" : "1rem";
 
 <li
 	class:list={[
-		"relative h-full w-full list-none",
+		"relative list-none",
 		{
-			"hidden group-has-[[aria-current=true]]/item:block": depth > 2,
+			"h-0 opacity-0 group-has-[[aria-current=true]]/item:h-full group-has-[[aria-current=true]]/item:opacity-100":
+				depth > 2,
 			"group/item": depth == 2,
+			"h-full w-full": depth <= 2,
 		},
 	]}
 >

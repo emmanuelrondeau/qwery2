@@ -57,6 +57,10 @@
 		@apply selection:bg-violet-100 selection:text-violet-950 dark:selection:bg-violet-400/10 dark:selection:text-violet-100;
 	}
 
+	html {
+		scrollbar-gutter: stable;
+	}
+
 	/* Twemoji */
 	img.emoji {
 		display: inline !important;
