@@ -34,7 +34,10 @@ if (!size) size = "small";
 				class:list={[
 					"not-format",
 					{ "flex-shrink-0": size === "small" },
-					{ "sm:h-48 sm:w-auto lg:h-auto lg:w-full": size === "large" },
+					{
+						"aspect-video w-full sm:aspect-auto sm:h-48 sm:w-auto md:aspect-video lg:aspect-video lg:h-auto lg:w-full":
+							size === "large",
+					},
 				]}
 				aria-hidden={true}
 				tabindex={-1}
@@ -49,7 +52,7 @@ if (!size) size = "small";
 								size === "small",
 						},
 						{
-							"aspect-video w-full sm:aspect-auto sm:h-48 sm:w-auto sm:hover:scale-[102%] lg:aspect-video lg:h-auto lg:w-full":
+							"sm:h-48 sm:w-auto sm:hover:scale-[102%] lg:h-auto lg:w-full":
 								size === "large",
 						},
 					]}
