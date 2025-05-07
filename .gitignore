@@ -34,3 +34,4 @@ pnpm-debug.log*
 *.avif~
 *.krz~
 *.kra~
+*.bak.krz
