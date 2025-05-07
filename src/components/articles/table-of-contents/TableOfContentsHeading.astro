@@ -26,9 +26,14 @@ const paddingLeft = !hideLeftLine ? "1.75rem" : "1rem";
 		},
 	]}
 >
+	{
+		/* .2em is for Chromium rendering differences with Firefox, due to the
+		"top-[.1em]" style; would remove if behaviour becomes consistent with
+		Firefox */
+	}
 	<a
 		href={"#" + heading.slug}
-		class="peer block py-[.375rem] !no-underline hover:!underline aria-current:text-gray-950 dark:aria-current:text-gray-50"
+		class="peer block py-[.375rem] !no-underline hover:!underline hover:underline-offset-[.2em] aria-current:text-gray-950 dark:aria-current:text-gray-50"
 		aria-current={ariaCurrent}
 	>
 		<span class="relative top-[.1em]">
