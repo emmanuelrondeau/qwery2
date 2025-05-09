@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../components/animate-underline/animate-underline.ts";
 
 /* prettier-ignore */
 @plugin "@tailwindcss/typography" {
@@ -25,6 +26,8 @@
 	--font-mono:
 		"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
 		"Liberation Mono", "Courier New", "monospace";
+
+	--text-shadow-underline: 0 35px 35px rgb(0, 0, 0);
 
 	/* easings.net -- https://easings.net/#easeInOutSine */
 	--animate-accordion-down: accordion-down 0.2s cubic-bezier(0.37, 0, 0.63, 1);
@@ -352,5 +355,35 @@
 
 	.callout .callout-content {
 		@apply relative dark:text-gray-200 [&>*]:first:mt-1 [&>*]:last:mb-0;
+	}
+
+	/* animate-underline custom component handling */
+	animate-underline .format a.group\/underline {
+		@apply no-underline;
+	}
+
+	animate-underline a.group\/underline span {
+		/* See https://css-tricks.com/styling-underlines-web/#aa-border-bottom for text-shadow technique */
+		@apply text-shadow-[-.0625em_-.0625em,_-.0625em_.0625em,_.0625em_-.0625em,_.0625em_.0625em,0_.0625em];
+
+		/* See https://stackoverflow.com/a/73043524 for animation reference */
+		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] ease-out group-hover/underline:bg-[length:85%_1px];
+
+		/* Color styling */
+		@apply from-(--tw-prose-links)/75 to-(--tw-prose-links)/75 text-shadow-white group-hover/underline:from-violet-800 group-hover/underline:to-violet-800 selection:text-shadow-none dark:from-(--tw-prose-links) dark:to-(--tw-prose-links) dark:text-shadow-gray-900 dark:group-hover/underline:from-violet-300/50 dark:group-hover/underline:to-violet-300/50;
+	}
+
+	animate-underline .callout a.group\/underline span {
+		/* Transparent background makes things impossible */
+		@apply !text-shadow-none;
+		/* Compensating for background making the underline less transparent, by making the color less transparent */
+		@apply from-(--tw-prose-links)/50 to-(--tw-prose-links)/50;
+		@apply group-hover/underline:from-violet-800/25 group-hover/underline:to-violet-800/25;
+		/* ...except for dark mode */
+		@apply dark:group-hover/underline:from-violet-300/50 dark:group-hover/underline:to-violet-300/50;
+	}
+
+	animate-underline .callout[data-callout="warning"] a.group\/underline span {
+		@apply group-hover/underline:from-yellow-800/50 group-hover/underline:to-yellow-800/50 dark:group-hover/underline:from-yellow-300/50 dark:group-hover/underline:to-yellow-300/50;
 	}
 }

@@ -10,6 +10,7 @@ import Picture from "@/components/primitives/Picture.astro";
 import { PAGE_TITLE_ID } from "@/constants";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import BiggerPicture from "@/components/articles/bigger-picture/BiggerPicture.astro";
+import AnimateUnderline from "@/components/animate-underline/AnimateUnderline.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -110,35 +111,37 @@ const authors = await Promise.all(authorsPromise);
 			>
 				<TableOfContents headings={headings} />
 			</div>
-			{/* No idea why this is focusable */}
-			<div
-				class="format dark:format-invert lg:format-lg block pt-8 outline-offset-2 outline-violet-800 focus-visible:rounded focus-visible:outline-2 dark:outline-violet-50"
-			>
-				{
-					post.data.draft && (
-						<Callout type="Warning" typeText="">
-							<p>
-								<strong>This is a draft post!</strong> It has yet to be
-								finalized.
-							</p>
-						</Callout>
-					)
-				}
-				{
-					post.data.containsReferralLinks && (
-						<Callout
-							type="Info"
-							typeText="This article contains affiliate links!"
-						>
-							<p>
-								We receive a commission if you sign up for certain services
-								linked below.
-							</p>
-						</Callout>
-					)
-				}
-				<Content />
-			</div>
+			<AnimateUnderline>
+				{/* No idea why this is focusable */}
+				<div
+					class="format dark:format-invert lg:format-lg block pt-8 outline-offset-2 outline-violet-800 focus-visible:rounded focus-visible:outline-2 dark:outline-violet-50"
+				>
+					{
+						post.data.draft && (
+							<Callout type="Warning" typeText="">
+								<p>
+									<strong>This is a draft post!</strong> It has yet to be
+									finalized.
+								</p>
+							</Callout>
+						)
+					}
+					{
+						post.data.containsReferralLinks && (
+							<Callout
+								type="Info"
+								typeText="This article contains affiliate links!"
+							>
+								<p>
+									We receive a commission if you sign up for certain services
+									linked below.
+								</p>
+							</Callout>
+						)
+					}
+					<Content />
+				</div>
+			</AnimateUnderline>
 		</div>
 	</div>
 </ArticleLayout>
