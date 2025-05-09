@@ -6,6 +6,7 @@ const authors = defineCollection({
 		z.object({
 			name: z.string(),
 			profile: image().optional(),
+			about: z.string().optional(),
 		}),
 });
 
@@ -17,6 +18,7 @@ const posts = defineCollection({
 			containsReferralLinks: z.boolean().optional(),
 			title: z.string(),
 			description: z.string().optional(),
+			seoDescription: z.string().optional(),
 			tag: TagEnum.default("Other"),
 			otherTags: z.array(TagEnum).optional(),
 			cover: image().optional(),
@@ -26,6 +28,10 @@ const posts = defineCollection({
 					author: z.string().optional(),
 					source: z.string().optional(),
 					license: z.string().optional(),
+					// Apparently https://microsoft.design does proper alt
+					// text for article thumbnails, I guess I should too
+					// (also The Onion but it's just the post title)
+					alt: z.string().optional(),
 				})
 				.optional(),
 			authors: z.array(reference("authors")),

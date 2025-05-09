@@ -19,12 +19,12 @@ export async function getStaticPaths() {
 	}));
 }
 
-const { entry: post } = Astro.props;
-const { Content, headings } = await post.render();
-
 type Props = {
 	entry: CollectionEntry<"posts">;
 };
+
+const { entry: post } = Astro.props;
+const { Content, headings } = await post.render();
 
 const authorsPromise = post.data.authors.map(async (author) => {
 	const authorEntry = await getEntry("authors", author.id);
@@ -38,7 +38,7 @@ const authors = await Promise.all(authorsPromise);
 <ArticleLayout
 	seo={{
 		title: post.data.title,
-		description: post.data.description,
+		description: post.data.seoDescription ?? post.data.description,
 		openGraph: {
 			basic: {
 				image: post.data.cover?.src ?? "",
