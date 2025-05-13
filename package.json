@@ -26,7 +26,6 @@
 		"@astrojs/svelte": "^7.0.13",
 		"@benjc/rehype-enhanced-tables": "^0.1.1",
 		"@fec/remark-a11y-emoji": "^4.0.2",
-		"@fontsource-variable/josefin-sans": "^5.2.5",
 		"@playform/compress": "^0.1.9",
 		"@stefanprobst/rehype-extract-toc": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.16",

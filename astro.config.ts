@@ -13,7 +13,7 @@ import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defaultConfig } from "astro-better-image-service";
 import expressiveCode from "astro-expressive-code";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import rehypeCallouts from "rehype-callouts";
 
 import bundlesize from "vite-plugin-bundlesize";
@@ -54,6 +54,23 @@ export default defineConfig({
 	},
 	experimental: {
 		clientPrerender: true,
+		fonts: [
+			{
+				provider: fontProviders.fontsource(),
+				name: "Montserrat",
+				cssVariable: "--font-montserrat",
+				fallbacks: ["Figtree", "ui-sans-serif", "system-ui"],
+				weights: ["400 800"],
+				subsets: ["latin"],
+			},
+			{
+				provider: fontProviders.fontsource(),
+				name: "Figtree",
+				cssVariable: "--font-sans",
+				weights: ["300 800"],
+				subsets: ["latin"],
+			},
+		],
 		responsiveImages: true,
 	},
 	markdown: {

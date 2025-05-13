@@ -1,11 +1,9 @@
 ---
 import "../styles/global.css";
 
-import "@fontsource-variable/josefin-sans";
-import josefinSansWoff2 from "@fontsource-variable/josefin-sans/files/josefin-sans-latin-wght-normal.woff2";
-
 import ThemeProvider from "@/components/primitives/theme/ThemeProvider.astro";
 import { SEO, type Props as SEOProps } from "astro-seo";
+import Font from "astro/components/Font.astro";
 
 interface Props {
 	seo: SEOProps;
@@ -53,13 +51,8 @@ const newSeoProp: SEOProps = {
 	<SEO {...newSeoProp} />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
-	<link
-		rel="preload"
-		as="font"
-		type="font/woff2"
-		href={josefinSansWoff2}
-		crossorigin="anonymous"
-	/>
+	<Font cssVariable="--font-sans" preload />
+	<Font cssVariable="--font-montserrat" preload />
 	<link
 		rel="alternate"
 		type="application/rss+xml"

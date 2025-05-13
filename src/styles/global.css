@@ -18,16 +18,12 @@
 
 @theme {
 	--breakpoint-xs: 475px;
-	/* Unsure where this came from */
 
-	--font-sans:
-		"Josefin Sans Variable", "ui-sans-serif", "system-ui", "sans-serif",
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-sans: "Figtree";
+	--font-montserrat: "Montserrat";
 	--font-mono:
 		"ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas",
 		"Liberation Mono", "Courier New", "monospace";
-
-	--text-shadow-underline: 0 35px 35px rgb(0, 0, 0);
 
 	/* easings.net -- https://easings.net/#easeInOutSine */
 	--animate-accordion-down: accordion-down 0.2s cubic-bezier(0.37, 0, 0.63, 1);
@@ -62,6 +58,15 @@
 
 	html {
 		scrollbar-gutter: stable;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-montserrat;
 	}
 
 	/* Twemoji */
@@ -168,6 +173,29 @@
 @layer utilities {
 	.format {
 		@apply format-blockquote:rounded-l;
+	}
+
+	.format
+		:where(h1):not(:where([class~="not-format"], [class~="not-format"] *)) {
+		@apply lg:leading-[1.166666667];
+	}
+
+	.format
+		:where(h1):not(:where([class~="not-format"], [class~="not-format"] *)),
+	.format
+		:where(h2):not(:where([class~="not-format"], [class~="not-format"] *)) {
+		@apply font-bold;
+	}
+
+	.format
+		:where(h3):not(:where([class~="not-format"], [class~="not-format"] *)),
+	.format
+		:where(h4):not(:where([class~="not-format"], [class~="not-format"] *)),
+	.format
+		:where(h5):not(:where([class~="not-format"], [class~="not-format"] *)),
+	.format
+		:where(h6):not(:where([class~="not-format"], [class~="not-format"] *)) {
+		@apply font-semibold;
 	}
 
 	.format
