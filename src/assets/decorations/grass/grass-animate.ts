@@ -17,7 +17,6 @@ export class GrassAnimate extends HTMLElement {
 		const rotateRight = randomNumber(rotateRightMin, rotateRightMax);
 
 		const isFlipped = this.getAttribute("data-flipped");
-		console.log(isFlipped);
 
 		this.style.setProperty("--grass-animation-time", `${time}s`);
 		this.style.setProperty(
