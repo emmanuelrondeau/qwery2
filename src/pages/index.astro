@@ -1,12 +1,12 @@
 ---
 // import { getCollection } from "astro:content";
 // import { TagEnum } from "../content/config";
-import StarGrid from "@/assets/decorations/star-grid.svg";
 import ArticleCard from "@/components/articles/ArticleCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 import RSSPromotion from "@/components/RSSPromotion.astro";
-
+import Umbrella from "@/assets/decorations/umbrella.svg";
+import Grass from "@/assets/decorations/grass/Grass.astro";
 // const posts = await getCollection("posts");
 
 // type Props = {
@@ -19,27 +19,99 @@ import RSSPromotion from "@/components/RSSPromotion.astro";
 ---
 
 <BaseLayout seo={{ title: "Home" }}>
+	<div
+		class="pointer-events-none absolute inset-0 -z-10 mt-42 hidden text-[169px] leading-[.9] font-bold text-violet-50 select-none sm:block sm:overflow-x-hidden dark:text-violet-900/20"
+		aria-hidden="true"
+	>
+		<div class="ml-[52.5vw]">
+			<h1>Queer</h1>
+			<h1 class="ml-28">Winnipeg</h1>
+		</div>
+	</div>
 	<main
 		id="main-content"
-		class="format dark:format-invert lg:format-lg mx-auto -mt-8 w-full max-w-screen-xl px-4 pt-24"
+		class="format dark:format-invert lg:format-lg mx-auto -mt-8 w-full max-w-[1520px] pt-18"
 	>
-		<section class="relative my-4 max-w-prose">
-			<span
-				class="absolute -top-11 -left-11 -z-10 dark:opacity-30"
-				aria-hidden="true"
-			>
-				<StarGrid />
+		<section class="flex w-full pr-4 pl-4 sm:pr-0">
+			<span class="flex flex-col justify-center sm:h-80 sm:w-7/12">
+				<h1 class="!mb-0">Queer Winnipeg</h1>
+				<h1
+					class="!m-0 font-bold text-gray-400 selection:bg-violet-50 selection:text-violet-950/80 dark:selection:bg-violet-400/5 dark:selection:text-violet-100/80"
+					role="paragraph"
+				>
+					<span class="sr-only">Queer Winnipeg</span> is an informal media org, writing
+					articles for our local community and more.
+				</h1>
 			</span>
-			<h1 class="!mb-[0.5em] !text-[2.25em]">Queer Winnipeg</h1>
-			<p>
-				We're an online webpage of various written resources, primarily for
-				queer people living in Winnipeg. Our goal is to help you navigate
-				through life, through articles!
-			</p>
+			<div
+				class="xs:block relative hidden overflow-x-clip sm:w-5/12"
+				aria-label="Purple umbrella laying in grass"
+			>
+				<div class="absolute inset-0">
+					<div
+						class="absolute bottom-0 flex h-20 w-full items-end overflow-clip fill-lime-400"
+					>
+						<Grass class="absolute -bottom-1 left-89 h-12" />
+
+						<Grass
+							class="absolute -bottom-1 left-25 h-10 delay-[-1000ms]"
+							data-flipped
+						/>
+					</div>
+					<div
+						class="absolute h-fit w-fit origin-bottom translate-x-64 -translate-y-[5.125rem] rotate-[-56.7deg]"
+					>
+						<Umbrella width="394" />
+					</div>
+					<div
+						class="absolute bottom-0 flex h-20 w-full items-end overflow-clip fill-lime-400"
+					>
+						<Grass
+							class="absolute -bottom-1 left-0 h-10 delay-[-1000ms]"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-2 h-6" />
+						<Grass class="absolute -bottom-1 left-10 h-11 delay-[-75ms]" />
+						<Grass
+							class="absolute -bottom-1 left-16 h-10 delay-[-1000ms]"
+							data-flipped
+						/>
+						<Grass
+							class="absolute -bottom-1 left-12 h-13 fill-lime-300 delay-[-100ms]"
+						/>
+						<Grass
+							class="absolute -bottom-1 left-12 h-16 fill-lime-300 delay-[-20ms]"
+						/>
+						<Grass class="absolute -bottom-1 left-27 h-12 delay-[-1000ms]" />
+						<Grass
+							class="absolute -bottom-1 left-29 h-10 fill-lime-300"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-75 h-8" data-flipped />
+						<Grass class="absolute -bottom-1 left-68 h-10" />
+						<Grass
+							class="absolute -bottom-1 left-69 h-14 fill-lime-300"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-90 h-15 fill-lime-300" />
+						<Grass
+							class="absolute -bottom-1 left-90 h-16 fill-lime-300"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-99 h-10" data-flipped />
+						<Grass class="absolute -bottom-1 left-122 h-8" />
+						<Grass
+							class="absolute -bottom-1 left-123 h-16 fill-lime-300"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-144 h-14 fill-lime-300" />
+					</div>
+				</div>
+			</div>
 		</section>
-		<div class="flex flex-col gap-8">
+		<!-- <div class="flex flex-col gap-8 px-4">
 			<section>
-				<h2 class="!text-[1.75em]">Featured</h2>
+				<h2 class="lg:text-4xl">Featured</h2>
 				<ul
 					class="!m-0 flex flex-col gap-x-8 gap-y-6 !ps-0 lg:flex-row"
 					role="list"
@@ -72,30 +144,6 @@ import RSSPromotion from "@/components/RSSPromotion.astro";
 				</ul>
 			</section>
 			<RSSPromotion />
-			<!-- <div class="flex flex-col gap-y-8">
-				{
-					TagEnum.options.map((value) => {
-						if (
-							!posts.some((post) => post.data.tag === value && !post.data.draft)
-						)
-							return;
-						return (
-							<div>
-								<h2 class="!text-[1.75em]">{value}</h2>
-								<ul class="list-none !p-0 !m-0 flex flex-col gap-6 lg:align-middle">
-									{posts
-										.filter(
-											(post) => post.data.tag == value && !post.data.draft
-										)
-										.map((post) => (
-											<ArticleCard postId={post.id} />
-										))}
-								</ul>
-							</div>
-						);
-					})
-				}
-			</div> -->
-		</div>
+		</div> -->
 	</main>
 </BaseLayout>

@@ -3,17 +3,17 @@ import ThemeSelector from "@/components/primitives/theme/ThemeSelector.astro";
 import { MAIN_NAV_ID } from "@/constants";
 import Button from "./Button.astro";
 import Link from "./Link.astro";
+import QWLogo from "@/assets/icons/qw-logo.svg";
 ---
 
 <nav id={MAIN_NAV_ID} class="z-10 flex w-full py-6">
 	<div
-		class="mx-auto flex w-full max-w-screen-xl items-center justify-between px-4 text-violet-900 dark:text-gray-50"
+		class="mx-auto flex w-full max-w-[1520px] items-center justify-between px-4 text-violet-900 dark:text-gray-50"
 	>
 		<Link
 			href="/"
-			class="text-3xl font-bold text-gray-900 select-none hover:text-violet-700 hover:transition-colors dark:text-gray-50 dark:hover:text-violet-300"
-			><span role="img" aria-label="Logo" class="relative top-[.1em]">QW</span
-			></Link
+			class="text-3xl font-bold text-gray-900 select-none hover:text-violet-700 hover:opacity-90 hover:transition-colors"
+			><span role="img" aria-label="Logo"> <QWLogo height="32" /></span></Link
 		>
 		<div class="flex items-center gap-x-6">
 			<ThemeSelector />

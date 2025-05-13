@@ -1,44 +1,69 @@
 ---
 import { BOTTOM_PAGE_SENTINEL_ID, MAIN_NAV_ID } from "@/constants";
 import Link from "./Link.astro";
+import QWLogo from "@/assets/icons/qw-logo.svg";
+import UnderlineAnimate from "../underline-animate/UnderlineAnimate.astro";
+
+const isProd = import.meta.env.PROD;
+const date = new Date();
+const year = date.getUTCFullYear();
+
+let hash = "unknown";
+let dirty = "";
+try {
+	const childProcess = await import("child_process");
+	hash = childProcess.execSync("git rev-parse --short HEAD").toString().trim();
+
+	try {
+		return childProcess.execSync("git diff-files --quiet");
+	} catch (error) {
+		const err = error as Error & { status: number };
+		if (err.status === 1) {
+			dirty = "-dirty";
+		}
+	}
+} catch (error) {
+	console.warn(error);
+	console.warn("Continuing...");
+}
 ---
 
 <footer class="bg-white dark:bg-gray-900" transition:persist>
-	<div class="mx-auto w-full max-w-screen-xl px-4 pt-8 pb-6 sm:pt-16 lg:pb-8">
+	<div class="mx-auto w-full max-w-[1520px] px-4 pt-8 pb-6 sm:pt-12 lg:pb-12">
 		<hr
-			class="my-6 border-gray-200 md:mx-auto lg:my-8 dark:border-gray-700"
+			class="border-gray-200 md:mx-auto dark:border-gray-700"
 			id={BOTTOM_PAGE_SENTINEL_ID}
 		/>
-		<div class="flex flex-col md:flex-row md:items-center md:justify-between">
-			<span
-				class="pb-2 text-sm font-medium text-gray-500 md:pb-0 md:text-center dark:text-gray-400"
-			>
-				Made with love, hope, and <Link
-					href="https://youtu.be/CUgFQv4ocLI?t=7005"
-					target="_blank"
-					class="no-underline hover:text-gray-700 hover:underline dark:hover:text-gray-100"
-					>(especially trans) joy</Link
-				> 💜
-			</span>
+		<div
+			class="my-[4.5rem] flex flex-col md:flex-row md:items-center md:justify-between"
+		>
+			<div class="flex flex-col gap-y-4.5">
+				<Link
+					href="/"
+					class="w-fit text-3xl font-bold text-gray-900 select-none hover:text-violet-700 hover:opacity-90 hover:transition-colors"
+					><span role="img" aria-label="Logo">
+						<QWLogo height="32" /></span
+					></Link
+				>
+				<UnderlineAnimate>
+					<span
+						class="format lg:format-lg dark:format-invert format-violet block max-w-[491px]"
+					>
+						<h2 class="!m-0">Queer Winnipeg</h2>
+						<p class="!mt-[.666667em] !mb-0">
+							We’re an informal media org, writing articles for our local queer
+							community and more. Made with love and <Link
+								href="https://youtu.be/CUgFQv4ocLI?t=7005"
+								target="_blank">queer joy</Link
+							>.
+						</p>
+					</span>
+				</UnderlineAnimate>
+			</div>
+
 			<ul
 				class="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
 			>
-				<li>
-					<Link
-						href="/"
-						target="_self"
-						referrerpolicy="strict-origin-when-cross-origin"
-						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
-						>Home</Link
-					>
-				</li>
-				<!-- <li>
-					<Link
-						href="/posts"
-						target="_self"
-						class="hover:underline me-4 md:me-6">Articles</Link
-					>
-				</li> -->
 				<li>
 					<Link
 						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
@@ -54,14 +79,21 @@ import Link from "./Link.astro";
 						>Privacy</Link
 					>
 				</li>
-				<li>
-					<Link
-						href={`#${MAIN_NAV_ID}`}
-						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
-						>Back to Top</Link
-					>
-				</li>
 			</ul>
+		</div>
+
+		<hr class="border-gray-200 md:mx-auto dark:border-gray-700" />
+		<div
+			class="format dark:format-invert format-p:m-0 flex max-w-full justify-between pt-8 text-gray-500"
+		>
+			<p>
+				© <time
+					datetime={isProd ? date.toISOString() : undefined}
+					data-git-hash={`${isProd ? "prod" : "dev"}${hash}${dirty}`}
+					>{year}</time
+				>
+				Queer Winnipeg. All rights reserved, except where otherwise noted.
+			</p>
 		</div>
 	</div>
 </footer>

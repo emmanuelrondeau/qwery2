@@ -23,37 +23,19 @@ const { seo } = Astro.props;
 	transition:animate="none"
 >
 	<Head seo={seo} />
-	<body
-		class="flex min-h-[calc(100vh-10rem)] flex-col font-sans dark:bg-gray-900"
-	>
+	<body class="flex min-h-screen flex-col font-sans dark:bg-gray-900">
 		<SkipLink />
-		<div
-			class="pointer-events-none absolute -z-10 h-[450px] select-none"
+		<!-- <div
+			class="sm:overflow-x-hidden sm:block pointer-events-none absolute inset-0 -z-10 mt-42 hidden text-[169px] leading-[.9] font-bold text-violet-50 select-none"
 			aria-hidden="true"
 		>
-			<div class="isolate h-full">
-				<div class="absolute inset-0 bg-violet-50 dark:bg-gray-900"></div>
-				<Picture
-					alt=""
-					src={Background}
-					formats={["avif"]}
-					fallbackFormat="jpg"
-					class="!h-full mix-blend-color-dodge"
-					layout="constrained"
-					priority={true}
-				/>
+			<div class="ml-[52vw]">
+				<h1>Queer</h1>
+				<h1 class="ml-28">Winnipeg</h1>
 			</div>
-			<div
-				class="absolute top-0 right-0 left-0 h-24 bg-gradient-to-b from-white via-white via-30% dark:from-gray-900 dark:via-gray-900 dark:via-30% dark:to-gray-900/0"
-			>
-			</div>
-			<div
-				class="absolute right-0 bottom-0 left-0 h-48 bg-gradient-to-t from-white via-white via-30% dark:from-gray-900 dark:via-gray-900 dark:via-30% dark:to-gray-900/0"
-			>
-			</div>
-		</div>
+		</div> -->
 		<Navbar />
-		<div class="flex min-h-[calc(100vh-10rem)] flex-col">
+		<div class="mt-0 mb-auto flex flex-col">
 			<slot />
 		</div>
 		<Footer />

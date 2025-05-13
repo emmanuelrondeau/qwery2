@@ -1,0 +1,73 @@
+---
+const { class: className, "data-flipped": dataFlipped, ...rest } = Astro.props;
+---
+
+<script src="./grass-animate.ts"></script>
+<grass-animate style="--grass-animation-time:2s;" data-flipped={dataFlipped}>
+	<svg
+		viewBox="0 0 21 27"
+		fill="inherit"
+		xmlns="http://www.w3.org/2000/svg"
+		{...rest}
+		class:list={["grass", dataFlipped && "-scale-x-100", className]}
+	>
+		<path
+			d="M5 4L7.88001 9.18401C10.8989 14.618 12.3267 20.7923 12 27H18.5C17.5343 18.9525 13.6251 11.547 7.5253 6.20964L5 4Z"
+		></path>
+	</svg>
+</grass-animate>
+
+<style>
+	svg.grass {
+		transform-origin: 75% 100%;
+
+		animation-direction: alternate;
+		animation-duration: var(--grass-animation-time);
+		animation-fill-mode: both;
+		animation-iteration-count: infinite;
+		animation-name: grass-idle;
+		animation-timing-function: ease-in-out;
+
+		/* transform: rotate(-40deg); */
+		/* transform: translate(4px) rotate(50deg); */
+	}
+
+	svg.grass path {
+		transform-origin: 75% 100%;
+
+		animation-direction: alternate;
+		animation-duration: var(--grass-animation-time);
+		animation-fill-mode: both;
+		animation-iteration-count: infinite;
+		animation-name: grass-idle;
+		animation-timing-function: ease-in-out;
+	}
+
+	@keyframes grass-idle {
+		from {
+			transform: rotate(var(--grass-rotate-left));
+		}
+		to {
+			transform: rotate(var(--grass-rotate-right));
+		}
+	}
+
+	@keyframes grass-idle-bend {
+		from {
+			d: path(
+				"M5 4L7.88001 9.18401C10.8989 14.618 12.3267 20.7923 12 27H18.5C17.5343 18.9525 13.6251 11.547 7.5253 6.20964L5 4Z"
+			);
+		}
+		to {
+			d: path(
+				"M8 2L9.20775 6.37808C11.0608 13.0954 12 20.0318 12 27H18.5C17.1868 18.1361 13.7143 9.73107 8.38814 2.52514L8 2Z"
+			);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		svg.grass {
+			animation: none;
+		}
+	}
+</style>

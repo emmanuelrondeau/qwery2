@@ -10,7 +10,7 @@ import Picture from "@/components/primitives/Picture.astro";
 import { PAGE_TITLE_ID } from "@/constants";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import BiggerPicture from "@/components/articles/bigger-picture/BiggerPicture.astro";
-import AnimateUnderline from "@/components/animate-underline/AnimateUnderline.astro";
+import UnderlineAnimate from "@/components/underline-animate/UnderlineAnimate.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -57,7 +57,7 @@ const authors = await Promise.all(authorsPromise);
 	disableFormat
 >
 	<div
-		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-screen-xl"
+		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-[1520px]"
 	>
 		{
 			post.data.cover && (
@@ -111,7 +111,7 @@ const authors = await Promise.all(authorsPromise);
 			>
 				<TableOfContents headings={headings} />
 			</div>
-			<AnimateUnderline>
+			<UnderlineAnimate>
 				{/* No idea why this is focusable */}
 				<div
 					class="format dark:format-invert lg:format-lg block pt-8 outline-offset-2 outline-violet-800 focus-visible:rounded focus-visible:outline-2 dark:outline-violet-50"
@@ -141,7 +141,7 @@ const authors = await Promise.all(authorsPromise);
 					}
 					<Content />
 				</div>
-			</AnimateUnderline>
+			</UnderlineAnimate>
 		</div>
 	</div>
 </ArticleLayout>

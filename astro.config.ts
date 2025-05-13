@@ -172,6 +172,7 @@ export default defineConfig({
 	],
 	vite: {
 		build: { sourcemap: "hidden" },
+		// @ts-expect-error - I have no idea why
 		plugins: [bundlesize({ allowFail: true }), tailwindcss()],
 	},
 	adapter:

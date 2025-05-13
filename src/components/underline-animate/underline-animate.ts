@@ -3,7 +3,7 @@
  * progressively add non-traditional underlines for cases where no JavaScript
  * is loaded.
  */
-export class AnimateUnderline extends HTMLElement {
+export class UnderlineAnimate extends HTMLElement {
 	connectedCallback() {
 		const anchors: NodeListOf<HTMLAnchorElement> = this.querySelectorAll(
 			`* a:not(:where([class~="not-format"], [class~="not-format"] *)):not(#bigger-picture):not(:where(.heading-wrapper *))`,
@@ -19,4 +19,4 @@ export class AnimateUnderline extends HTMLElement {
 	}
 }
 
-customElements.define("animate-underline", AnimateUnderline);
+customElements.define("underline-animate", UnderlineAnimate);
