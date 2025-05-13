@@ -46,7 +46,7 @@
 	items={themes}
 >
 	<Select.Trigger
-		class="group flex items-center justify-between p-2 ring-violet-600 outline-hidden select-none focus-visible:rounded focus-visible:ring-2 aria-expanded:text-violet-700 aria-expanded:ring-0 dark:ring-gray-50"
+		class="group font-montserrat flex items-center justify-between p-2 ring-violet-600 outline-hidden select-none focus-visible:rounded focus-visible:ring-2 aria-expanded:text-violet-700 aria-expanded:ring-0 dark:ring-gray-50"
 		aria-label="Select a theme"
 	>
 		{@render children?.()}
@@ -67,7 +67,7 @@
 					>
 						{#snippet children({ selected })}
 							{@html theme.icon?.outerHTML}
-							<span class="relative top-[.1em]">
+							<span>
 								{theme.label}
 							</span>
 							{#if selected}

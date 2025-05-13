@@ -89,7 +89,7 @@ const authors = await Promise.all(authorsPromise);
 			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
 			<div class="xs:flex-row !mb-4 flex flex-col gap-4 lg:!mb-0">
 				<ArticleAuthors postId={post.id} size="large" priority={true} />
-				<div class="relative top-[.15em] block">
+				<div class="block">
 					<span
 						>Written by {authors.map((author) => author.name).join(", ")}</span
 					><br />

@@ -29,6 +29,17 @@
 	--animate-accordion-down: accordion-down 0.2s cubic-bezier(0.37, 0, 0.63, 1);
 	--animate-accordion-up: accordion-up 0.2s cubic-bezier(0.37, 0, 0.63, 1);
 
+	--color-background: var(--theme-color-background);
+
+	--color-primary: var(--theme-color-primary);
+	--color-secondary: var(--theme-color-secondary);
+
+	--color-primary-brighter: var(--theme-color-primary-brighter);
+	--color-secondary-brighter: var(--theme-color-secondary-brighter);
+
+	--color-primary-dimmer: var(--theme-color-primary-dimmer);
+	--color-secondary-dimmer: var(--theme-color-secondary-dimmer);
+
 	@keyframes accordion-down {
 		from {
 			height: 0;
@@ -54,6 +65,25 @@
 @layer base {
 	:root {
 		@apply selection:bg-violet-100 selection:text-violet-950 dark:selection:bg-violet-400/10 dark:selection:text-violet-100;
+		--theme-color-background: var(--color-white);
+		--theme-color-primary-brighter: var(--color-violet-200);
+		--theme-color-primary: var(--color-violet-300);
+		--theme-color-primary-dimmer: var(--color-violet-400);
+
+		--theme-color-secondary-brighter: var(--color-lime-300);
+		--theme-color-secondary: var(--color-lime-400);
+		--theme-color-secondary-dimmer: var(--color-lime-500);
+	}
+
+	[data-theme="dark"] {
+		--theme-color-background: var(--color-black);
+		--theme-color-primary-brighter: var(--color-violet-600);
+		--theme-color-primary: var(--color-violet-700);
+		--theme-color-primary-dimmer: var(--color-violet-800);
+
+		--theme-color-secondary-brighter: var(--color-lime-700);
+		--theme-color-secondary: var(--color-lime-800);
+		--theme-color-secondary-dimmer: var(--color-lime-900);
 	}
 
 	html {
@@ -88,7 +118,7 @@
 
 	/* SkipLink from accessible-astro-components */
 	body .skip-link a {
-		@apply rounded bg-violet-50 text-lg font-semibold text-violet-900 ring-violet-900 transition-none outline-none focus-visible:ring-2 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-50;
+		@apply bg-background rounded text-lg font-semibold text-violet-900 ring-violet-900 transition-none outline-none focus-visible:ring-2 dark:text-gray-100 dark:ring-gray-50;
 	}
 
 	body .skip-link a:focus-visible {
@@ -132,8 +162,14 @@
 @layer components {
 	/* Default styling */
 	a,
-	button {
+	button,
+	select {
 		@apply cursor-pointer;
+	}
+
+	button,
+	select {
+		@apply font-montserrat;
 	}
 
 	a,
@@ -300,7 +336,7 @@
 	}
 
 	.format .heading-wrapper a {
-		@apply absolute inset-0 m-0 inline text-violet-500 opacity-0 dark:text-violet-300;
+		@apply absolute inset-0 m-0 inline text-violet-500 opacity-0 transition-opacity dark:text-violet-300;
 	}
 
 	@media (hover: hover) {
@@ -367,7 +403,7 @@
 	}
 
 	.callout .callout-title {
-		@apply relative top-[.1em] font-bold;
+		@apply font-bold;
 	}
 
 	.callout[data-callout="info"] .callout-title {
@@ -397,7 +433,12 @@
 		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] ease-out group-hover/underline:bg-[length:85%_1px];
 
 		/* Color styling */
-		@apply from-(--tw-prose-links)/75 to-(--tw-prose-links)/75 text-shadow-white group-hover/underline:from-violet-800 group-hover/underline:to-violet-800 selection:text-shadow-none dark:from-(--tw-prose-links) dark:to-(--tw-prose-links) dark:text-shadow-gray-900 dark:group-hover/underline:from-violet-300/50 dark:group-hover/underline:to-violet-300/50;
+		@apply text-shadow-background from-(--tw-prose-links)/75 to-(--tw-prose-links)/75 group-hover/underline:from-violet-800 group-hover/underline:to-violet-800 selection:text-shadow-none dark:from-(--tw-prose-links) dark:to-(--tw-prose-links) dark:group-hover/underline:from-violet-300/50 dark:group-hover/underline:to-violet-300/50;
+	}
+
+	underline-animate a.group\/underline.no-underline span,
+	underline-animate a.group\/underline.\!no-underline span {
+		@apply bg-gradient-to-r bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] ease-out group-hover/underline:bg-[length:100%_1px];
 	}
 
 	underline-animate .callout a.group\/underline span {

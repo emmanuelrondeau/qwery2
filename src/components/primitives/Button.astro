@@ -20,7 +20,7 @@ const {
 } = Astro.props;
 
 const button = tv({
-	base: "flex h-12 items-center justify-center gap-x-1.5 rounded px-5 text-base backdrop-blur-2xl transition-colors active:transition-none",
+	base: "font-montserrat flex h-12 items-center justify-center gap-x-1.5 rounded px-5 text-base font-semibold backdrop-blur-2xl transition-colors active:transition-none",
 	variants: {
 		color: {
 			primary:
@@ -43,7 +43,7 @@ const button = tv({
 			class:list={[button({ color: buttonType }), className]}
 			{...rest}
 		>
-			<div class={slotClass} style="position: relative; bottom: -0.1em;">
+			<div class={slotClass}>
 				<slot />
 			</div>
 			{target == "_blank" && (

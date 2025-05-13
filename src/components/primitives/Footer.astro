@@ -28,7 +28,7 @@ try {
 }
 ---
 
-<footer class="bg-white dark:bg-gray-900" transition:persist>
+<footer transition:persist>
 	<div class="mx-auto w-full max-w-[1520px] px-4 pt-8 pb-6 sm:pt-12 lg:pb-12">
 		<hr
 			class="border-gray-200 md:mx-auto dark:border-gray-700"
@@ -40,14 +40,14 @@ try {
 			<div class="flex flex-col gap-y-4.5">
 				<Link
 					href="/"
-					class="w-fit text-3xl font-bold text-gray-900 select-none hover:text-violet-700 hover:opacity-90 hover:transition-colors"
+					class="w-fit select-none hover:text-violet-700 hover:opacity-85 hover:transition-colors"
 					><span role="img" aria-label="Logo">
 						<QWLogo height="32" /></span
 					></Link
 				>
 				<UnderlineAnimate>
 					<span
-						class="format lg:format-lg dark:format-invert format-violet block max-w-[491px]"
+						class="format lg:format-lg dark:format-invert block max-w-[491px]"
 					>
 						<h2 class="!m-0">Queer Winnipeg</h2>
 						<p class="!mt-[.666667em] !mb-0">
@@ -61,35 +61,74 @@ try {
 				</UnderlineAnimate>
 			</div>
 
-			<ul
-				class="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400"
-			>
-				<li>
-					<Link
-						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
-						target="_blank"
-						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
-						>GitLab</Link
-					>
-				</li>
-				<li>
-					<Link
-						href="/privacy"
-						class="me-4 hover:text-gray-700 hover:underline md:me-6 dark:hover:text-gray-100"
-						>Privacy</Link
-					>
-				</li>
-			</ul>
+			<UnderlineAnimate class:list={["flex gap-x-6"]}>
+				<div
+					class="format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex w-[233px] flex-col gap-y-6"
+				>
+					<h3 class="!text-xl">Contact</h3>
+					<ul class="flex list-none flex-col">
+						<li>
+							<Link
+								href="https://bsky.app/profile/fio.queerwinnipeg.ca"
+								class="block pb-1.5 !no-underline">Bluesky</Link
+							>
+						</li>
+						<li>
+							<Link
+								href="mailto:hello@queerwinnipeg.ca"
+								class="block py-1.5 !no-underline">Email</Link
+							>
+						</li>
+						<li>
+							<Link
+								href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues"
+								class="block py-1.5 !no-underline">Issue Tracker</Link
+							>
+						</li>
+					</ul>
+				</div>
+				<div
+					class="format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex w-[233px] flex-col gap-y-6"
+				>
+					<h3 class="!text-lg">Join us</h3>
+					<ul class="flex list-none flex-col">
+						<li>
+							<Link
+								href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
+								class="block pb-1.5 !no-underline">GitLab</Link
+							>
+						</li>
+						<li>
+							<Link
+								href="/posts/article-style-guide"
+								class="block py-1.5 !no-underline">Style Guide</Link
+							>
+						</li>
+					</ul>
+				</div>
+				<div
+					class="format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex w-[233px] flex-col gap-y-6"
+				>
+					<h3 class="!text-lg">Legalese</h3>
+					<ul class="flex list-none flex-col">
+						<li>
+							<Link href="/privacy" class="block pb-1.5 !no-underline"
+								>Privacy</Link
+							>
+						</li>
+					</ul>
+				</div>
+			</UnderlineAnimate>
 		</div>
 
 		<hr class="border-gray-200 md:mx-auto dark:border-gray-700" />
 		<div
-			class="format dark:format-invert format-p:m-0 flex max-w-full justify-between pt-8 text-gray-500"
+			class="format dark:format-invert format-p:m-0 flex max-w-full justify-between pt-8 text-gray-500 dark:text-gray-400"
 		>
 			<p>
 				© <time
 					datetime={isProd ? date.toISOString() : undefined}
-					data-git-hash={`${isProd ? "prod" : "dev"}${hash}${dirty}`}
+					data-git-hash={`${isProd ? "prod" : "dev"}-${hash}${dirty}`}
 					>{year}</time
 				>
 				Queer Winnipeg. All rights reserved, except where otherwise noted.

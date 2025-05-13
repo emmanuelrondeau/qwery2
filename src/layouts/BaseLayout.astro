@@ -23,7 +23,9 @@ const { seo } = Astro.props;
 	transition:animate="none"
 >
 	<Head seo={seo} />
-	<body class="flex min-h-screen flex-col font-sans dark:bg-gray-900">
+	<body
+		class="bg-background dark:bg-background flex min-h-screen flex-col font-sans"
+	>
 		<SkipLink />
 		<!-- <div
 			class="sm:overflow-x-hidden sm:block pointer-events-none absolute inset-0 -z-10 mt-42 hidden text-[169px] leading-[.9] font-bold text-violet-50 select-none"

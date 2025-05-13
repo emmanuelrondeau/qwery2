@@ -17,10 +17,7 @@
 			<Accordion.Trigger
 				class="flex w-full items-center justify-between rounded py-2 pr-1 pl-3 ring-violet-600 outline-hidden focus-visible:ring-2 dark:ring-gray-50 [&[data-state=open]>span>svg]:rotate-180"
 			>
-				<h2
-					role="presentation"
-					class="relative top-[.1em] !m-0 text-lg font-semibold"
-				>
+				<h2 role="presentation" class="!m-0 text-lg font-semibold">
 					Table of Contents
 				</h2>
 				<span
