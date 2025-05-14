@@ -7,7 +7,6 @@ import PublishedOrUpdated from "./PublishedOrUpdated.astro";
 
 interface Props {
 	postId: string;
-	size?: "small" | "medium" | "large";
 	priority?: boolean;
 }
 const { postId }: Props = Astro.props;
@@ -16,98 +15,57 @@ const post = posts.find((post) => post.id === postId);
 
 if (!post) return;
 
-let { size, priority } = Astro.props;
-if (!size) size = "small";
+let { priority } = Astro.props;
 ---
 
-<li
-	class:list={[
-		"xs:items-center !m-0 flex gap-4 !p-0",
-		{ "xs:flex-row flex-col": size === "small" },
-		{ "flex-col sm:flex-row lg:flex-col": size === "large" },
-	]}
->
-	{
-		post.data.cover && (
-			<a
-				href={`/posts/${post.slug}`}
-				class:list={[
-					"not-format",
-					{ "flex-shrink-0": size === "small" },
-					{
-						"aspect-video w-full sm:aspect-auto sm:h-48 sm:w-auto md:aspect-video lg:aspect-video lg:h-auto lg:w-full":
-							size === "large",
-					},
-				]}
-				aria-hidden={true}
-				tabindex={-1}
+<li class="group @container !m-0 flex h-full w-full items-stretch !p-0">
+	<article
+		aria-labelledby={post.id}
+		class="bg-base-primary-100 group-[:has(.group-trigger:hover,.group-trigger:focus)]:bg-base-primary-200 relative flex w-full flex-col rounded-3xl transition-colors @xl:flex-row-reverse"
+	>
+		{
+			post.data.cover && (
+				<figure class:list={["not-format w-full overflow-clip rounded-3xl"]}>
+					<Picture
+						aria-hidden={true}
+						alt={post.data.coverMetadata?.alt ?? ""}
+						class:list={[
+							"aspect-video max-w-[1006px] transition-transform duration-250 motion-safe:group-[:has(.group-trigger:hover,.group-trigger:focus)]:scale-105 @xl:aspect-auto @xl:max-h-[414px]",
+						]}
+						src={post.data.cover}
+						formats={["avif"]}
+						fallbackFormat="jpg"
+						layout="constrained"
+						priority={priority}
+					/>
+				</figure>
+			)
+		}
+		<div
+			class="mr-auto flex w-full max-w-[514px] flex-col gap-y-3 p-8 pb-10 @xl:max-h-[414px]"
+		>
+			<div
+				class="format format-sm dark:format-invert font-montserrat font-medium"
 			>
-				<Picture
-					aria-hidden={true}
-					alt=""
-					class:list={[
-						"!m-0 flex items-center justify-center rounded object-cover transition-transform",
-						{
-							"xs:w-48 xs:h-36 aspect-video w-full sm:h-auto sm:hover:scale-105":
-								size === "small",
-						},
-						{
-							"sm:h-48 sm:w-auto sm:hover:scale-[102%] lg:h-auto lg:w-full":
-								size === "large",
-						},
-					]}
-					src={post.data.cover}
-					formats={["avif"]}
-					fallbackFormat="jpg"
-					layout="constrained"
-					priority={priority}
-				/>
+				<PublishedOrUpdated prefix={false} {...post.data} />
+				<span class="text-primary-500">•</span>{" "}
+				<MinutesRead postId={post.id} />
+			</div>
+			<a
+				id={post.id}
+				href={`/posts/${post.slug}`}
+				class="group-trigger !no-underline before:absolute before:inset-0"
+			>
+				<h3 class="!m-0 rounded-md !text-2xl !font-bold">
+					{post.data.title}
+				</h3>
 			</a>
-		)
-	}
-	{
-		size === "small" && (
-			<div class="!m-0 my-auto min-w-0 flex-1">
-				<a
-					href={`/posts/${post.slug}`}
-					class="group min-w-0 flex-1 !no-underline !ring-0 outline-hidden"
-				>
-					{/* Workaround for broken styles if applied to a tag */}
-					<h3 class="!my-1 rounded-md !text-xl ring-violet-600 group-hover:underline group-focus-visible:ring-2 lg:overflow-hidden lg:text-ellipsis lg:whitespace-nowrap dark:ring-gray-50">
-						{post.data.title}
-					</h3>
-				</a>
-				<div class="format dark:format-invert">
-					<PublishedOrUpdated {...post.data} /> •{" "}
-					<MinutesRead postId={post.id} />
-				</div>
-				<div class="mt-1">
-					<ArticleAuthors postId={post.id} size="small" />
-				</div>
-			</div>
-		)
-	}
-	{
-		size === "large" && (
-			<div class="mt-1 mr-auto flex flex-col gap-y-2.5">
-				<div class="format dark:format-invert">
-					<PublishedOrUpdated {...post.data} /> •{" "}
-					<MinutesRead postId={post.id} />
-				</div>
-				<a
-					href={`/posts/${post.slug}`}
-					class="group !no-underline !ring-0 outline-hidden"
-				>
-					{/* Workaround for broken styles if applied to a tag */}
-					<h3 class="!mt-1 !mb-0 rounded-md !text-xl ring-violet-600 group-hover:underline group-focus-visible:ring-2 dark:ring-gray-50">
-						{post.data.title}
-					</h3>
-				</a>
-				<p class="!m-0 max-w-prose">
-					{post.data.description ?? <i>No description found.</i>}
-				</p>
+			<p class="!m-0 max-w-prose">
+				{post.data.description ?? <i>No description found.</i>}
+			</p>
+			<!-- <div class="mt-1">
 				<ArticleAuthors postId={post.id} size="medium" priority={priority} />
-			</div>
-		)
-	}
+			</div> -->
+		</div>
+	</article>
 </li>

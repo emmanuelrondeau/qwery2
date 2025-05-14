@@ -57,11 +57,11 @@ const authors = await Promise.all(authorsPromise);
 	disableFormat
 >
 	<div
-		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-[1520px]"
+		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-[78.875rem] xl:px-0"
 	>
 		{
 			post.data.cover && (
-				<div class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded object-cover lg:h-96">
+				<div class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded-3xl object-cover lg:h-96">
 					<Picture
 						alt=""
 						class="aspect-video object-cover"
@@ -80,14 +80,14 @@ const authors = await Promise.all(authorsPromise);
 				post.data.tag && post.data.tag.length > 0 && (
 					<Link
 						href="/"
-						class="not-format mb-3 block font-semibold uppercase no-underline"
+						class="not-format font-montserrat mb-3 inline-block font-medium uppercase no-underline"
 					>
 						{post.data.tag}
 					</Link>
 				)
 			}
 			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
-			<div class="xs:flex-row !mb-4 flex flex-col gap-4 lg:!mb-0">
+			<div class="xs:flex-row !mb-4 flex flex-col gap-5 lg:!mb-0">
 				<ArticleAuthors postId={post.id} size="large" priority={true} />
 				<div class="block">
 					<span
@@ -106,15 +106,19 @@ const authors = await Promise.all(authorsPromise);
 		<div
 			class="flex w-full flex-col justify-between pt-2 lg:flex-row-reverse lg:pt-0"
 		>
-			<div
-				class="format dark:format-invert top-0 right-0 bottom-0 flex h-fit !max-w-[38ch] min-w-min lg:sticky lg:h-dvh lg:pl-12 xl:!max-w-prose"
+			<UnderlineAnimate
+				selector="* a"
+				class="[--underline-color:var(--color-gray-900)] dark:[--underline-color:var(--color-gray-100)]"
 			>
-				<TableOfContents headings={headings} />
-			</div>
-			<UnderlineAnimate>
-				{/* No idea why this is focusable */}
 				<div
-					class="format dark:format-invert lg:format-lg block pt-8 outline-offset-2 outline-violet-800 focus-visible:rounded focus-visible:outline-2 dark:outline-violet-50"
+					class="format dark:format-invert top-0 right-0 bottom-0 flex h-fit min-w-min lg:sticky lg:h-dvh lg:pl-12 xl:!max-w-prose"
+				>
+					<TableOfContents headings={headings} />
+				</div>
+			</UnderlineAnimate>
+			<UnderlineAnimate>
+				<div
+					class="format dark:format-invert lg:format-lg block max-w-[748px] pt-8"
 				>
 					{
 						post.data.draft && (

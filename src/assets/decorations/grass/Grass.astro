@@ -69,5 +69,16 @@ const { class: className, "data-flipped": dataFlipped, ...rest } = Astro.props;
 		svg.grass {
 			animation: none;
 		}
+		svg.grass path {
+			animation: none;
+		}
+	}
+	@media print {
+		svg.grass {
+			animation: none;
+		}
+		svg.grass path {
+			animation: none;
+		}
 	}
 </style>

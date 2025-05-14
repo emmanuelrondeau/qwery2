@@ -2,19 +2,23 @@
 interface Props {
 	lastEdited?: Date;
 	created: Date;
+	prefix?: boolean;
 }
 
-const { lastEdited, created } = Astro.props;
+const { lastEdited, created, prefix: rawPrefix } = Astro.props;
 
+const prefix = typeof rawPrefix === "boolean" ? rawPrefix : true;
 const displayDate = lastEdited ?? created;
-const updatedOrPublished =
-	lastEdited && lastEdited.getDate() !== created.getDate()
-		? "Updated"
-		: "Published";
+const updatedOrPublished = prefix
+	? `${
+			lastEdited && lastEdited.getDate() !== created.getDate()
+				? "Updated"
+				: "Published"
+		} `
+	: "";
 ---
 
-{updatedOrPublished}{" "}
-<time datetime={displayDate.toISOString()}
+{updatedOrPublished}<time datetime={displayDate.toISOString()}
 	>{
 		displayDate.toLocaleDateString(undefined, {
 			dateStyle: "long",

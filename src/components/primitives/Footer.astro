@@ -1,5 +1,5 @@
 ---
-import { BOTTOM_PAGE_SENTINEL_ID, MAIN_NAV_ID } from "@/constants";
+import { BOTTOM_PAGE_SENTINEL_ID } from "@/constants";
 import Link from "./Link.astro";
 import QWLogo from "@/assets/icons/qw-logo.svg";
 import UnderlineAnimate from "../underline-animate/UnderlineAnimate.astro";
@@ -35,12 +35,12 @@ try {
 			id={BOTTOM_PAGE_SENTINEL_ID}
 		/>
 		<div
-			class="my-[4.5rem] flex flex-col md:flex-row md:items-center md:justify-between"
+			class="my-[4.5rem] flex flex-col gap-x-24 gap-y-12 md:flex-row md:justify-between"
 		>
-			<div class="flex flex-col gap-y-4.5">
+			<div class="flex w-full flex-col gap-y-4.5">
 				<Link
 					href="/"
-					class="w-fit select-none hover:text-violet-700 hover:opacity-85 hover:transition-colors"
+					class="w-fit transition-opacity select-none hover:text-violet-700 hover:opacity-85"
 					><span role="img" aria-label="Logo">
 						<QWLogo height="32" /></span
 					></Link
@@ -61,66 +61,69 @@ try {
 				</UnderlineAnimate>
 			</div>
 
-			<UnderlineAnimate class:list={["flex gap-x-6"]}>
-				<div
-					class="format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex w-[233px] flex-col gap-y-6"
+			<div class="@container w-full">
+				<UnderlineAnimate
+					class="grid grid-cols-2 gap-x-6 gap-y-12 @md:grid-cols-3"
 				>
-					<h3 class="!text-xl">Contact</h3>
-					<ul class="flex list-none flex-col">
-						<li>
-							<Link
-								href="https://bsky.app/profile/fio.queerwinnipeg.ca"
-								class="block pb-1.5 !no-underline">Bluesky</Link
-							>
-						</li>
-						<li>
-							<Link
-								href="mailto:hello@queerwinnipeg.ca"
-								class="block py-1.5 !no-underline">Email</Link
-							>
-						</li>
-						<li>
-							<Link
-								href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues"
-								class="block py-1.5 !no-underline">Issue Tracker</Link
-							>
-						</li>
-					</ul>
-				</div>
-				<div
-					class="format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex w-[233px] flex-col gap-y-6"
-				>
-					<h3 class="!text-lg">Join us</h3>
-					<ul class="flex list-none flex-col">
-						<li>
-							<Link
-								href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
-								class="block pb-1.5 !no-underline">GitLab</Link
-							>
-						</li>
-						<li>
-							<Link
-								href="/posts/article-style-guide"
-								class="block py-1.5 !no-underline">Style Guide</Link
-							>
-						</li>
-					</ul>
-				</div>
-				<div
-					class="format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex w-[233px] flex-col gap-y-6"
-				>
-					<h3 class="!text-lg">Legalese</h3>
-					<ul class="flex list-none flex-col">
-						<li>
-							<Link href="/privacy" class="block pb-1.5 !no-underline"
-								>Privacy</Link
-							>
-						</li>
-					</ul>
-				</div>
-			</UnderlineAnimate>
+					<div
+						class="format-a:text-gray-500 format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex max-w-[233px] flex-col gap-y-6"
+					>
+						<h3 class="!text-xl">Contact</h3>
+						<ul class="flex list-none flex-col" role="list">
+							<li>
+								<Link
+									href="https://bsky.app/profile/fio.queerwinnipeg.ca"
+									class="block pb-1.5 !no-underline">Bluesky</Link
+								>
+							</li>
+							<li>
+								<Link
+									href="mailto:hello@queerwinnipeg.ca"
+									class="block py-1.5 !no-underline">Email</Link
+								>
+							</li>
+							<li>
+								<Link
+									href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues"
+									class="block py-1.5 !no-underline">Issue Tracker</Link
+								>
+							</li>
+						</ul>
+					</div>
+					<div
+						class="format-a:text-gray-500 format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex max-w-[233px] flex-col gap-y-6"
+					>
+						<h3 class="!text-lg">Join us</h3>
+						<ul class="flex list-none flex-col" role="list">
+							<li>
+								<Link
+									href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
+									class="block pb-1.5 !no-underline">GitLab</Link
+								>
+							</li>
+							<li>
+								<Link
+									href="/posts/article-style-guide"
+									class="block py-1.5 !no-underline">Style Guide</Link
+								>
+							</li>
+						</ul>
+					</div>
+					<div
+						class="format-a:text-gray-500 format lg:format-lg dark:format-invert format-li:m-0 format-ul:ps-0 format-li:ps-0 format-headings:mb-0 dark:format-a:text-gray-400 flex max-w-[233px] flex-col gap-y-6"
+					>
+						<h3 class="!text-lg">Legalese</h3>
+						<ul class="flex list-none flex-col" role="list">
+							<li>
+								<Link href="/privacy" class="block pb-1.5 !no-underline"
+									>Privacy</Link
+								>
+							</li>
+						</ul>
+					</div>
+				</UnderlineAnimate>
+			</div>
 		</div>
-
 		<hr class="border-gray-200 md:mx-auto dark:border-gray-700" />
 		<div
 			class="format dark:format-invert format-p:m-0 flex max-w-full justify-between pt-8 text-gray-500 dark:text-gray-400"

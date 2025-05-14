@@ -6,7 +6,8 @@
 export class UnderlineAnimate extends HTMLElement {
 	connectedCallback() {
 		const anchors: NodeListOf<HTMLAnchorElement> = this.querySelectorAll(
-			`* a:not(:where([class~="not-format"], [class~="not-format"] *)):not(#bigger-picture):not(:where(.heading-wrapper *))`,
+			this.getAttribute("selector") ??
+				`* a:not(:where([class~="not-format"], [class~="not-format"] *)):not(#bigger-picture):not(:where(.heading-wrapper *))`,
 		);
 
 		anchors.forEach((value) => {

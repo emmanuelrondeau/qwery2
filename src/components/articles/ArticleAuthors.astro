@@ -37,7 +37,11 @@ const { size, priority } = Astro.props;
 
 <div class={authorStyling({ size })}>
 	<div
-		class=`flex ${size === "large" ? "-space-x-4" : "-space-x-2"} rtl:space-x-reverse flex-shrink-0 ${size !== "medium" ? "items-end" : ""} `
+		class:list={[
+			"flex flex-shrink-0 items-center rtl:space-x-reverse",
+			size === "large" ? "-space-x-4" : "-space-x-2",
+			size !== "medium" && "items-end",
+		]}
 	>
 		{
 			authors.map((author) =>
@@ -67,7 +71,7 @@ const { size, priority } = Astro.props;
 					>
 						<span
 							class:list={[
-								"mt-[0.25em] font-medium text-gray-600 select-none dark:text-gray-300",
+								"font-medium text-gray-600 select-none dark:text-gray-300",
 								{ "text-[0.5rem]": size !== "large" },
 							]}
 						>

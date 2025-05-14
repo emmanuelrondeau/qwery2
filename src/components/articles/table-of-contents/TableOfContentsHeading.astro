@@ -14,7 +14,7 @@ const depth =
 	Astro.props.depth == undefined || Number.isNaN(Astro.props.depth)
 		? 1
 		: Astro.props.depth;
-const paddingLeft = !hideLeftLine ? "1.75rem" : "1rem";
+const paddingLeft = !hideLeftLine ? "1.5rem" : "1rem";
 ---
 
 <li
@@ -29,24 +29,24 @@ const paddingLeft = !hideLeftLine ? "1.75rem" : "1rem";
 	]}
 >
 	{
-		/* .2em is for Chromium rendering differences with Firefox, due to the
+		/* .2em is for Chromium rendering differences with Firefox, due to the-
 		"top-[.1em]" style; would remove if behaviour becomes consistent with
 		Firefox */
 	}
 	<a
 		href={"#" + heading.slug}
-		class="peer block py-[.375rem] !no-underline hover:!underline hover:underline-offset-[.2em] aria-current:text-gray-950 dark:aria-current:text-gray-50"
+		class:list={[
+			"peer ml-1 block py-2 !no-underline outline-hidden transition-none duration-75 hover:text-gray-950 focus-visible:text-gray-950 focus-visible:!underline aria-current:font-semibold aria-current:text-gray-950 motion-safe:hover:transition-[font-weight] dark:hover:text-gray-50 dark:focus-visible:text-gray-50 dark:aria-current:text-gray-50",
+		]}
 		aria-current={ariaCurrent}
 	>
-		<span>
-			{heading.text}
-		</span>
+		{heading.text}
 	</a>
 	{
 		!hideLeftLine && (
 			<div
 				class:list={[
-					"absolute top-0 bottom-0 w-[2px] bg-gray-200 peer-aria-current:bg-violet-600 dark:bg-gray-800 dark:peer-aria-current:bg-violet-400",
+					"absolute top-0 bottom-0 w-[2px] bg-gray-100 peer-hover:bg-violet-300 peer-focus-visible:bg-violet-300 peer-aria-current:bg-violet-600 dark:bg-gray-800 dark:peer-hover:bg-gray-600 dark:peer-focus-visible:bg-gray-600 dark:peer-aria-current:bg-violet-400",
 				]}
 				aria-hidden={true}
 			/>

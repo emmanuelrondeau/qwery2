@@ -19,6 +19,41 @@
 @theme {
 	--breakpoint-xs: 475px;
 
+	--color-background: var(--theme-color-background);
+
+	--color-base-neutral-100: var(--theme-color-base-neutral-100);
+	--color-base-neutral-200: var(--theme-color-base-neutral-200);
+
+	--color-base-primary-100: var(--theme-color-base-primary-100);
+	--color-base-primary-200: var(--theme-color-base-primary-200);
+
+	--color-base-accent-100: var(--theme-color-base-accent-100);
+	--color-base-accent-200: var(--theme-color-base-accent-200);
+
+	--color-primary: var(--theme-color-primary);
+	--color-primary-100: var(--theme-color-primary-100);
+	--color-primary-200: var(--theme-color-primary-200);
+	--color-primary-300: var(--theme-color-primary-300);
+	--color-primary-400: var(--theme-color-primary-400);
+	--color-primary-500: var(--theme-color-primary-500);
+	--color-primary-600: var(--theme-color-primary-600);
+	--color-primary-700: var(--theme-color-primary-700);
+	--color-primary-800: var(--theme-color-primary-800);
+	--color-primary-900: var(--theme-color-primary-900);
+	--color-primary-950: var(--theme-color-primary-950);
+
+	--color-accent: var(--theme-color-accent);
+	--color-accent-100: var(--theme-color-accent-100);
+	--color-accent-200: var(--theme-color-accent-200);
+	--color-accent-300: var(--theme-color-accent-300);
+	--color-accent-400: var(--theme-color-accent-400);
+	--color-accent-500: var(--theme-color-accent-500);
+	--color-accent-600: var(--theme-color-accent-600);
+	--color-accent-700: var(--theme-color-accent-700);
+	--color-accent-800: var(--theme-color-accent-800);
+	--color-accent-900: var(--theme-color-accent-900);
+	--color-accent-950: var(--theme-color-accent-950);
+
 	--font-sans: "Figtree";
 	--font-montserrat: "Montserrat";
 	--font-mono:
@@ -28,17 +63,6 @@
 	/* easings.net -- https://easings.net/#easeInOutSine */
 	--animate-accordion-down: accordion-down 0.2s cubic-bezier(0.37, 0, 0.63, 1);
 	--animate-accordion-up: accordion-up 0.2s cubic-bezier(0.37, 0, 0.63, 1);
-
-	--color-background: var(--theme-color-background);
-
-	--color-primary: var(--theme-color-primary);
-	--color-secondary: var(--theme-color-secondary);
-
-	--color-primary-brighter: var(--theme-color-primary-brighter);
-	--color-secondary-brighter: var(--theme-color-secondary-brighter);
-
-	--color-primary-dimmer: var(--theme-color-primary-dimmer);
-	--color-secondary-dimmer: var(--theme-color-secondary-dimmer);
 
 	@keyframes accordion-down {
 		from {
@@ -65,25 +89,58 @@
 @layer base {
 	:root {
 		@apply selection:bg-violet-100 selection:text-violet-950 dark:selection:bg-violet-400/10 dark:selection:text-violet-100;
-		--theme-color-background: var(--color-white);
-		--theme-color-primary-brighter: var(--color-violet-200);
-		--theme-color-primary: var(--color-violet-300);
-		--theme-color-primary-dimmer: var(--color-violet-400);
 
-		--theme-color-secondary-brighter: var(--color-lime-300);
-		--theme-color-secondary: var(--color-lime-400);
-		--theme-color-secondary-dimmer: var(--color-lime-500);
+		--theme-color-background: var(--color-white);
+
+		/* base-x-100 is background, base-x-200 is layering.
+		Don't go over base-200, as contrast issues will occur */
+		--color-base-neutral-100: var(--color-gray-50);
+		--color-base-neutral-200: var(--color-gray-100);
+
+		--color-base-primary-100: var(--color-violet-50);
+		--color-base-primary-200: var(--color-violet-100);
+
+		--color-base-accent-100: var(--color-lime-100);
+		--color-base-accent-200: var(--color-lime-200);
+
+		--theme-color-background: var(--color-white);
+
+		--underline-color: var(--color-violet-800);
+
+		--theme-color-primary: var(--color-violet-300);
+		--theme-color-primary-50: var(--color-violet-50);
+		--theme-color-primary-100: var(--color-violet-100);
+		--theme-color-primary-200: var(--color-violet-200);
+		--theme-color-primary-300: var(--color-violet-300);
+		--theme-color-primary-400: var(--color-violet-400);
+		--theme-color-primary-500: var(--color-violet-500);
+		--theme-color-primary-600: var(--color-violet-600);
+		--theme-color-primary-700: var(--color-violet-700);
+		--theme-color-primary-800: var(--color-violet-800);
+		--theme-color-primary-900: var(--color-violet-900);
+		--theme-color-primary-950: var(--color-violet-950);
+
+		--theme-color-accent: var(--color-lime-400);
+		--theme-color-accent-100: var(--color-lime-100);
+		--theme-color-accent-200: var(--color-lime-200);
+		--theme-color-accent-300: var(--color-lime-300);
+		--theme-color-accent-400: var(--color-lime-400);
+		--theme-color-accent-500: var(--color-lime-500);
+		--theme-color-accent-600: var(--color-lime-600);
+		--theme-color-accent-700: var(--color-lime-700);
+		--theme-color-accent-800: var(--color-lime-800);
+		--theme-color-accent-900: var(--color-lime-900);
+		--theme-color-accent-950: var(--color-lime-950);
 	}
 
 	[data-theme="dark"] {
-		--theme-color-background: var(--color-black);
-		--theme-color-primary-brighter: var(--color-violet-600);
-		--theme-color-primary: var(--color-violet-700);
-		--theme-color-primary-dimmer: var(--color-violet-800);
+		--underline-color: var(--color-violet-300);
 
-		--theme-color-secondary-brighter: var(--color-lime-700);
-		--theme-color-secondary: var(--color-lime-800);
-		--theme-color-secondary-dimmer: var(--color-lime-900);
+		--theme-color-background: var(--color-zinc-950);
+
+		--theme-color-background: var(--color-zinc-950);
+		--theme-color-base-200: oklch(23.26% 0.014 253.1);
+		--theme-color-base-300: oklch(21.15% 0.012 254.09);
 	}
 
 	html {
@@ -159,6 +216,10 @@
 	}
 }
 
+@utility btn {
+	@apply font-montserrat;
+}
+
 @layer components {
 	/* Default styling */
 	a,
@@ -175,7 +236,7 @@
 	a,
 	button,
 	main {
-		@apply outline-offset-2 outline-violet-600 focus-visible:outline-2 dark:outline-violet-50;
+		@apply outline-offset-2 outline-black focus-visible:outline-2 dark:outline-white;
 	}
 
 	/* Article Formatting */
@@ -245,8 +306,9 @@
 		@apply my-1;
 	}
 
-	.format a:not(.not-format) {
-		@apply rounded underline outline-violet-600 hover:text-violet-800 focus-visible:outline-2 dark:outline-violet-50 dark:hover:text-violet-300;
+	.format
+		:where(a):not(:where([class~="not-format"], [class~="not-format"] *)) {
+		@apply hover:text-primary-800 dark:hover:text-primary-300 rounded underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--color-primary-800)] focus-visible:[--underline-color:var(--color-primary-800)] dark:hover:[--underline-color:var(--color-primary-300)] dark:focus-visible:[--underline-color:var(--color-primary-300)];
 	}
 
 	/* Rehype Autolink - Custom styles for heading anchor links. */
@@ -341,7 +403,7 @@
 
 	@media (hover: hover) {
 		.format .heading-wrapper a {
-			@apply relative top-[-.125em] opacity-0;
+			@apply relative opacity-0;
 			margin-inline-start: calc(-1 * (var(--icon-size)));
 		}
 
@@ -351,12 +413,8 @@
 			@apply no-underline opacity-100;
 		}
 
-		.format .heading-wrapper.level-h2 a {
-			@apply top-[-.1em];
-		}
-
 		.format .heading-wrapper a svg {
-			@apply relative bottom-[.05em];
+			@apply relative bottom-[.1em];
 		}
 	}
 
@@ -430,15 +488,15 @@
 		@apply text-shadow-[-.0625em_-.0625em,_-.0625em_.0625em,_.0625em_-.0625em,_.0625em_.0625em,0_.0625em];
 
 		/* See https://stackoverflow.com/a/73043524 for animation reference */
-		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] ease-out group-hover/underline:bg-[length:85%_1px];
+		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-safe:group-hover/underline:bg-[length:85%_1px];
 
 		/* Color styling */
-		@apply text-shadow-background from-(--tw-prose-links)/75 to-(--tw-prose-links)/75 group-hover/underline:from-violet-800 group-hover/underline:to-violet-800 selection:text-shadow-none dark:from-(--tw-prose-links) dark:to-(--tw-prose-links) dark:group-hover/underline:from-violet-300/50 dark:group-hover/underline:to-violet-300/50;
+		@apply text-shadow-background from-(--underline-color)/75 to-(--underline-color)/75 group-hover/underline:from-(--underline-color) group-hover/underline:to-(--underline-color) selection:text-shadow-none;
 	}
 
 	underline-animate a.group\/underline.no-underline span,
 	underline-animate a.group\/underline.\!no-underline span {
-		@apply bg-gradient-to-r bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] ease-out group-hover/underline:bg-[length:100%_1px];
+		@apply bg-gradient-to-r bg-[length:0%_1px] bg-left-bottom bg-no-repeat group-hover/underline:bg-[length:100%_1px] motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-reduce:transition-none;
 	}
 
 	underline-animate .callout a.group\/underline span {

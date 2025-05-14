@@ -45,21 +45,15 @@ import UmbrellaWithGrass from "@/components/homepage/UmbrellaWithGrass.astro";
 			</span>
 			<UmbrellaWithGrass />
 		</section>
-		<!-- <div class="flex flex-col gap-8 px-4">
-			<section>
+		<div class="flex flex-col gap-8 px-4">
+			<section class="@container">
 				<h2 class="lg:text-4xl">Featured</h2>
-				<ul
-					class="!m-0 flex flex-col gap-x-8 gap-y-6 !ps-0 lg:flex-row"
-					role="list"
-				>
-					<div class="lg:w-1/2 lg:max-w-max">
-						<ArticleCard
-							size="large"
-							postId="how-to-take-the-bus-in-winnipeg.mdx"
-							priority={true}
-						/>
-					</div>
-					<div class="flex flex-col gap-6 lg:w-1/2">
+				<ul class="!m-0 flex list-none flex-col gap-6 !ps-0" role="list">
+					<ArticleCard
+						postId="how-to-take-the-bus-in-winnipeg.mdx"
+						priority={true}
+					/>
+					<div class="grid gap-6 @lg:grid-cols-3">
 						<ArticleCard
 							postId="how-to-start-hrt-in-winnipeg.mdx"
 							priority={true}
@@ -72,14 +66,14 @@ import UmbrellaWithGrass from "@/components/homepage/UmbrellaWithGrass.astro";
 							postId="save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx"
 							priority={true}
 						/>
-						<ArticleCard
+						<!-- <ArticleCard
 							postId="a-guide-to-financial-literacy-in-canada.mdx"
 							priority={true}
-						/>
+						/> -->
 					</div>
 				</ul>
 			</section>
-			<RSSPromotion />
-		</div> -->
+			<!-- <RSSPromotion /> -->
+		</div>
 	</main>
 </BaseLayout>
