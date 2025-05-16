@@ -30,7 +30,8 @@ const posts = defineCollection({
 					license: z.string().optional(),
 					// Apparently https://microsoft.design does proper alt
 					// text for article thumbnails, I guess I should too
-					// (also The Onion but it's just the post title)
+					// (also The Onion but it's just the post title,
+					// which if I remember right, is worse than useless)
 					alt: z.string().optional(),
 				})
 				.optional(),
