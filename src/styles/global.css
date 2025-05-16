@@ -21,6 +21,9 @@
 
 	--color-background: var(--theme-color-background);
 
+	/* --color-underline: var(--theme-color-underline);
+	--color-focus-outline: var(--theme-color-focus-outline); */
+
 	--color-base-neutral-100: var(--theme-color-base-neutral-100);
 	--color-base-neutral-200: var(--theme-color-base-neutral-200);
 
@@ -31,6 +34,7 @@
 	--color-base-accent-200: var(--theme-color-base-accent-200);
 
 	--color-primary: var(--theme-color-primary);
+	--color-primary-50: var(--theme-color-primary-50);
 	--color-primary-100: var(--theme-color-primary-100);
 	--color-primary-200: var(--theme-color-primary-200);
 	--color-primary-300: var(--theme-color-primary-300);
@@ -43,6 +47,7 @@
 	--color-primary-950: var(--theme-color-primary-950);
 
 	--color-accent: var(--theme-color-accent);
+	--color-accent-50: var(--theme-color-accent-50);
 	--color-accent-100: var(--theme-color-accent-100);
 	--color-accent-200: var(--theme-color-accent-200);
 	--color-accent-300: var(--theme-color-accent-300);
@@ -88,7 +93,7 @@
 
 @layer base {
 	:root {
-		@apply selection:bg-violet-100 selection:text-violet-950 dark:selection:bg-violet-400/10 dark:selection:text-violet-100;
+		@apply selection:bg-accent-100 selection:text-accent-950 dark:selection:bg-accent-400/20 dark:selection:text-accent-50;
 
 		--theme-color-background: var(--color-white);
 
@@ -106,8 +111,12 @@
 		--theme-color-background: var(--color-white);
 
 		--underline-color: var(--color-violet-800);
+		--color-outline: var(--color-black);
 
 		--theme-color-primary: var(--color-violet-300);
+		--theme-color-accent: var(--color-lime-400);
+
+		/* Consistent themes from light and dark */
 		--theme-color-primary-50: var(--color-violet-50);
 		--theme-color-primary-100: var(--color-violet-100);
 		--theme-color-primary-200: var(--color-violet-200);
@@ -120,7 +129,7 @@
 		--theme-color-primary-900: var(--color-violet-900);
 		--theme-color-primary-950: var(--color-violet-950);
 
-		--theme-color-accent: var(--color-lime-400);
+		--theme-color-accent-50: var(--color-lime-50);
 		--theme-color-accent-100: var(--color-lime-100);
 		--theme-color-accent-200: var(--color-lime-200);
 		--theme-color-accent-300: var(--color-lime-300);
@@ -134,7 +143,8 @@
 	}
 
 	[data-theme="dark"] {
-		--underline-color: var(--color-violet-300);
+		--theme-color-underline: var(--color-violet-300);
+		--theme-color-focus-outline: var(--color-white);
 
 		--theme-color-background: var(--color-zinc-950);
 
@@ -175,7 +185,7 @@
 
 	/* SkipLink from accessible-astro-components */
 	body .skip-link a {
-		@apply bg-background rounded text-lg font-semibold text-violet-900 ring-violet-900 transition-none outline-none focus-visible:ring-2 dark:text-gray-100 dark:ring-gray-50;
+		@apply bg-background text-primary-900 ring-primary-900 rounded text-lg font-semibold transition-none outline-none focus-visible:ring-2 dark:text-gray-100 dark:ring-gray-50;
 	}
 
 	body .skip-link a:focus-visible {
@@ -214,10 +224,6 @@
 		content: "\200B"; /* add zero-width space */
 		position: absolute;
 	}
-}
-
-@utility btn {
-	@apply font-montserrat;
 }
 
 @layer components {
@@ -280,10 +286,7 @@
 	.format
 		:where(h1):not(:where([class~="not-format"], [class~="not-format"] *)),
 	.format
-		:where(h2):not(:where([class~="not-format"], [class~="not-format"] *)) {
-		@apply font-bold;
-	}
-
+		:where(h2):not(:where([class~="not-format"], [class~="not-format"] *)),
 	.format
 		:where(h3):not(:where([class~="not-format"], [class~="not-format"] *)),
 	.format
@@ -292,7 +295,7 @@
 		:where(h5):not(:where([class~="not-format"], [class~="not-format"] *)),
 	.format
 		:where(h6):not(:where([class~="not-format"], [class~="not-format"] *)) {
-		@apply font-semibold;
+		@apply font-bold;
 	}
 
 	.format
@@ -309,7 +312,7 @@
 
 	.format
 		:where(a):not(:where([class~="not-format"], [class~="not-format"] *)) {
-		@apply hover:text-primary-800 dark:hover:text-primary-300 rounded underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--color-primary-800)] focus-visible:[--underline-color:var(--color-primary-800)] dark:hover:[--underline-color:var(--color-primary-300)] dark:focus-visible:[--underline-color:var(--color-primary-300)];
+		@apply hover:text-accent-800 dark:hover:text-accent-300 rounded underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--color-accent-800)] focus-visible:[--underline-color:var(--color-accent-800)] dark:hover:[--underline-color:var(--color-accent-300)] dark:focus-visible:[--underline-color:var(--color-accent-300)];
 	}
 
 	/* Rehype Autolink - Custom styles for heading anchor links. */
@@ -399,7 +402,7 @@
 	}
 
 	.format .heading-wrapper a {
-		@apply absolute inset-0 m-0 inline text-violet-500 opacity-0 transition-opacity dark:text-violet-300;
+		@apply text-accent-600 dark:text-accent-300 absolute inset-0 m-0 inline opacity-0 transition-opacity;
 	}
 
 	@media (hover: hover) {
@@ -430,7 +433,7 @@
 	}
 
 	.format .heading-wrapper:hover a:hover {
-		@apply text-violet-700 saturate-[0.75] dark:text-violet-50;
+		@apply text-accent-700 dark:text-accent-50 saturate-[0.75];
 	}
 
 	/* Callouts */
@@ -447,6 +450,9 @@
 	}
 	.callout[data-callout="info"] {
 		@apply border-violet-500 bg-violet-50 marker:text-violet-300 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:selection:bg-violet-900/50 dark:selection:text-violet-50;
+	}
+	.callout[data-callout="info"] a {
+		@apply hover:text-violet-800 dark:hover:text-violet-300;
 	}
 	.callout[data-callout="warning"] {
 		@apply border-yellow-500 bg-yellow-50 marker:text-yellow-300 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;

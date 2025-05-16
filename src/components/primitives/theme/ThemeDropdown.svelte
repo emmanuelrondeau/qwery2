@@ -46,7 +46,7 @@
 	items={themes}
 >
 	<Select.Trigger
-		class="group font-montserrat flex items-center justify-between p-2 ring-violet-600 outline-hidden select-none focus-visible:rounded focus-visible:ring-2 aria-expanded:text-violet-700 aria-expanded:ring-0 dark:ring-gray-50"
+		class="group font-montserrat ring-primary-900 aria-expanded:text-primary-700 dark:ring- flex items-center justify-between p-2 outline-hidden select-none focus-visible:rounded-lg focus-visible:ring-2 aria-expanded:ring-0"
 		aria-label="Select a theme"
 	>
 		{@render children?.()}
@@ -61,13 +61,19 @@
 			<Select.Viewport class="p-1">
 				{#each themes as theme, i (i + theme.value)}
 					<Select.Item
-						class="group relative flex cursor-pointer items-center gap-x-2 rounded fill-gray-600 p-1.5 text-gray-600 hover:fill-gray-700 focus:text-gray-700 data-disabled:opacity-50 data-highlighted:bg-gray-200/80 data-highlighted:fill-gray-700 data-highlighted:text-gray-900 data-selected:fill-violet-600 data-selected:text-violet-600 data-selected:hover:fill-violet-900 data-selected:focus:text-violet-700 data-selected:data-highlighted:bg-violet-100 data-selected:data-highlighted:fill-violet-900 data-selected:data-highlighted:text-violet-900 dark:fill-gray-200 dark:text-gray-300 dark:hover:fill-gray-100 dark:focus:text-gray-100 dark:data-highlighted:bg-gray-600/50 dark:data-highlighted:fill-gray-100 dark:data-highlighted:text-gray-100 dark:data-selected:fill-violet-400 dark:data-selected:text-violet-400 dark:hover:data-selected:fill-violet-100 data-selected:dark:focus:text-violet-100 dark:data-highlighted:data-selected:bg-violet-400/25 dark:data-highlighted:data-selected:fill-violet-100 dark:data-selected:data-highlighted:text-violet-100"
+						class={[
+							"group relative flex cursor-pointer items-center gap-x-2 rounded p-1.5",
+							// Light styling
+							"data-selected:fill-primary-600 data-selected:text-primary-600 data-selected:hover:fill-primary-900 data-selected:focus:text-primary-700 data-selected:data-highlighted:bg-primary-100 data-selected:data-highlighted:fill-primary-900 data-selected:data-highlighted:text-primary-900 fill-gray-600 text-gray-600 hover:fill-gray-700 focus:text-gray-700 data-disabled:opacity-50 data-highlighted:bg-gray-200/80 data-highlighted:fill-gray-700 data-highlighted:text-gray-900",
+							// Dark styling
+							"dark:data-selected:fill-primary-400 dark:data-selected:text-primary-400 dark:hover:data-selected:fill-primary-100 data-selected:dark:focus:text-primary-100 dark:data-highlighted:data-selected:bg-primary-400/25 dark:data-highlighted:data-selected:fill-primary-100 dark:data-selected:data-highlighted:text-primary-100 dark:fill-gray-200 dark:text-gray-300 dark:hover:fill-gray-100 dark:focus:text-gray-100 dark:data-highlighted:bg-gray-600/50 dark:data-highlighted:fill-gray-100 dark:data-highlighted:text-gray-100",
+						]}
 						value={theme.value}
 						label={theme.label}
 					>
 						{#snippet children({ selected })}
 							{@html theme.icon?.outerHTML}
-							<span>
+							<span class="font-medium">
 								{theme.label}
 							</span>
 							{#if selected}

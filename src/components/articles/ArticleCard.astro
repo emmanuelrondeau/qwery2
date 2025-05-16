@@ -25,13 +25,13 @@ if (!post) return;
 >
 	<article
 		aria-labelledby={post.id}
-		class="bg-base-primary-100 dark:bg-base-primary-100/10 relative flex w-full flex-col overflow-clip rounded-2xl transition-all duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:h-[414px] @xl:flex-row-reverse"
+		class="bg-base-primary-100 dark:bg-primary-400/10 format-base lg:format-lg relative flex w-full flex-col overflow-clip rounded-2xl transition-transform duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:h-[414px] @xl:flex-row-reverse"
 	>
 		<div
 			class="bg-background pointer-events-none absolute -top-12 -right-12 z-10 flex h-24 w-24 translate-x-12 -translate-y-12 flex-col justify-end overflow-clip rounded-bl-xl transition-transform group-[:has(.group-trigger:hover,.group-trigger:focus)]:translate-0 motion-safe:duration-250"
 		>
 			<div
-				class="border-l-accent-300 h-0 w-0 border-t-48 border-r-0 border-b-0 border-l-48 border-solid border-transparent dark:border-l-violet-200/20"
+				class="border-l-accent-300 dark:border-l-accent-200/20 h-0 w-0 border-t-48 border-r-0 border-b-0 border-l-48 border-solid border-transparent"
 			>
 			</div>
 		</div>
@@ -57,10 +57,15 @@ if (!post) return;
 			class="mr-auto flex w-full max-w-[502px] flex-col gap-y-3 p-8 pb-10 @xl:max-h-[414px]"
 		>
 			<div
-				class="format format-sm dark:format-invert font-montserrat font-medium"
+				class="format format-sm dark:format-invert font-montserrat inline-flex items-center gap-x-[.5em] font-medium"
 			>
 				<PublishedOrUpdated prefix={false} {...post.data} />
-				<span class="text-primary-500 dark:text-primary-300">•</span>{" "}
+				<div
+					class="bg-accent-500 dark:bg-accent-300 h-1 w-1 rounded-full text-transparent"
+					role="separator"
+				>
+					•
+				</div>
 				<MinutesRead postId={post.id} />
 			</div>
 			<a

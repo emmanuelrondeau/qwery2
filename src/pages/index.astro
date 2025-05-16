@@ -21,9 +21,14 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 ---
 
 <BaseLayout seo={{ title: "Home" }}>
+	{
+		/* Not entirely sure why this is focusable; it means its scrollable, but that shouldn't be the case?
+		A tabindex of -1 has been applied here because I don't think this should be focusable */
+	}
 	<div
 		class="pointer-events-none absolute inset-0 -z-10 mt-42 hidden overflow-y-visible text-[169px] leading-[.9] font-bold text-violet-50 select-none sm:block sm:overflow-x-hidden dark:text-violet-50/10"
 		aria-hidden="true"
+		tabindex={-1}
 	>
 		<div class="ml-[52.5vw]">
 			<h1>Queer</h1>
@@ -79,6 +84,7 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 					class="!m-0 grid list-none gap-6 !ps-0 md:grid-cols-2 lg:grid-cols-3"
 					role="list"
 				>
+					<ArticleCard postId="if-stopped-by-police-know-your-rights.mdx" />
 					<ArticleCard postId="a-guide-to-financial-literacy-in-canada.mdx" />
 					<ArticleCard postId="crypto-101-for-non-crypto-bro-canadians.mdx" />
 				</ul>
@@ -87,7 +93,9 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 				<div
 					class="bg-primary-400 dark:bg-primary-400/20 flex w-[489px] rotate-3 flex-col gap-6 rounded-2xl p-8"
 				>
-					<h2 class="!m-0 flex flex-col gap-y-3 !text-2xl !text-black">
+					<h2
+						class="!m-0 flex flex-col gap-y-3 !text-2xl !text-black dark:!text-gray-200"
+					>
 						Help us duct tape this thing: <span class="text-5xl !text-white"
 							>Contributions welcome!</span
 						>
@@ -95,18 +103,20 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 					<div class="block w-fit">
 						<Button
 							class="not-format"
+							type="white"
+							target="_blank"
 							href="https://git.gay/queerwinnipeg/queerwinnipeg.ca"
 							>Source code</Button
 						>
 					</div>
 					<div class="pointer-events-none absolute inset-0">
 						<div
-							class="absolute -top-3 -left-12 h-8 w-32 -rotate-12 bg-violet-200/50"
+							class="absolute -top-3 -left-12 h-8 w-32 -rotate-12 bg-violet-200/50 dark:bg-violet-200/10"
 							aria-hidden="true"
 						>
 						</div>
 						<div
-							class="absolute -right-12 -bottom-4 h-8 w-38 -rotate-24 bg-violet-200/50"
+							class="absolute -right-12 -bottom-4 h-8 w-38 -rotate-24 bg-violet-200/50 dark:bg-violet-200/10"
 							aria-hidden="true"
 						>
 						</div>
