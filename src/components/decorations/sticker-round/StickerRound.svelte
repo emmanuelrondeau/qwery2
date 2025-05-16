@@ -92,7 +92,7 @@
 	aria-label={`${data.name} flag sticker`}
 	class={[
 		"pointer-events-auto absolute flex h-[106px] w-[106px] items-center justify-center rounded-full rounded-b-full bg-gray-200 before:pointer-events-none before:absolute before:inset-0 before:top-auto before:h-[53px] before:items-end before:rounded-b-full before:bg-gray-300 before:content-['']",
-		"overflow-clip transition-transform hover:scale-105 focus-visible:scale-105 active:scale-100",
+		"overflow-clip hover:scale-105 focus-visible:scale-105 active:scale-100 motion-safe:transition-transform",
 		className,
 	]}
 	onclick={() => {
