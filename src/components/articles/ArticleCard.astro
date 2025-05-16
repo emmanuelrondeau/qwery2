@@ -6,31 +6,43 @@ import MinutesRead from "./MinutesRead.astro";
 import PublishedOrUpdated from "./PublishedOrUpdated.astro";
 
 interface Props {
+	class?: string;
 	postId: string;
 	priority?: boolean;
 }
-const { postId }: Props = Astro.props;
+const { class: className, priority, postId }: Props = Astro.props;
 const posts = await getCollection("posts");
 const post = posts.find((post) => post.id === postId);
 
 if (!post) return;
-
-let { priority } = Astro.props;
 ---
 
-<li class="group @container !m-0 flex h-full w-full items-stretch !p-0">
+<li
+	class:list={[
+		"group @container !m-0 flex h-full w-full items-stretch !p-0",
+		className,
+	]}
+>
 	<article
 		aria-labelledby={post.id}
-		class="bg-base-primary-100 group-[:has(.group-trigger:hover,.group-trigger:focus)]:bg-base-primary-200 relative flex w-full flex-col rounded-3xl transition-colors @xl:flex-row-reverse"
+		class="bg-base-primary-100 dark:bg-base-primary-100/10 relative flex w-full flex-col overflow-clip rounded-2xl transition-all duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:h-[414px] @xl:flex-row-reverse"
 	>
+		<div
+			class="bg-background pointer-events-none absolute -top-12 -right-12 z-10 flex h-24 w-24 translate-x-12 -translate-y-12 flex-col justify-end overflow-clip rounded-bl-xl transition-transform group-[:has(.group-trigger:hover,.group-trigger:focus)]:translate-0 motion-safe:duration-250"
+		>
+			<div
+				class="border-l-accent-300 h-0 w-0 border-t-48 border-r-0 border-b-0 border-l-48 border-solid border-transparent dark:border-l-violet-200/20"
+			>
+			</div>
+		</div>
 		{
 			post.data.cover && (
-				<figure class:list={["not-format w-full overflow-clip rounded-3xl"]}>
+				<figure class="not-format w-full overflow-clip rounded-2xl">
 					<Picture
 						aria-hidden={true}
 						alt={post.data.coverMetadata?.alt ?? ""}
 						class:list={[
-							"aspect-video max-w-[1006px] transition-transform duration-250 motion-safe:group-[:has(.group-trigger:hover,.group-trigger:focus)]:scale-105 @xl:aspect-auto @xl:max-h-[414px]",
+							"aspect-video !h-full max-w-[1006px] transition-transform duration-250 motion-safe:group-[:has(.group-trigger:hover,.group-trigger:focus)]:scale-105 @xl:aspect-auto",
 						]}
 						src={post.data.cover}
 						formats={["avif"]}
@@ -42,13 +54,13 @@ let { priority } = Astro.props;
 			)
 		}
 		<div
-			class="mr-auto flex w-full max-w-[514px] flex-col gap-y-3 p-8 pb-10 @xl:max-h-[414px]"
+			class="mr-auto flex w-full max-w-[502px] flex-col gap-y-3 p-8 pb-10 @xl:max-h-[414px]"
 		>
 			<div
 				class="format format-sm dark:format-invert font-montserrat font-medium"
 			>
 				<PublishedOrUpdated prefix={false} {...post.data} />
-				<span class="text-primary-500">•</span>{" "}
+				<span class="text-primary-500 dark:text-primary-300">•</span>{" "}
 				<MinutesRead postId={post.id} />
 			</div>
 			<a

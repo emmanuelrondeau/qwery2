@@ -235,7 +235,8 @@
 
 	a,
 	button,
-	main {
+	main,
+	ul {
 		@apply outline-offset-2 outline-black focus-visible:outline-2 dark:outline-white;
 	}
 
