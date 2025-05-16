@@ -5,7 +5,9 @@ import ArticleCard from "@/components/articles/ArticleCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 import RSSPromotion from "@/components/RSSPromotion.astro";
-import UmbrellaWithGrass from "@/components/homepage/UmbrellaWithGrass.astro";
+import UmbrellaWithGrass from "@/components/decorations/UmbrellaWithGrass.astro";
+import Button from "@/components/primitives/Button.astro";
+import StickerRound from "@/components/decorations/sticker-round/StickerRound.svelte";
 
 // const posts = await getCollection("posts");
 
@@ -20,7 +22,7 @@ import UmbrellaWithGrass from "@/components/homepage/UmbrellaWithGrass.astro";
 
 <BaseLayout seo={{ title: "Home" }}>
 	<div
-		class="pointer-events-none absolute inset-0 -z-10 mt-42 hidden overflow-y-visible text-[169px] leading-[.9] font-bold text-violet-50 select-none sm:block sm:overflow-x-hidden dark:text-violet-950/50"
+		class="pointer-events-none absolute inset-0 -z-10 mt-42 hidden overflow-y-visible text-[169px] leading-[.9] font-bold text-violet-50 select-none sm:block sm:overflow-x-hidden dark:text-violet-50/10"
 		aria-hidden="true"
 	>
 		<div class="ml-[52.5vw]">
@@ -46,32 +48,80 @@ import UmbrellaWithGrass from "@/components/homepage/UmbrellaWithGrass.astro";
 			<UmbrellaWithGrass />
 		</section>
 		<div class="flex flex-col gap-8 px-4">
-			<section class="@container">
-				<h2 class="lg:text-4xl">Featured</h2>
-				<ul class="!m-0 flex list-none flex-col gap-6 !ps-0" role="list">
+			<section>
+				<h2 class="!mb-[.75em] !text-4xl lg:!mb-6">Featured</h2>
+				<ul
+					class="!m-0 grid list-none gap-6 !ps-0 md:grid-cols-2 lg:grid-cols-3"
+					role="list"
+				>
 					<ArticleCard
 						postId="how-to-take-the-bus-in-winnipeg.mdx"
 						priority={true}
+						class="lg:col-span-full"
 					/>
-					<div class="grid gap-6 @lg:grid-cols-3">
-						<ArticleCard
-							postId="how-to-start-hrt-in-winnipeg.mdx"
-							priority={true}
-						/>
-						<ArticleCard
-							postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
-							priority={true}
-						/>
-						<ArticleCard
-							postId="save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx"
-							priority={true}
-						/>
-						<!-- <ArticleCard
-							postId="a-guide-to-financial-literacy-in-canada.mdx"
-							priority={true}
-						/> -->
-					</div>
+					<ArticleCard
+						postId="how-to-start-hrt-in-winnipeg.mdx"
+						priority={true}
+					/>
+					<ArticleCard
+						postId="how-to-change-your-legal-name-or-sex-in-manitoba.mdx"
+						priority={true}
+					/>
+					<ArticleCard
+						postId="save-hundreds-on-your-medications-with-pharmacare-manitoba.mdx"
+						priority={true}
+					/>
 				</ul>
+			</section>
+			<section>
+				<h2 class="!mb-[.75em] !text-4xl lg:!mb-6">Assorted Articles</h2>
+				<ul
+					class="!m-0 grid list-none gap-6 !ps-0 md:grid-cols-2 lg:grid-cols-3"
+					role="list"
+				>
+					<ArticleCard postId="a-guide-to-financial-literacy-in-canada.mdx" />
+					<ArticleCard postId="crypto-101-for-non-crypto-bro-canadians.mdx" />
+				</ul>
+			</section>
+			<section>
+				<div
+					class="bg-primary-400 dark:bg-primary-400/20 flex w-[489px] rotate-3 flex-col gap-6 rounded-2xl p-8"
+				>
+					<h2 class="!m-0 flex flex-col gap-y-3 !text-2xl !text-black">
+						Help us duct tape this thing: <span class="text-5xl !text-white"
+							>Contributions welcome!</span
+						>
+					</h2>
+					<div class="block w-fit">
+						<Button
+							class="not-format"
+							href="https://git.gay/queerwinnipeg/queerwinnipeg.ca"
+							>Source code</Button
+						>
+					</div>
+					<div class="pointer-events-none absolute inset-0">
+						<div
+							class="absolute -top-3 -left-12 h-8 w-32 -rotate-12 bg-violet-200/50"
+							aria-hidden="true"
+						>
+						</div>
+						<div
+							class="absolute -right-12 -bottom-4 h-8 w-38 -rotate-24 bg-violet-200/50"
+							aria-hidden="true"
+						>
+						</div>
+						<StickerRound
+							client:idle
+							type="transgender"
+							class="right-16 -bottom-8 rotate-7"
+						/>
+						<StickerRound
+							client:idle
+							type="rainbow"
+							class="top-2/5 -right-5 -rotate-12"
+						/>
+					</div>
+				</div>
 			</section>
 			<!-- <RSSPromotion /> -->
 		</div>
