@@ -27,7 +27,10 @@ const {
 <a
 	id={id}
 	href={href}
-	class={`ring-primary-900 dark:ring-primary-50 rounded outline-hidden focus-visible:ring-2${className ? ` ${className}` : ""}`}
+	class:list={[
+		"ring-focus-outline rounded outline-hidden focus-visible:ring-2",
+		className,
+	]}
 	target={target}
 	referrerpolicy={referrerpolicy}
 	aria-hidden={ariaHidden}

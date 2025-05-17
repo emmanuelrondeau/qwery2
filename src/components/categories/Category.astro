@@ -11,7 +11,7 @@ const { value, ...rest } = Astro.props;
 	<!-- "aria-selected" violates WCAG, as buttons auto-set this with very specific assumptions -->
 	<button
 		{...rest}
-		class="ring-primary-900 dark:ring-primary-50 flex flex-shrink-0 rounded-full bg-gray-100 px-4 py-2 text-base text-gray-600 no-underline outline-hidden transition-all select-none hover:-translate-y-1 hover:bg-gray-200 hover:text-gray-700 focus-visible:ring-2 active:bg-gray-300 aria-selected:bg-violet-200 aria-selected:text-violet-600 aria-selected:ring-1 focus-visible:aria-selected:ring-2"
+		class="ring-focus-outline flex flex-shrink-0 rounded-full bg-gray-100 px-4 py-2 text-base text-gray-600 no-underline outline-hidden transition-all select-none hover:-translate-y-1 hover:bg-gray-200 hover:text-gray-700 focus-visible:ring-2 active:bg-gray-300 aria-selected:bg-violet-200 aria-selected:text-violet-600 aria-selected:ring-1 focus-visible:aria-selected:ring-2"
 		style={{
 			transitionProperty: "color, background-color, transform",
 		}}
