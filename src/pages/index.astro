@@ -8,6 +8,7 @@ import RSSPromotion from "@/components/RSSPromotion.astro";
 import UmbrellaWithGrass from "@/components/decorations/UmbrellaWithGrass.astro";
 import Button from "@/components/primitives/Button.astro";
 import StickerRound from "@/components/decorations/sticker-round/StickerRound.svelte";
+import RoadBarrierWithGrass from "@/components/decorations/RoadBarrierWithGrass.astro";
 
 // const posts = await getCollection("posts");
 
@@ -26,7 +27,7 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 		A tabindex of -1 has been applied here because I don't think this should be focusable */
 	}
 	<div
-		class="pointer-events-none absolute inset-0 -z-10 mt-42 hidden overflow-y-visible text-[169px] leading-[.9] font-bold text-violet-50 select-none sm:block sm:overflow-x-hidden dark:text-violet-50/10"
+		class="text-primary-50 dark:text-primary-50/10 pointer-events-none absolute inset-0 -z-10 mt-42 hidden overflow-y-visible text-[169px] leading-[.9] font-bold select-none sm:block sm:overflow-x-hidden"
 		aria-hidden="true"
 		tabindex={-1}
 	>
@@ -43,7 +44,7 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 			<span class="flex flex-col justify-center gap-y-1 sm:h-80 sm:w-7/12">
 				<h1 class="!mb-0">Queer Winnipeg</h1>
 				<h1
-					class="!m-0 font-bold text-gray-400 selection:bg-violet-50 selection:text-violet-950/80 dark:selection:bg-violet-400/5 dark:selection:text-violet-100/80"
+					class="selection:bg-primary-50 selection:text-primary-950/80 dark:selection:bg-primary-400/5 dark:selection:text-primary-100/80 !m-0 font-bold text-gray-400"
 					role="paragraph"
 				>
 					<span class="sr-only">Queer Winnipeg</span> is an informal media org, writing
@@ -54,7 +55,7 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 		</section>
 		<div class="flex flex-col gap-8 px-4">
 			<section>
-				<h2 class="!mb-[.75em] !text-4xl lg:!mb-6">Featured</h2>
+				<h2 class="!mb-[.75em] text-3xl lg:!mb-6 lg:!text-4xl">Featured</h2>
 				<ul
 					class="!m-0 grid list-none gap-6 !ps-0 md:grid-cols-2 lg:grid-cols-3"
 					role="list"
@@ -79,7 +80,9 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 				</ul>
 			</section>
 			<section>
-				<h2 class="!mb-[.75em] !text-4xl lg:!mb-6">Assorted Articles</h2>
+				<h2 class="!mb-[.75em] text-3xl lg:!mb-6 lg:!text-4xl">
+					Assorted Articles
+				</h2>
 				<ul
 					class="!m-0 grid list-none gap-6 !ps-0 md:grid-cols-2 lg:grid-cols-3"
 					role="list"
@@ -89,51 +92,55 @@ import StickerRound from "@/components/decorations/sticker-round/StickerRound.sv
 					<ArticleCard postId="crypto-101-for-non-crypto-bro-canadians.mdx" />
 				</ul>
 			</section>
-			<section>
-				<div
-					class="bg-primary-400 dark:bg-primary-400/20 flex w-[489px] rotate-3 flex-col gap-6 rounded-2xl p-8"
-				>
-					<h2
-						class="!m-0 flex flex-col gap-y-3 !text-2xl !text-black dark:!text-gray-200"
-					>
-						Help us duct tape this thing: <span class="text-5xl !text-white"
-							>Contributions welcome!</span
-						>
-					</h2>
-					<div class="block w-fit">
-						<Button
-							class="not-format"
-							type="white"
-							target="_blank"
-							href="https://git.gay/queerwinnipeg/queerwinnipeg.ca"
-							>Source code</Button
-						>
-					</div>
-					<div class="pointer-events-none absolute inset-0">
-						<div
-							class="absolute -top-3 -left-12 h-8 w-32 -rotate-12 bg-violet-200/50 dark:bg-violet-200/10"
-							aria-hidden="true"
-						>
-						</div>
-						<div
-							class="absolute -right-12 -bottom-4 h-8 w-38 -rotate-24 bg-violet-200/50 dark:bg-violet-200/10"
-							aria-hidden="true"
-						>
-						</div>
-						<StickerRound
-							client:idle
-							type="transgender"
-							class="right-16 -bottom-8 rotate-7"
-						/>
-						<StickerRound
-							client:idle
-							type="rainbow"
-							class="top-2/5 -right-5 -rotate-12"
-						/>
-					</div>
-				</div>
-			</section>
+
 			<!-- <RSSPromotion /> -->
 		</div>
 	</main>
+	<!-- <section
+		class="flex flex-col items-center overflow-x-clip lg:my-16 lg:flex-row "
+	>
+		<RoadBarrierWithGrass />
+		<div
+			class="bg-primary-400 dark:bg-primary-400/20 flex h-fit w-full max-w-[489px] rotate-3 flex-col gap-6 rounded-2xl p-8"
+		>
+			<h2
+				class="selection:bg-primary-200/50 dark:selection:bg-primary-200/10 selection:unset !m-0 flex flex-col gap-y-3 !text-2xl font-bold text-black dark:text-gray-400"
+			>
+				Help us duct tape this thing: <span
+					class="text-5xl font-bold !text-white">Contributions welcome!</span
+				>
+			</h2>
+			<div class="block w-fit">
+				<Button
+					class="not-format"
+					type="white"
+					target="_blank"
+					href="https://git.gay/queerwinnipeg/queerwinnipeg.ca"
+					>Source code</Button
+				>
+			</div>
+			<div class="pointer-events-none absolute inset-0">
+				<div
+					class="bg-primary-200/50 dark:bg-primary-200/10 absolute -top-3 -left-12 h-8 w-32 -rotate-12"
+					aria-hidden="true"
+				>
+				</div>
+				<div
+					class="bg-primary-200/50 dark:bg-primary-200/10 absolute -right-12 -bottom-4 h-8 w-38 -rotate-24"
+					aria-hidden="true"
+				>
+				</div>
+				<StickerRound
+					client:idle
+					type="transgender"
+					class="right-16 -bottom-8 rotate-7"
+				/>
+				<StickerRound
+					client:idle
+					type="rainbow"
+					class="top-2/5 -right-5 -rotate-12"
+				/>
+			</div>
+		</div>
+	</section> -->
 </BaseLayout>

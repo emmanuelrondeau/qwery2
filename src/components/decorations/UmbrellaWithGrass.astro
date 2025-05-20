@@ -46,26 +46,23 @@ import Grass from "@/components/decorations/grass/Grass.astro";
 			/>
 			<Grass class="absolute -bottom-1 left-99 h-10" data-flipped />
 			<Grass class="absolute -bottom-1 left-122 h-8" />
-			<Grass class="absolute -bottom-1 left-135 h-10" />
 			<Grass
-				class="fill-grass-300 absolute -bottom-1 left-122 h-15"
+				class="fill-grass-300 absolute -bottom-1 left-120 h-15"
 				data-flipped
 			/>
+			<Grass
+				class="fill-grass-300 absolute -bottom-1 left-124 h-10"
+				data-flipped
+			/>
+			<Grass class="absolute -bottom-1 left-135 h-10" />
 			<Grass class="fill-grass-300 absolute -bottom-1 left-134 h-14" />
 		</div>
 	</div>
 </div>
 <style>
-	:root:where([data-theme="dark"], [data-theme="dark"] *) svg.umbrella {
-		/* --fill-umbrella-50: var(--color-violet-600);
-		--fill-umbrella-300: var(--color-violet-700);
-		--fill-umbrella-400: var(--color-violet-800);
-		--fill-umbrella-900: var(--color-violet-900);
-		--fill-umbrella-950: var(--color-violet-950);
-		--fill-umbrella-gray-600: var(--color-gray-600);
-		--fill-umbrella-gray-900: var(--color-gray-900); */
+	/* :root:where([data-theme="dark"], [data-theme="dark"] *) svg.umbrella {
 		filter: brightness(50%);
-	}
+	} */
 
 	.fill-grass-300 {
 		fill: var(--color-accent-300);
@@ -78,12 +75,12 @@ import Grass from "@/components/decorations/grass/Grass.astro";
 	}
 
 	:root:where([data-theme="dark"], [data-theme="dark"] *) .fill-grass-300 {
-		fill: var(--color-accent-700);
+		fill: var(--color-accent-600);
 	}
 	:root:where([data-theme="dark"], [data-theme="dark"] *) .fill-grass-400 {
-		fill: var(--color-accent-800);
+		fill: var(--color-accent-700);
 	}
 	:root:where([data-theme="dark"], [data-theme="dark"] *) .fill-grass-500 {
-		fill: var(--color-accent-900);
+		fill: var(--color-accent-800);
 	}
 </style>

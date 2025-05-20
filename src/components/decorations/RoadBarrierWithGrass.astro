@@ -1,0 +1,128 @@
+---
+import RoadBarrier from "@/assets/decorations/road-barrier.svg";
+import Grass from "./grass/Grass.astro";
+---
+
+<div
+	class="relative flex h-[364px] w-full max-w-[1006px] overflow-x-clip"
+	role="img"
+	aria-label={`Road barrier with "Under construction" imposed`}
+>
+	<div
+		class="text-primary-50 dark:text-primary-50/10 not-format pointer-events-none absolute inset-0 bottom-0 block overflow-y-visible text-[169px] leading-[.9] font-bold select-none sm:overflow-x-hidden"
+		aria-hidden="true"
+		tabindex={-1}
+	>
+		<div class="relative">
+			<h1 class="-z-10">Queer</h1>
+			<h1 class="-z-10 ml-28">Winnipeg</h1>
+			<div
+				class="absolute bottom-4 flex h-[121px] w-full origin-bottom items-center justify-center"
+			>
+				<div
+					class="fill-grass-500 absolute bottom-0 flex h-20 w-full items-end overflow-clip"
+				>
+					<div class="relative left-40">
+						<Grass class="absolute -bottom-1 left-89 h-12" />
+						<Grass class="absolute -bottom-1 left-25 h-10" data-flipped />
+					</div>
+				</div>
+				<div
+					class="relative inset-0 h-[121px] w-[483px] origin-bottom flex-col items-center justify-end sm:scale-125"
+				>
+					<div
+						class="absolute inset-x-8 top-3.5 flex h-[36px] items-center justify-between overflow-clip rounded-md bg-orange-300"
+					>
+						<div aria-hidden="true" class="lines">
+							<div class="line bg-black"></div>
+							<div class="line"></div>
+							<div class="line bg-black"></div>
+						</div>
+
+						<p
+							class="font-montserrat !m-0 px-2 text-center text-[22px] font-bold text-black select-none sm:text-2xl"
+						>
+							Under construction!
+						</p>
+						<div aria-hidden="true" class="lines">
+							<div class="line bg-black"></div>
+							<div class="line"></div>
+							<div class="line bg-black"></div>
+						</div>
+					</div>
+
+					<RoadBarrier aria-hidden="true" />
+				</div>
+				<div
+					class="fill-grass-400 absolute bottom-0 flex h-20 w-full items-end overflow-clip"
+				>
+					<div class="relative left-40">
+						<Grass class="absolute -bottom-1 left-0 h-10" data-flipped />
+						<Grass class="absolute -bottom-1 left-2 h-6" />
+						<Grass class="absolute -bottom-1 left-10 h-11" />
+						<Grass class="absolute -bottom-1 left-16 h-10" data-flipped />
+						<Grass class="fill-grass-300 absolute -bottom-1 left-12 h-13" />
+						<Grass class="fill-grass-300 absolute -bottom-1 left-12 h-16" />
+						<Grass class="absolute -bottom-1 left-27 h-12" />
+						<Grass
+							class="fill-grass-300 absolute -bottom-1 left-29 h-10"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-75 h-8" data-flipped />
+						<Grass class="absolute -bottom-1 left-68 h-10" />
+						<Grass
+							class="fill-grass-300 absolute -bottom-1 left-69 h-14"
+							data-flipped
+						/>
+						<Grass class="fill-grass-300 absolute -bottom-1 left-90 h-15" />
+						<Grass
+							class="fill-grass-300 absolute -bottom-1 left-90 h-16"
+							data-flipped
+						/>
+						<Grass class="absolute -bottom-1 left-99 h-10" data-flipped />
+						<Grass class="absolute -bottom-1 left-122 h-8" />
+						<Grass class="absolute -bottom-1 left-135 h-10" />
+						<Grass
+							class="fill-grass-300 absolute -bottom-1 left-150 h-15"
+							data-flipped
+						/>
+						<Grass class="fill-grass-300 absolute -bottom-1 left-156 h-14" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.lines {
+		display: flex;
+		flex-direction: row;
+		width: fit-content;
+		height: 100%;
+	}
+
+	.line {
+		width: 24px;
+		height: 100%;
+	}
+
+	.fill-grass-300 {
+		fill: var(--color-accent-300);
+	}
+	.fill-grass-400 {
+		fill: var(--color-accent-400);
+	}
+	.fill-grass-500 {
+		fill: var(--color-accent-500);
+	}
+
+	:root:where([data-theme="dark"], [data-theme="dark"] *) .fill-grass-300 {
+		fill: var(--color-accent-700);
+	}
+	:root:where([data-theme="dark"], [data-theme="dark"] *) .fill-grass-400 {
+		fill: var(--color-accent-800);
+	}
+	:root:where([data-theme="dark"], [data-theme="dark"] *) .fill-grass-500 {
+		fill: var(--color-accent-900);
+	}
+</style>
