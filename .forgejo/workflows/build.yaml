@@ -7,6 +7,10 @@ on:
     - "public/**"
     - "src/**"
     - astro.config.ts
+    - devbox.json
+    - devbox.lock
+    - svelte.config.js
+    - wrangler.jsonc
   workflow_dispatch:
 
 env:
