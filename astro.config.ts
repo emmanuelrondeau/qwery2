@@ -17,9 +17,9 @@ import { defineConfig, fontProviders } from "astro/config";
 import rehypeCallouts from "rehype-callouts";
 
 import bundlesize from "vite-plugin-bundlesize";
-import rehypeAutolink from "./plugins/rehype-autolink";
-import rehypeFigCaption from "./plugins/rehype-figcaption";
-import remarkReadingTime from "./plugins/remark-reading-time";
+import rehypeAutolink from "@/plugins/rehype-autolink";
+import rehypeFigCaption from "@/plugins/rehype-figcaption";
+import remarkReadingTime from "@/plugins/remark-reading-time";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE =
