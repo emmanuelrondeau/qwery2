@@ -38,7 +38,7 @@ jobs:
         with:
           enable-cache: "true"
 
-      - name: Cache node_modules
+      - name: Cache node_modules from pnpm
         id: cache-npm
         uses: actions/cache@v4
         env:
@@ -60,8 +60,6 @@ jobs:
         run: |
           pnpm config set store-dir .pnpm-store 
           pnpm install --frozen-lockfile
-        restore-keys: |
-          pnpm-feature-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Cache image build output
         uses: actions/cache@v4
