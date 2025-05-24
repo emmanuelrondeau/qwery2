@@ -1,14 +1,24 @@
-on: [push]
+on:
+  push:
+    - main
+    - dev
+  paths:
+    - ".forgejo/workflows/build.yaml"
+    - "public/**"
+    - "src/**"
+    - astro.config.ts
+  workflow_dispatch:
 
 env:
   CLOUDFLARE_PROJECT_NAME: queerwinnipeg
   DIST_FOLDER: ./dist
 
+permissions:
+  contents: read # access to check out code and install dependencies
+
 jobs:
   Build:
     runs-on: docker
-    permissions:
-      contents: read # access to check out code and install dependencies
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,8 +59,7 @@ jobs:
         restore-keys: |
           pnpm-feature-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Build
-        run: pnpm build
+      - name: Cache image build output
         uses: actions/cache@v4
         env:
           cache-name: cache-images
@@ -58,6 +67,9 @@ jobs:
           path: .astro-cache
           key: build-${{ env.cache-name }}
           restore-keys: build-${{ env.cache-name }}
+
+      - name: Build
+        run: pnpm build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
