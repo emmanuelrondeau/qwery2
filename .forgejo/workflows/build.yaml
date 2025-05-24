@@ -1,6 +1,66 @@
 on: [push]
+
+env:
+  CLOUDFLARE_PROJECT_NAME: queerwinnipeg
+  DIST_FOLDER: ./dist
+
 jobs:
-  test:
+  Build:
     runs-on: docker
+    permissions:
+      contents: read # access to check out code and install dependencies
     steps:
-      - run: echo All Good
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+      #     cache: "pnpm"
+
+      - name: Install devbox for pnpm and Node.js
+        uses: jetify-com/devbox-install-action@v0.12.0
+        with:
+          enable-cache: "true"
+
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-node_modules
+        with:
+          path: .pnpm-store
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node_modules
+        continue-on-error: true
+        run: pnpm list
+
+      - name: Install dependencies from npm
+        run: |
+          pnpm config set store-dir .pnpm-store 
+          pnpm install --frozen-lockfile
+        restore-keys: |
+          pnpm-feature-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Build
+        run: pnpm build
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-images
+        with:
+          path: .astro-cache
+          key: build-${{ env.cache-name }}
+          restore-keys: build-${{ env.cache-name }}
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy "$DIST_FOLDER" --commit-dirty false
