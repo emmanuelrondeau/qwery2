@@ -35,7 +35,7 @@ jobs:
       #     cache: "pnpm"
 
       - name: Install devbox for pnpm and Node.js
-        uses: jetify-com/devbox-install-action@v0.12.0
+        uses: https://github.com/jetify-com/devbox-install-action@v0.12.0
         with:
           enable-cache: "true"
 
@@ -75,7 +75,7 @@ jobs:
         run: pnpm build
 
       - name: Deploy
-        uses: cloudflare/wrangler-action@v3
+        uses: https://github.com/cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy "$DIST_FOLDER" --commit-dirty false
