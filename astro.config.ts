@@ -14,12 +14,13 @@ import AutoImport from "astro-auto-import";
 import { defaultConfig } from "astro-better-image-service";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig, fontProviders } from "astro/config";
-import rehypeCallouts from "rehype-callouts";
 
 import bundlesize from "vite-plugin-bundlesize";
-import rehypeAutolink from "@/plugins/rehype-autolink";
-import rehypeFigCaption from "@/plugins/rehype-figcaption";
-import remarkReadingTime from "@/plugins/remark-reading-time";
+
+import rehypeAutolink from "./src/plugins/rehype-autolink";
+import rehypeCallouts from "rehype-callouts";
+import rehypeFigCaption from "./src/plugins/rehype-figcaption";
+import remarkReadingTime from "./src/plugins/remark-reading-time";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE =
