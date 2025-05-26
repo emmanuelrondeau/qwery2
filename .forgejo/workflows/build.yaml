@@ -1,3 +1,9 @@
+# If you're me and trying to debug this thing without committing even more
+# crimes to the dev branch, you can attempt to use forgejo-runner to run this
+# thing locally.
+#
+# Cache may not work though, and to fix this, unfortunately you'll need to
+# comment out any cache references (ex. cache: "pnpm", actions/cache)
 on:
   push:
     branches:
@@ -30,11 +36,15 @@ jobs:
         with:
           lfs: true
 
+      # Version should be specified by the packageManager key in package.json
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
+          # cache: "pnpm"
 
       # I don't want to debug this
       # See https://git.gay/queerwinnipeg/queerwinnipeg.ca/actions/runs/4 if
@@ -64,17 +74,33 @@ jobs:
       - name: Install dependencies from npm
         run: pnpm install --frozen-lockfile
 
-      - name: Cache image build output
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-images
-        with:
-          path: .astro-cache
-          key: build-${{ env.cache-name }}
-          restore-keys: build-${{ env.cache-name }}
+      # - name: Cache image build output
+      #   uses: actions/cache@v4
+      #   env:
+      #     cache-name: cache-images
+      #   with:
+      #     path: .astro-cache
+      #     key: build-${{ env.cache-name }}
+      #     restore-keys: build-${{ env.cache-name }}
 
       - name: Build
         run: pnpm build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-output
+          path: $DIST_FOLDER
+          include-hidden-files: true
+          compression-level: 0 # Assumes majority of assets are incompressible images
+
+  Deploy:
+    runs-on: docker
+    needs: Build
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-output
 
       - name: Deploy
         uses: https://github.com/cloudflare/wrangler-action@v3
