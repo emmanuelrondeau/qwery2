@@ -1,12 +1,9 @@
 ---
-import Background from "@/assets/josh-lavallee-sM0q8DxTkWQ-unsplash-bw.avif";
-
 import Footer from "@/components/primitives/Footer.astro";
 import Navbar from "@/components/primitives/Navbar.astro";
 import SkipLink from "@/components/primitives/SkipLink.astro";
 import type { Props as SEOProps } from "astro-seo";
 import Head from "./Head.astro";
-import Picture from "@/components/primitives/Picture.astro";
 
 interface Props {
 	seo: SEOProps;
@@ -27,15 +24,6 @@ const { seo } = Astro.props;
 		class="bg-background dark:bg-background flex min-h-screen flex-col font-sans"
 	>
 		<SkipLink />
-		<!-- <div
-			class="sm:overflow-x-hidden sm:block pointer-events-none absolute inset-0 -z-10 mt-42 hidden text-[169px] leading-[.9] font-bold text-violet-50 select-none"
-			aria-hidden="true"
-		>
-			<div class="ml-[52vw]">
-				<h1>Queer</h1>
-				<h1 class="ml-28">Winnipeg</h1>
-			</div>
-		</div> -->
 		<Navbar />
 		<div class="mt-0 mb-auto flex flex-col">
 			<slot />

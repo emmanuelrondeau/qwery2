@@ -1,7 +1,6 @@
 ---
 import Picture from "@/components/primitives/Picture.astro";
 import { getCollection } from "astro:content";
-import ArticleAuthors from "./ArticleAuthors.astro";
 import MinutesRead from "./MinutesRead.astro";
 import PublishedOrUpdated from "./PublishedOrUpdated.astro";
 
@@ -80,9 +79,6 @@ if (!post) return;
 			<p class="!m-0 max-w-prose">
 				{post.data.description ?? <i>No description found.</i>}
 			</p>
-			<!-- <div class="mt-1">
-				<ArticleAuthors postId={post.id} size="medium" priority={priority} />
-			</div> -->
 		</div>
 	</article>
 </li>
