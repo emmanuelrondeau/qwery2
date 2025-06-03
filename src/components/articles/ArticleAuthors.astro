@@ -58,6 +58,7 @@ const { size, priority } = Astro.props;
 						fallbackFormat="jpg"
 						src={author.profile}
 						priority={priority}
+						transparent={author.profile.format === "svg"}
 					/>
 				) : (
 					<div
