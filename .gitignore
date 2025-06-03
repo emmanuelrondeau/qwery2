@@ -35,3 +35,6 @@ pnpm-debug.log*
 *.krz~
 *.kra~
 *.bak.krz
+
+# images
+src/assets/**/*.*_original

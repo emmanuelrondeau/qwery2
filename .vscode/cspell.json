@@ -1,11 +1,7 @@
 {
 	"version": "0.2",
-	"flagWords": [
-		"behavior"
-	],
-	"ignorePaths": [
-		".devcontainer"
-	],
+	"flagWords": ["behavior"],
+	"ignorePaths": [".devcontainer"],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -150,6 +146,7 @@
 		"shiki",
 		"shorthash",
 		"Simplii",
+		"signages",
 		"Skullspace",
 		"Sobeys",
 		"Spironolactone",
@@ -195,9 +192,7 @@
 		"XGRO",
 		"Zergpool"
 	],
-	"ignoreWords": [
-		"rehypei"
-	],
+	"ignoreWords": ["rehypei"],
 	"import": [],
 	"language": "en,en-CA"
 }
