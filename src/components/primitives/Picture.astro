@@ -44,10 +44,12 @@ const transparent =
 		? Boolean(tempTransparent)
 		: tempTransparent === "true";
 let placeholderURL = "";
+let isSvg = false;
 
 if (placeholder && typeof Astro.props.src !== "string") {
 	const resolveSrc = await Promise.resolve(Astro.props.src);
 	const src = "default" in resolveSrc ? resolveSrc.default : resolveSrc;
+	isSvg = src.format == "svg";
 
 	try {
 		// https://github.com/Princesseuh/erika.florist/blob/3a7898d2c168028ba522bf5fb36d1f929392fd67/src/components/Image.astro#L18C1-L24C1
@@ -68,10 +70,12 @@ if (placeholder && typeof Astro.props.src !== "string") {
 
 <AstroPicture
 	{...rest}
-	formats={formats ?? ["avif"]}
+	formats={isSvg ? ["svg"] : (formats ?? ["avif"])}
 	fallbackFormat={fallbackFormat ?? "jpg"}
 	style={placeholderURL
 		? `background-size: cover;background-image: url(${placeholderURL});color: transparent;`
 		: undefined}
-	onload={transparent ? "this.style.backgroundImage=null" : undefined}
+	onload={transparent
+		? "requestAnimationFrame(()=>this.style.backgroundImage=null)"
+		: undefined}
 />
