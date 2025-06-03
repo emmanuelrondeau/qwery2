@@ -7,7 +7,7 @@ import TableOfContents from "@/components/articles/table-of-contents/TableOfCont
 import Callout from "@/components/primitives/Callout.astro";
 import Link from "@/components/primitives/Link.astro";
 import Picture from "@/components/primitives/Picture.astro";
-import { PAGE_TITLE_ID } from "@/constants";
+import { MAIN_CONTENT_ID, PAGE_TITLE_ID } from "@/constants";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import BiggerPicture from "@/components/articles/bigger-picture/BiggerPicture.astro";
 import UnderlineAnimate from "@/components/underline-animate/UnderlineAnimate.astro";
@@ -117,8 +117,9 @@ const authors = await Promise.all(authorsPromise);
 				</div>
 			</UnderlineAnimate>
 			<UnderlineAnimate>
-				<div
+				<main
 					class="format dark:format-invert lg:format-lg block max-w-[748px] pt-8"
+					id={MAIN_CONTENT_ID}
 				>
 					{
 						post.data.draft && (
@@ -144,7 +145,7 @@ const authors = await Promise.all(authorsPromise);
 						)
 					}
 					<Content />
-				</div>
+				</main>
 			</UnderlineAnimate>
 		</div>
 	</div>
