@@ -8,23 +8,32 @@ const isProd = import.meta.env.PROD;
 const date = new Date();
 const year = date.getUTCFullYear();
 
-let hash = "unknown";
+// First case should handle GitLab CI. Assumes non-dirty repo if this can
+// be retrieved successfully.
+let hash = import.meta.env.CI_COMMIT_SHORT_SHA || "unknown";
 let dirty = "";
-try {
-	const childProcess = await import("child_process");
-	hash = childProcess.execSync("git rev-parse --short HEAD").toString().trim();
-
+if (hash === "unknown") {
+	// Else, we can try pulling from child_process,
+	// which doesn't work in GitLab CI
 	try {
-		childProcess.execSync("git diff-files --quiet");
-	} catch (error) {
-		const err = error as Error & { status: number };
-		if (err.status === 1) {
-			dirty = "-dirty";
+		const childProcess = await import("child_process");
+		hash = childProcess
+			.execSync("git rev-parse --short HEAD")
+			.toString()
+			.trim();
+
+		try {
+			childProcess.execSync("git diff-files --quiet");
+		} catch (error) {
+			const err = error as Error & { status: number };
+			if (err.status === 1) {
+				dirty = "-dirty";
+			}
 		}
+	} catch (error) {
+		console.warn(error);
+		console.warn("Continuing...");
 	}
-} catch (error) {
-	console.warn(error);
-	console.warn("Continuing...");
 }
 ---
 
