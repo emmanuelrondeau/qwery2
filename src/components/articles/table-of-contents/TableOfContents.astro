@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
-import { PAGE_TITLE_ID } from "@/constants";
+import { MAIN_CONTENT_ID, PAGE_TITLE_ID } from "@/constants";
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
 import TableOfContentsAccordion from "./TableOfContentsAccordion.svelte";
 
@@ -42,7 +42,7 @@ function buildToc(headings: MarkdownHeading[]) {
 					aria-current={true}
 					heading={{
 						slug: PAGE_TITLE_ID,
-						text: "Overview",
+						text: "Introduction",
 					} as MarkdownHeading}
 				/>
 				{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
@@ -60,10 +60,9 @@ function buildToc(headings: MarkdownHeading[]) {
 		<div class="not-format relative">
 			<ul class="px-2 text-base">
 				<TableOfContentsHeading
-					aria-current={true}
 					heading={{
-						slug: PAGE_TITLE_ID,
-						text: "Overview",
+						slug: MAIN_CONTENT_ID,
+						text: "Introduction",
 					} as MarkdownHeading}
 					hideLeftLine
 				/>

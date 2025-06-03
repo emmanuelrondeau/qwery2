@@ -111,7 +111,7 @@ export class StarlightTOC extends HTMLElement {
 		// Also observe direct children of `.content` to include elements before
 		// the first heading.
 		const toObserve = document.querySelectorAll(
-			"main [id], main [id] ~ *, main .content > *",
+			`#${PAGE_TITLE_ID}, main [id], main [id] ~ *, main .content > *`,
 		);
 		// Bottom page observe, as an escape hatch to make sure it'll actually
 		// say it reached the end if the page cannot scroll anymore
