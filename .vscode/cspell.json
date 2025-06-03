@@ -1,7 +1,11 @@
 {
 	"version": "0.2",
-	"flagWords": ["behavior"],
-	"ignorePaths": [".devcontainer"],
+	"flagWords": [
+		"behavior"
+	],
+	"ignorePaths": [
+		".devcontainer"
+	],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -20,6 +24,7 @@
 		"benjc",
 		"Betterbird",
 		"bezier",
+		"Blåhaj",
 		"blurhash",
 		"Boonstra",
 		"Borga",
@@ -104,6 +109,7 @@
 		"Monero",
 		"mozjpeg",
 		"mradugin",
+		"Naloxone",
 		"Navigo",
 		"nerdwallet",
 		"neurodivergent",
@@ -122,6 +128,8 @@
 		"PHIN",
 		"piggybank",
 		"playform",
+		"plushie",
+		"Plushies",
 		"polyam",
 		"polyamorous",
 		"polysexual",
@@ -145,8 +153,9 @@
 		"Sherbrook",
 		"shiki",
 		"shorthash",
-		"Simplii",
 		"signages",
+		"Simplii",
+		"Skellington",
 		"Skullspace",
 		"Sobeys",
 		"Spironolactone",
@@ -192,7 +201,9 @@
 		"XGRO",
 		"Zergpool"
 	],
-	"ignoreWords": ["rehypei"],
+	"ignoreWords": [
+		"rehypei"
+	],
 	"import": [],
 	"language": "en,en-CA"
 }
