@@ -163,13 +163,9 @@ export default defineConfig({
 			Image: false,
 			SVG: false,
 			// Rest of the config
-			// HTML: {
-			// 	"html-minifier-terser": {
-			// 		removeComments: true,
-			// 		ignoreCustomComments: [],
-			// 	},
-			// },
-			HTML: false,
+			HTML: {
+				"html-minifier-terser": {},
+			},
 		}),
 	],
 	vite: {

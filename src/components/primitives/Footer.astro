@@ -15,7 +15,7 @@ try {
 	hash = childProcess.execSync("git rev-parse --short HEAD").toString().trim();
 
 	try {
-		return childProcess.execSync("git diff-files --quiet");
+		childProcess.execSync("git diff-files --quiet");
 	} catch (error) {
 		const err = error as Error & { status: number };
 		if (err.status === 1) {
