@@ -486,10 +486,18 @@
 		@apply no-underline;
 	}
 
+	underline-animate a.group\/underline.no-underline:where(:hover) span,
+	underline-animate a.group\/underline.\!no-underline:where(:hover) span,
+	underline-animate a.group\/underline.no-underline:where(:focus-visible) span,
+	underline-animate
+		a.group\/underline.\!no-underline:where(:focus-visible)
+		span,
 	underline-animate a.group\/underline span {
 		/* See https://css-tricks.com/styling-underlines-web/#aa-border-bottom for text-shadow technique */
 		@apply text-shadow-[-.0625em_-.0625em,_-.0625em_.0625em,_.0625em_-.0625em,_.0625em_.0625em,0_.0625em];
+	}
 
+	underline-animate a.group\/underline span {
 		/* See https://stackoverflow.com/a/73043524 for animation reference */
 		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-safe:group-hover/underline:bg-[length:85%_1px];
 
@@ -497,9 +505,20 @@
 		@apply text-shadow-background from-(--underline-color)/75 to-(--underline-color)/75 group-hover/underline:from-(--underline-color) group-hover/underline:to-(--underline-color) selection:text-shadow-none;
 	}
 
+	/* Animates a full underline */
 	underline-animate a.group\/underline.no-underline span,
 	underline-animate a.group\/underline.\!no-underline span {
 		@apply bg-gradient-to-r bg-[length:0%_1px] bg-left-bottom bg-no-repeat group-hover/underline:bg-[length:100%_1px] motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-reduce:transition-none;
+	}
+
+	/* Tridactyl-specific hack for fixing contrast in hint mode (pressing "f) */
+	underline-animate a.group\/underline.TridactylHintElem.no-underline span,
+	underline-animate a.group\/underline.TridactylHintElem.\!no-underline span,
+	underline-animate a.group\/underline.TridactylHintElem span,
+	underline-animate a.group\/underline.TridactylHintActive.no-underline span,
+	underline-animate a.group\/underline.TridactylHintActive.\!no-underline span,
+	underline-animate a.group\/underline.TridactylHintActive span {
+		@apply text-shadow-none;
 	}
 
 	underline-animate .callout a.group\/underline span {

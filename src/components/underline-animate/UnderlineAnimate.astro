@@ -1,8 +1,12 @@
 ---
-const { ...rest } = Astro.props;
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	selector?: string;
+}
 ---
 
-<underline-animate {...rest}>
+<underline-animate {...Astro.props}>
 	<slot />
 </underline-animate>
 <script>
@@ -12,18 +16,57 @@ const { ...rest } = Astro.props;
 	 * is loaded.
 	 */
 	class UnderlineAnimate extends HTMLElement {
+		getCoercedPreferredContrast = () =>
+			matchMedia("(prefers-contrast: more)").matches ||
+			matchMedia("(prefers-contrast: custom)").matches
+				? "more"
+				: "no-preference";
+
 		connectedCallback() {
+			this.onContrastChange(true);
+
+			// React to changes in system contrast.
+			matchMedia("(prefers-contrast: more)").addEventListener("change", () =>
+				this.onContrastChange(),
+			);
+		}
+
+		onContrastChange(firstTime?: boolean) {
+			const preferredContrast = this.getCoercedPreferredContrast();
+
 			const anchors: NodeListOf<HTMLAnchorElement> = this.querySelectorAll(
 				this.getAttribute("selector") ??
 					`* a:not(:where([class~="not-format"], [class~="not-format"] *)):not(#bigger-picture):not(:where(.heading-wrapper *))`,
 			);
 
+			if (preferredContrast === "no-preference") {
+				this.convertToAnimated(anchors);
+			} else if (!firstTime) {
+				this.convertToBasic(anchors);
+			}
+		}
+
+		convertToAnimated(anchors: NodeListOf<HTMLAnchorElement>) {
 			anchors.forEach((value) => {
 				value.classList.add("group/underline");
 				const span = document.createElement("span");
 				span.textContent = value.textContent;
 				span.replaceChildren(...value.childNodes.values());
 				value.replaceChildren(span);
+			});
+		}
+
+		// text-shadow can result in contrast issues using web extensions that
+		// modify an elements' background (ex. Tridactyl when pressing "f").
+		// We convert back to basic underlines if the user has this option enabled,
+		// although our CSS has a workaround for this specific extension mentioned.
+		convertToBasic(anchors: NodeListOf<HTMLAnchorElement>) {
+			anchors.forEach((value) => {
+				value.classList.remove("group/underline");
+				// Should replace all children with just the processed textContent
+				// string, see
+				// https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+				value.textContent = value.textContent;
 			});
 		}
 	}
