@@ -149,7 +149,7 @@ export default defineConfig({
 						: "dark"
 				}']`,
 			themes: ["catppuccin-latte", "one-dark-pro"],
-
+			useStyleReset: false,
 			// Theoretically better as "false" for accessibility, although we already
 			// mess with selection colors. Since these are tailored to their
 			// respective backgrounds, it's probably best

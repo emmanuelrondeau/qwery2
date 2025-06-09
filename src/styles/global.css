@@ -19,18 +19,17 @@
 @theme {
 	--breakpoint-xs: 475px;
 
-	--color-background: var(--theme-color-background);
-
-	--color-focus-outline: var(--theme-color-focus-outline);
-
 	--color-base-neutral-100: var(--theme-color-base-neutral-100);
 	--color-base-neutral-200: var(--theme-color-base-neutral-200);
+	--color-base-neutral-300: var(--theme-color-base-neutral-300);
 
 	--color-base-primary-100: var(--theme-color-base-primary-100);
 	--color-base-primary-200: var(--theme-color-base-primary-200);
+	--color-base-primary-300: var(--theme-color-base-primary-300);
 
 	--color-base-accent-100: var(--theme-color-base-accent-100);
 	--color-base-accent-200: var(--theme-color-base-accent-200);
+	--color-base-accent-300: var(--theme-color-base-accent-300);
 
 	--color-primary: var(--theme-color-primary);
 	--color-primary-50: var(--theme-color-primary-50);
@@ -57,6 +56,10 @@
 	--color-accent-800: var(--theme-color-accent-800);
 	--color-accent-900: var(--theme-color-accent-900);
 	--color-accent-950: var(--theme-color-accent-950);
+
+	--color-background: var(--theme-color-background);
+	--color-focus-outline: var(--theme-color-focus-outline);
+	--color-underline-highlight: var(--theme-color-underline-highlight);
 
 	--font-sans: "Figtree";
 	--font-montserrat: "Montserrat";
@@ -94,22 +97,19 @@
 	:root {
 		@apply selection:bg-accent-100 selection:text-accent-950 dark:selection:bg-accent-400/20 dark:selection:text-accent-50;
 
-		--theme-color-background: var(--color-white);
-
 		/* base-x-100 is background, base-x-200 is layering.
 		Don't go over base-200, as contrast issues will occur */
 		--theme-color-base-neutral-100: var(--color-gray-50);
 		--theme-color-base-neutral-200: var(--color-gray-100);
+		--theme-color-base-neutral-300: var(--color-gray-200);
 
-		--theme-color-base-primary-100: var(--color-violet-50);
-		--theme-color-base-primary-200: var(--color-violet-100);
+		--theme-color-base-primary-100: var(--color-primary-50);
+		--theme-color-base-primary-200: var(--color-primary-100);
+		--theme-color-base-primary-300: var(--color-primary-200);
 
-		--color-base-accent-100: var(--color-lime-100);
-		--color-base-accent-200: var(--color-lime-200);
-
-		--theme-color-background: var(--color-white);
-
-		--theme-color-focus-outline: var(--color-black);
+		--theme-color-base-accent-100: var(--color-accent-100);
+		--theme-color-base-accent-200: var(--color-accent-200);
+		--theme-color-base-accent-300: var(--color-accent-200);
 
 		--theme-color-primary: var(--color-violet-300);
 		--theme-color-accent: var(--color-lime-400);
@@ -138,15 +138,28 @@
 		--theme-color-accent-800: var(--color-lime-800);
 		--theme-color-accent-900: var(--color-lime-900);
 		--theme-color-accent-950: var(--color-lime-950);
+
+		--theme-color-background: var(--color-white);
+		--theme-color-focus-outline: var(--color-black);
+		--theme-color-underline-highlight: var(--color-accent-800);
 	}
 
 	[data-theme="dark"] {
-		--theme-color-underline: var(--color-violet-300);
-		--theme-color-focus-outline: var(--color-white);
+		--theme-color-base-neutral-100: var(--color-zinc-900);
+		--theme-color-base-neutral-200: var(--color-zinc-800);
+		--theme-color-base-neutral-300: var(--color-zinc-700);
+
+		--theme-color-base-primary-100: var(--color-primary-900);
+		--theme-color-base-primary-200: var(--color-primary-800);
+		--theme-color-base-primary-300: var(--color-primary-700);
+
+		--theme-color-base-accent-100: var(--color-accent-900);
+		--theme-color-base-accent-200: var(--color-accent-800);
+		--theme-color-base-accent-300: var(--color-accent-700);
 
 		--theme-color-background: var(--color-zinc-950);
-		--theme-color-base-200: oklch(23.26% 0.014 253.1);
-		--theme-color-base-300: oklch(21.15% 0.012 254.09);
+		--theme-color-focus-outline: var(--color-white);
+		--theme-color-underline-highlight: var(--color-primary-300);
 	}
 
 	html {
@@ -164,19 +177,11 @@
 
 	/* Twemoji */
 	img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		background: none !important;
-		padding: 0 !important;
-		pointer-events: none;
+		@apply !pointer-events-none !m-[0_.07em] !inline !h-[1em] !w-[1em] !border-none !bg-none !p-0 !shadow-none;
 	}
 
 	footer img.emoji {
-		vertical-align: -0.275em !important;
+		@apply !align-[-.275em];
 	}
 
 	/* SkipLink from accessible-astro-components */
@@ -185,8 +190,7 @@
 	}
 
 	body .skip-link a:focus-visible {
-		@apply top-1 left-1;
-		outline-offset: 2px;
+		@apply top-1 left-1 outline-offset-2;
 	}
 
 	body main#main-content {
@@ -195,20 +199,17 @@
 
 	/* Leaflet Map */
 	.leaflet-pane {
-		z-index: 10 !important;
+		@apply !z-10;
 	}
-
 	.leaflet-top,
 	.leaflet-bottom {
-		z-index: 30 !important;
+		@apply !z-30;
 	}
-
 	.leaflet-control {
-		z-index: 20 !important;
+		@apply !z-20;
 	}
-
 	.leaflet-container {
-		z-index: 30 !important;
+		@apply !z-30;
 	}
 
 	/* Workaround for VoiceOver not declaring lists - requires lists to be
@@ -216,9 +217,9 @@
 		applying it to all lists. This is because "ul" can change have its
 		styling changed when using `format` (namely with spacing).
 		https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
-	ul[role="list"] li::before {
-		content: "\200B"; /* add zero-width space */
-		position: absolute;
+	ul[role="list"] li {
+		/* \200b is a zero-width space */
+		@apply before:absolute before:content-['\200b'];
 	}
 }
 
@@ -308,14 +309,12 @@
 
 	.format
 		:where(a):not(:where([class~="not-format"], [class~="not-format"] *)) {
-		@apply hover:text-accent-800 dark:hover:text-accent-300 rounded underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--color-accent-800)] focus-visible:[--underline-color:var(--color-accent-800)] dark:hover:[--underline-color:var(--color-accent-300)] dark:focus-visible:[--underline-color:var(--color-accent-300)];
+		@apply hover:text-underline-highlight rounded underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--theme-color-underline-highlight)] focus-visible:[--underline-color:var(--theme-color-underline-highlight)];
 	}
 
 	/* Rehype Autolink - Custom styles for heading anchor links. */
 	.format .heading-wrapper {
-		@apply relative;
-		--icon-size: 1em;
-		--icon-spacing: 0.25em;
+		@apply relative [--icon-size:1em] [--icon-spacing:.25em];
 	}
 
 	.format .heading-wrapper > :first-child {
@@ -324,8 +323,7 @@
 	}
 
 	.format .heading-wrapper a svg {
-		@apply relative inline origin-center -rotate-45;
-		width: var(--icon-size);
+		@apply relative inline w-(--icon-size) origin-center -rotate-45;
 	}
 
 	.format
@@ -378,23 +376,22 @@
 	}
 
 	.format .heading-wrapper.level-h2 a {
-		font-size: 1.5em;
+		@apply text-[1.5em];
 	}
 
 	.format .heading-wrapper.level-h3 a {
-		font-size: 1.25em;
+		@apply text-[1.25em];
 	}
 
 	.format .heading-wrapper.level-h4 a,
 	.format .heading-wrapper.level-h5 a,
 	.format .heading-wrapper.level-h6 a {
-		font-size: 1em;
+		@apply text-[1em];
 	}
 
 	/* Prevent double or triple clicks from potentially selecting the anchor link a11y text. */
 	.format .heading-wrapper a .sr-only {
-		-webkit-user-select: none;
-		user-select: none;
+		@apply select-none;
 	}
 
 	.format .heading-wrapper a {
@@ -403,8 +400,7 @@
 
 	@media (hover: hover) {
 		.format .heading-wrapper a {
-			@apply relative opacity-0;
-			margin-inline-start: calc(-1 * (var(--icon-size)));
+			@apply relative ms-[calc(-1*var(--icon-size))] opacity-0;
 		}
 
 		.format .heading-wrapper:hover a,
@@ -445,10 +441,10 @@
 		@apply my-[1.25em] rounded border-l-4 px-5 py-4 outline-none has-[+.heading-wrapper]:mb-0 lg:my-[1.3333333em] lg:py-5;
 	}
 	.callout[data-callout="info"] {
-		@apply border-violet-500 bg-violet-50 marker:text-violet-300 selection:bg-violet-100 selection:text-violet-950 dark:border-violet-300 dark:bg-violet-900/15 dark:selection:bg-violet-900/50 dark:selection:text-violet-50;
+		@apply border-primary-500 bg-primary-50 marker:text-primary-300 selection:bg-primary-100 selection:text-primary-950 dark:border-primary-300 dark:bg-primary-900/15 dark:selection:bg-primary-900/50 dark:selection:text-primary-50;
 	}
 	.callout[data-callout="info"] a {
-		@apply hover:text-violet-800 dark:hover:text-violet-300;
+		@apply hover:text-primary-800 dark:hover:text-primary-300;
 	}
 	.callout[data-callout="warning"] {
 		@apply border-yellow-500 bg-yellow-50 marker:text-yellow-300 selection:bg-yellow-200 selection:text-yellow-900 dark:bg-yellow-900/25 dark:selection:bg-yellow-900/50 dark:selection:text-yellow-50;
@@ -511,7 +507,7 @@
 		@apply bg-gradient-to-r bg-[length:0%_1px] bg-left-bottom bg-no-repeat group-hover/underline:bg-[length:100%_1px] motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-reduce:transition-none;
 	}
 
-	/* Tridactyl-specific hack for fixing contrast in hint mode (pressing "f) */
+	/* Tridactyl-specific hack for fixing contrast in hint mode (pressing "f") */
 	underline-animate a.group\/underline.TridactylHintElem.no-underline span,
 	underline-animate a.group\/underline.TridactylHintElem.\!no-underline span,
 	underline-animate a.group\/underline.TridactylHintElem span,
@@ -526,9 +522,9 @@
 		@apply !text-shadow-none;
 		/* Compensating for background making the underline less transparent, by making the color less transparent */
 		@apply from-(--tw-prose-links)/50 to-(--tw-prose-links)/50;
-		@apply group-hover/underline:from-violet-800/25 group-hover/underline:to-violet-800/25;
+		@apply group-hover/underline:from-primary-800/25 group-hover/underline:to-primary-800/25;
 		/* ...except for dark mode */
-		@apply dark:group-hover/underline:from-violet-300/50 dark:group-hover/underline:to-violet-300/50;
+		@apply dark:group-hover/underline:from-primary-300/50 dark:group-hover/underline:to-primary-300/50;
 	}
 
 	underline-animate .callout[data-callout="warning"] a.group\/underline span {
