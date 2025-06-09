@@ -2,7 +2,8 @@
 import type { MarkdownHeading } from "astro";
 import { MAIN_CONTENT_ID, PAGE_TITLE_ID } from "@/constants";
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
-import TableOfContentsAccordion from "./TableOfContentsAccordion.svelte";
+import DetailsUtils from "@/components/details-utils/DetailsUtils.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
 	headings: MarkdownHeading[];
@@ -32,7 +33,9 @@ function buildToc(headings: MarkdownHeading[]) {
 <div class="mt-8 hidden lg:ml-auto lg:block lg:w-[22.625rem]">
 	<starlight-toc>
 		<nav class="relative rounded pb-2 lg:h-full">
-			<h2 class="mt-0 !text-lg !font-semibold">Table of Contents</h2>
+			<h2 role="presentation" class="mt-0 !text-lg !font-semibold">
+				Table of Contents
+			</h2>
 			<ul
 				class="scrollbar scrollbar-thumb-gray-300 scrollbar-track-transparent dark:scrollbar-thumb-gray-600 scrollbar-track-rounded-full scrollbar-thumb-rounded-full not-format relative overflow-y-auto text-base focus-visible:rounded lg:max-h-[calc(100dvh-7.75rem)]"
 				role="list"
@@ -50,30 +53,47 @@ function buildToc(headings: MarkdownHeading[]) {
 		</nav>
 	</starlight-toc>
 </div>
-<TableOfContentsAccordion
-	client:load
-	class="bg-background block w-full rounded border border-gray-300 p-2 lg:hidden dark:border-gray-700"
->
-	<nav
-		class="toc ring-focus-outline rounded pr-4 pb-2 outline-hidden focus-visible:ring-2"
+<DetailsUtils animate class="w-full lg:hidden">
+	<details
+		class="group bg-background block w-full rounded border border-gray-300 motion-safe:transition-[height,max-height] lg:hidden dark:border-gray-700"
 	>
-		<div class="not-format relative">
-			<ul class="px-2 text-base">
-				<TableOfContentsHeading
-					heading={{
-						slug: MAIN_CONTENT_ID,
-						text: "Introduction",
-					} as MarkdownHeading}
-					hideLeftLine
+		<summary
+			class="group/summary ring-focus-outline flex cursor-pointer list-none items-center justify-between rounded py-4 pr-3 pl-5 outline-hidden select-none group-[[open]]:pb-2 focus-visible:ring-2"
+		>
+			<h2 role="presentation" class="!my-0 !text-lg !font-bold">
+				Table of Contents
+			</h2>
+			<span
+				class="inline-flex size-8 items-center justify-center rounded-[7px]"
+				aria-hidden
+			>
+				<Icon
+					name="ph:caret-down"
+					class="size-[18px] duration-200 group-[:is([open]):not(.details-animating-close)]:rotate-180 motion-safe:transition-transform"
 				/>
-				{
-					toc.map((heading) => (
-						<TableOfContentsHeading heading={heading} hideLeftLine />
-					))
-				}
-			</ul>
-		</div>
-	</nav>
-</TableOfContentsAccordion>
+			</span>
+		</summary>
+		<nav
+			class="ring-focus-outline overflow-clip rounded pr-4 pb-2 outline-hidden focus-visible:ring-2"
+		>
+			<div class="not-format relative pb-2">
+				<ul class="px-4 text-base" role="list">
+					<TableOfContentsHeading
+						heading={{
+							slug: MAIN_CONTENT_ID,
+							text: "Introduction",
+						} as MarkdownHeading}
+						hideLeftLine
+					/>
+					{
+						toc.map((heading) => (
+							<TableOfContentsHeading heading={heading} hideLeftLine />
+						))
+					}
+				</ul>
+			</div>
+		</nav>
+	</details>
+</DetailsUtils>
 
 <script src="./starlight-toc"></script>

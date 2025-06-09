@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	animate?: boolean | "true" | "false";
+	/** Can be a media query */
+	"close-click-outside"?: boolean | string;
+	/** Can be a media query */
+	"force-close"?: boolean | string;
+	/** Can be a media query */
+	"close-esc"?: boolean | string;
+	/** Can be a media query */
+	"force-open"?: boolean | string;
+
+	"force-restore"?: boolean;
+}
+
+const { ...rest } = Astro.props;
+---
+
+<details-utils {...rest}>
+	<slot />
+</details-utils>
+<script src="./details-utils"></script>
