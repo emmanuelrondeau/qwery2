@@ -46,14 +46,14 @@
 	items={themes}
 >
 	<Select.Trigger
-		class="group font-montserrat ring-primary-900 aria-expanded:text-primary-700 dark:ring- flex items-center justify-between p-2 outline-hidden select-none focus-visible:rounded-lg focus-visible:ring-2 aria-expanded:ring-0"
+		class="group font-montserrat ring-focus-outline aria-expanded:text-primary-700 flex items-center justify-between p-2 outline-hidden select-none focus-visible:rounded-lg focus-visible:ring-2 aria-expanded:ring-0"
 		aria-label="Select a theme"
 	>
 		{@render children?.()}
 	</Select.Trigger>
 	<Select.Portal>
 		<Select.Content
-			class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 flex max-h-[var(--bits-select-content-available-height)] w-32 min-w-[var(--bits-select-anchor-width)] flex-col rounded border-gray-200 bg-gray-50 p-1 shadow outline-hidden select-none focus:!ring-0 data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1 dark:border-gray-700 dark:bg-gray-800"
+			class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 border-base-neutral-300 bg-base-neutral-100 z-50 flex max-h-[var(--bits-select-content-available-height)] w-32 min-w-[var(--bits-select-anchor-width)] flex-col rounded p-1 shadow outline-hidden select-none focus:!ring-0 data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1"
 		>
 			<!-- <Select.ScrollUpButton class="flex w-full items-center justify-center">
         <CaretDoubleUp class="size-3" />

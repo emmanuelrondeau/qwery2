@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	class?: string;
+	width?: number;
+}
+
+const { class: className, width } = Astro.props;
+---
+
+<Icon
+	name="material-symbols:laptop-windows-outline"
+	class:list={["auto", className]}
+	aria-hidden="true"
+	width={width ?? "28px"}
+	height={width ?? "28px"}
+/>

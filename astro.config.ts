@@ -3,6 +3,7 @@ import cloudflare from "@astrojs/cloudflare";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 
 import mdx from "@astrojs/mdx";
+import icon from "astro-icon";
 import netlify from "@astrojs/netlify";
 import svelte from "@astrojs/svelte";
 import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
@@ -165,6 +166,17 @@ export default defineConfig({
 			// Rest of the config
 			HTML: {
 				"html-minifier-terser": {},
+			},
+		}),
+		icon({
+			// https://www.astroicon.dev/reference/configuration#include
+			include: {
+				"material-symbols": [
+					"light-mode-outline",
+					"dark-mode-outline",
+					"laptop-windows-outline",
+				],
+				ph: ["caret-down"],
 			},
 		}),
 	],
