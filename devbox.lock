@@ -50,8 +50,8 @@
       }
     },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
-      "last_modified": "2025-05-25T15:24:27Z",
-      "resolved": "github:NixOS/nixpkgs/bdac72d387dca7f836f6ef1fe547755fb0e9df61?lastModified=1748186667&narHash=sha256-UQubDNIQ%2FZ42R8tPCIpY%2BBOhlxO8t8ZojwC9o2FW3c8%3D"
+      "last_modified": "2025-06-10T02:39:58Z",
+      "resolved": "github:NixOS/nixpkgs/cdc68935eba9f86d155585fdf6f17af6824f38ac?lastModified=1749523198&narHash=sha256-How2kQw0psKmCdXgojc95Sf3K5maHB3qfINxTZFCAPM%3D"
     },
     "nodePackages.prettier@3": {
       "last_modified": "2025-05-21T18:43:04Z",
@@ -102,9 +102,9 @@
       }
     },
     "nodejs-slim@22": {
-      "last_modified": "2025-05-16T20:19:48Z",
+      "last_modified": "2025-05-29T08:12:58Z",
       "plugin_version": "0.0.2",
-      "resolved": "github:NixOS/nixpkgs/12a55407652e04dcf2309436eb06fef0d3713ef3#nodejs-slim",
+      "resolved": "github:NixOS/nixpkgs/3866ad91cfc172f08a6839def503d8fc2923c603#nodejs-slim",
       "source": "devbox-search",
       "version": "22.14.0",
       "systems": {
@@ -152,12 +152,12 @@
               "default": true
             },
             {
-              "name": "dev",
-              "path": "/nix/store/4caifrs9f0ql42rsmh8270b3p2hhlf1z-nodejs-slim-22.14.0-dev"
-            },
-            {
               "name": "libv8",
               "path": "/nix/store/p8s8vr7fbp1685p8a65wd1l99k560cz6-nodejs-slim-22.14.0-libv8"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/4caifrs9f0ql42rsmh8270b3p2hhlf1z-nodejs-slim-22.14.0-dev"
             }
           ],
           "store_path": "/nix/store/fq4mmvc0275byrp93pi134sz0nccsm1p-nodejs-slim-22.14.0"
@@ -279,50 +279,50 @@
       }
     },
     "tailwindcss-language-server@latest": {
-      "last_modified": "2025-05-19T23:16:24Z",
-      "resolved": "github:NixOS/nixpkgs/359c442b7d1f6229c1dc978116d32d6c07fe8440#tailwindcss-language-server",
+      "last_modified": "2025-05-29T08:12:58Z",
+      "resolved": "github:NixOS/nixpkgs/3866ad91cfc172f08a6839def503d8fc2923c603#tailwindcss-language-server",
       "source": "devbox-search",
-      "version": "0.14.4",
+      "version": "0.14.19",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/48wfgwpyik1gwc8vaaxfzi4jsynqp9lr-tailwindcss-language-server-0.14.4",
+              "path": "/nix/store/wqy7d3a8ah30bn5d94r7x6sw0b1ayzrl-tailwindcss-language-server-0.14.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/48wfgwpyik1gwc8vaaxfzi4jsynqp9lr-tailwindcss-language-server-0.14.4"
+          "store_path": "/nix/store/wqy7d3a8ah30bn5d94r7x6sw0b1ayzrl-tailwindcss-language-server-0.14.19"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/xvq6g2giqjxyjadav0c95ssyrs7953z4-tailwindcss-language-server-0.14.4",
+              "path": "/nix/store/1zkfai40r96cfqa8y1lnq8br0317pw1p-tailwindcss-language-server-0.14.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/xvq6g2giqjxyjadav0c95ssyrs7953z4-tailwindcss-language-server-0.14.4"
+          "store_path": "/nix/store/1zkfai40r96cfqa8y1lnq8br0317pw1p-tailwindcss-language-server-0.14.19"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/zdk3r8ikhm1mz0y1g5dx4h2grzgysz5q-tailwindcss-language-server-0.14.4",
+              "path": "/nix/store/z0zp993m6r1sjdl6hzkmmrzq4pfis5i9-tailwindcss-language-server-0.14.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/zdk3r8ikhm1mz0y1g5dx4h2grzgysz5q-tailwindcss-language-server-0.14.4"
+          "store_path": "/nix/store/z0zp993m6r1sjdl6hzkmmrzq4pfis5i9-tailwindcss-language-server-0.14.19"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/yx70rhgspy6miyb92nvf0gx9s20nm046-tailwindcss-language-server-0.14.4",
+              "path": "/nix/store/986x01bzdscf0w8ryv1rkrrgv0w1q264-tailwindcss-language-server-0.14.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/yx70rhgspy6miyb92nvf0gx9s20nm046-tailwindcss-language-server-0.14.4"
+          "store_path": "/nix/store/986x01bzdscf0w8ryv1rkrrgv0w1q264-tailwindcss-language-server-0.14.19"
         }
       }
     },
