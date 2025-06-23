@@ -24,7 +24,7 @@ if (!post) return;
 >
 	<article
 		aria-labelledby={post.id}
-		class="bg-base-primary-100 dark:bg-primary-400/10 format-base lg:format-lg relative flex w-full flex-col overflow-clip rounded-2xl transition-transform duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:flex-row-reverse md:@xl:h-[414px]"
+		class="bg-base-primary-100 dark:bg-primary-400/10 format-base lg:format-lg relative flex w-full flex-col overflow-clip rounded-2xl transition-[border-top-right-radius] duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:flex-row-reverse md:@xl:h-[414px]"
 	>
 		<div
 			class="bg-background pointer-events-none absolute -top-12 -right-12 z-10 flex h-24 w-24 translate-x-12 -translate-y-12 flex-col justify-end overflow-clip rounded-bl-xl transition-transform group-[:has(.group-trigger:hover,.group-trigger:focus)]:translate-0 motion-safe:duration-250"
@@ -55,18 +55,22 @@ if (!post) return;
 		<div
 			class="mr-auto flex w-full max-w-[502px] flex-col gap-y-3 p-6 pb-8 lg:p-8 lg:pb-10 @xl:max-h-[414px]"
 		>
-			<div
-				class="format format-sm dark:format-invert font-montserrat inline-flex items-center gap-x-[.5em] font-medium"
+			<span
+				class="format format-sm dark:format-invert font-montserrat relative inline-flex items-center gap-x-[.5em] font-medium"
 			>
 				<PublishedOrUpdated prefix={false} {...post.data} />
-				<div
-					class="bg-accent-500 dark:bg-accent-300 h-1 w-1 rounded-full text-transparent"
+				<span
+					class="flex items-center justify-center text-transparent selection:text-transparent"
 					role="separator"
 				>
 					•
-				</div>
+					<div
+						class="bg-accent-500 dark:bg-accent-300 absolute h-1 w-1 rounded-full"
+					>
+					</div>
+				</span>
 				<MinutesRead postId={post.id} />
-			</div>
+			</span>
 			<a
 				id={post.id}
 				href={`/posts/${post.slug}`}
