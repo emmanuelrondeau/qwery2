@@ -38,3 +38,7 @@ pnpm-debug.log*
 
 # images
 src/assets/**/*.*_original
+
+# studiocms
+data/
+keys/

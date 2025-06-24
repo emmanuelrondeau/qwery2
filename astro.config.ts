@@ -37,6 +37,7 @@ export default defineConfig({
 	cacheDir: "./.astro-cache",
 	prefetch: { prefetchAll: true },
 	image: {
+		responsiveStyles: true,
 		service: {
 			config: {
 				...defaultConfig,
@@ -73,7 +74,6 @@ export default defineConfig({
 				subsets: ["latin"],
 			},
 		],
-		responsiveImages: true,
 	},
 	markdown: {
 		remarkPlugins: [
