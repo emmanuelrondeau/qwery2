@@ -1,0 +1,233 @@
+---
+import WinnipegTransitBus from "./WinnipegTransitBus.astro";
+
+import Peak from "./peak.svg";
+import OffPeak from "./off-peak.svg";
+import Night from "./night.svg";
+---
+
+<p
+	class="mb-1 flex w-min gap-x-4 rounded-md border-2 border-dashed border-(--tw-prose-th-borders) px-4 py-2"
+>
+	<strong class="inline-flex items-center">
+		<Peak aria-hidden /> Peak
+	</strong>
+	<strong class="inline-flex items-center break-keep">
+		<OffPeak aria-hidden /> Off-Peak
+	</strong>
+	<strong class="inline-flex items-center">
+		<Night aria-hidden /> Night
+	</strong>
+</p>
+
+<table>
+	<col />
+	<colgroup span="2"></colgroup>
+	<col />
+	<thead>
+		<tr>
+			<th></th>
+			<th scope="col" colspan="2">Service Type</th>
+			<th scope="col">Target Frequencies</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th
+				rowspan="4"
+				scope="rowgroup"
+				class="border-r border-b border-(--tw-prose-th-borders)"
+			>
+				<span class="mr-[.75em] block w-min">Primary Transit Network</span>
+			</th>
+			<th class="ps-[0.75em]" scope="row">Rapid Transit</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus type="blue" />
+				</div>
+			</td>
+			<td>
+				<div class="grid">
+					<div class="mb-1 grid gap-x-2 gap-y-1">
+						<strong class="inline-flex items-center">
+							<Peak aria-label={"Peak"} /> 4-10 minutes
+						</strong>
+						<strong class="inline-flex items-center">
+							<OffPeak aria-label={"Off-Peak"} /> 5-10 minutes
+						</strong>
+						<strong class="inline-flex items-center">
+							<Night aria-label={"Night/Weekend"} /> 10-30 minutes
+						</strong>
+					</div>
+					<span class="block max-w-[14rem]">
+						<em>Core frequencies, longer wait time for branches.</em>
+					</span>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th class="ps-[0.75em]" scope="row">Frequent Express</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus type="fx2" />
+					<WinnipegTransitBus type="fx3" />
+					<WinnipegTransitBus type="fx4" />
+				</div>
+			</td>
+			<td>
+				<div class="mb-1 grid gap-x-2 gap-y-1">
+					<strong class="inline-flex items-center">
+						<Peak aria-label={"Peak"} /> 5-15 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<OffPeak aria-label={"Off-Peak"} /> 10-15 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<Night aria-label={"Night/Weekend"} /> 10-30 minutes
+					</strong>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th class="ps-[0.75em]" scope="row">Frequent</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus type="f" text="5" />
+					<WinnipegTransitBus type="f" text="6" />
+					<WinnipegTransitBus type="f" text="7" />
+				</div>
+			</td>
+			<td>
+				<div class="grid gap-x-2 gap-y-1">
+					<strong class="inline-flex items-center">
+						<Peak aria-label={"Peak"} /> 10-15 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<OffPeak aria-label={"Off-Peak"} /> 10-15 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<Night aria-label={"Night/Weekend"} /> 15-30 minutes
+					</strong>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th class="ps-[0.75em]" scope="row">Direct</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus type="d" text="14" />
+					<WinnipegTransitBus type="d" text="16" />
+					<WinnipegTransitBus type="d" text="18" />
+				</div>
+			</td>
+			<td>
+				<div class="grid gap-x-2 gap-y-1">
+					<strong class="inline-flex items-center">
+						<Peak aria-label={"Peak"} /> 10-15 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<OffPeak aria-label={"Off-Peak"} /> 10-20 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<Night aria-label={"Night/Weekend"} /> 15-30 minutes
+					</strong>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	<tbody class="border-t border-(--tw-prose-th-borders)">
+		<tr>
+			<th
+				rowspan="4"
+				scope="rowgroup"
+				class="border-r border-(--tw-prose-th-borders)"
+			>
+				<span class="mr-[.75em] block w-min">Feeder Network</span>
+			</th>
+			<th class="ps-[0.75em]" scope="row">Connector</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus type="connector" text="28" />
+					<WinnipegTransitBus type="connector" text="57" />
+					<WinnipegTransitBus type="connector" text="74" />
+				</div>
+			</td>
+			<td>
+				<div class="grid gap-x-2 gap-y-1">
+					<strong class="inline-flex items-center">
+						<Peak aria-label={"Peak"} /> 15-30 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<OffPeak aria-label={"Off-Peak"} /> 15-30 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<Night aria-label={"Night/Weekend"} /> 20-60 minutes
+					</strong>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th class="ps-[0.75em]" scope="row">Community</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus text="440" />
+					<WinnipegTransitBus text="441" />
+					<WinnipegTransitBus text="446" />
+				</div>
+			</td>
+			<td>
+				<div class="grid gap-x-2 gap-y-1">
+					<strong class="inline-flex items-center">
+						<Peak aria-label={"Peak"} /> 30-60 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<OffPeak aria-label={"Off-Peak"} /> 30-60 minutes
+					</strong>
+					<strong class="inline-flex items-center">
+						<Night aria-label={"Night/Weekend"} /> Varies
+					</strong>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th class="ps-[0.75em]" scope="row">Limited</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus text="889" />
+					<WinnipegTransitBus text="887" />
+					<WinnipegTransitBus text="894" />
+				</div>
+			</td>
+			<td>
+				<span class="block max-w-[14rem]">
+					<strong>Varies.</strong> Limited-span routes operate only at certain times
+					of day.
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<th class="ps-[0.75em]">On-Request</th>
+			<td class="table-cell align-middle">
+				<div class="flex w-min gap-x-1">
+					<WinnipegTransitBus type="on-request" text="101" />
+					<WinnipegTransitBus type="on-request" text="105" />
+					<WinnipegTransitBus type="on-request" text="111" />
+				</div>
+			</td>
+			<td>
+				<span class="block max-w-[14rem]">
+					<strong>Varies.</strong> Generally 5-20 minutes after booking a trip.
+				</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<style>
+	svg {
+		display: inline;
+		height: 1.5em;
+		min-width: 1.5em;
+		margin-right: 1ch;
+	}
+</style>

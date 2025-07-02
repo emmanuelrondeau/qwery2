@@ -1,0 +1,72 @@
+---
+interface Props {
+	type?:
+		| "blue"
+		| "fx2"
+		| "fx3"
+		| "fx4"
+		| "f"
+		| "d"
+		| "connector"
+		| "default"
+		| "on-request";
+	text?: string;
+	line?: boolean;
+	class?: string;
+}
+
+const { type: typeProp, text, class: className } = Astro.props;
+const type = !typeProp ? "default" : typeProp;
+let prefix = "";
+
+switch (type) {
+	case "blue":
+		prefix = "Blue";
+		break;
+	case "fx2":
+		prefix = "FX2";
+		break;
+	case "fx3":
+		prefix = "FX3";
+		break;
+	case "fx4":
+		prefix = "FX4";
+		break;
+	case "f":
+		prefix = "F";
+		break;
+	case "d":
+		prefix = "D";
+		break;
+}
+---
+
+{
+	/* Colours pulled from:
+	- https://www.winnipeg.ca/sites/default/files/styles/full_width/public/2024-02/Primary_Lines.png?itok=XWQ0XJrQ
+	- https://www.winnipeg.ca/sites/default/files/styles/full_width/public/2025-02/schedules_1.png?itok=vahzrC-F
+	- https://app.winnipegtransit.com/routes/D12/details
+	*/
+}
+<span
+	class:list={[
+		"h-6 rounded-sm px-1.5 font-medium uppercase",
+		{ "bg-[#0557a3] text-white": type === "blue" },
+		{ "bg-[#f16122] text-white": type === "fx2" },
+		{ "bg-[#ea81a8] text-white": type === "fx3" },
+		{ "bg-[#645faa] text-white": type === "fx4" },
+		{ "bg-[#03af4b] text-white": type === "f" },
+		{ "bg-[#026c7e] text-white": type === "d" },
+		{ "bg-[#072465] text-white": type === "connector" },
+		{
+			"bg-white text-[#072465] ring-1 ring-[#072465] ring-inset":
+				type === "default",
+		},
+		{
+			"bg-[#fef6e2] text-[#072465] ring-1 ring-[#072465] ring-inset":
+				type === "on-request",
+		},
+		{ "inline-block": !className?.includes("inline") },
+		className,
+	]}>{`${prefix}${text ?? ""}`}</span
+>

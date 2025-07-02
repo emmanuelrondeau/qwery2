@@ -5,7 +5,7 @@ authors:
   - fio-cobbs
 tag: Transportation
 created: 2024-05-21
-lastEdited: 2025-06-02
+lastEdited: 2025-07-02
 cover: /src/assets/images/how-to-take-the-bus-in-winnipeg/how-to-take-the-bus-in-winnipeg.avif
 coverMetadata:
   type: photo
@@ -13,7 +13,10 @@ coverMetadata:
   license: CC-BY-SA-4.0
 ---
 
-import WinnipegTransitMap from "/src/components/articles/WinnipegTransitMap.astro";
+import WinnipegTransitBus from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitBus.astro";
+import WinnipegTransitMap from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitMap.astro";
+import WinnipegTransitTablePrimary from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitTablePrimary.astro";
+import WinnipegTransitTable from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitTable.astro";
 
 import GoogleMaps1 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps1.webp";
 import GoogleMaps2 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps2.webp";
@@ -22,10 +25,10 @@ import GoogleMaps4 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/goog
 import StNorbertBus from "/src/assets/images/how-to-take-the-bus-in-winnipeg/st-norbert-bus.webp";
 import BusTickets from "/src/assets/images/how-to-take-the-bus-in-winnipeg/bus-tickets.avif";
 import SplitLineBus from "/src/assets/images/how-to-take-the-bus-in-winnipeg/split-line-bus.avif";
-import BlueBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/blue-bus-icon.avif";
-import YellowBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/yellow-bus-icon.avif";
-import BlackBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/black-bus-icon.avif";
-import RegularBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/regular-bus-icon.avif";
+// import BlueBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/blue-bus-icon.avif";
+// import YellowBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/yellow-bus-icon.avif";
+// import BlackBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/black-bus-icon.avif";
+// import RegularBusIcon from "/src/assets/images/how-to-take-the-bus-in-winnipeg/regular-bus-icon.avif";
 import YellowCord from "/src/assets/images/how-to-take-the-bus-in-winnipeg/yellow-cord.avif";
 import StopButton from "/src/assets/images/how-to-take-the-bus-in-winnipeg/stop-button.avif";
 import BackSideDoor from "/src/assets/images/how-to-take-the-bus-in-winnipeg/back-side-door.avif";
@@ -41,7 +44,7 @@ import ParkNRide from "/src/assets/images/how-to-take-the-bus-in-winnipeg/park-n
 import BikeParking from "/src/assets/images/how-to-take-the-bus-in-winnipeg/bike-parking.jpg";
 
 > [!info]
-> On June 29, 2025, Winnipeg Transit will release a improved bus network! This includes new bus stops, new routes, and new destinations. These changes will also allow for more frequent and direct buses.
+> As of June 29, 2025, Winnipeg Transit released an improved bus network! This includes new bus stops, new routes, and new destinations. These changes will also allow for more frequent and direct buses.
 >	
 >	- [Winnipeg’s new bus network launches June 29, 2025 - Winnipeg.ca](https://www.winnipeg.ca/services-programs/transportation-roads-parking/transit/new-bus-network-launches-june-29)
 >	- [Winnipeg Transit 2025 System Map](https://www.winnipeg.ca/media/4770)
@@ -66,7 +69,7 @@ You can also buy a Peggo card online for $5 on the [Winnipeg Transit e-Fare](htt
 	</figcaption>
 </figure>
 
-To pay, walk to the front door of your bus. Upon entering, you'll see a fare box.
+To pay, walk to the front door of your bus. Upon entering, you'll see a fare box, where you can pay with the following options:
 
 <figure class="xs:max-w-sm">
 	{/* Picture by Fio Cobbs on Queer Winnipeg, licensed under CC BY-SA 4.0. */}
@@ -112,22 +115,36 @@ Using an app like [Google Maps](https://www.google.com/maps/) can help you plan 
 	<figcaption>Routing a trip with Google Maps</figcaption>
 </figure>
 
-The [Winnipeg Transit app](https://app.winnipegtransit.com/) in my opinion is clunky to use, and Navigo doesn't seem to be as good as Google Maps' routing engine. However, it may be worth downloading the app or using the webapp, for more up-to-date schedule times for bus stops, compared to Google Maps.
+The [Winnipeg Transit app](https://app.winnipegtransit.com/) in my opinion is clunky to use, and Navigo doesn't seem to be as good as Google Maps' routing engine. However, it may be worth downloading the app or using the webapp, for **more up-to-date schedule times for bus stops**, compared to Google Maps.
 
-Do note that Navigo adds a lot more time padding relative to Google Maps, for getting to a bus stop on-time to catch your ride.
+Navigo may add some time padding relative to Google Maps, for getting to a bus stop on-time to catch your ride.
 
-If you have an Apple device, it may be worth trying Apple Maps. From my limited experience, I've found it to be a worse experience.
+If you have an Apple device, it may be worth trying Apple Maps. From my limited experience, I've found it to be a worse experience. Same goes with [Transit](https://transitapp.com/), but the Winnipeg website does suggest using it as an alternative to Navigo.
 
 > [!warning]
 > **Make sure you route your way back home!** Depending on the hours of your trip, and if its a holiday or Sunday, your route's service may have ended, leaving you stranded.
 >
 > In this scenario, if you don't have any friends nor family available to drive you, [you may wish to try a taxi](#a-note-on-taxis).
 
-## Getting On the Right Bus
+### Split Lines
 
-All buses have a some identifier (ex. a number, BLUE, FX1), along with a destination. You will likely need both of these pieces of information.
+You'll see some buses, but with a vertical line split down multiple of them. This means that you could take any one of these buses, to complete your trip.
 
-Routes are usually formed through loops, and the bus may go back to the same place, but on the other side of the road. With the exception of BLUE buses, there are only two different destinations per route.
+<figure class="sm:max-w-xl">
+	<Image
+		alt="Route on Google Maps with a split line"
+		class="ring-2 ring-[#dadce0] dark:ring-0"
+		src={SplitLineBus}
+	/>
+	<figcaption>A route dating back pre-June 29th. Taking any one of the routes will lead to your destination.</figcaption>
+</figure>
+
+## Boarding the Right Bus
+
+All buses have an identifier like <WinnipegTransitBus type="blue" class="inline" /><span class="sr-only">,</span> <WinnipegTransitBus type="fx2" class="inline" /><span class="sr-only">,</span> <WinnipegTransitBus type="f" text="5" class="inline" /><span class="sr-only">, or</span> <WinnipegTransitBus type="d" text="14" class="inline" /> <span class="sr-only">, or a number like</span><WinnipegTransitBus type="connector" text="28" class="inline" />
+<span class="sr-only">or </span> <WinnipegTransitBus type="default" text="440" class="inline" />. They all also have a destination; usually feeder routers like the 440 will only have two. Certain buses, such as the <span class="uppercase">Blue</span><span class="sr-only">,</span> have more than one; "St. Norbert", "University of Manitoba" goes southbound, while "Downtown" goes northbound.
+
+Routes are usually formed through loops, and the bus may go back to the same place, but on the other side of the road. With the exception of <span class="uppercase">Blue</span> buses, there are only two different destinations per route.
 
 <figure>
 	<Image
@@ -155,21 +172,21 @@ Routes are usually formed through loops, and the bus may go back to the same pla
 
 Buses with the same route number, but different destination, can come at roughly the same time. Different stops for the same route, but a different destination, are usually roughly parallel to each other too.
 
-### Tips & Tricks
+Some pointers for getting the direction right:
 
-Make sure the bus you're waiting and/or getting on, is going the direction that Google Maps says to go to.
-
-Also, before getting on the bus, check _both_ the number and destination, to make sure you're going on the right bus.
+- Make sure the bus you're waiting and/or getting on, is going the direction that your transit app says to go to. It can be easy to dose off and be waiting either at the wrong stop, or board the wrong bus.
+- Before getting on the bus, check *both* the number and destination, to make sure you're going on the right bus. If you need more time before a bus leaves, you can ask the bus driver if it goes a certain direction.
+- At <span class="uppercase">Blue</span> rapid transit stations, there may be a yellow sign that'll say "<span class="uppercase">northbound</span>" and "<span class="uppercase">southbound</span>". Digital signage may also say whether a side is north or southbound.
 
 ## Getting On and Off the Bus
 
-Once you pay your fare (more on that later!), you can now sit down on the bus. 
+Once you pay your fare, take your paper transit (if you paid in cash or ticket), you can now board.
 
 Generally, its encouraged to go as far back into the bus. Depending on how crowded your bus is though, this may not be at all necessary. If you have a physical disability, you are encouraged to use the priority seating up front.
 
 For wheelchair users, the bus driver will lower a platform for you to be able to get on.
 
-Bus apps will let you see where you are in your trip. Apps such as Google Maps and Apple Maps show where you are on an easy-to-use interface.
+Good transit apps will let you see where you are, during your trip. Apps such as Google Maps and Apple Maps show where you are visually, along with a list of intermediate destinations. The Winnipeg Transit app does not have this functionality; you'll need to match destinations to the bus's inside display and voice announcement. 
 
 Once you're about to reach your stop, wait to make sure you've passed the stop before yours. Once passed, you can now pull down the yellow cord on the sides of the bus.
 
@@ -200,7 +217,7 @@ For most people, you should exit via the back side door of the bus. To exit, pre
 	<figcaption>The back side door to exit the bus.</figcaption>
 </figure>
 
-For wheelchair users, you may need to announce "wheelchair" to indicate that you need to get off. You will always get off at the front, as there is no ramp at the back doors..
+For users with limited mobility, you may need to announce "wheelchair" (if on a wheelchair) or "getting off", to indicate that you need to get off the bus at the next stop. You will always get off at the front, as there is no ramp at the back doors.
 
 ## Transfers
 
@@ -234,33 +251,16 @@ It won't charge you again when changing buses, for a period of time. You can ver
 
 ## Route Types
 
-### Community
+This is a shorted, (hopefully) more accessible version of the [Winnipeg Transit 2025 System Map](https://www.winnipeg.ca/media/4770) PDF's map legend on routes.
 
-Community routes part of the "feeder network" of buses. These are are the main type of bus you see. In transit apps, these have white backgrounds with their number.
+If this or the PDF are inaccessible for you, you can call [311](tel:311). However, if you know how to improve the tables below, please contact us.
 
-<figure class="sm:max-w-xl">
-	<Image
-		alt="Route on Google Maps with regular buses"
-		class="ring-2 ring-[#dadce0] dark:ring-0"
-		src={RegularBusIcon}
-	/>
-</figure>
+<WinnipegTransitTable />
+{/* <WinnipegTransitTablePrimary /> */}
 
-Although technically there's such things such as feeder routes, we'll ignore these for simplicity. Transit apps label these as the same as regulars, and have no functional difference.
+### BLUE
 
-### BLUE / Rapid Transit
-
-BLUE buses are part of a rapid transit line, which come by fairly frequently. In transit apps these have blue backgrounds with the text "BLUE".
-
-<figure class="sm:max-w-xl">
-	<Image
-		alt="Route on Google Maps with a BLUE bus"
-		class="ring-2 ring-[#dadce0] dark:ring-0"
-		src={BlueBusIcon}
-	/>
-</figure>
-
-BLUE buses are known for being connected to stations, with nicer, larger bus shelters than what's normally seen in the city.
+<span class="uppercase">Blue</span> buses are part of the rapid transit line, and is one of the more important bus routes for moving quickly through the city. These buses are known for being connected to stations, with nicer, larger bus shelters than what's normally seen in the city.
 
 <figure>
 	<div class="grid grid-cols-2 gap-4">
@@ -281,7 +281,7 @@ BLUE buses are known for being connected to stations, with nicer, larger bus she
 			/>
 		</div>
 	</div>
-	<figcaption>Various BLUE rapid transit stations.</figcaption>
+	<figcaption>Various <span class="uppercase">Blue</span> rapid transit stations.</figcaption>
 </figure>
 
 Some of these larger stations include "park-to-ride" parking lots, and bike storage. If you're heading to downtown or other places with less parking, you can drive or bike quicker to a station, than taking only the bus. However, you gain the benefit of not having to worry about parking.
@@ -309,55 +309,7 @@ The buses are longer than normal, and are called a "bendy". These buses will the
 
 **Make sure your bus on your route matches the name you see on the road!** Pick the wrong one, and you'll go potentially into the complete wrong direction, or suddenly the wrong direction.
 
-At rapid transit stations, there will be multiple signages saying either a stop is "Northbound" or "Southbound".
-
-### Industrial and Express Routes
-
-> [!info]
-> This terminology and coloring will soon be outdated, when the new bus transit network rolls out on July 29th, 2025.
->
-> The black "industrial" routes will soon be named "limited", and will be stylized the same as community routes. A dotted line instead of a solid one on route maps will be used, to differentiate between them.
->
-> Express routes will no longer be just yellow; instead, there will be the "frequent express" lines, the "frequent" lines, and "direct" lines.
-
-In transit apps, you'll notice that there are yellow and black background transit buses.
-
-<figure class="sm:max-w-xl">
-	<Image
-		alt="Express route bus"
-		class="ring-2 ring-[#dadce0] dark:ring-0"
-		src={YellowBusIcon}
-	/>
-	<figcaption>Yellow means this is an express route.</figcaption>
-</figure>
-<figure class="sm:max-w-xl">
-	<Image
-		alt="Peak-hours bus"
-		class="ring-2 ring-[#dadce0] dark:ring-0"
-		src={BlackBusIcon}
-	/>
-	<figcaption>
-		Black means this bus is scheduled for peak hours only.
-	</figcaption>
-</figure>
-
-Functionally, as long as you're using a service such as Google Maps, these buses are effectively the same as the regular buses. The only difference is their schedules.
-
-### Split Lines
-
-You'll see some buses, but with a vertical line split down multiple of them. This means that you could take any one of these buses, to complete your route.
-
-<figure class="sm:max-w-xl">
-	<Image
-		alt="Route on Google Maps with a split line"
-		class="ring-2 ring-[#dadce0] dark:ring-0"
-		src={SplitLineBus}
-	/>
-	<figcaption>
-		Taking any one of the split lines (47, 66, or BLUE) will lead to your
-		destination.
-	</figcaption>
-</figure>
+At rapid transit stations, there will be multiple signages saying either a stop is "northbound" or "southbound".
 
 ## Questions You May Have
 
