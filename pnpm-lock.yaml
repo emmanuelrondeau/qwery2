@@ -60,8 +60,8 @@ importers:
         specifier: ^0.4.4
         version: 0.4.4(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1))
       astro-better-image-service:
-        specifier: ^2.1.7
-        version: 2.1.7(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1))
+        specifier: ^2.1.6
+        version: 2.1.6(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1))
       astro-expressive-code:
         specifier: ^0.41.2
         version: 0.41.2(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1))
@@ -1748,8 +1748,8 @@ packages:
     peerDependencies:
       astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
 
-  astro-better-image-service@2.1.7:
-    resolution: {integrity: sha512-DZO5s5pXosAvY97OIm+31vQa/1+KAJ/pirJTr5XZXddyYKQH5m1b4G6WL1577ZeA/koATX6qm9pBmbJ0QdIO3Q==}
+  astro-better-image-service@2.1.6:
+    resolution: {integrity: sha512-kM2fUsVMeM2du88OecmRTbgK2mPjanFxTQY+PdiaavEEyu9Zj7tJcThh8qrmCV3PsLFoK7M18uBdftGsghQq+A==}
     peerDependencies:
       astro: ^4.7.0 || ^5.0.0
 
@@ -2041,10 +2041,6 @@ packages:
   commander@10.0.1:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
-
-  commander@11.1.0:
-    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
-    engines: {node: '>=16'}
 
   commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
@@ -4256,9 +4252,6 @@ packages:
   sass-formatter@0.7.9:
     resolution: {integrity: sha512-CWZ8XiSim+fJVG0cFLStwDvft1VI7uvXdCNJYXhDvowiv+DsbD1nXLiQ4zrE5UBvj5DWZJ93cwN0NX5PMsr1Pw==}
 
-  sax@1.4.1:
-    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
-
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
     engines: {node: '>=10'}
@@ -4461,11 +4454,6 @@ packages:
   svgo@3.3.2:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
-    hasBin: true
-
-  svgo@4.0.0:
-    resolution: {integrity: sha512-VvrHQ+9uniE+Mvx3+C9IEe/lWasXCU0nXMY2kZeLrHNICuRiC8uMPyM14UEaMOFA5mhyQqEkB02VoQ16n3DLaw==}
-    engines: {node: '>=16'}
     hasBin: true
 
   tabbable@6.2.0:
@@ -6923,11 +6911,11 @@ snapshots:
       acorn: 8.14.1
       astro: 5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1)
 
-  astro-better-image-service@2.1.7(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1)):
+  astro-better-image-service@2.1.6(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1)):
     dependencies:
       astro: 5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1)
       sharp: 0.34.2
-      svgo: 4.0.0
+      svgo: 3.3.2
 
   astro-expressive-code@0.41.2(astro@5.10.1(@netlify/blobs@8.2.0)(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(terser@5.42.0)(typescript@5.8.3)(yaml@2.5.1)):
     dependencies:
@@ -7326,8 +7314,6 @@ snapshots:
   comma-separated-tokens@2.0.3: {}
 
   commander@10.0.1: {}
-
-  commander@11.1.0: {}
 
   commander@12.1.0: {}
 
@@ -9997,8 +9983,6 @@ snapshots:
     dependencies:
       suf-log: 2.5.3
 
-  sax@1.4.1: {}
-
   semver@7.7.1: {}
 
   semver@7.7.2: {}
@@ -10294,16 +10278,6 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.1.1
-
-  svgo@4.0.0:
-    dependencies:
-      commander: 11.1.0
-      css-select: 5.1.0
-      css-tree: 3.1.0
-      css-what: 6.1.0
-      csso: 5.0.5
-      picocolors: 1.1.1
-      sax: 1.4.1
 
   tabbable@6.2.0: {}
 
