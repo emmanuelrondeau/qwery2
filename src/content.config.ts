@@ -36,6 +36,7 @@ const posts = defineCollection({
 				})
 				.optional(),
 			authors: z.array(reference("authors")),
+			contributors: z.array(reference("authors")).optional(),
 			created: z.date(),
 			lastEdited: z.date().optional(),
 			license: z.string().optional(),
