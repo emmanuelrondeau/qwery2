@@ -42,22 +42,19 @@ switch (type) {
 ---
 
 {
-	/* Colours pulled from:
-	- https://www.winnipeg.ca/sites/default/files/styles/full_width/public/2024-02/Primary_Lines.png?itok=XWQ0XJrQ
-	- https://www.winnipeg.ca/sites/default/files/styles/full_width/public/2025-02/schedules_1.png?itok=vahzrC-F
-	- https://app.winnipegtransit.com/routes/D12/details
-	*/
+	/* Colours pulled from Google Maps, I give up.
+	All except FX2 matches https://winnipegtransit.com. */
 }
 <span
 	class:list={[
 		"h-6 rounded-sm px-1.5 font-medium uppercase",
-		{ "bg-[#0557a3] text-white": type === "blue" },
+		{ "bg-[#0064b1] text-white": type === "blue" },
 		{ "bg-[#f16122] text-white": type === "fx2" },
-		{ "bg-[#ea81a8] text-white": type === "fx3" },
-		{ "bg-[#645faa] text-white": type === "fx4" },
-		{ "bg-[#03af4b] text-white": type === "f" },
+		{ "bg-[#f27ea6] text-white": type === "fx3" },
+		{ "bg-[#6450a1] text-white": type === "fx4" },
+		{ "bg-[#00b262] text-white": type === "f" },
 		{ "bg-[#026c7e] text-white": type === "d" },
-		{ "bg-[#072465] text-white": type === "connector" },
+		{ "bg-[#052465] text-white": type === "connector" },
 		{
 			"bg-white text-[#072465] ring-1 ring-[#072465] ring-inset":
 				type === "default",
