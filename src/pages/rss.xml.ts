@@ -17,7 +17,7 @@ export async function GET(context: { site: string }) {
 		// Array of `<item>`s in output xml
 		// See "Generating items" section for examples using content collections and glob imports
 		items: posts
-			.filter((post) => !post.data.draft)
+			.filter((post) => !post.data.draft && !post.data.hideFromRss)
 			.map((post) => ({
 				title: post.data.title,
 				pubDate: post.data.created,
