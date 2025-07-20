@@ -11,23 +11,21 @@ interface Props {
 }
 
 const { seo, themeColor } = Astro.props;
-const title = `${seo.title} | Queer Winnipeg`;
+const title = seo.title ?? "Queer Winnipeg";
 const description =
 	seo.description ??
 	"We're an online website of various written resources, primarily for queer people living in Winnipeg. Our goal is to help you navigate through life, through articles!";
 
 const newSeoProp: SEOProps = {
 	...seo,
-	title: title,
+	title: `${seo.title} | Queer Winnipeg`,
 	description: description,
 	openGraph: {
 		...seo.openGraph,
 		basic: {
 			...seo.openGraph?.basic,
 			image: seo.openGraph?.basic.image ?? "/favicon@4x.png",
-			title: seo.openGraph?.basic.title
-				? `${seo.openGraph.basic.title} | Queer Winnipeg`
-				: title,
+			title: seo.openGraph?.basic.title ?? seo.title ?? title,
 			type: seo.openGraph?.basic.type ?? "jpg",
 		},
 		image: {
