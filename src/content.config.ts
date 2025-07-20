@@ -15,7 +15,7 @@ const posts = defineCollection({
 	schema: ({ image }) =>
 		z.object({
 			draft: z.boolean().optional(),
-			hideFromRss: z.boolean().optional(),
+			noindex: z.boolean().optional(),
 			containsReferralLinks: z.boolean().optional(),
 			title: z.string(),
 			description: z.string().optional(),
