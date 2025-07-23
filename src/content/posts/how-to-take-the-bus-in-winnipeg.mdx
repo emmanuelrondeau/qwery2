@@ -15,7 +15,6 @@ coverMetadata:
 
 import WinnipegTransitBus from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitBus.astro";
 import WinnipegTransitMap from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitMap.astro";
-import WinnipegTransitTablePrimary from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitTablePrimary.astro";
 import WinnipegTransitTable from "/src/components/articles/special/how-to-take-the-bus-in-winnipeg/WinnipegTransitTable.astro";
 
 import GoogleMaps1 from "/src/assets/images/how-to-take-the-bus-in-winnipeg/googlemaps1.webp";
@@ -256,7 +255,6 @@ This is a shorted, (hopefully) more accessible version of the [Winnipeg Transit 
 If this or the PDF are inaccessible for you, you can call [311](tel:311). However, if you know how to improve the tables below, please contact us.
 
 <WinnipegTransitTable />
-{/* <WinnipegTransitTablePrimary /> */}
 
 ### BLUE
 
@@ -266,18 +264,22 @@ If this or the PDF are inaccessible for you, you can call [311](tel:311). Howeve
 	<div class="grid grid-cols-2 gap-4">
 		<Image
 			alt="View of Beaumont Station's Northbound side"
-			class="!h-full"
 			src={RapidTransitBeaumont}
-			pictureAttributes={{ class: "h-full" }}
+			class="!h-full"
+			pictureAttributes={{ class: "!h-full" }}
 		/>
 		<div class="grid grid-rows-2 gap-4">
 			<Image
 				alt="Under Fort Rogue Station's glass shelter, with digital signage displaying times"
 				src={RapidTransitFortRogue}
+				class="!h-full"
+				pictureAttributes={{ class: "!h-full" }}
 			/>
 			<Image
 				alt="A Seel Station stop, looking over the Northbound side of the station"
 				src={RapidTransitSeel}
+				class="!h-full"
+				pictureAttributes={{ class: "!h-full" }}			
 			/>
 		</div>
 	</div>
