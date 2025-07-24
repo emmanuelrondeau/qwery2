@@ -4,24 +4,39 @@ import { MAIN_NAV_ID } from "@/constants";
 import Button from "./Button.astro";
 import Link from "./Link.astro";
 import QWLogo from "@/assets/icons/qw-logo.svg";
+import MobileNav from "@/components/navigation/MobileNav.svelte";
 ---
 
 <nav id={MAIN_NAV_ID} class="z-10 flex w-full py-6">
 	<div
-		class="mx-auto flex w-full max-w-[1520px] items-center justify-between px-4 text-violet-900 dark:text-gray-50"
+		class="mx-auto flex w-full max-w-[1520px] items-center justify-between pr-3 pl-4 text-violet-900 sm:pr-4 dark:text-gray-50"
 	>
 		<Link
 			href="/"
-			class="transition-opacity select-none hover:text-violet-700 hover:opacity-85"
-			><span role="img" aria-label="Logo"> <QWLogo height="32" /></span></Link
+			class="flex h-11 items-center transition-opacity select-none hover:opacity-85"
 		>
-		<div class="flex items-center gap-x-6">
+			<span role="img" aria-label="Logo">
+				<QWLogo height="24" class="block sm:hidden" />
+				<QWLogo height="32" class="hidden sm:block" />
+			</span>
+		</Link>
+		<div class="hidden items-center gap-x-6 sm:flex">
 			<ThemeSelector />
 			<Button
 				href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
 				target="_blank"
 				data-astro-prefetch="false">Write for us!</Button
 			>
+		</div>
+		<div class="flex gap-x-0.5 sm:hidden">
+			<ThemeSelector />
+			<MobileNav client:load>
+				<Button
+					href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
+					target="_blank"
+					data-astro-prefetch="false">Write for us!</Button
+				>
+			</MobileNav>
 		</div>
 	</div>
 </nav>

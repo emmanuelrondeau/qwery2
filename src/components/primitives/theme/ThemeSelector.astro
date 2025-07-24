@@ -4,10 +4,11 @@ import ThemeDropdown from "@/components/primitives/theme/ThemeDropdown.svelte";
 ---
 
 <starlight-theme-select class="relative flex">
+	<span class="sr-only">
+		<noscript>Requires JavaScript</noscript>
+	</span>
 	<ThemeDropdown client:load>
-		<LightMode
-			class="label-icon text-primary-800 hover:text-primary-300 focus:text-primary-300 dark:focus:text-primary-400 relative flex transition-colors duration-75 hover:opacity-80 focus:opacity-80 dark:text-gray-300"
-		/>
+		<LightMode class="label-icon relative flex" />
 	</ThemeDropdown>
 
 	{
