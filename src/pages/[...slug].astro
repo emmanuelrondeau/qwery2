@@ -1,0 +1,34 @@
+---
+import BiggerPicture from "@/components/articles/bigger-picture/BiggerPicture.astro";
+import UnderlineAnimate from "@/components/underline-animate/UnderlineAnimate.astro";
+import { MAIN_CONTENT_ID } from "@/constants";
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+	const entries = await getCollection("legal");
+	return entries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+type Props = {
+	entry: CollectionEntry<"legal">;
+};
+
+const { entry: post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BiggerPicture />
+<ArticleLayout seo={{ title: post.data.title }} legalTextFormatting={true}>
+	<UnderlineAnimate>
+		<main
+			class="format dark:format-invert lg:format-lg block max-w-[748px]"
+			id={MAIN_CONTENT_ID}
+		>
+			<Content />
+		</main>
+	</UnderlineAnimate>
+</ArticleLayout>

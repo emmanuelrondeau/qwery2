@@ -1,5 +1,5 @@
 ---
-import { BOTTOM_PAGE_SENTINEL_ID } from "@/constants";
+import { BOTTOM_PAGE_SENTINEL_ID, SOCIAL_DISCORD } from "@/constants";
 import Link from "./Link.astro";
 import QWLogo from "@/assets/icons/qw-logo.svg";
 import UnderlineAnimate from "../underline-animate/UnderlineAnimate.astro";
@@ -47,10 +47,10 @@ if (hash === "unknown") {
 				<Link
 					href="/"
 					class="w-fit transition-opacity select-none hover:text-violet-700 hover:opacity-85"
-					><span role="img" aria-label="Logo">
-						<QWLogo height="32" /></span
-					></Link
+					aria-label="Homepage"
 				>
+					<QWLogo height="32" />
+				</Link>
 				<UnderlineAnimate>
 					<span
 						class="format lg:format-lg dark:format-invert block max-w-[491px]"
@@ -107,7 +107,7 @@ if (hash === "unknown") {
 						<ul class="flex list-none flex-col" role="list">
 							<li>
 								<Link
-									href="https://discord.gg/4A9MJXkeqx"
+									href={SOCIAL_DISCORD}
 									class="block py-1.5 !no-underline"
 									data-astro-prefetch="false">Discord</Link
 								>
@@ -133,9 +133,14 @@ if (hash === "unknown") {
 						<h2 class="!text-lg !font-semibold">Legalese</h2>
 						<ul class="flex list-none flex-col" role="list">
 							<li>
-								<Link href="/privacy" class="block py-1.5 !no-underline"
-									>Privacy</Link
-								>
+								<Link href="/accessibility" class="block py-1.5 !no-underline">
+									Accessibility
+								</Link>
+							</li>
+							<li>
+								<Link href="/privacy" class="block py-1.5 !no-underline">
+									Privacy
+								</Link>
 							</li>
 						</ul>
 					</div>

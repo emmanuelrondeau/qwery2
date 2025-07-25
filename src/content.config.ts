@@ -44,6 +44,11 @@ const posts = defineCollection({
 		}),
 });
 
+const legal = defineCollection({
+	type: "content",
+	schema: () => z.object({ title: z.string() }),
+});
+
 export const TagEnum = z.enum([
 	"Fashion",
 	"Finances",
@@ -67,4 +72,5 @@ export type CoverTypeEnum = z.infer<typeof CoverTypeEnum>;
 export const collections = {
 	posts: posts,
 	authors: authors,
+	legal: legal,
 };

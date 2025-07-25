@@ -22,6 +22,7 @@ import rehypeAutolink from "./src/plugins/rehype-autolink";
 import rehypeCallouts from "rehype-callouts";
 import rehypeFigCaption from "./src/plugins/rehype-figcaption";
 import remarkReadingTime from "./src/plugins/remark-reading-time";
+import { SOCIAL_DISCORD } from "./src/constants";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE =
@@ -74,6 +75,9 @@ export default defineConfig({
 				subsets: ["latin"],
 			},
 		],
+	},
+	redirects: {
+		"/discord": { status: 302, destination: SOCIAL_DISCORD },
 	},
 	markdown: {
 		remarkPlugins: [
