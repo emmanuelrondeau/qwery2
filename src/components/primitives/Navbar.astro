@@ -14,11 +14,10 @@ import MobileNav from "@/components/navigation/MobileNav.svelte";
 		<Link
 			href="/"
 			class="flex h-11 items-center transition-opacity select-none hover:opacity-85"
+			aria-label="Homepage"
 		>
-			<span role="img" aria-label="Logo">
-				<QWLogo height="24" class="block sm:hidden" />
-				<QWLogo height="32" class="hidden sm:block" />
-			</span>
+			<QWLogo height="24" class="block sm:hidden" />
+			<QWLogo height="32" class="hidden sm:block" />
 		</Link>
 		<div class="hidden items-center gap-x-6 sm:flex">
 			<ThemeSelector />
