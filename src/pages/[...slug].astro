@@ -24,11 +24,15 @@ const { Content } = await post.render();
 <BiggerPicture />
 <ArticleLayout seo={{ title: post.data.title }} legalTextFormatting={true}>
 	<UnderlineAnimate>
-		<main
-			class="format dark:format-invert lg:format-lg block max-w-[748px]"
-			id={MAIN_CONTENT_ID}
+		<div
+			class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-[78.875rem] xl:px-0"
 		>
-			<Content />
-		</main>
+			<main
+				class="format dark:format-invert lg:format-lg block max-w-[748px]"
+				id={MAIN_CONTENT_ID}
+			>
+				<Content />
+			</main>
+		</div>
 	</UnderlineAnimate>
 </ArticleLayout>
