@@ -21,6 +21,9 @@
 	];
 
 	let selectValue = $state<Theme>(get(theme));
+	theme.subscribe((v) => {
+		selectValue = v;
+	});
 
 	onMount(() => {
 		const tmpl: HTMLTemplateElement | null =
