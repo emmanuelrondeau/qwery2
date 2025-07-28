@@ -8,6 +8,10 @@ interface Props {
 	"aria-hidden"?: boolean;
 	tabindex?: number;
 	style?: string | null | undefined;
+	/**
+	 * An "until-hover" state is effectively implied by styling.
+	 */
+	underlineStyle?: "on-hover" | "never";
 	"data-astro-reload"?: boolean;
 	"aria-current"?: boolean;
 }
@@ -21,6 +25,7 @@ const {
 	"aria-hidden": ariaHidden,
 	tabindex,
 	style,
+	underlineStyle,
 } = Astro.props;
 ---
 
@@ -30,10 +35,15 @@ const {
 	class:list={[
 		"ring-focus-outline rounded outline-hidden focus-visible:ring-2",
 		className,
+		{
+			"!no-underline contrast-more:hover:!underline contrast-more:focus:!underline print:!no-underline":
+				underlineStyle === "on-hover",
+		},
 	]}
 	target={target}
 	referrerpolicy={referrerpolicy}
 	aria-hidden={ariaHidden}
 	tabindex={tabindex}
+	data-underline-style={underlineStyle}
 	style={style}><slot /></a
 >

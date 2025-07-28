@@ -18,7 +18,10 @@ interface Props extends HTMLAttributes<"div"> {
 	class UnderlineAnimate extends HTMLElement {
 		getCoercedPreferredContrast = () =>
 			matchMedia("(prefers-contrast: more)").matches ||
-			matchMedia("(prefers-contrast: custom)").matches
+			matchMedia("(prefers-contrast: custom)").matches ||
+			// Checking print disables the custom underlines, which avoids
+			// printing issues with links
+			matchMedia("print").matches
 				? "more"
 				: "no-preference";
 

@@ -30,7 +30,7 @@ function buildToc(headings: MarkdownHeading[]) {
 }
 ---
 
-<div class="mt-8 hidden lg:ml-auto lg:block lg:w-[22.625rem]">
+<div class="mt-8 hidden lg:ml-auto lg:block lg:w-[22.625rem] print:lg:hidden">
 	<starlight-toc>
 		<nav class="relative rounded pb-2 lg:h-full">
 			<h2 role="presentation" class="mt-0 !text-lg !font-semibold">
@@ -53,7 +53,7 @@ function buildToc(headings: MarkdownHeading[]) {
 		</nav>
 	</starlight-toc>
 </div>
-<DetailsUtils animate class="w-full lg:hidden">
+<DetailsUtils animate class="w-full lg:hidden print:hidden">
 	<details
 		class="group bg-background block w-full rounded border border-gray-300 motion-safe:transition-[height,max-height] lg:hidden dark:border-gray-700"
 	>

@@ -37,7 +37,7 @@ if (hash === "unknown") {
 }
 ---
 
-<footer transition:persist id={BOTTOM_PAGE_SENTINEL_ID}>
+<footer transition:persist id={BOTTOM_PAGE_SENTINEL_ID} class="print:hidden">
 	<div class="mx-auto w-full max-w-[1520px] px-4 pt-8 pb-6 sm:pt-12 lg:pb-12">
 		<hr class="border-gray-200 md:mx-auto dark:border-gray-700" />
 		<div
@@ -80,21 +80,24 @@ if (hash === "unknown") {
 							<li>
 								<Link
 									href="https://bsky.app/profile/fio.queerwinnipeg.ca"
-									class="block py-1.5 !no-underline"
+									class="block py-1.5"
+									underlineStyle="on-hover"
 									data-astro-prefetch="false">Bluesky</Link
 								>
 							</li>
 							<li>
 								<Link
 									href="mailto:hello@queerwinnipeg.ca"
-									class="block py-1.5 !no-underline"
+									class="block py-1.5"
+									underlineStyle="on-hover"
 									data-astro-prefetch="false">Email</Link
 								>
 							</li>
 							<li>
 								<Link
 									href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues"
-									class="block py-1.5 !no-underline"
+									class="block py-1.5"
+									underlineStyle="on-hover"
 									data-astro-prefetch="false">Issue Tracker</Link
 								>
 							</li>
@@ -108,22 +111,27 @@ if (hash === "unknown") {
 							<li>
 								<Link
 									href={SOCIAL_DISCORD}
-									class="block py-1.5 !no-underline"
+									class="block py-1.5"
+									underlineStyle="on-hover"
 									data-astro-prefetch="false">Discord</Link
 								>
 							</li>
 							<li>
 								<Link
 									href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca"
-									class="block py-1.5 !no-underline"
+									class="block py-1.5"
+									underlineStyle="on-hover"
 									data-astro-prefetch="false">Repository</Link
 								>
 							</li>
 							<li>
 								<Link
 									href="/posts/article-style-guide"
-									class="block py-1.5 !no-underline">Style Guide</Link
+									class="block py-1.5"
+									underlineStyle="on-hover"
 								>
+									Style Guide
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -133,12 +141,20 @@ if (hash === "unknown") {
 						<h2 class="!text-lg !font-semibold">Legalese</h2>
 						<ul class="flex list-none flex-col" role="list">
 							<li>
-								<Link href="/accessibility" class="block py-1.5 !no-underline">
+								<Link
+									href="/accessibility"
+									class="block py-1.5"
+									underlineStyle="on-hover"
+								>
 									Accessibility
 								</Link>
 							</li>
 							<li>
-								<Link href="/privacy" class="block py-1.5 !no-underline">
+								<Link
+									href="/privacy"
+									class="block py-1.5"
+									underlineStyle="on-hover"
+								>
 									Privacy
 								</Link>
 							</li>
