@@ -2,6 +2,7 @@
 import Head from "@/layouts/Head.astro";
 import StatusCode from "@/components/decorations/status-code/StatusCode.svelte";
 import Sound from "@/assets/audio/three-note-oddity.ogg?url";
+import { Font } from "astro:assets";
 ---
 
 <!doctype html>
@@ -18,13 +19,14 @@ import Sound from "@/assets/audio/three-note-oddity.ogg?url";
 			nofollow: true,
 		}}
 	/>
+	<Font cssVariable="--font-noto-sans-hk" />
 	<body
 		class="flex min-h-screen flex-col items-center justify-center bg-black text-gray-300 selection:bg-gray-500/30 selection:text-current"
 	>
 		<main class="max-w-prose px-[1em] text-center font-mono">
 			<div class="bg-gray-500" role="presentation"></div>
 			<h1 class="font-mono font-bold text-white">
-				<span lang="zh-Hans">注意</span><br /> Notice
+				<span class="font-noto-sans-hk" lang="zh-Hans">注意</span><br /> Notice
 			</h1>
 			<br />
 			<hr class="text-gray-500" />
