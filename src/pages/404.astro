@@ -1,15 +1,55 @@
 ---
-import Link from "../components/primitives/Link.astro";
-import ArticleLayout from "../layouts/ArticleLayout.astro";
+import Head from "@/layouts/Head.astro";
+import StatusCode from "@/components/decorations/status-code/StatusCode.svelte";
+import Sound from "@/assets/audio/three-note-oddity.ogg?url";
 ---
 
-<ArticleLayout
-	seo={{ title: "404", description: "Something went wrong!" }}
-	legalTextFormatting={true}
+<!doctype html>
+<html
+	lang="en"
+	transition:name="root"
+	transition:animate="none"
+	style="color-scheme: dark;"
 >
-	<div class="mx-4">
-		<h1 class="text-6xl">404 — Page Not Found</h1>
-		<p>Something went wrong!</p>
-		<Link href="/">Go Back to Homepage</Link>
-	</div>
-</ArticleLayout>
+	<Head
+		seo={{
+			title: "Not Found",
+			noindex: true,
+			nofollow: true,
+		}}
+	/>
+	<body
+		class="flex min-h-screen flex-col items-center justify-center bg-black text-gray-300 selection:bg-gray-500/30 selection:text-current"
+	>
+		<main class="max-w-prose px-[1em] text-center font-mono">
+			<div class="bg-gray-500" role="presentation"></div>
+			<h1 class="font-mono font-bold text-white">
+				<span lang="zh-Hans">注意</span><br /> Notice
+			</h1>
+			<br />
+			<hr class="text-gray-500" />
+			<br />
+			<div class="text-left">
+				<h2 class="font-mono font-bold text-white">Page not found</h2>
+				<p>
+					If you believe you're seeing this in error, please create an issue on
+					our <a
+						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/~/issues"
+						class="font-bold underline hover:opacity-80"
+						data-astro-prefetch="false">Issue Tracker</a
+					>, or email <a
+						href="mailto:hello@queerwinnipeg?subject=Page Not Found"
+						class="font-bold underline hover:opacity-80"
+						>hello@queerwinnipeg.ca</a
+					>.
+				</p>
+				<br />
+				<a href="/" class="font-bold underline hover:opacity-80">Go back home</a
+				>
+			</div>
+			<br />
+			<br />
+			<StatusCode sfxUrl={Sound} client:load />
+		</main>
+	</body>
+</html>
