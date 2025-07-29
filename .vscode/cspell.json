@@ -1,8 +1,6 @@
 {
 	"version": "0.2",
-	"ignorePaths": [
-		".devcontainer"
-	],
+	"ignorePaths": [".devcontainer"],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -32,6 +30,7 @@
 		"bundlemeta",
 		"bundlesize",
 		"callouts",
+		"carceral",
 		"Cascadia",
 		"catppuccin",
 		"CDIC",
@@ -183,6 +182,7 @@
 		"Sobeys",
 		"Spacebar",
 		"Spironolactone",
+		"SSRI",
 		"SSRS",
 		"stefanprobst",
 		"subpixeled",
@@ -197,6 +197,7 @@
 		"transfemme",
 		"transfemmes",
 		"transmascs",
+		"transness",
 		"Travelling",
 		"Twemoji",
 		"undervolting",
@@ -227,9 +228,7 @@
 		"XGRO",
 		"Zergpool"
 	],
-	"ignoreWords": [
-		"rehypei"
-	],
+	"ignoreWords": ["rehypei"],
 	"import": [],
 	"language": "en,en-CA"
 }
