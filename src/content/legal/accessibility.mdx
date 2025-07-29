@@ -4,18 +4,18 @@ title: Accessibility
 
 # Accessibility Statement
 
-Last updated: July 26, 2025
+Last updated: July 28, 2025
 
 > [!info] Meta:
 > This statement is derived from the [W3C Accessibility Statement Generator Tool](https://www.w3.org/WAI/planning/statements/), but the tool was discovered thanks to [Adrian Roselli's statement](https://adrianroselli.com/accessibility-statement).
 
 Queer Winnipeg is committed to ensuring digital accessibility for individuals with disabilities. We are continually improving the user experience for everyone, and applying the relevant accessibility standards.
 
-## Conformance Status
+## Conformance status
 
 The [<dfn>Web Content Accessibility Guidelines</dfn> (<abbr>WCAG</abbr>)](https://www.w3.org/WAI/standards-guidelines/wcag/) defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. Queer Winnipeg is partially conformant with <abbr>WCAG</abbr> 2.2 level AA. Partially conformant means that some parts of the content do not fully conform to the accessibility standard.
 
-### Additional Accessibility Concerns
+### Additional accessibility concerns
 
 The colors used on this site (attempt to) conform to the [<dfn>Advanced Perception of Color Algorithm</dfn> (<abbr>APCA</abbr>)](https://www.myndex.com/APCA/), instead of <abbr>WCAG</abbr> 2.2. This is an effort to address known issues with high-contrast pairings that pass <abbr>WCAG2</abbr>’s contrast check but which create halation or other other problematic effects for some users. [contrast.tools](https://contrast.tools/) is used for determining compliance.
 
@@ -45,14 +45,20 @@ Queer Winnipeg is not compatible with:
 
 Accessibility of Queer Winnipeg relies on the following technologies to work with the particular combination of web browser and any assistive technologies or plugins installed on your computer:
 
-- HTML
-- WAI-ARIA
-- CSS
+- <abbr title="Hypertext Markup Language">HTML</abbr>
+- <abbr title="Web Accessibility Initiative – Accessible Rich Internet Applications">WAI-ARIA</abbr>
+- <abbr title="Cascading Style Sheets">CSS</abbr>
 - JavaScript
-    - A best-case approach is done for cases for users who disable JavaScript. But, disabling JavaScript is highly discouraged, as [color scheme theming cannot work without JavaScript as of writing](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues?show=eyJpaWQiOiI0IiwiZnVsbF9wYXRoIjoicXVlZXJ3aW5uaXBlZy9xdWVlcndpbm5pcGVnLmNhIiwiaWQiOjE2ODY2MzgxMn0%3D). If your main concern is security, we recommend [disabling <abbr>JIT</abbr>](https://lemmy.eus/post/7660) in your browser.
-- SVG
+- <abbr title="Scalable Vector Graphics">SVG</abbr>
 
 These technologies are relied upon for conformance with the accessibility standards used.
+
+A best-case approach is done for cases for users who disable JavaScript. But, disabling JavaScript is highly discouraged, as various elements will break such as:
+
+- [Color scheme theming](https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/issues?show=eyJpaWQiOiI0IiwiZnVsbF9wYXRoIjoicXVlZXJ3aW5uaXBlZy9xdWVlcndpbm5pcGVnLmNhIiwiaWQiOjE2ODY2MzgxMn0%3D)
+- Print media visual errors with the underline animation system
+ 
+If your main concern is security, we recommend [disabling <abbr>JIT</abbr>](https://lemmy.eus/post/7660) in your browser.
 
 ## Assessment approach
 
