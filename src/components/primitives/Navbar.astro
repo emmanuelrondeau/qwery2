@@ -5,6 +5,7 @@ import Button from "./Button.astro";
 import Link from "./Link.astro";
 import QWLogo from "@/assets/icons/qw-logo.svg";
 import MobileNav from "@/components/navigation/MobileNav.svelte";
+import MobileMenuIcon from "../navigation/MobileMenuIcon.astro";
 ---
 
 <nav id={MAIN_NAV_ID} class="z-10 flex w-full py-6 print:hidden">
@@ -30,11 +31,14 @@ import MobileNav from "@/components/navigation/MobileNav.svelte";
 		<div class="flex gap-x-0.5 sm:hidden">
 			<ThemeSelector />
 			<MobileNav client:load>
-				<Button
-					href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
-					target="_blank"
-					data-astro-prefetch="false">Write for us!</Button
-				>
+				<MobileMenuIcon />
+				<Fragment slot="navigation">
+					<Button
+						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
+						target="_blank"
+						data-astro-prefetch="false">Write for us!</Button
+					>
+				</Fragment>
 			</MobileNav>
 		</div>
 	</div>

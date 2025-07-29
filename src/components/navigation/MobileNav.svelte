@@ -1,18 +1,7 @@
 <script lang="ts">
-	// import MobileLink from "./mobile-link.svelte";
-	// import { Button } from "$lib/components/ui/button/index.js";
-	// import { navigation } from "$lib/config/index.js";
 	import { Popover } from "bits-ui";
-	// import ScrollArea from "../scroll-area.svelte";
-	// import { page } from "$app/state";
-	import MobileMenuIcon from "./MobileMenuIcon.svelte";
 
-	interface Props {
-		children?: import("svelte").Snippet;
-	}
-
-	let { children }: Props = $props();
-
+	// Disables scrolling, without colliding with something that I forgot
 	let myOpen = $state(false);
 	function getOpen() {
 		return myOpen;
@@ -32,13 +21,13 @@
 		{#snippet child({ props })}
 			<button
 				{...props}
-				class="ring-focus-outline p-2 text-base outline-hidden select-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-offset-0 md:hidden [&_svg]:size-7"
+				class="group ring-focus-outline p-2 text-base outline-hidden select-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-offset-0 md:hidden [&_svg]:size-7"
 			>
-				<MobileMenuIcon class="label-icon" open={getOpen()} />
 				<span class="sr-only">
 					Toggle menu
 					<noscript>Requires JavaScript</noscript>
 				</span>
+				<slot />
 			</button>
 		{/snippet}
 	</Popover.Trigger>
@@ -55,7 +44,7 @@
 				class="mt-2 h-(--bits-popover-content-available-height) max-h-none w-(--bits-popover-content-available-width) max-w-none"
 			>
 				<div class="flex flex-col gap-2 px-4">
-					{@render children?.()}
+					<slot name="navigation" />
 				</div>
 			</div>
 		</Popover.Content>
