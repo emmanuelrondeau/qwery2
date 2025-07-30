@@ -24,7 +24,7 @@ if (!post) return;
 >
 	<article
 		aria-labelledby={post.id}
-		class="bg-base-primary-100 dark:bg-primary-400/10 format-base lg:format-lg relative flex w-full flex-col-reverse overflow-clip rounded-2xl transition-[border-top-right-radius] duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:flex-row md:@xl:h-[414px]"
+		class="bg-base-primary-100 dark:bg-primary-400/10 format-base lg:format-lg group-[:has(.group-trigger:hover,.group-trigger:focus)]:bg-accent-50 dark:group-[:has(.group-trigger:hover,.group-trigger:focus)]:bg-accent-400/10 relative flex w-full flex-col-reverse overflow-clip rounded-2xl transition-[border-top-right-radius,background-color] duration-250 group-[:has(.group-trigger:hover,.group-trigger:focus)]:rounded-tr-none @xl:flex-row md:@xl:h-[414px]"
 	>
 		<div
 			class="mr-auto mb-auto flex w-full max-w-[502px] flex-col gap-y-3 p-6 pb-8 lg:p-8 lg:pb-10 @xl:max-h-[414px]"
