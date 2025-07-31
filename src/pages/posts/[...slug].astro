@@ -50,12 +50,25 @@ const authors = await Promise.all(authorsPromise);
 				title: post.data.title,
 				type: "article",
 			},
+			image: {
+				alt: post.data.coverMetadata?.alt,
+				url: post.data.cover?.src,
+			},
 			article: {
 				publishedTime: post.data.created.toISOString(),
 				modifiedTime: post.data.lastEdited?.toISOString(),
 				authors: authors.map((author) => author.name),
 				section: post.data.tag,
+				tags: post.data.otherTags,
 			},
+		},
+		twitter: {
+			card: "summary_large_image",
+			image: post.data.cover?.src ?? "",
+			imageAlt: post.data.coverMetadata?.alt,
+			description: post.data.seoDescription ?? post.data.description,
+			site: "Queer Winnipeg",
+			title: post.data.title,
 		},
 	}}
 	disableFormat
