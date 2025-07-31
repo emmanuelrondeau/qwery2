@@ -3,6 +3,7 @@ import { BOTTOM_PAGE_SENTINEL_ID, SOCIAL_DISCORD } from "@/constants";
 import Link from "./Link.astro";
 import QWLogo from "@/assets/icons/qw-logo.svg";
 import UnderlineAnimate from "../underline-animate/UnderlineAnimate.astro";
+import LineSeparator from "./LineSeparator.astro";
 
 const isProd = import.meta.env.PROD;
 const date = new Date();
@@ -39,7 +40,7 @@ if (hash === "unknown") {
 
 <footer transition:persist id={BOTTOM_PAGE_SENTINEL_ID} class="print:hidden">
 	<div class="mx-auto w-full max-w-[1520px] px-4 pt-8 pb-6 sm:pt-12 lg:pb-12">
-		<hr class="border-gray-200 md:mx-auto dark:border-gray-700" />
+		<LineSeparator />
 		<div
 			class="my-[4.5rem] flex flex-col gap-x-24 gap-y-12 md:flex-row md:justify-between"
 		>
@@ -163,7 +164,7 @@ if (hash === "unknown") {
 				</UnderlineAnimate>
 			</div>
 		</div>
-		<hr class="border-gray-200 md:mx-auto dark:border-gray-700" />
+		<LineSeparator />
 		<div
 			class="format dark:format-invert format-p:m-0 flex max-w-full justify-between pt-8 text-gray-500 dark:text-gray-400"
 		>

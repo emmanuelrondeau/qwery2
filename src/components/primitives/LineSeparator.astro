@@ -1,0 +1,13 @@
+---
+interface Props {
+	class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<hr
+	class:list={[
+		"w-full border-gray-300 md:mx-auto dark:border-gray-700",
+		className,
+	]}
+/>

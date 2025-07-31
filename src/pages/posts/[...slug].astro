@@ -11,6 +11,7 @@ import { MAIN_CONTENT_ID, PAGE_TITLE_ID } from "@/constants";
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import BiggerPicture from "@/components/articles/bigger-picture/BiggerPicture.astro";
 import UnderlineAnimate from "@/components/underline-animate/UnderlineAnimate.astro";
+import LineSeparator from "@/components/primitives/LineSeparator.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -58,52 +59,60 @@ const authors = await Promise.all(authorsPromise);
 	disableFormat
 >
 	<div
-		class="relative mx-auto flex max-w-prose flex-col gap-y-2 px-4 lg:max-w-[78.875rem] xl:px-0"
+		class="relative mx-auto flex max-w-prose flex-col px-4 lg:max-w-[78.875rem] xl:px-0"
 	>
-		{
-			post.data.cover && (
-				<div class="relative mx-auto mb-4 flex aspect-video w-full max-w-full items-center justify-center overflow-clip rounded-2xl object-cover lg:h-96">
+		<div
+			class="flex flex-col-reverse items-center gap-x-12 gap-y-8 lg:grid lg:grid-cols-2"
+		>
+			<div class="format dark:format-invert lg:format-lg h-fit">
+				{
+					post.data.tag && post.data.tag.length > 0 && (
+						<Link
+							href="/"
+							class="not-format font-montserrat mb-3 inline-block font-medium uppercase no-underline"
+						>
+							{post.data.tag}
+						</Link>
+					)
+				}
+				<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
+				<p class="format format-lg lg:format-xl dark:format-invert">
+					{post.data.description}
+				</p>
+				<div class="flex flex-row items-start gap-4">
+					<ArticleAuthors postId={post.id} size="large" priority={true} />
+					<div class="flex flex-col">
+						<strong
+							><span class="sr-only">Written by </span>{
+								authors.map((author) => author.name).join(", ")
+							}<span class="sr-only"><br /></span></strong
+						>
+						<span>
+							<PublishedOrUpdated
+								lastEdited={post.data.lastEdited}
+								created={post.data.created}
+							/><span role="separator" aria-orientation="horizontal"> • </span>
+							<MinutesRead postId={post.id} />
+						</span>
+					</div>
+				</div>
+			</div>
+			{
+				post.data.cover && (
 					<Picture
-						alt=""
-						class="aspect-video object-cover"
 						src={post.data.cover}
+						alt={post.data.coverMetadata?.alt ?? ""}
 						priority={true}
 						layout="full-width"
 						formats={["avif"]}
 						fallbackFormat="jpg"
-						pictureAttributes={{ class: "w-full h-full flex" }}
+						pictureAttributes={{ class: "h-full" }}
+						class="aspect-video !h-full rounded-2xl lg:aspect-auto"
 					/>
-				</div>
-			)
-		}
-		<div class="format dark:format-invert lg:format-lg !max-w-full">
-			{
-				post.data.tag && post.data.tag.length > 0 && (
-					<Link
-						href="/"
-						class="not-format font-montserrat mb-3 inline-block font-medium uppercase no-underline"
-					>
-						{post.data.tag}
-					</Link>
 				)
 			}
-			<h1 id={PAGE_TITLE_ID} class="!mb-4">{post.data.title}</h1>
-			<div class="xs:flex-row !mb-4 flex flex-col gap-5 lg:!mb-0">
-				<ArticleAuthors postId={post.id} size="large" priority={true} />
-				<div class="block">
-					<span
-						>Written by {authors.map((author) => author.name).join(", ")}</span
-					><br />
-					<span>
-						<PublishedOrUpdated
-							lastEdited={post.data.lastEdited}
-							created={post.data.created}
-						/> •
-						<MinutesRead postId={post.id} />
-					</span>
-				</div>
-			</div>
 		</div>
+		<LineSeparator class="my-8 lg:mt-12 lg:mb-8" />
 		<div
 			class="flex w-full flex-col justify-between pt-2 lg:flex-row-reverse lg:pt-0"
 		>
