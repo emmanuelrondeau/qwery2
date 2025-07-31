@@ -13,6 +13,8 @@ import BiggerPicture from "@/components/articles/bigger-picture/BiggerPicture.as
 import UnderlineAnimate from "@/components/underline-animate/UnderlineAnimate.astro";
 import LineSeparator from "@/components/primitives/LineSeparator.astro";
 
+import StickerRound from "@/components/decorations/sticker-round/StickerRound.svelte";
+
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
 	return blogEntries.map((entry) => ({
@@ -99,16 +101,23 @@ const authors = await Promise.all(authorsPromise);
 			</div>
 			{
 				post.data.cover && (
-					<Picture
-						src={post.data.cover}
-						alt={post.data.coverMetadata?.alt ?? ""}
-						priority={true}
-						layout="full-width"
-						formats={["avif"]}
-						fallbackFormat="jpg"
-						pictureAttributes={{ class: "h-full" }}
-						class="aspect-video !h-full rounded-2xl lg:aspect-auto"
-					/>
+					<div class="relative h-full">
+						<Picture
+							src={post.data.cover}
+							alt={post.data.coverMetadata?.alt ?? ""}
+							priority={true}
+							layout="full-width"
+							formats={["avif"]}
+							fallbackFormat="jpg"
+							pictureAttributes={{ class: "h-full" }}
+							class="aspect-video !h-full rounded-2xl lg:aspect-auto"
+						/>
+						{post.id === "how-to-start-hrt-in-winnipeg.mdx" && (
+							<div class="absolute top-12 right-16 hidden rotate-12 md:block 2xl:right-8">
+								<StickerRound client:visible type="transgender" />
+							</div>
+						)}
+					</div>
 				)
 			}
 		</div>
