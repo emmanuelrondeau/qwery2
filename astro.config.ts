@@ -60,27 +60,35 @@ export default defineConfig({
 		clientPrerender: true,
 		fonts: [
 			{
-				provider: fontProviders.fontsource(),
 				name: "Montserrat",
 				cssVariable: "--font-montserrat",
-				fallbacks: ["Figtree", "Noto Sans HK", "ui-sans-serif", "system-ui"],
+				provider: fontProviders.fontsource(),
 				weights: ["400 800"],
 				subsets: ["latin"],
+				fallbacks: ["Figtree", "Noto Sans HK", "ui-sans-serif", "system-ui"],
 			},
 			{
-				provider: fontProviders.fontsource(),
 				name: "Figtree",
 				cssVariable: "--font-sans",
-				fallbacks: ["Noto Sans HK", "ui-sans-serif", "system-ui"],
+				provider: fontProviders.fontsource(),
 				weights: ["300 800"],
 				subsets: ["latin"],
+				fallbacks: ["Noto Sans HK", "ui-sans-serif", "system-ui"],
 			},
 			{
-				provider: fontProviders.fontsource(),
 				name: "Noto Sans HK",
 				cssVariable: "--font-noto-sans-hk",
+				provider: fontProviders.fontsource(),
 				styles: ["normal"],
 				subsets: ["chinese-hongkong"],
+			},
+			{
+				//
+				// https://source.typekit.com/source-han-serif/#get-the-fonts
+				name: "Noto Serif SC",
+				cssVariable: "--font-noto-serif-sc",
+				provider: fontProviders.fontsource(),
+				subsets: ["chinese-simplified"],
 			},
 		],
 	},
