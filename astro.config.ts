@@ -1,27 +1,27 @@
 /* eslint-disable node/prefer-global/process */
+import AutoImport from "astro-auto-import";
+import bundlesize from "vite-plugin-bundlesize";
 import cloudflare from "@astrojs/cloudflare";
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import { defaultConfig } from "astro-better-image-service";
+import { defineConfig, fontProviders } from "astro/config";
+import expressiveCode from "astro-expressive-code";
 
 import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 import netlify from "@astrojs/netlify";
+import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
-import withToc from "@stefanprobst/rehype-extract-toc";
-
-import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 import tailwindcss from "@tailwindcss/vite";
-import AutoImport from "astro-auto-import";
-import { defaultConfig } from "astro-better-image-service";
-import expressiveCode from "astro-expressive-code";
-import { defineConfig, fontProviders } from "astro/config";
-
-import bundlesize from "vite-plugin-bundlesize";
 
 import rehypeAutolink from "./src/plugins/rehype-autolink";
 import rehypeCallouts from "rehype-callouts";
+import rehypeEnhancedTables from "@benjc/rehype-enhanced-tables";
+import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import rehypeFigCaption from "./src/plugins/rehype-figcaption";
 import remarkReadingTime from "./src/plugins/remark-reading-time";
+import withToc from "@stefanprobst/rehype-extract-toc";
+import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
+
 import { SOCIAL_DISCORD } from "./src/constants";
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
@@ -199,6 +199,7 @@ export default defineConfig({
 				ph: ["caret-down"],
 			},
 		}),
+		sitemap(),
 	],
 	vite: {
 		build: { sourcemap: "hidden" },
