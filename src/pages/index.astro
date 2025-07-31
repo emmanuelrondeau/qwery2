@@ -9,6 +9,7 @@ import UmbrellaWithGrass from "@/components/decorations/UmbrellaWithGrass.astro"
 import Button from "@/components/primitives/Button.astro";
 import StickerRound from "@/components/decorations/sticker-round/StickerRound.svelte";
 import RoadBarrierWithGrass from "@/components/decorations/RoadBarrierWithGrass.astro";
+import { MAIN_CONTENT_ID } from "@/constants";
 
 // const posts = await getCollection("posts");
 
@@ -37,7 +38,7 @@ import RoadBarrierWithGrass from "@/components/decorations/RoadBarrierWithGrass.
 		</div>
 	</div>
 	<main
-		id="main-content"
+		id={MAIN_CONTENT_ID}
 		class="format dark:format-invert lg:format-lg mx-auto -mt-8 w-full max-w-[1520px] pt-18"
 	>
 		<section class="flex w-full pr-4 pl-4 sm:pr-0">

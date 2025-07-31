@@ -1,4 +1,6 @@
 ---
+import { MAIN_CONTENT_ID } from "@/constants";
+
 /**
  * SkipLink Component - Copied from accessible-astro-components under MIT.
  * Copied frustratingly due to animated styling that I personally dislike,
@@ -31,7 +33,7 @@ interface Props {
 const {
 	class: className,
 	text = "Skip to main content",
-	target = "#main-content",
+	target = `#${MAIN_CONTENT_ID}`,
 	...rest
 } = Astro.props;
 ---
