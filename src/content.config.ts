@@ -27,6 +27,7 @@ const posts = defineCollection({
 				.object({
 					type: CoverTypeEnum.default("image"),
 					author: z.string().optional(),
+					authorUrl: z.string().optional(),
 					source: z.string().optional(),
 					license: z.string().optional(),
 					// Apparently https://microsoft.design does proper alt
@@ -34,6 +35,11 @@ const posts = defineCollection({
 					// (also The Onion but it's just the post title,
 					// which if I remember right, is worse than useless)
 					alt: z.string().optional(),
+					/**
+					 * Hide attribution, if the attribution feels like theft (aka. putting
+					 * together a thumbnail using stock photos)
+					 */
+					hideAttribution: z.boolean().optional(),
 				})
 				.optional(),
 			authors: z.array(reference("authors")),

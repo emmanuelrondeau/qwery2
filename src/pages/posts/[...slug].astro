@@ -14,6 +14,8 @@ import UnderlineAnimate from "@/components/underline-animate/UnderlineAnimate.as
 import LineSeparator from "@/components/primitives/LineSeparator.astro";
 
 import StickerRound from "@/components/decorations/sticker-round/StickerRound.svelte";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import License from "@/components/articles/License.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("posts");
@@ -36,6 +38,9 @@ const authorsPromise = post.data.authors.map(async (author) => {
 	return authorEntry.data;
 });
 const authors = await Promise.all(authorsPromise);
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <BiggerPicture />
@@ -77,7 +82,7 @@ const authors = await Promise.all(authorsPromise);
 		class="relative mx-auto flex max-w-prose flex-col px-4 lg:max-w-[78.875rem] xl:px-0"
 	>
 		<div
-			class="flex flex-col-reverse items-center gap-x-12 gap-y-8 lg:grid lg:grid-cols-2"
+			class="flex flex-col items-center gap-x-12 gap-y-8 lg:grid lg:grid-cols-2"
 		>
 			<div class="format dark:format-invert lg:format-lg h-fit">
 				{
@@ -95,7 +100,12 @@ const authors = await Promise.all(authorsPromise);
 					{post.data.description}
 				</p>
 				<div class="flex flex-row items-start gap-4">
-					<ArticleAuthors postId={post.id} size="large" priority={true} />
+					<ArticleAuthors
+						postId={post.id}
+						size="large"
+						priority={true}
+						class="pt-1"
+					/>
 					<div class="flex flex-col">
 						<strong
 							><span class="sr-only">Written by </span>{
@@ -114,23 +124,62 @@ const authors = await Promise.all(authorsPromise);
 			</div>
 			{
 				post.data.cover && (
-					<div class="relative h-full">
-						<Picture
-							src={post.data.cover}
-							alt={post.data.coverMetadata?.alt ?? ""}
-							priority={true}
-							layout="full-width"
-							formats={["avif"]}
-							fallbackFormat="jpg"
-							pictureAttributes={{ class: "h-full" }}
-							class="aspect-video !h-full rounded-2xl lg:aspect-auto"
-						/>
-						{post.id === "how-to-start-hrt-in-winnipeg.mdx" && (
-							<div class="absolute top-12 right-16 hidden rotate-12 md:block 2xl:right-8">
-								<StickerRound client:visible type="transgender" />
-							</div>
-						)}
-					</div>
+					<UnderlineAnimate class="h-full">
+						<figure class="relative h-full">
+							<Picture
+								src={post.data.cover}
+								alt={post.data.coverMetadata?.alt ?? ""}
+								priority={true}
+								layout="full-width"
+								formats={["avif"]}
+								fallbackFormat="jpg"
+								pictureAttributes={{ class: "h-full" }}
+								class="aspect-video !h-full rounded-2xl lg:aspect-auto"
+							/>
+							{!post.data.coverMetadata?.hideAttribution &&
+								post.data.coverMetadata?.author && (
+									<figcaption class="bg-background format format-sm dark:format-invert absolute right-0 bottom-0 rounded-tl-md pr-1 pl-2">
+										{/* https://css-generators.com/custom-corners/ */}
+										<div
+											class="bg-background t-[22px] absolute bottom-0 -left-1.5 h-1.5 w-1.5"
+											style="mask: radial-gradient(6px at 0 0,#0000 98%,var(--color-background));"
+											role="presentation"
+										/>
+										<div
+											class="bg-background t-[22px] absolute -top-1.5 right-0 h-1.5 w-1.5"
+											style="mask: radial-gradient(6px at 0 0,#0000 98%,var(--color-background));"
+											role="presentation"
+										/>
+										{t(
+											`post.cover.type.${post.data.coverMetadata.type ?? "image"}`,
+										)}{" "}
+										by
+										{post.data.coverMetadata.author &&
+										post.data.coverMetadata.authorUrl ? (
+											<Link href={post.data.coverMetadata.authorUrl}>
+												{post.data.coverMetadata.author}
+											</Link>
+										) : (
+											<>{post.data.coverMetadata.author}</>
+										)}
+										{post.data.coverMetadata.license && (
+											<>
+												<span role="separator" aria-orientation="horizontal">
+													{" "}
+													•{" "}
+												</span>
+												<License license={post.data.coverMetadata.license} />
+											</>
+										)}
+									</figcaption>
+								)}
+							{post.id === "how-to-start-hrt-in-winnipeg.mdx" && (
+								<div class="absolute top-12 right-16 hidden rotate-12 md:block 2xl:right-8">
+									<StickerRound client:visible type="transgender" />
+								</div>
+							)}
+						</figure>
+					</UnderlineAnimate>
 				)
 			}
 		</div>

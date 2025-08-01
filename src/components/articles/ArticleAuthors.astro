@@ -7,6 +7,7 @@ interface Props {
 	postId: string;
 	size: "small" | "medium" | "large";
 	priority?: boolean;
+	class?: string;
 }
 const { postId }: Props = Astro.props;
 const posts = await getCollection("posts");
@@ -32,10 +33,10 @@ const authorStyling = tv({
 	},
 });
 
-const { size, priority } = Astro.props;
+const { size, priority, class: className } = Astro.props;
 ---
 
-<div class={authorStyling({ size })}>
+<div class:list={[authorStyling({ size }), className]}>
 	<div
 		class:list={[
 			"flex flex-shrink-0 items-center rtl:space-x-reverse",

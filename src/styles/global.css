@@ -488,7 +488,7 @@
 	}
 
 	/* underline-animate custom component handling */
-	underline-animate .format a.group\/underline {
+	underline-animate a.group\/underline {
 		@apply no-underline;
 	}
 

@@ -1,0 +1,29 @@
+---
+import Link from "../primitives/Link.astro";
+
+interface Props {
+	license: string;
+}
+
+const licenses: Record<string, { name?: string; href: string }> = {
+	"cc-by-sa-4.0": {
+		name: "CC BY-SA 4.0",
+		href: "https://creativecommons.org/licenses/by-sa/4.0/",
+	},
+	unsplash: {
+		name: "Unsplash",
+		href: "https://unsplash.com/license",
+	},
+};
+
+const { license } = Astro.props;
+const licenseData = licenses[license.toLowerCase()];
+---
+
+{
+	licenseData ? (
+		<a href={licenseData.href}>{licenseData.name ?? license}</a>
+	) : (
+		<>{license}</>
+	)
+}
