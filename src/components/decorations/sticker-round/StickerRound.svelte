@@ -1,4 +1,13 @@
 <script lang="ts">
+	{
+		/**
+		 * For all flags, they all use Tailwind CSS colors, instead of any
+		 * canonical flag hex values. Aim was to make everything look vibrant,
+		 * verses flags which (IMO) don't have the best colors. This includes:
+		 * - Rainbow (https://en.wikipedia.org/wiki/Rainbow_flag#/media/File:Gay_Pride_Flag.svg)
+		 * - Bisexual (https://en.wikipedia.org/wiki/Bisexual_flag#/media/File:Bisexual_Pride_Flag.svg)
+		 */
+	}
 	import Rainbow from "./flags/Rainbow.svelte";
 	import Transgender from "./flags/Transgender.svelte";
 	import GayMen from "./flags/GayMen.svelte";
@@ -12,7 +21,7 @@
 	import Pansexual from "./flags/Pansexual.svelte";
 	import Aromantic from "./flags/Aromantic.svelte";
 	import Intersex from "./flags/Intersex.svelte";
-	import Borga from "./flags/Borga.svelte";
+	import Burger from "./flags/Burger.svelte";
 	import Polyamorous from "./flags/Polyamorous.svelte";
 
 	type Stripes =
@@ -36,7 +45,9 @@
 		| "polyamorous"
 		| "intersex"
 		// Borga :3
-		| "borga";
+		// 	This is a meme flag in reference to the hyfetch burger pride flag
+		// 	https://github.com/hykilpikonna/hyfetch/blob/aee058e5912e0f2d81b50897dfd2a853014fa901/hyfetch/presets.py#L965C1-L971C8
+		| "burger";
 
 	interface Props {
 		children?: import("svelte").Snippet;
@@ -70,8 +81,8 @@
 		{ type: "asexual", name: "Ace", component: Asexual },
 		{ type: "polyamorous", name: "Polyam", component: Polyamorous },
 		{ type: "intersex", name: "Intersex", component: Intersex },
-		// Borga
-		{ type: "borga", name: "Borga", component: Borga },
+		// Burger
+		{ type: "burger", name: "burger", component: Burger },
 	];
 
 	const foundDefaultFlag = flags.find((s) => s.type === type);
