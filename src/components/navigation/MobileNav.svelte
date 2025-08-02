@@ -43,9 +43,7 @@
 			<div
 				class="mt-2 h-(--bits-popover-content-available-height) max-h-none w-(--bits-popover-content-available-width) max-w-none"
 			>
-				<div class="flex flex-col gap-2 px-4">
-					<slot name="navigation" />
-				</div>
+				<slot name="navigation" />
 			</div>
 		</Popover.Content>
 	</Popover.Portal>

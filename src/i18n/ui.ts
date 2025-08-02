@@ -10,6 +10,7 @@ export const ui = {
 		"post.cover.type.image": "Image",
 		"post.cover.type.photo": "Photo",
 		"post.cover.type.illustration": "Illustration",
+		"nav.main": "Main menu",
 	},
 	fr: {},
 } as const;

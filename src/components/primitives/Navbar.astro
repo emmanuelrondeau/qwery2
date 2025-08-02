@@ -1,45 +1,52 @@
 ---
 import ThemeSelector from "@/components/primitives/theme/ThemeSelector.astro";
-import { MAIN_NAV_ID } from "@/constants";
 import Button from "./Button.astro";
 import Link from "./Link.astro";
 import QWLogo from "@/assets/icons/qw-logo.svg";
 import MobileNav from "@/components/navigation/MobileNav.svelte";
 import MobileMenuIcon from "../navigation/MobileMenuIcon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<nav id={MAIN_NAV_ID} class="z-10 flex w-full py-6 print:hidden">
+<header class="z-10 flex w-full py-6 print:hidden">
 	<div
 		class="mx-auto flex w-full max-w-[1520px] items-center justify-between pr-3 pl-4 text-violet-900 sm:pr-4 dark:text-gray-50"
 	>
 		<Link
 			href="/"
 			class="flex h-11 items-center transition-opacity select-none hover:opacity-85"
-			aria-label="Homepage"
+			aria-label="Queer Winnipeg homepage"
 		>
 			<QWLogo height="24" class="block sm:hidden" />
 			<QWLogo height="32" class="hidden sm:block" />
 		</Link>
 		<div class="hidden items-center gap-x-6 sm:flex">
 			<ThemeSelector />
-			<Button
-				href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
-				target="_blank"
-				data-astro-prefetch="false">Write for us!</Button
-			>
+			<nav aria-label={t("nav.main")}>
+				<Button
+					href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
+					target="_blank"
+					data-astro-prefetch="false">Write for us!</Button
+				>
+			</nav>
 		</div>
 		<div class="flex gap-x-0.5 sm:hidden">
 			<ThemeSelector />
 			<MobileNav client:load>
 				<MobileMenuIcon />
 				<Fragment slot="navigation">
-					<Button
-						href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
-						target="_blank"
-						data-astro-prefetch="false">Write for us!</Button
-					>
+					<nav aria-label={t("nav.main")} class="flex flex-col gap-2 px-4">
+						<Button
+							href="https://gitlab.com/queerwinnipeg/queerwinnipeg.ca/-/blob/main/README.md?ref_type=heads#welcome-to-the-queer-winnipeg-website-repository"
+							target="_blank"
+							data-astro-prefetch="false">Write for us!</Button
+						>
+					</nav>
 				</Fragment>
 			</MobileNav>
 		</div>
 	</div>
-</nav>
+</header>
