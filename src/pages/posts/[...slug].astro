@@ -160,16 +160,13 @@ const t = useTranslations(lang);
 												{post.data.coverMetadata.author}
 											</Link>
 										) : (
-											<>{post.data.coverMetadata.author}</>
+											<>
+												{post.data.coverMetadata.author}
+												{post.data.coverMetadata.license && ", "}
+											</>
 										)}
 										{post.data.coverMetadata.license && (
-											<>
-												<span role="separator" aria-orientation="horizontal">
-													{" "}
-													•{" "}
-												</span>
-												<License license={post.data.coverMetadata.license} />
-											</>
+											<License license={post.data.coverMetadata.license} />
 										)}
 									</figcaption>
 								)}
