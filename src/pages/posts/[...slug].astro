@@ -48,7 +48,7 @@ const t = useTranslations(lang);
 	seo={{
 		title: post.data.title,
 		description: post.data.seoDescription ?? post.data.description,
-		noindex: post.data.noindex,
+		noindex: post.data.noindex ?? post.data.draft,
 		openGraph: {
 			basic: {
 				image: post.data.cover?.src ?? "",
