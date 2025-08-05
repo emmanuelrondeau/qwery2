@@ -259,7 +259,7 @@
 	}
 
 	.format figure > div.side-by-side-images {
-		@apply mx-auto flex justify-center gap-x-4;
+		@apply mx-auto flex justify-center gap-x-2 md:gap-x-4;
 	}
 
 	.format figure > div.side-by-side-images > * {
