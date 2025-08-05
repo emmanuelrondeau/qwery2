@@ -161,7 +161,7 @@ const t = useTranslations(lang);
 												{post.data.coverMetadata.author}
 											</Link>,</>
 										) : (
-											<>{post.data.coverMetadata.author}</>
+											<>{post.data.coverMetadata.author},</>
 										)}
 										{post.data.coverMetadata.license && (
 											<License license={post.data.coverMetadata.license} />
