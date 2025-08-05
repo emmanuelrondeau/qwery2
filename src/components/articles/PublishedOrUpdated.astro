@@ -3,12 +3,13 @@ interface Props {
 	lastEdited?: Date;
 	created: Date;
 	prefix?: boolean;
+	forcePublished?: boolean;
 }
 
-const { lastEdited, created, prefix: rawPrefix } = Astro.props;
+const { lastEdited, created, prefix: rawPrefix, forcePublished } = Astro.props;
 
 const prefix = typeof rawPrefix === "boolean" ? rawPrefix : true;
-const displayDate = lastEdited ?? created;
+const displayDate = forcePublished ? created : (lastEdited ?? created);
 const updatedOrPublished = prefix
 	? `${
 			lastEdited && lastEdited.getDate() !== created.getDate()
