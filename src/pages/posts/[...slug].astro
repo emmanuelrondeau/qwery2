@@ -143,12 +143,12 @@ const t = useTranslations(lang);
 										<div
 											class="bg-background t-[22px] absolute bottom-0 -left-1.5 h-1.5 w-1.5"
 											style="mask: radial-gradient(6px at 0 0,#0000 98%,var(--color-background));"
-											role="presentation"
+											aria-hidden="true"
 										/>
 										<div
 											class="bg-background t-[22px] absolute -top-1.5 right-0 h-1.5 w-1.5"
 											style="mask: radial-gradient(6px at 0 0,#0000 98%,var(--color-background));"
-											role="presentation"
+											aria-hidden="true"
 										/>
 										{t(
 											`post.cover.type.${post.data.coverMetadata.type ?? "image"}`,
