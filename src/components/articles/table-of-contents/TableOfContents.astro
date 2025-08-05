@@ -32,8 +32,15 @@ function buildToc(headings: MarkdownHeading[]) {
 
 <div class="mt-8 hidden lg:ml-auto lg:block lg:w-[22.625rem] print:lg:hidden">
 	<starlight-toc>
-		<nav class="relative rounded pb-2 lg:h-full">
-			<h2 role="presentation" class="mt-0 !text-lg !font-semibold">
+		<nav
+			class="relative rounded pb-2 lg:h-full"
+			aria-labelledby="table-of-contents"
+		>
+			<h2
+				id="table-of-contents"
+				role="presentation"
+				class="mt-0 !text-lg !font-semibold"
+			>
 				Table of Contents
 			</h2>
 			<ul
@@ -60,7 +67,11 @@ function buildToc(headings: MarkdownHeading[]) {
 		<summary
 			class="group/summary ring-focus-outline flex cursor-pointer list-none items-center justify-between rounded py-4 pr-3 pl-5 outline-hidden select-none group-[[open]]:pb-2 focus-visible:ring-2"
 		>
-			<h2 role="presentation" class="!my-0 !text-lg !font-bold">
+			<h2
+				id="table-of-contents"
+				role="presentation"
+				class="!my-0 !text-lg !font-bold"
+			>
 				Table of Contents
 			</h2>
 			<span
@@ -75,6 +86,7 @@ function buildToc(headings: MarkdownHeading[]) {
 		</summary>
 		<nav
 			class="ring-focus-outline overflow-clip rounded pr-4 pb-2 outline-hidden focus-visible:ring-2"
+			aria-labelledby="table-of-contents"
 		>
 			<div class="not-format relative pb-2">
 				<ul class="px-4 text-base" role="list">
