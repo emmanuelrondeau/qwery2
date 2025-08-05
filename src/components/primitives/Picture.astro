@@ -46,7 +46,11 @@ const transparent =
 let placeholderURL = "";
 let isSvg = false;
 
-if (placeholder && typeof Astro.props.src !== "string") {
+if (
+	process.env.DISABLE_IMAGE_OPTIMIZATION !== "true" &&
+	placeholder &&
+	typeof Astro.props.src !== "string"
+) {
 	const resolveSrc = await Promise.resolve(Astro.props.src);
 	const src = "default" in resolveSrc ? resolveSrc.default : resolveSrc;
 	isSvg = src.format == "svg";

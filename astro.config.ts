@@ -3,7 +3,11 @@ import AutoImport from "astro-auto-import";
 import bundlesize from "vite-plugin-bundlesize";
 import cloudflare from "@astrojs/cloudflare";
 import { defaultConfig } from "astro-better-image-service";
-import { defineConfig, fontProviders } from "astro/config";
+import {
+	defineConfig,
+	fontProviders,
+	passthroughImageService,
+} from "astro/config";
 import expressiveCode from "astro-expressive-code";
 
 import mdx from "@astrojs/mdx";
@@ -29,6 +33,9 @@ const NETLIFY_PREVIEW_SITE =
 	process.env.NETLIFY === "true" && process.env.CONTEXT !== "production"
 		? process.env.DEPLOY_PRIME_URL
 		: undefined;
+const DISABLE_IMAGE_OPTIMIZATION =
+	process.env.DISABLE_IMAGE_OPTIMIZATION === "true";
+console.warn("Image optimization and placeholder generation is disabled");
 
 const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 
@@ -39,22 +46,24 @@ export default defineConfig({
 	prefetch: { prefetchAll: true },
 	image: {
 		responsiveStyles: true,
-		service: {
-			config: {
-				...defaultConfig,
-				sharp: {
-					...defaultConfig.sharp,
-					jpeg: {
-						mozjpeg: true,
+		service: DISABLE_IMAGE_OPTIMIZATION
+			? passthroughImageService()
+			: {
+					config: {
+						...defaultConfig,
+						sharp: {
+							...defaultConfig.sharp,
+							jpeg: {
+								mozjpeg: true,
+							},
+							avif: {
+								// cspell:ignore subsampling
+								chromaSubsampling: "4:2:0",
+							},
+						},
 					},
-					avif: {
-						// cspell:ignore subsampling
-						chromaSubsampling: "4:2:0",
-					},
+					entrypoint: "./src/image-service.ts",
 				},
-			},
-			entrypoint: "./src/image-service.ts",
-		},
 	},
 	experimental: {
 		clientPrerender: true,
