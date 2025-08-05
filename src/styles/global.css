@@ -262,9 +262,9 @@
 		@apply outline-focus-outline outline-offset-2 focus-visible:outline-2;
 	}
 
-	/* a {
-		@apply ring-focus-outline rounded outline-hidden focus-visible:ring-2;
-	} */
+	a {
+		@apply focus-visible:rounded;
+	}
 
 	footer ul {
 		@apply flex list-none flex-col;
@@ -362,7 +362,7 @@
 
 	.format
 		:where(a):not(:where([class~="not-format"], [class~="not-format"] *)) {
-		@apply hover:text-underline-highlight rounded underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--theme-color-underline-highlight)] focus-visible:[--underline-color:var(--theme-color-underline-highlight)];
+		@apply hover:text-underline-highlight underline [--underline-color:var(--tw-prose-links)] hover:[--underline-color:var(--theme-color-underline-highlight)] focus-visible:[--underline-color:var(--theme-color-underline-highlight)];
 	}
 
 	/* Rehype Autolink - Custom styles for heading anchor links. */
