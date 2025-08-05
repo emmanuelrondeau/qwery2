@@ -1,4 +1,5 @@
 ---
+import Link from "@/components/primitives/Link.astro";
 import type { MarkdownHeading } from "astro";
 
 interface Props {
@@ -19,39 +20,29 @@ const paddingLeft = !hideLeftLine ? "1.5rem" : "1rem";
 
 <li
 	class:list={[
-		"relative list-none",
 		{
-			"h-0 opacity-0 group-has-[[aria-current=true]]/item:h-full group-has-[[aria-current=true]]/item:opacity-100":
-				depth > 2,
+			"li-depth-base": depth <= 2,
 			"group/item": depth == 2,
-			"h-full w-full": depth <= 2,
+			"li-depth-gt2": depth > 2,
 		},
 	]}
 >
 	{
-		/* .2em is for Chromium rendering differences with Firefox, due to the-
-		"top-[.1em]" style; would remove if behaviour becomes consistent with
-		Firefox */
+		/**
+		 * `class="underline-on-hover"` and `data-underline-style="on-hover"` is
+		 * re-implementing stuff from our Astro <Link> primitive, to make inline
+		 * styles work properly.
+		 */
 	}
 	<a
 		href={"#" + heading.slug}
-		class:list={[
-			"peer ml-1 block py-2 !no-underline outline-hidden transition-none duration-75 ring-inset hover:text-gray-950 focus-visible:text-gray-950 focus-visible:!underline aria-current:font-semibold aria-current:text-gray-950 motion-safe:hover:transition-[font-weight] dark:hover:text-gray-50 dark:focus-visible:text-gray-50 dark:aria-current:text-gray-50",
-		]}
 		aria-current={ariaCurrent}
+		class="peer underline-on-hover"
+		data-underline-style="on-hover"
 	>
 		{heading.text}
 	</a>
-	{
-		!hideLeftLine && (
-			<div
-				class:list={[
-					"absolute top-0 bottom-0 w-[2px] bg-gray-100 peer-hover:bg-violet-300 peer-focus-visible:bg-violet-300 peer-aria-current:bg-violet-600 dark:bg-gray-800 dark:peer-hover:bg-gray-600 dark:peer-focus-visible:bg-gray-600 dark:peer-aria-current:bg-violet-400",
-				]}
-				aria-hidden={true}
-			/>
-		)
-	}
+	{!hideLeftLine && <div class="left-line" aria-hidden={true} />}
 	{
 		heading.subheadings && heading.subheadings.length > 0 && (
 			<ul>

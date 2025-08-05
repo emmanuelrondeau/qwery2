@@ -33,12 +33,8 @@ const {
 	id={id}
 	href={href}
 	class:list={[
-		"ring-focus-outline rounded outline-hidden focus-visible:ring-2",
 		className,
-		{
-			"!no-underline contrast-more:hover:!underline contrast-more:focus:!underline print:!no-underline":
-				underlineStyle === "on-hover",
-		},
+		{ "underline-on-hover": underlineStyle === "on-hover" },
 	]}
 	target={target}
 	referrerpolicy={referrerpolicy}

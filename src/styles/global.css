@@ -237,6 +237,19 @@
 		@apply cursor-pointer;
 	}
 
+	.button {
+		@apply font-montserrat flex h-12 items-center justify-center gap-x-1.5 rounded-lg px-5 text-base font-semibold transition-colors active:transition-none;
+	}
+	.button-primary {
+		@apply bg-primary-200/50 text-primary-800 hover:bg-primary-200 active:bg-primary-300/20 active:text-primary-950 dark:bg-primary-400/15 dark:text-primary-300 dark:hover:bg-primary-400/25 dark:active:text-primary-400;
+	}
+	.button-secondary {
+		@apply bg-gray-100 text-gray-800 hover:bg-gray-200/15 active:bg-gray-300/20 active:text-gray-950 dark:bg-gray-400 dark:text-gray-300 dark:hover:bg-gray-400/25 dark:active:text-gray-400;
+	}
+	.button-white {
+		@apply text-primary-900 hover:bg-primary-200 active:bg-primary-300/20 active:text-primary-950 bg-white;
+	}
+
 	button,
 	select {
 		@apply font-montserrat;
@@ -247,6 +260,17 @@
 	main,
 	ul {
 		@apply outline-focus-outline outline-offset-2 focus-visible:outline-2;
+	}
+
+	/* a {
+		@apply ring-focus-outline rounded outline-hidden focus-visible:ring-2;
+	} */
+
+	footer ul {
+		@apply flex list-none flex-col;
+	}
+	footer ul a {
+		@apply block py-1.5;
 	}
 
 	/* Article Formatting */
@@ -277,6 +301,25 @@
 
 	.label-icon {
 		@apply text-primary-800 group-hover:text-primary-400 dark:group-hover:text-primary-300 transition-colors duration-75 dark:text-gray-300;
+	}
+
+	nav[aria-labelledby="table-of-contents"] > ul li {
+		@apply relative list-none;
+	}
+	.li-depth-base {
+		@apply h-full w-full;
+	}
+	.li-depth-gt2 {
+		@apply h-0 opacity-0 group-has-[[aria-current=true]]/item:h-full group-has-[[aria-current=true]]/item:opacity-100;
+	}
+	nav[aria-labelledby="table-of-contents"] > ul li {
+		@apply relative list-none;
+	}
+	nav[aria-labelledby="table-of-contents"] a {
+		@apply ml-1 block py-2 !no-underline outline-hidden transition-none duration-75 ring-inset hover:text-gray-950 focus-visible:text-gray-950 focus-visible:!underline aria-current:font-semibold aria-current:text-gray-950 motion-safe:hover:transition-[font-weight] dark:hover:text-gray-50 dark:focus-visible:text-gray-50 dark:aria-current:text-gray-50;
+	}
+	.left-line {
+		@apply absolute top-0 bottom-0 w-[2px] bg-gray-100 peer-hover:bg-violet-300 peer-focus-visible:bg-violet-300 peer-aria-current:bg-violet-600 dark:bg-gray-800 dark:peer-hover:bg-gray-600 dark:peer-focus-visible:bg-gray-600 dark:peer-aria-current:bg-violet-400;
 	}
 }
 
@@ -487,34 +530,37 @@
 		@apply relative dark:text-gray-200 [&>*]:first:mt-1 [&>*]:last:mb-0;
 	}
 
-	/* underline-animate custom component handling */
-	underline-animate a.group\/underline {
+	/* <underline-animate> custom component handling */
+	underline-animate .group\/underline {
 		@apply no-underline;
 	}
 
-	underline-animate a.group\/underline.no-underline:where(:hover) span,
-	underline-animate a.group\/underline.\!no-underline:where(:hover) span,
-	underline-animate a.group\/underline.no-underline:where(:focus-visible) span,
-	underline-animate
-		a.group\/underline.\!no-underline:where(:focus-visible)
-		span,
-	underline-animate a.group\/underline span {
-		/* See https://css-tricks.com/styling-underlines-web/#aa-border-bottom for text-shadow technique */
-		@apply text-shadow-[-.0625em_-.0625em,_-.0625em_.0625em,_.0625em_-.0625em,_.0625em_.0625em,0_.0625em];
+	/* A11y */
+	underline-animate .group\/underline.underline-on-hover {
+		@apply contrast-more:hover:underline contrast-more:focus:underline print:no-underline;
 	}
 
-	underline-animate a.group\/underline span {
+	/* Underline 100% to 85% */
+	underline-animate .group\/underline:where(:not(.underline-on-hover)) span {
 		/* See https://stackoverflow.com/a/73043524 for animation reference */
-		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-safe:group-hover/underline:bg-[length:85%_1px];
-
-		/* Color styling */
-		@apply text-shadow-background from-(--underline-color)/75 to-(--underline-color)/75 group-hover/underline:from-(--underline-color) group-hover/underline:to-(--underline-color) selection:text-shadow-none;
+		@apply bg-gradient-to-r bg-[length:100%_1px] bg-left-bottom bg-no-repeat motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-safe:group-hover/underline:bg-[length:85%_1px] motion-safe:group-focus-visible:bg-[length:85%_1px];
 	}
 
-	/* Animates a full underline */
-	underline-animate a.group\/underline.no-underline span,
-	underline-animate a.group\/underline.\!no-underline span {
+	/* underline 0% to 100% state */
+	underline-animate .group\/underline.underline-on-hover span {
 		@apply bg-gradient-to-r bg-[length:0%_1px] bg-left-bottom bg-no-repeat group-hover/underline:bg-[length:100%_1px] motion-safe:transition-[background-size,color,--tw-gradient-from,--tw-gradient-to] motion-safe:ease-out motion-reduce:transition-none;
+	}
+
+	/* Color settings 
+		See https://css-tricks.com/styling-underlines-web/#aa-border-bottom for text-shadow technique 
+	*/
+	underline-animate .group\/underline.underline-on-hover:where(:hover) span,
+	underline-animate
+		.group\/underline.underline-on-hover:where(:focus-visible)
+		span,
+	underline-animate .group\/underline span {
+		@apply text-shadow-background text-shadow-[-.0625em_-.0625em,_-.0625em_.0625em,_.0625em_-.0625em,_.0625em_.0625em,0_.0625em];
+		@apply from-(--underline-color)/75 to-(--underline-color)/75 group-hover/underline:from-(--underline-color) group-hover/underline:to-(--underline-color) selection:text-shadow-none;
 	}
 
 	/* Tridactyl-specific hack for fixing contrast in hint mode (pressing "f") */
