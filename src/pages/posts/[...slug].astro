@@ -156,14 +156,12 @@ const t = useTranslations(lang);
 										by
 										{post.data.coverMetadata.author &&
 										post.data.coverMetadata.authorUrl ? (
-											<Link href={post.data.coverMetadata.authorUrl}>
+											// prettier-ignore
+											<><Link href={post.data.coverMetadata.authorUrl}>
 												{post.data.coverMetadata.author}
-											</Link>
+											</Link>,</>
 										) : (
-											<>
-												{post.data.coverMetadata.author}
-												{post.data.coverMetadata.license && ", "}
-											</>
+											<>{post.data.coverMetadata.author}</>
 										)}
 										{post.data.coverMetadata.license && (
 											<License license={post.data.coverMetadata.license} />
