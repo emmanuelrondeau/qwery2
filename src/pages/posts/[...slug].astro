@@ -153,16 +153,17 @@ const t = useTranslations(lang);
 										{t(
 											`post.cover.type.${post.data.coverMetadata.type ?? "image"}`,
 										)}{" "}
-										by
-										{post.data.coverMetadata.author &&
-										post.data.coverMetadata.authorUrl ? (
+										by{" "}
+										{
 											// prettier-ignore
+											post.data.coverMetadata.author &&post.data.coverMetadata.authorUrl ? (
 											<><Link href={post.data.coverMetadata.authorUrl}>
 												{post.data.coverMetadata.author}
-											</Link>,</>
+											</Link>{post.data.coverMetadata.license && ","}</>
 										) : (
-											<>{post.data.coverMetadata.author},</>
-										)}
+											<>{post.data.coverMetadata.author}{post.data.coverMetadata.license && ","}</>
+										)
+										}
 										{post.data.coverMetadata.license && (
 											<License license={post.data.coverMetadata.license} />
 										)}
