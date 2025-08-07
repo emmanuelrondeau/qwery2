@@ -1,8 +1,6 @@
 {
 	"version": "0.2",
-	"ignorePaths": [
-		".devcontainer"
-	],
+	"ignorePaths": [".devcontainer"],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -159,7 +157,7 @@
 		"polyamorous",
 		"polysexual",
 		"prefersdark",
-		"Princessuh",
+		"Princesseuh",
 		"queerwinnipeg",
 		"Questrade",
 		"Raptoreum",
@@ -240,9 +238,7 @@
 		"XGRO",
 		"Zergpool"
 	],
-	"ignoreWords": [
-		"rehypei"
-	],
+	"ignoreWords": ["rehypei"],
 	"import": [],
 	"language": "en,en-CA"
 }

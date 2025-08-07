@@ -1,6 +1,5 @@
-// Stolen from Princessuh, unlicensed
+// Implementation of placeholder images was done thanks to Princesseuh.
 // https://github.com/Princesseuh/erika.florist/blob/feat/new-design2/src/imageService.ts
-
 import type { LocalImageService } from "astro";
 import sharpService, {
 	type SharpImageServiceConfig,
@@ -20,6 +19,9 @@ export function getBaseSiteURL(): string {
 
 const CACHE_PATH = "./.astro-cache/placeholders/";
 
+/**
+ * This code was from [amp-toolbox](https://github.com/ampproject/amp-toolbox/blob/d9a213b7a8245f176c9508fdf7dcd1255670aa4e/packages/optimizer/lib/transformers/AddBlurryImagePlaceholders.js#L268), licensed under Apache 2.0 according to Princesseuh.
+ */
 function getBitmapDimensions(
 	imgWidth: number,
 	imgHeight: number,
