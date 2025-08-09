@@ -1,4 +1,5 @@
 /* eslint-disable node/prefer-global/process */
+import "dotenv/config";
 import AutoImport from "astro-auto-import";
 import bundlesize from "vite-plugin-bundlesize";
 import cloudflare from "@astrojs/cloudflare";
@@ -35,7 +36,13 @@ const NETLIFY_PREVIEW_SITE =
 		: undefined;
 const DISABLE_IMAGE_OPTIMIZATION =
 	process.env.DISABLE_IMAGE_OPTIMIZATION === "true";
-console.warn("Image optimization and placeholder generation is disabled");
+
+if (DISABLE_IMAGE_OPTIMIZATION) {
+	console.log(
+		"Image optimization and placeholder generation is disabled" +
+			' (environment variable DISABLE_IMAGE_OPTIMIZATION was set to "true")',
+	);
+}
 
 const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
 
