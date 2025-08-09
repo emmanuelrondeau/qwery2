@@ -10,7 +10,14 @@ const post = posts.find((post) => post.id === postId);
 if (!post) throw new Error(`Post ${postId} not found`);
 
 const renderedPost = await post.render();
-const minutesRead = renderedPost.remarkPluginFrontmatter.minutesRead;
+const minutesRead: number = renderedPost.remarkPluginFrontmatter.minutesRead;
 ---
 
-{minutesRead}
+<span>
+	<time datetime={`PT${minutesRead}M`}>
+		{minutesRead.toLocaleString()}
+		<span aria-hidden="true">min</span>
+		<span class="sr-only">minute</span>
+	</time>
+	read
+</span>
