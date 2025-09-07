@@ -50,6 +50,10 @@ const newSeoProp: SEOProps = {
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
 	<link rel="sitemap" href="/sitemap-index.xml" />
+	<meta
+		http-equiv="onion-location"
+		content={`http://queerwpgwxrr3e2qcwh52wv4pjqd56lelkkrjxyan6xwimo2a4p6qhid.onion${Astro.url.pathname}`}
+	/>
 	<Font cssVariable="--font-sans" preload />
 	<Font cssVariable="--font-montserrat" preload />
 	<link

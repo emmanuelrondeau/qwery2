@@ -194,16 +194,6 @@ export default defineConfig({
 		}),
 		mdx(),
 		svelte(),
-		// @playform/compress should always be last
-		(await import("@playform/compress")).default({
-			// Images and SVGs are handled by astro-better-image-service
-			Image: false,
-			SVG: false,
-			// Rest of the config
-			HTML: {
-				"html-minifier-terser": {},
-			},
-		}),
 		icon({
 			// https://www.astroicon.dev/reference/configuration#include
 			include: {
@@ -216,6 +206,18 @@ export default defineConfig({
 			},
 		}),
 		sitemap(),
+
+		// @playform/compress should always be last
+		(await import("@playform/compress")).default({
+			// Images and SVGs are handled by astro-better-image-service
+			Image: false,
+			SVG: false,
+			// Rest of the config
+			HTML: {
+				"html-minifier-terser": {},
+			},
+			JavaScript: false,
+		}),
 	],
 	vite: {
 		build: { sourcemap: "hidden" },
@@ -223,7 +225,7 @@ export default defineConfig({
 	},
 	adapter:
 		process.env.CF_PAGES === "1"
-			? cloudflare()
+			? cloudflare({ imageService: "custom" })
 			: process.env.NETLIFY === "true"
 				? netlify()
 				: undefined,

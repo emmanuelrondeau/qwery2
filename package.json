@@ -14,7 +14,8 @@
 		"start": "astro dev",
 		"upgrade-deps": "pnpm upgrade -iL",
 		"postinstall": "astro telemetry disable",
-		"wrangler:deploy": "wrangler pages deploy"
+		"wrangler:deploy": "wrangler pages deploy",
+		"wrangler:deploy-dev": "wrangler pages deploy --branch dev --project-name queerwinnipeg"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
