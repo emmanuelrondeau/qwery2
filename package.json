@@ -19,31 +19,31 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
-		"@astrojs/cloudflare": "^12.6.4",
+		"@astrojs/cloudflare": "^12.6.7",
 		"@astrojs/markdown-remark": "^6.3.6",
 		"@astrojs/mdx": "^4.3.4",
-		"@astrojs/netlify": "^6.5.7",
+		"@astrojs/netlify": "^6.5.9",
 		"@astrojs/rss": "^4.0.12",
-		"@astrojs/sitemap": "^3.5.0",
+		"@astrojs/sitemap": "^3.5.1",
 		"@astrojs/svelte": "^7.1.0",
 		"@benjc/rehype-enhanced-tables": "^0.1.1",
 		"@fec/remark-a11y-emoji": "^4.0.2",
-		"@iconify-json/material-symbols": "^1.2.30",
+		"@iconify-json/material-symbols": "^1.2.34",
 		"@iconify-json/ph": "^1.2.2",
 		"@playform/compress": "^0.2.0",
 		"@stefanprobst/rehype-extract-toc": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.16",
-		"@tailwindcss/vite": "^4.1.11",
-		"astro": "^5.13.2",
+		"@tailwindcss/vite": "^4.1.13",
+		"astro": "^5.13.5",
 		"astro-auto-import": "^0.4.4",
 		"astro-better-image-service": "2.1.6",
 		"astro-expressive-code": "^0.41.3",
 		"astro-icon": "^1.1.5",
 		"astro-seo": "^0.8.4",
 		"bigger-picture": "^1.1.19",
-		"bits-ui": "^2.9.0",
-		"bowser": "^2.11.0",
-		"dotenv": "^17.2.1",
+		"bits-ui": "^2.9.6",
+		"bowser": "^2.12.1",
+		"dotenv": "^17.2.2",
 		"hast-util-select": "^6.0.4",
 		"hast-util-to-string": "^3.0.1",
 		"hastscript": "^9.0.1",
@@ -56,14 +56,14 @@
 		"rehype-callouts": "^2.1.2",
 		"rehype-slug": "^6.0.0",
 		"sharp": "^0.34.3",
-		"svelte": "^5.37.1",
+		"svelte": "^5.38.7",
 		"tailwind-scrollbar": "^4.0.2",
-		"tailwind-variants": "^2.1.0",
-		"tailwindcss": "^4.1.11",
+		"tailwind-variants": "^3.1.0",
+		"tailwindcss": "^4.1.13",
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.9.2",
 		"unist-util-remove": "^4.0.0",
-		"vite-plugin-bundlesize": "^0.2.0"
+		"vite-plugin-bundlesize": "^0.3.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.8.1",
@@ -79,7 +79,7 @@
 		"prettier-plugin-tailwindcss": "^0.6.14"
 	},
 	"optionalDependencies": {
-		"wrangler": "^4.27.0"
+		"wrangler": "^4.34.0"
 	},
 	"config": {
 		"commitizen": {
