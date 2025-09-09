@@ -145,15 +145,15 @@ deploy:production:
   stage: oci-image
   before_script:
     - buildah login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  script:
     - buildah build -f Containerfile -t registry.gitlab.com/queerwinnipeg/queerwinnipeg.ca .
-  allow_failure: true
 
 oci-image:production:
   extends:
     - .oci-image
   needs:
     - build:production
+  script:
+    - buildah push registry.gitlab.com/queerwinnipeg/queerwinnipeg.ca
 
 .cleanup:
   image: python:3.11-alpine
