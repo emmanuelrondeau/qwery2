@@ -50,7 +50,6 @@ devbox.lock
 .devbox/
 .devcontainer/
 .forgejo/
-.git/
 .gitlab-ci.yml
 .envrc
 scripts/

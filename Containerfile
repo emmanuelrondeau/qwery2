@@ -1,5 +1,9 @@
 FROM node:22-alpine AS build
 WORKDIR /app
+
+# Website reads git state
+RUN apk add git
+
 COPY . .
 
 # From .gitlab-ci.yml build step

@@ -15,6 +15,7 @@ stages:
 variables:
   CLOUDFLARE_PROJECT_NAME: queerwinnipeg
   DIST_FOLDER: ./dist
+  ASTRO_CACHE_FOLDER: ./astro-cache
   GIT_SUBMODULE_STRATEGY: recursive # This is unused
 
 workflow:
@@ -53,6 +54,7 @@ workflow:
   artifacts:
     paths:
       - $DIST_FOLDER
+      - $ASTRO_CACHE_FOLDER # Needed for OCI to not take forever
     expire_in: 3 hours
 
   cache:
@@ -65,7 +67,7 @@ workflow:
       fallback_keys:
         - $CI_COMMIT_REF_SLUG
       paths:
-        - .astro-cache
+        - $ASTRO_CACHE_FOLDER
 
 # build:preview:
 #   extends:
@@ -145,6 +147,8 @@ deploy:production:
     - buildah login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - buildah build -f Containerfile -t queerwinnipeg-nginx .
+  allow_failure: true
+
 oci-image:production:
   extends:
     - .oci-image
