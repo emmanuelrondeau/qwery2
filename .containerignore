@@ -1,0 +1,57 @@
+# build output
+dist/
+.netlify/
+bundlemeta.json
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+# krita
+*.autosave.kra
+*.avif~
+*.krz~
+*.kra~
+*.bak.krz
+
+# images
+src/assets/**/*.*_original
+
+# studiocms
+data/
+keys/
+
+# devbox
+devbox.json
+devbox.lock
+
+# other
+.devbox/
+.devcontainer/
+.forgejo/
+.git/
+.gitlab-ci.yml
+.envrc
+scripts/
+wrangler.jsonc

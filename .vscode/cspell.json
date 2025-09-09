@@ -1,6 +1,8 @@
 {
 	"version": "0.2",
-	"ignorePaths": [".devcontainer"],
+	"ignorePaths": [
+		".devcontainer"
+	],
 	"dictionaryDefinitions": [],
 	"dictionaries": [],
 	"words": [
@@ -27,6 +29,7 @@
 		"Borga",
 		"bowser",
 		"Brockwell",
+		"buildah",
 		"bundlemeta",
 		"bundlesize",
 		"callouts",
@@ -40,6 +43,7 @@
 		"communitylegal",
 		"Conet",
 		"Consolas",
+		"Containerfile",
 		"CPSM",
 		"creditcard",
 		"crimew's",
@@ -238,7 +242,9 @@
 		"XGRO",
 		"Zergpool"
 	],
-	"ignoreWords": ["rehypei"],
+	"ignoreWords": [
+		"rehypei"
+	],
 	"import": [],
 	"language": "en,en-CA"
 }

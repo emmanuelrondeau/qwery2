@@ -9,6 +9,7 @@
 stages:
   - build
   - deploy
+  - oci-image
   - cleanup
 
 variables:
@@ -135,6 +136,18 @@ deploy:production:
         CLOUDFLARE_BRANCH: $CI_DEFAULT_BRANCH
         CLOUDFLARE_COMMIT_MESSAGE: $CI_COMMIT_TAG - $CI_COMMIT_TAG_MESSAGE
     - when: never
+
+# https://blog.awyeah.dev/posts/please-oci/
+.oci-image:
+  image: quay.io/buildah/stable
+  stage: oci-image
+  before_script:
+    - buildah login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+oci-image:production:
+  extends:
+    - .oci-image
+  needs:
+    - build:production
 
 .cleanup:
   image: python:3.11-alpine
