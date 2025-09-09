@@ -15,7 +15,7 @@ stages:
 variables:
   CLOUDFLARE_PROJECT_NAME: queerwinnipeg
   DIST_FOLDER: ./dist
-  ASTRO_CACHE_FOLDER: ./astro-cache
+  ASTRO_CACHE_FOLDER: ./.astro-cache
   GIT_SUBMODULE_STRATEGY: recursive # This is unused
 
 workflow:
