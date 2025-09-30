@@ -1,13 +1,12 @@
 ---
 draft: false
-containsReferralLinks: true 
 title: Crypto 101 for (Non-Crypto Bro) Canadians
 description: Learn the basics of how cryptocurrency works, what dangers to look out for, and how you can make more anonymous transactions online.
 authors:
   - fio-cobbs
 tag: Finances
 created: 2025-05-20
-lastEdited: 2025-05-25
+lastEdited: 2025-09-30
 # cSpell:disable-next-line
 cover: /src/assets/images/crypto-101-for-non-crypto-bro-canadians/traxer-kM6QNrgo0YE-unsplash.avif
 coverMetadata:
@@ -132,7 +131,7 @@ A brokerage lets you exchange your fiat currency (Canadian dollars) into cryptoc
 
 Some popular Canadian exchanges include:
 
-- [Newton](https://www.newton.co/) (Recommended, [affiliate link for a free $25](https://web.newton.co/r/CA6BM3))
+- [Newton](https://www.newton.co/) (Recommended)
 
 	Newton is a popular Canadian brokerage. Their fees range from 1% to 1.5%, depending on the coin according to their website. It's also free to add funds via e-Transfer or wire.
 
@@ -275,7 +274,9 @@ On most chains, you can prioritize your transactions on how long it'll take, by 
 
 If you don't wish to buy crypto, but still wish to obtain some, you can mine it.
 
-You can mine to a pool like [Zergpool](https://zergpool.com/) using spare computers (laptops, desktops, or [even smartphones!](https://www.verus.io/mining)). Zergpool lets you exchange easily-minable coins (ex. Raptoreum, Verus, Monero), and then auto-exchanges them into other cryptocurrencies. You can have them given to you in the form of said easily-minable coins, or ones that are harder to mine (ex. Bitcoin, Bitcoin Cash, Litecoin).
+You can mine to a pool like [Zpool](https://zpool.ca/) using spare computers. This includes laptops, desktops, or even smartphones with certain coins.
+
+Zpool lets you exchange easily-minable coins, and then auto-exchanges them into other cryptocurrencies. You can have them given to you in the form of said easily-minable coins, or ones that are harder to mine (ex. Litecoin).
 
 ### Cost
 
@@ -313,7 +314,7 @@ Hardware can degrade over time when used. Degradation of hardware has a few cave
 
 Most merchants only take Bitcoin. However, if the merchant supports faster chains such as Bitcoin Cash, Litecoin, or Monero (which is one of the only chains that isn't transparent!), transfers will be quicker and cheaper.
 
-Zergpool does support [a variety of coins](https://zergpool.com/payouts), including Bitcoin. However, be wary that the payout schedule for Bitcoin is longer than a chain like Bitcoin Cash.
+Zpool does support [a variety of coins](https://zpool.ca/coins), including Bitcoin. However, be wary that the payout schedule for Bitcoin is significantly longer than a chain like Litecoin. If you're mining there, use a Litecoin address, with the password `C=LTC` in your miner.
 
 Certain wallet software also allow you to swap your cryptocurrency with another one, although note that you will still be beholden to transactions fees. 
 
@@ -340,13 +341,15 @@ The following miners are open source and minable on Zergpool:
 
 {/* cSpell:disable */}
 
-| Miner                                                                                      | Crypto                        | Hardware              | Operating System                    |
-|--------------------------------------------------------------------------------------------|-------------------------------|-----------------------|-------------------------------------|
-| [monkins1010/ccminer](https://github.com/monkins1010/ccminer/releases)                     | Verus (<abbr>VRSC</abbr>)     | CPU                   | Windows (x86_64)                    |
-| [Oink70/ccminer-verus](https://github.com/Oink70/ccminer-verus/releases)                   | Verus (<abbr>VRSC</abbr>)     | CPU                   | Linux (x86_64, AArch64)             |
-| [evrprogpowminer](https://github.com/EvrmoreOrg/evrprogpowminer/releases)                  | Evrmore (<abbr>EVR</abbr>)    | GPU (6 GB+ VRAM required) | Windows (x86_64), Linux (no binary) |
-| [ccminer-kudaraidee](https://github.com/Kudaraidee/ccminer-kudaraidee/releases) | Garlicoin (<abbr>GLRC</abbr>) | GPU                   | Windows (x86_64), Linux (no binary) |
-| [XMRig](https://github.com/xmrig/xmrig/releases)                                           | Monero (XMR), Raptoreum (RTM) | CPU                   | Windows, Linux (x86_64, AArch64)    |
+| Miner                                                                     | Crypto                         | Hardware                  | Operating System                    |
+|---------------------------------------------------------------------------|--------------------------------|---------------------------|-------------------------------------|
+| [XMRig (MoneroOcean fork)](https://github.com/MoneroOcean/xmrig/releases) | Monero, Raptoreum, Kawpow, ... | CPU, GPU                  | Windows, Linux (x86_64, AArch64)    |
+| [XMR-STAK](https://github.com/fireice-uk/xmr-stak/releases/tag/2.10.8)    | Ryo                            | GPU                       | Windows, Linux (x86_64)             |
+| [XMRig](https://github.com/xmrig/xmrig/releases)                          | Monero, Raptoreum, Kawpow, ... | CPU, GPU                  | Windows, Linux (x86_64, AArch64)    |
+| [JayDDee/cpuminer-opt](https://github.com/JayDDee/cpuminer-opt)           | Yenten, ...                    | CPU                       | Windows, Linux (no binary)          |
+| [evrprogpowminer](https://github.com/EvrmoreOrg/evrprogpowminer/releases) | Evrmore                        | GPU (6 GB+ VRAM required) | Windows (x86_64), Linux (no binary) |
+| [monkins1010/ccminer](https://github.com/monkins1010/ccminer/releases)    | Verus                          | CPU                       | Windows (x86_64)                    |
+| [Oink70/ccminer-verus](https://github.com/Oink70/ccminer-verus/releases)  | Verus                          | CPU                       | Linux (x86_64, AArch64)             |
 
 {/* cSpell:enable */}
 
