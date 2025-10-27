@@ -12,7 +12,7 @@ const prefix = typeof rawPrefix === "boolean" ? rawPrefix : true;
 const displayDate = forcePublished ? created : (lastEdited ?? created);
 const updatedOrPublished = prefix
 	? `${
-			lastEdited && lastEdited.getDate() !== created.getDate()
+			lastEdited && lastEdited.getTime() !== created.getTime()
 				? "Updated"
 				: "Published"
 		} `
