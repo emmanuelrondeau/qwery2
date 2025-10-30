@@ -42,14 +42,19 @@ switch (type) {
 ---
 
 {
-	/* Colours pulled from Google Maps, I give up.
-	All except FX2 matches https://winnipegtransit.com. */
+	// Colours are derived from Google Maps. With the exception of FX2, matches https://winnipegtransit.com
+	// and/or the GTFS data found at https://gtfs.winnipegtransit.com/google_transit.zip.
 }
 <span
 	class:list={[
 		"h-6 rounded-sm px-1.5 font-medium uppercase",
 		{ "bg-[#0064b1] text-white": type === "blue" },
-		{ "bg-[#f16122] text-white": type === "fx2" },
+		{
+			// The hex value Google Maps uses has better contrast (number farthest from 0 is better):
+			// - -64.21 Lc - https://contrast.tools?text=ffffff&background=f16122	- Google
+			// - -60.13 Lc - https://contrast.tools?text=ffffff&background=f37043 - Winnipeg Transit GTFS
+			"bg-[#f16122] text-white": type === "fx2",
+		},
 		{ "bg-[#f27ea6] text-white": type === "fx3" },
 		{ "bg-[#6450a1] text-white": type === "fx4" },
 		{ "bg-[#00b262] text-white": type === "f" },
