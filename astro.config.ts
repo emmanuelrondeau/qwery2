@@ -44,7 +44,7 @@ if (DISABLE_IMAGE_OPTIMIZATION) {
 	);
 }
 
-const site = NETLIFY_PREVIEW_SITE || "https://queerwinnipeg.ca";
+const site = NETLIFY_PREVIEW_SITE || "https://qwery3.netlify.app";
 
 // https://astro.build/config
 export default defineConfig({
